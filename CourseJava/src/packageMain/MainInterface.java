@@ -10,18 +10,6 @@ import javax.swing.*;
 public class MainInterface {
 
 	static CreateQuestions objQuestions = new CreateQuestions();
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
 	static StudyQuestion objStudyQuestions = new StudyQuestion();
 	
 	static JFrame mainFrame = new JFrame();

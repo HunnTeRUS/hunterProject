@@ -9,6 +9,24 @@ import javax.swing.*;
 public class StudyQuestion extends CreateQuestions {
 	
 	public static CreateQuestions questions = new CreateQuestions();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static MainInterface maininterface = new MainInterface();
 	public static StudyQuestion objStudy = new StudyQuestion();
 	
