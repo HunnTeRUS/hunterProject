@@ -1,7 +1,6 @@
 package packageMain;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,9 +31,7 @@ public class MainInterface {
 		this.tamanho = tamanho;
 	}
 
-	public MainInterface() {}
-
-	public static void main(String[] args) {
+	public void mainMethod() {
 		main.settingInterface();
 		main.setIconImage();
 	}
