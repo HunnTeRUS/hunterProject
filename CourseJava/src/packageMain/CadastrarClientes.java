@@ -24,6 +24,9 @@ public class CadastrarClientes {
 	private JPasswordField campoConfirmarSenha = new JPasswordField();
 	private JButton returnLogin = new JButton("Voltar para a página de login");
 	private JButton cadastrar = new JButton("Cadastrar");
+	private JCheckBox adm = new JCheckBox("Administrator");
+	private JCheckBox student = new JCheckBox("Student");
+
 
 	//Variaveis para armazenar os dados recebidos e/ou criptografados
 	private String senhaCadastrada;
@@ -47,7 +50,7 @@ public class CadastrarClientes {
 
 	//Variaveis para conexão no DB
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/clientes";
+	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/coursejava";
 
 	//Gerando gets e sets para as variaveis
 	public String getSenhaCadastrada() {
@@ -100,6 +103,11 @@ public class CadastrarClientes {
 		painelPrincipalCadastro.add(cadastrar);
 		painelPrincipalCadastro.add(campoUsuario);
 		painelPrincipalCadastro.add(returnLogin);
+		painelPrincipalCadastro.add(student);
+		painelPrincipalCadastro.add(adm);
+
+		student.setBounds(800, 650, 350, 30);
+		adm.setBounds(800, 700, 350, 30);
 		image.setBounds(780, 120, 400, 400);
 		painelPrincipalCadastro.setLayout(null);
 		labelEmail.setForeground(Color.WHITE);
@@ -118,11 +126,23 @@ public class CadastrarClientes {
 		labelConfirmarSenha.setBounds(750, 585, 200, 30);
 		labelUsuario.setBounds(800, 449, 200, 100);
 		campoConfirmarSenha.setBounds(900, 585, 250, 30);
-		cadastrar.setBounds(800, 650, 350, 30);
-		returnLogin.setBounds(800, 700, 350, 30);
+		cadastrar.setBounds(800, 750, 350, 30);
+		returnLogin.setBounds(800, 800, 350, 30);
 	}
 
 	public void manipulandoDados() {
+		adm.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				student.setSelected(false);
+			}});
+		
+		student.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				adm.setSelected(false);
+			}});
+		
 		cadastrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -134,17 +154,22 @@ public class CadastrarClientes {
 				
 
 				if((getEmailCadastrado().equals("")) || (getSenhaCadastrada().equals("")) || (getConfirmacaoSenha().equals("")) || (getUsuarioCadastrado().equals(""))) {
-					JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+					JOptionPane.showMessageDialog(null, "Fill in all the fields");
 					campoEmail.setText("");
 					campoSenha.setText("");
 					campoConfirmarSenha.setText("");
 					campoUsuario.setText("");
 				}
+				
+				if((!(adm.isSelected())) && (!(student.isSelected()))) {
+					JOptionPane.showMessageDialog(null, "Choice between 'Administrator' and 'Student'");
+				}
+				
 				else if(!(getSenhaCadastrada().equals(getConfirmacaoSenha()))) {
-					JOptionPane.showMessageDialog(null, "Campo Senha diferente do campo de Confirmação da Senha!");
+					JOptionPane.showMessageDialog(null, "Password field is different from Confirm Password field");
 				}
 				else if((getSenhaCadastrada().length()) <= 3) {
-					JOptionPane.showMessageDialog(null, "Senha muito fraca!");
+					JOptionPane.showMessageDialog(null, "Put a password more strong!");
 				}
 				else {	
 					try {
@@ -154,22 +179,29 @@ public class CadastrarClientes {
 
 						String sql; 
 						
-						sql = "INSERT INTO dadosClientes (email, usuario, senha) values('" + getUsuarioCadastrado()  + "', '" + getEmailCadastrado() + "', '" + getSenhaCadastrada() + "');";
-																		
-						stmt = conecta.prepareStatement(sql);	
-						stmt.execute(sql);		
+						if(adm.isSelected()) {
+							sql = "INSERT INTO users (userr, email, senha, adm, student) values('" + getEmailCadastrado() + "', '" + getUsuarioCadastrado() + "', '" + getSenhaCadastrada()  + "', true, false);";
+							stmt = conecta.prepareStatement(sql);	
+							stmt.execute(sql);		
+						}
 						
+						if (student.isSelected()) {
+							sql = "INSERT INTO users (userr, email, senha, adm, student) values('" + getEmailCadastrado() + "', '" + getUsuarioCadastrado() + "', '" + getSenhaCadastrada()  + "', false, true);";
+							stmt = conecta.prepareStatement(sql);	
+							stmt.execute(sql);		
+						}
+																										
 						conecta.close();
 						stmt.close();
 						
-						JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+						JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
 						
 						objLogin.metodoPrincipalLogin();
 						framePrincipalCadastro.setVisible(false);
 			
 					} catch (Exception error) {
-						JOptionPane.showMessageDialog(null, "Ocorreu um erro, tente novamente");
-					}
+						JOptionPane.showMessageDialog(null, "Error, try again!");
+					} 
 				}
 			}
 		});

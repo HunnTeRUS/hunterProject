@@ -54,7 +54,7 @@ public class LoginClientes {
 	}
 	
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/clientes";
+	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/coursejava";
 
 	public byte[] getSenhaCriptografada() {
 		return senhaCriptografada;
@@ -88,6 +88,7 @@ public class LoginClientes {
 	}
 
 	private void metodoCriacao() {
+
 		framePrincipalLogin.setVisible(true);
 		framePrincipalLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		framePrincipalLogin.add(painelPrincipalLogin);
@@ -104,9 +105,10 @@ public class LoginClientes {
 		painelPrincipalLogin.add(RecSenha);
 		painelPrincipalLogin.add(enviarDados);
 		painelPrincipalLogin.add(botaoCadastro);
-		enviarDados.setBounds(800, 650, 350, 30);
-		RecSenha.setBounds(800, 750, 350, 30);
-		botaoCadastro.setBounds(800, 700, 350, 30);
+
+		enviarDados.setBounds(800, 700, 350, 30);
+		RecSenha.setBounds(800, 800, 350, 30);
+		botaoCadastro.setBounds(800, 750, 350, 30);
 		image.setBounds(780, 120, 400, 400);
 		painelPrincipalLogin.setLayout(null);
 		labelemail.setForeground(Color.WHITE);
@@ -145,20 +147,19 @@ public class LoginClientes {
 
 					String sql;
 
-					sql = "SELECT email, usuario, senha FROM dadosClientes WHERE usuario='" + getUsuario() + "' OR email='" + getEmail() +"';";
+					sql = "SELECT userr, email, senha FROM users WHERE userr='" + getUsuario() + "' OR email='" + getEmail() + "';";
 
 					PreparedStatement stmt = conecta.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
 
 					while(rs.next()) {
-						if(((getUsuario().equals(rs.getString("usuario"))) && (getSenha().equals(rs.getString("senha")))))
+						if(((getUsuario().equals(rs.getString("userr"))) && (getSenha().equals(rs.getString("senha")))) || ((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha")))))
 						{
 							JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+							LoginClientes.framePrincipalLogin.dispose();
 							objClient.mainMethod();
 						}
-							
-						
-						else {
+							else {
 							JOptionPane.showMessageDialog(null, "Usuário/Email e senha incorretos!");}
 						}
 					
