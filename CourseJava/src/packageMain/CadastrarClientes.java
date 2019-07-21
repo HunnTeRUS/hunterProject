@@ -8,6 +8,15 @@ import javax.swing.*;
 
 public class CadastrarClientes {
 
+	//otavio gay
+	
+	
+	
+	
+	
+	
+	
+	
 	static LoginClientes objLogin = new LoginClientes();
 	static CadastrarClientes objSignUp = new CadastrarClientes();
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
