@@ -1,0 +1,15 @@
+CREATE DATABASE courseJava;
+
+USE courseJava;
+
+CREATE TABLE users (
+codeUser INT auto_increment,
+userr    VARCHAR(100),
+email    VARCHAR(100),
+senha    VARCHAR(100),
+adm  BOOLEAN,
+student BOOLEAN,
+
+primary key(codeUser, userr)
+);
+
