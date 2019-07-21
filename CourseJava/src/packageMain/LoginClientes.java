@@ -33,7 +33,7 @@ public class LoginClientes {
 	private JPasswordField campoSenha = new JPasswordField();
 	private JButton enviarDados = new JButton("Login");
 	private JButton botaoCadastro = new JButton("Não tem cadastro? Clique aqui!");
-	private JButton RecSenha = new JButton("Esqueci minha senha");
+	private JButton RecSenha = new JButton("Esqueci minha senha - Em breve kkk");
 
 	//Criando as variaveis com get e set
 	public String senha;
@@ -104,10 +104,10 @@ public class LoginClientes {
 		painelPrincipalLogin.add(RecSenha);
 		painelPrincipalLogin.add(enviarDados);
 		painelPrincipalLogin.add(botaoCadastro);
-		enviarDados.setBounds(700, 650, 350, 30);
-		RecSenha.setBounds(700, 750, 350, 30);
-		botaoCadastro.setBounds(700, 700, 350, 30);
-		image.setBounds(680, 120, 400, 400);
+		enviarDados.setBounds(800, 650, 350, 30);
+		RecSenha.setBounds(800, 750, 350, 30);
+		botaoCadastro.setBounds(800, 700, 350, 30);
+		image.setBounds(780, 120, 400, 400);
 		painelPrincipalLogin.setLayout(null);
 		labelemail.setForeground(Color.WHITE);
 		labelsenha.setForeground(Color.WHITE);
@@ -115,12 +115,14 @@ public class LoginClientes {
 		labelsenha.setFont(new java.awt.Font("ink free", 1, 16));
 		labelemail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelusuario.setFont(new java.awt.Font("ink free", 1, 16));
-		labelemail.setBounds(700, 450, 200, 100);
-		labelusuario.setBounds(700, 500, 200, 100);
-		labelsenha.setBounds(700, 550, 200, 100); 
-		campoEmail.setBounds(850, 485, 200, 30);
-		campoSenha.setBounds(850, 585, 200, 30);
-		campoUsuario.setBounds(850, 535, 200, 30);
+		labelemail.setBounds(800, 450, 200, 100);
+		labelusuario.setBounds(800, 500, 200, 100);
+		labelsenha.setBounds(800, 550, 250, 100); 
+		campoEmail.setBounds(900, 485, 250, 30);
+		campoSenha.setBounds(900, 585, 250, 30);
+		campoUsuario.setBounds(900, 535, 250, 30);
+		RecSenha.setEnabled(false);
+
 	}
 
 
@@ -152,7 +154,6 @@ public class LoginClientes {
 						if(((getUsuario().equals(rs.getString("usuario"))) && (getSenha().equals(rs.getString("senha")))))
 						{
 							JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-							System.out.println("oooo");
 							objClient.mainMethod();
 						}
 							

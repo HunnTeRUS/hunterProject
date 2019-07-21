@@ -9,7 +9,7 @@ import javax.swing.*;
 public class CadastrarClientes {
 
 	static LoginClientes objLogin = new LoginClientes();
-
+	static CadastrarClientes objSignUp = new CadastrarClientes();
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
 	public JLabel image = new JLabel(imagem);
 	static JFrame framePrincipalCadastro = new JFrame();
@@ -100,7 +100,7 @@ public class CadastrarClientes {
 		painelPrincipalCadastro.add(cadastrar);
 		painelPrincipalCadastro.add(campoUsuario);
 		painelPrincipalCadastro.add(returnLogin);
-		image.setBounds(680, 120, 400, 400);
+		image.setBounds(780, 120, 400, 400);
 		painelPrincipalCadastro.setLayout(null);
 		labelEmail.setForeground(Color.WHITE);
 		labelsenha.setForeground(Color.WHITE);
@@ -110,16 +110,16 @@ public class CadastrarClientes {
 		labelEmail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelUsuario.setFont(new java.awt.Font("ink free", 1, 16));
 		labelConfirmarSenha.setFont(new java.awt.Font("ink free", 1, 16));
-		labelEmail.setBounds(700, 400, 200, 100);
-		labelsenha.setBounds(700, 500, 200, 100); 
-		campoUsuario.setBounds(850, 435, 200, 30);
-		campoEmail.setBounds(850, 485, 200, 30);
-		campoSenha.setBounds(850, 535, 200, 30);
-		labelConfirmarSenha.setBounds(700, 585, 200, 30);
-		labelUsuario.setBounds(700, 449, 200, 100);
-		campoConfirmarSenha.setBounds(850, 585, 200, 30);
-		cadastrar.setBounds(700, 650, 350, 30);
-		returnLogin.setBounds(700, 700, 350, 30);
+		labelEmail.setBounds(800, 400, 200, 100);
+		labelsenha.setBounds(800, 500, 200, 100); 
+		campoUsuario.setBounds(900, 435, 250, 30);
+		campoEmail.setBounds(900, 485, 250, 30);
+		campoSenha.setBounds(900, 535, 250, 30);
+		labelConfirmarSenha.setBounds(750, 585, 200, 30);
+		labelUsuario.setBounds(800, 449, 200, 100);
+		campoConfirmarSenha.setBounds(900, 585, 250, 30);
+		cadastrar.setBounds(800, 650, 350, 30);
+		returnLogin.setBounds(800, 700, 350, 30);
 	}
 
 	public void manipulandoDados() {
@@ -173,6 +173,13 @@ public class CadastrarClientes {
 				}
 			}
 		});
+		
+		returnLogin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				objLogin.metodoPrincipalLogin();
+				CadastrarClientes.framePrincipalCadastro.dispose();
+			}});
 
 
 	}
