@@ -9,9 +9,21 @@ import javax.swing.*;
 
 public class MainInterface {
 
-	static StudyQuestion objStudyQuestions = new StudyQuestion();
 	static CreateQuestions objQuestions = new CreateQuestions();
+	
+	
+	
+	
 
+	
+	
+	
+	
+	
+	
+	
+	static StudyQuestion objStudyQuestions = new StudyQuestion();
+	
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
 	ImageIcon image = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
