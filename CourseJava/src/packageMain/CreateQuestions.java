@@ -6,14 +6,14 @@ import java.util.List;
 import javax.swing.*;
 
 public class CreateQuestions {
-	
-	MainInterface classeMain = new MainInterface();
-
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
 	ImageIcon image = new ImageIcon(getClass().getResource("icons8-cor-48.png"));
 	JLabel imageIcon = new JLabel(image);
 
+	MainInterface classeMain = new MainInterface();
+
+	
 	JLabel labelQuestion = new JLabel("Write a question:");
 	JLabel labelAnswer = new JLabel("Write a correct answer:");
 	JLabel labelIncorrectAnswer = new JLabel("Write a incorrect answer:");
