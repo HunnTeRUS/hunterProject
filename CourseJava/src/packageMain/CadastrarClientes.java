@@ -22,7 +22,7 @@ public class CadastrarClientes {
 	private JTextField campoUsuario = new JTextField();
 	private JPasswordField campoSenha = new JPasswordField();
 	private JPasswordField campoConfirmarSenha = new JPasswordField();
-	private JButton returnLogin = new JButton("Voltar para a página de login");
+	private JButton returnLogin = new JButton("Voltar para a pï¿½gina de login");
 	private JButton cadastrar = new JButton("Cadastrar");
 	private JCheckBox adm = new JCheckBox("Administrator");
 	private JCheckBox student = new JCheckBox("Student");
@@ -32,7 +32,7 @@ public class CadastrarClientes {
 	private String senhaCadastrada;
 	private String usuarioCadastrado;
 	private String emailCadastrado;
-	private String confirmaçaoSenha;
+	private String confirmacaoSenha;
 	public byte[] senhaCriptografadaDB;
 	
 	public void metodoPrincipalCadastro() {
@@ -48,7 +48,7 @@ public class CadastrarClientes {
 		this.senhaCriptografadaDB = senhaCriptografadaDB;
 	}
 
-	//Variaveis para conexão no DB
+	//Variaveis para conexï¿½o no DB
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/coursejava";
 
@@ -78,11 +78,11 @@ public class CadastrarClientes {
 	}
 
 	public String getConfirmacaoSenha() {
-		return confirmaçaoSenha;
+		return confirmacaoSenha;
 	}
 
-	public void setConfirmacaoSenha(String confirmaçaoSenha) {
-		this.confirmaçaoSenha = confirmaçaoSenha;
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
 	}
 
 	public void metodoCriacao() {

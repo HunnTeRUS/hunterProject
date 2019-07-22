@@ -20,7 +20,6 @@ public class LoginClientes {
 
 
 	//Criando os objetos visuais
-
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
 	public JLabel image = new JLabel(imagem);
 	static JFrame framePrincipalLogin = new JFrame();
@@ -32,7 +31,7 @@ public class LoginClientes {
 	private JTextField campoUsuario = new JTextField();
 	private JPasswordField campoSenha = new JPasswordField();
 	private JButton enviarDados = new JButton("Login");
-	private JButton botaoCadastro = new JButton("Não tem cadastro? Clique aqui!");
+	private JButton botaoCadastro = new JButton("NÃ£o tem cadastro? Clique aqui!");
 	private JButton RecSenha = new JButton("Esqueci minha senha - Em breve kkk");
 
 	//Criando as variaveis com get e set
@@ -143,7 +142,7 @@ public class LoginClientes {
 					//getSenha()                = Senha recebida do usuario
 					//getSenhaDecriptada()   	= Senha enviada pelo usuario decriptada (nao tem necessidade)
 					//getSenhaCriptografada()   = sENHA recebida do usuario e enviada a outra classse para ser criptografada
-					//getSenhaRecebidaDB()      = Pega a senha que esta no BG (criptografada) e é decriptada para a comparação ser feita	
+					//getSenhaRecebidaDB()      = Pega a senha que esta no BG (criptografada) e ï¿½ decriptada para a comparaï¿½ï¿½o ser feita	
 
 					String sql;
 
@@ -160,7 +159,7 @@ public class LoginClientes {
 							objClient.mainMethod();
 						}
 							else {
-							JOptionPane.showMessageDialog(null, "Usuário/Email e senha incorretos!");}
+							JOptionPane.showMessageDialog(null, "Usuï¿½rio/Email e senha incorretos!");}
 						}
 					
 					
