@@ -18,21 +18,6 @@ public class LoginClientes {
 	static MainInterface objClient = new MainInterface();
 	public static CadastrarClientes objCadastrorCliente = new CadastrarClientes();
 
-	/* 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
 
 	//Criando os objetos visuais
 
@@ -121,10 +106,10 @@ public class LoginClientes {
 		painelPrincipalLogin.add(enviarDados);
 		painelPrincipalLogin.add(botaoCadastro);
 
-		enviarDados.setBounds(500, 550, 350, 30);
-		RecSenha.setBounds(500, 800, 350, 30);
-		botaoCadastro.setBounds(500, 600, 350, 30);
-		image.setBounds(500, 60, 400, 400);
+		enviarDados.setBounds(800, 700, 350, 30);
+		RecSenha.setBounds(800, 800, 350, 30);
+		botaoCadastro.setBounds(800, 750, 350, 30);
+		image.setBounds(780, 120, 400, 400);
 		painelPrincipalLogin.setLayout(null);
 		labelemail.setForeground(Color.WHITE);
 		labelsenha.setForeground(Color.WHITE);
@@ -132,12 +117,12 @@ public class LoginClientes {
 		labelsenha.setFont(new java.awt.Font("ink free", 1, 16));
 		labelemail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelusuario.setFont(new java.awt.Font("ink free", 1, 16));
-		labelemail.setBounds(500, 350, 200, 100);
-		labelusuario.setBounds(500, 400, 200, 100);
-		labelsenha.setBounds(500, 450, 250, 100); 
-		campoEmail.setBounds(600, 390, 250, 30);
-		campoSenha.setBounds(600, 490, 250, 30);
-		campoUsuario.setBounds(600, 440, 250, 30);
+		labelemail.setBounds(800, 450, 200, 100);
+		labelusuario.setBounds(800, 500, 200, 100);
+		labelsenha.setBounds(800, 550, 250, 100); 
+		campoEmail.setBounds(900, 485, 250, 30);
+		campoSenha.setBounds(900, 585, 250, 30);
+		campoUsuario.setBounds(900, 535, 250, 30);
 		RecSenha.setEnabled(false);
 
 	}
