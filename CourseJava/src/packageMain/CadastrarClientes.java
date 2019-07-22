@@ -7,15 +7,6 @@ import java.sql.*;
 import javax.swing.*;
 
 public class CadastrarClientes {
-
-	//otavio gay
-	
-	
-	
-	
-	
-	
-	
 	
 	static LoginClientes objLogin = new LoginClientes();
 	static CadastrarClientes objSignUp = new CadastrarClientes();
