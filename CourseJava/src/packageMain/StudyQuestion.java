@@ -51,7 +51,7 @@ public class StudyQuestion extends CreateQuestions {
 
 	JTextArea question   = new JTextArea("asasasasasa");
 	JButton correct    = new JButton();
-	JButton incorrect  = new JButton();
+	JButton incorrect  = new JButton();    
 	JTextField textReceive = new JTextField();
 	
 	public void questionsUser() {

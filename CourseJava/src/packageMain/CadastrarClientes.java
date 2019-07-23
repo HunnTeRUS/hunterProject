@@ -1,4 +1,4 @@
-package packageMain;
+package packageMain;   
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import javax.swing.*;
 
-public class CadastrarClientes {
+public class CadastrarClientes { 
 	
 	static LoginClientes objLogin = new LoginClientes();
 	static CadastrarClientes objSignUp = new CadastrarClientes();
@@ -26,7 +26,7 @@ public class CadastrarClientes {
 	private JButton cadastrar = new JButton("Cadastrar");
 	private JCheckBox adm = new JCheckBox("Administrator");
 	private JCheckBox student = new JCheckBox("Student");
-
+         
 
 	//Variaveis para armazenar os dados recebidos e/ou criptografados
 	private String senhaCadastrada;

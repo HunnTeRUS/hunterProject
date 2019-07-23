@@ -76,7 +76,7 @@ public class MainInterface {
 		});
 
 		study.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { 
 					if(CreateQuestions.queueQuestions.size() == 0) {
 						JOptionPane.showMessageDialog(null, "Add new questions to continue!", "=)", 3);
 					}

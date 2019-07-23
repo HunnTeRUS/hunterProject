@@ -21,7 +21,9 @@ public class LoginClientes {
 
 	//Criando os objetos visuais
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
+	ImageIcon imagem2 = new ImageIcon(getClass().getResource("logo-branco-transparente.png"));
 	public JLabel image = new JLabel(imagem);
+	public JLabel image2 = new JLabel(imagem2);
 	static JFrame framePrincipalLogin = new JFrame();
 	static JPanel painelPrincipalLogin = new JPanel();
 	JLabel labelemail = new JLabel("Email: ");
@@ -97,8 +99,7 @@ public class LoginClientes {
 		this.email = email;
 	}
 
-	private void metodoCriacao() {
-
+	private void metodoCriacao() { 
 		framePrincipalLogin.setVisible(true);
 		framePrincipalLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		framePrincipalLogin.add(painelPrincipalLogin);
@@ -112,31 +113,37 @@ public class LoginClientes {
 		painelPrincipalLogin.add(campoEmail);
 		painelPrincipalLogin.add(campoSenha);
 		painelPrincipalLogin.add(image);
+		painelPrincipalLogin.add(image2);
 		painelPrincipalLogin.add(RecSenha);
 		painelPrincipalLogin.add(enviarDados);
 		painelPrincipalLogin.add(botaoCadastro);
 		Dimension tela = framePrincipalLogin.getSize();
-		enviarDados.setBounds((tela.width/2), (tela.height-100), 350, 30);
-		RecSenha.setBounds((tela.width/2), (tela.height-150), 350, 30);
-		botaoCadastro.setBounds((tela.width/2), (tela.height-200), 350, 30);
-		image.setBounds((tela.width/2), 10, 400, 400);
+		
 		painelPrincipalLogin.setLayout(null);
-		labelemail.setForeground(Color.WHITE);
+		enviarDados.setBounds(((tela.width/2)-200), ((tela.height/2)+150), 350, 30);
+		RecSenha.setBounds(((tela.width/2)-200), ((tela.height/2)+200), 350, 30);
+		botaoCadastro.setBounds(((tela.width/2)-200), ((tela.height/2)+250), 350, 30);
+		
+		image.setBounds(((tela.width/2) - 500),  10, 400, 400);
+		image2.setBounds((tela.width/2), 30, 400, 400);
+		
+		labelemail.setBounds((tela.width/3), ((tela.height/2)-80), 200, 100);
+		labelusuario.setBounds((tela.width/3),((tela.height/2)-30), 200, 100);
+		labelsenha.setBounds((tela.width/3), ((tela.height/2)+20), 250, 100); 
+		
+		campoEmail.setBounds((tela.width/2), ((tela.height/2)-40), 250, 30);
+		campoSenha.setBounds((tela.width/2), ((tela.height/2)+10), 250, 30);
+		campoUsuario.setBounds((tela.width/2), ((tela.height/2)+60), 250, 30);
+		
+		labelemail.setForeground(Color.WHITE); 
 		labelsenha.setForeground(Color.WHITE);
 		labelusuario.setForeground(Color.WHITE);
 		labelsenha.setFont(new java.awt.Font("ink free", 1, 16));
 		labelemail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelusuario.setFont(new java.awt.Font("ink free", 1, 16));
-		labelemail.setBounds((tela.width/3), 450, 200, 100);
-		labelusuario.setBounds((tela.width/3), 500, 200, 100);
-		labelsenha.setBounds((tela.width/3), 550, 250, 100); 
-		campoEmail.setBounds((tela.width/2), 485, 250, 30);
-		campoSenha.setBounds((tela.width/2), 585, 250, 30);
-		campoUsuario.setBounds((tela.width/2), 535, 250, 30);
+
 		RecSenha.setEnabled(false);
-
 	}
-
 
 	private void manipulandoDados() {
 		enviarDados.addActionListener(new ActionListener() {
