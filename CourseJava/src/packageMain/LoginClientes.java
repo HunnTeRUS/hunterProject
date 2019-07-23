@@ -33,7 +33,8 @@ public class LoginClientes {
 	private JButton enviarDados = new JButton("Login");
 	private JButton botaoCadastro = new JButton("Não tem cadastro? Clique aqui!");
 	private JButton RecSenha = new JButton("Esqueci minha senha - Em breve kkk");
-
+	
+	//Toolkit.getDefaultToolkit().getScreenSize();
 	//Criando as variaveis com get e set
 	public String senha;
 	public String email;
@@ -41,7 +42,16 @@ public class LoginClientes {
 	private String senhaDecriptada;
 	private byte[] senhaCriptografada;
 	
-
+	
+	//Dimensionar o frame de acordo com o tamanho da tela
+	/*	private void Screen(){
+			
+			
+			framePrincipalLogin.setLocation(((tela.width - framePrincipalLogin.getSize().width)/2),((tela.height - framePrincipalLogin.getSize().height)/2));
+			framePrincipalLogin.setVisible(true);
+		}*/
+		
+		
 	public static void main(String[] args) {
 		objLogin.metodoPrincipalLogin();
 	}
@@ -50,6 +60,7 @@ public class LoginClientes {
 	public void metodoPrincipalLogin() {
 		metodoCriacao();
 		manipulandoDados();
+		//Screen();
 	}
 	
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -104,11 +115,11 @@ public class LoginClientes {
 		painelPrincipalLogin.add(RecSenha);
 		painelPrincipalLogin.add(enviarDados);
 		painelPrincipalLogin.add(botaoCadastro);
-
-		enviarDados.setBounds(800, 700, 350, 30);
-		RecSenha.setBounds(800, 800, 350, 30);
-		botaoCadastro.setBounds(800, 750, 350, 30);
-		image.setBounds(780, 120, 400, 400);
+		Dimension tela = framePrincipalLogin.getSize();
+		enviarDados.setBounds((tela.width/2), (tela.height-100), 350, 30);
+		RecSenha.setBounds((tela.width/2), (tela.height-150), 350, 30);
+		botaoCadastro.setBounds((tela.width/2), (tela.height-200), 350, 30);
+		image.setBounds((tela.width/2), 10, 400, 400);
 		painelPrincipalLogin.setLayout(null);
 		labelemail.setForeground(Color.WHITE);
 		labelsenha.setForeground(Color.WHITE);
@@ -116,12 +127,12 @@ public class LoginClientes {
 		labelsenha.setFont(new java.awt.Font("ink free", 1, 16));
 		labelemail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelusuario.setFont(new java.awt.Font("ink free", 1, 16));
-		labelemail.setBounds(800, 450, 200, 100);
-		labelusuario.setBounds(800, 500, 200, 100);
-		labelsenha.setBounds(800, 550, 250, 100); 
-		campoEmail.setBounds(900, 485, 250, 30);
-		campoSenha.setBounds(900, 585, 250, 30);
-		campoUsuario.setBounds(900, 535, 250, 30);
+		labelemail.setBounds((tela.width/3), 450, 200, 100);
+		labelusuario.setBounds((tela.width/3), 500, 200, 100);
+		labelsenha.setBounds((tela.width/3), 550, 250, 100); 
+		campoEmail.setBounds((tela.width/2), 485, 250, 30);
+		campoSenha.setBounds((tela.width/2), 585, 250, 30);
+		campoUsuario.setBounds((tela.width/2), 535, 250, 30);
 		RecSenha.setEnabled(false);
 
 	}

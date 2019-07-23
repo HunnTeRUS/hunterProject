@@ -35,9 +35,19 @@ public class CadastrarClientes {
 	private String confirmacaoSenha;
 	public byte[] senhaCriptografadaDB;
 	
+	
+	//Dimensionar o frame de acordo com o tamanho da tela
+	private void Screen(){
+		Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		framePrincipalCadastro.setLocation(((tela.width - framePrincipalCadastro.getSize().width)/2),((tela.height - framePrincipalCadastro.getSize().height)/2));
+		framePrincipalCadastro.setVisible(true);
+	}
+	
 	public void metodoPrincipalCadastro() {
 		metodoCriacao();
 		manipulandoDados();
+		Screen();
 	}
 
 	public byte[] getSenhaCriptografadaDB() {
