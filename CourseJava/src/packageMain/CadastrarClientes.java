@@ -11,6 +11,8 @@ public class CadastrarClientes {
 	static LoginClientes objLogin = new LoginClientes();
 	static CadastrarClientes objSignUp = new CadastrarClientes();
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
+	ImageIcon imagem2 = new ImageIcon(getClass().getResource("logo-branco-transparente.png"));
+	public JLabel image2 = new JLabel(imagem2);
 	public JLabel image = new JLabel(imagem);
 	static JFrame framePrincipalCadastro = new JFrame();
 	static JPanel painelPrincipalCadastro= new JPanel();
@@ -97,8 +99,8 @@ public class CadastrarClientes {
 
 	public void metodoCriacao() {
 		framePrincipalCadastro.setVisible(true);
-		framePrincipalCadastro.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		framePrincipalCadastro.add(painelPrincipalCadastro);
+		framePrincipalCadastro.setBounds(600, 200, 600, 700);
 		framePrincipalCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		framePrincipalCadastro.setTitle("Login");
 		painelPrincipalCadastro.setBackground(new Color(35, 35, 142));
@@ -108,6 +110,7 @@ public class CadastrarClientes {
 		painelPrincipalCadastro.add(campoSenha);
 		painelPrincipalCadastro.add(labelUsuario);
 		painelPrincipalCadastro.add(campoConfirmarSenha);
+		painelPrincipalCadastro.add(image2);
 		painelPrincipalCadastro.add(labelConfirmarSenha);
 		painelPrincipalCadastro.add(image);
 		painelPrincipalCadastro.add(cadastrar);
@@ -115,10 +118,9 @@ public class CadastrarClientes {
 		painelPrincipalCadastro.add(returnLogin);
 		painelPrincipalCadastro.add(student);
 		painelPrincipalCadastro.add(adm);
+		Dimension tela = framePrincipalCadastro.getSize();
 
-		student.setBounds(800, 650, 350, 30);
-		adm.setBounds(800, 700, 350, 30);
-		image.setBounds(780, 120, 400, 400);
+		
 		painelPrincipalCadastro.setLayout(null);
 		labelEmail.setForeground(Color.WHITE);
 		labelsenha.setForeground(Color.WHITE);
@@ -128,16 +130,23 @@ public class CadastrarClientes {
 		labelEmail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelUsuario.setFont(new java.awt.Font("ink free", 1, 16));
 		labelConfirmarSenha.setFont(new java.awt.Font("ink free", 1, 16));
-		labelEmail.setBounds(800, 400, 200, 100);
-		labelsenha.setBounds(800, 500, 200, 100); 
-		campoUsuario.setBounds(900, 435, 250, 30);
-		campoEmail.setBounds(900, 485, 250, 30);
-		campoSenha.setBounds(900, 535, 250, 30);
-		labelConfirmarSenha.setBounds(750, 585, 200, 30);
-		labelUsuario.setBounds(800, 449, 200, 100);
-		campoConfirmarSenha.setBounds(900, 585, 250, 30);
-		cadastrar.setBounds(800, 750, 350, 30);
-		returnLogin.setBounds(800, 800, 350, 30);
+		
+		student.setBounds(              ((tela.width/2)-180),          ((tela.height/2)+150), 350, 30);
+		adm.setBounds(                  ((tela.width/2)-180),          ((tela.height/2)+100), 350, 30);
+		image.setBounds(                ((tela.width/2)-350),          (-90), 400, 400);
+		image2.setBounds(                ((tela.width/2)-50),          (-70), 400, 400);
+		
+		labelEmail.setBounds(           ((tela.width/2)-155),          ((tela.height/2)-85), 200, 100);
+		labelsenha.setBounds(           ((tela.width/2)-160),          ((tela.height/2)-37), 200, 100); 
+		labelConfirmarSenha.setBounds(  ((tela.width/2)-255),          ((tela.height/2)+50), 200, 30);
+		labelUsuario.setBounds(         ((tela.width/2)-175),          ((tela.height/2)-135), 200, 100);
+		
+		campoUsuario.setBounds(         ((tela.width/2)-80),           ((tela.height/2)-100), 250, 30);
+		campoEmail.setBounds(           ((tela.width/2)-80),           ((tela.height/2)-50), 250, 30);
+		campoSenha.setBounds(           ((tela.width/2)-80),           ((tela.height/2)), 250, 30);
+		campoConfirmarSenha.setBounds(  ((tela.width/2)-80),           ((tela.height/2)+50), 250, 30);
+		cadastrar.setBounds(            ((tela.width/2)-180),          ((tela.height/2)+200), 350, 30);
+		returnLogin.setBounds(          ((tela.width/2)-180),          ((tela.height/2)+250), 350, 30);
 	}
 
 	public void manipulandoDados() {
@@ -209,9 +218,11 @@ public class CadastrarClientes {
 						objLogin.metodoPrincipalLogin();
 						framePrincipalCadastro.setVisible(false);
 			
-					} catch (Exception error) {
-						JOptionPane.showMessageDialog(null, "Error, try again!");
-					} 
+					} catch (SQLException error) {						
+						System.out.println(error.toString());
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});

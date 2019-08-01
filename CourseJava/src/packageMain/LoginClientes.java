@@ -101,9 +101,8 @@ public class LoginClientes {
 
 	private void metodoCriacao() { 
 		framePrincipalLogin.setVisible(true);
-		framePrincipalLogin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		framePrincipalLogin.setBounds(600, 200, 600, 700);
 		framePrincipalLogin.add(painelPrincipalLogin);
-		framePrincipalLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		framePrincipalLogin.setTitle("Login");
 		painelPrincipalLogin.setBackground(new Color(35, 35, 142));
 		painelPrincipalLogin.add(labelemail);
@@ -120,20 +119,20 @@ public class LoginClientes {
 		Dimension tela = framePrincipalLogin.getSize();
 		
 		painelPrincipalLogin.setLayout(null);
-		enviarDados.setBounds(((tela.width/2)-200), ((tela.height/2)+150), 350, 30);
-		RecSenha.setBounds(((tela.width/2)-200), ((tela.height/2)+200), 350, 30);
-		botaoCadastro.setBounds(((tela.width/2)-200), ((tela.height/2)+250), 350, 30);
+		enviarDados.setBounds(((tela.width/2)-180), ((tela.height/2)+150), 350, 30);
+		RecSenha.setBounds(((tela.width/2)-180), ((tela.height/2)+200), 350, 30);
+		botaoCadastro.setBounds(((tela.width/2)-180), ((tela.height/2)+250), 350, 30);
 		
-		image.setBounds(((tela.width/2) - 500),  10, 400, 400);
-		image2.setBounds((tela.width/2), 30, 400, 400);
+		image.setBounds(((tela.width/2) - 350),  -70, 400, 400);
+		image2.setBounds((tela.width/2)-50, -50, 400, 400);
 		
-		labelemail.setBounds((tela.width/3), ((tela.height/2)-80), 200, 100);
-		labelusuario.setBounds((tela.width/3),((tela.height/2)-30), 200, 100);
-		labelsenha.setBounds((tela.width/3), ((tela.height/2)+20), 250, 100); 
+		labelemail.setBounds(((tela.width/2)-180), ((tela.height/2)-80), 200, 100);
+		labelusuario.setBounds(((tela.width/2)-180),((tela.height/2)-30), 200, 100);
+		labelsenha.setBounds(((tela.width/2)-180), ((tela.height/2)+20), 250, 100); 
 		
-		campoEmail.setBounds((tela.width/2), ((tela.height/2)-40), 250, 30);
-		campoSenha.setBounds((tela.width/2), ((tela.height/2)+10), 250, 30);
-		campoUsuario.setBounds((tela.width/2), ((tela.height/2)+60), 250, 30);
+		campoEmail.setBounds(((tela.width/2)-80), ((tela.height/2)-40), 250, 30);
+		campoSenha.setBounds(((tela.width/2)-80), ((tela.height/2)+10), 250, 30);
+		campoUsuario.setBounds(((tela.width/2)-80), ((tela.height/2)+60), 250, 30);
 		
 		labelemail.setForeground(Color.WHITE); 
 		labelsenha.setForeground(Color.WHITE);
