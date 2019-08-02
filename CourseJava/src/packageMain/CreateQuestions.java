@@ -1,5 +1,6 @@
 package packageMain;
 
+import java.awt.Color;
 import java.util.ArrayList;    
 import java.util.List;
 
@@ -13,11 +14,13 @@ public class CreateQuestions {
 
 	MainInterface classeMain = new MainInterface();
 
+	JLabel mathLabel = new JLabel("I wanna insert a math question");
+	JLabel englishLabel = new JLabel("I wanna insert a english question");
+	JLabel programmingLabel = new JLabel("I wanna insert a programming question");
 	
-	JLabel labelQuestion = new JLabel("Write a question:");
-	JLabel labelAnswer = new JLabel("Write a correct answer:");
-	JLabel labelIncorrectAnswer = new JLabel("Write a incorrect answer:");
-	JButton submit = new JButton("Submit");
+	JButton mathButton = new JButton("Add a Math question");
+	JButton englishButton = new JButton("Add a english question");
+	JButton programmingButton = new JButton("Add a Programming question");
 	
 	/*
 	JTextArea insertQuestion   = new JTextArea("");
@@ -54,7 +57,48 @@ public class CreateQuestions {
 		return incorrectAnswer;
 	}
 	
-	public void insert() {
+	public void visual() {
+		mainFrame.setBounds(700, 200, 500, 600);
+		mainPanel.setBounds(700, 200, 500, 700);
+		mainFrame.setVisible(true);
+		
+		mainPanel.setLayout(null);
+		mainFrame.add(mainPanel);
+		mainPanel.add(mathButton);
+		mainPanel.add(englishButton);
+		mainPanel.add(programmingButton);
+		
+		mainPanel.add(programmingLabel);
+		mainPanel.add(mathLabel);
+		mainPanel.add(englishLabel);
+		mainPanel.setBackground(new Color(107,35,142));
+
+		programmingButton.setForeground(Color.WHITE);
+		programmingButton.setBackground(Color.BLACK);
+		mathButton.setForeground(Color.WHITE);
+		mathButton.setBackground(Color.BLACK);
+		englishButton.setForeground(Color.WHITE);
+		englishButton.setBackground(Color.BLACK);
+		englishLabel.setForeground(Color.WHITE);
+		programmingLabel.setForeground(Color.WHITE);
+		mathLabel.setForeground(Color.WHITE);
+
+		englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		
+		mathButton.setBounds(40, 180, 400, 30);
+		englishButton.setBounds(40, 260, 400, 30);
+		programmingButton.setBounds(40, 340, 400, 30);
+		
+		englishLabel.setBounds(120, 230, 400, 30);
+		mathLabel.setBounds(120, 150, 400, 30);
+		programmingLabel.setBounds(100, 310, 400, 30);
+
+			
+	}
+	
+	/*public void insert() {
 		queueQuestions.add(JOptionPane.showInputDialog("Digit the question:"));
 		correctAnswer.add(JOptionPane.showInputDialog("Digit the correct answer:"));
 		incorrectAnswer.add(JOptionPane.showInputDialog("Digit the incorrect answer:"));
@@ -62,6 +106,6 @@ public class CreateQuestions {
 		JOptionPane.showMessageDialog(null, "Question sucessfully inserted!", "=)", 1);
 		
 		setLenght(getLenght() + 1);
-		}
+		}*/
 }
 

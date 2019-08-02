@@ -10,6 +10,7 @@ public class MainInterface {
 
 	static CreateQuestions objQuestions = new CreateQuestions();
 	static StudyQuestion objStudyQuestions = new StudyQuestion();
+	static MainInterface objMain = new MainInterface();
 	
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
@@ -30,7 +31,7 @@ public class MainInterface {
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
 	}
-
+	
 	public void mainMethod() {
 		main.settingInterface();
 		main.setIconImage();
@@ -71,7 +72,7 @@ public class MainInterface {
 
 		adc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				objQuestions.insert();
+				objQuestions.visual();
 			}
 		});
 

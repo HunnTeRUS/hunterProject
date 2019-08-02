@@ -58,7 +58,6 @@ public class LoginClientes {
 		objLogin.metodoPrincipalLogin();
 	}
 
-
 	public void metodoPrincipalLogin() {
 		metodoCriacao();
 		manipulandoDados();
