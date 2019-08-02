@@ -65,7 +65,7 @@ public class LoginClientes {
 	}
 	
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/coursejava";
+	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/courseJava";
 
 	public byte[] getSenhaCriptografada() {
 		return senhaCriptografada;
@@ -104,6 +104,7 @@ public class LoginClientes {
 		framePrincipalLogin.add(painelPrincipalLogin);
 		framePrincipalLogin.setTitle("Login");
 		painelPrincipalLogin.setBackground(new Color(35, 35, 142));
+		framePrincipalLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 		painelPrincipalLogin.add(labelemail);
 		painelPrincipalLogin.add(labelsenha);
 		painelPrincipalLogin.add(labelusuario);
@@ -153,7 +154,7 @@ public class LoginClientes {
 
 				try {
 					Class.forName(DRIVER);
-					Connection conecta = DriverManager.getConnection(URL, "root", "");
+					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
 
 					//getSenha()                = Senha recebida do usuario
 					//getSenhaDecriptada()   	= Senha enviada pelo usuario decriptada (nao tem necessidade)

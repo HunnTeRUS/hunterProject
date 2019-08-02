@@ -62,7 +62,7 @@ public class CadastrarClientes {
 
 	//Variaveis para conex�o no DB
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/coursejava";
+	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/courseJava";
 
 	//Gerando gets e sets para as variaveis
 	public String getSenhaCadastrada() {
@@ -119,7 +119,7 @@ public class CadastrarClientes {
 		painelPrincipalCadastro.add(student);
 		painelPrincipalCadastro.add(adm);
 		Dimension tela = framePrincipalCadastro.getSize();
-
+		framePrincipalCadastro.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 		
 		painelPrincipalCadastro.setLayout(null);
 		labelEmail.setForeground(Color.WHITE);
@@ -193,7 +193,7 @@ public class CadastrarClientes {
 				else {	
 					try {
 						Class.forName(DRIVER);
-						Connection conecta = DriverManager.getConnection(URL, "root", "");
+						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
 						Statement stmt = conecta.createStatement();
 
 						String sql; 

@@ -1,6 +1,7 @@
 package packageMain;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.util.ArrayList;    
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class CreateQuestions {
 		mainPanel.add(englishLabel);
 		mainPanel.setBackground(new Color(107,35,142));
 
+		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 		programmingButton.setForeground(Color.WHITE);
 		programmingButton.setBackground(Color.BLACK);
 		mathButton.setForeground(Color.WHITE);

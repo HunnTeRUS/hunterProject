@@ -1,6 +1,7 @@
 package packageMain;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -62,6 +63,7 @@ public class StudyQuestion extends CreateQuestions {
 		question.setBackground(Color.BLACK);
 		question.setLineWrap(true);
 		question.setEnabled(false);
+		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 		
 		correct.setBounds  (45, 250, 200, 30);
 		returnMain.setBounds  (45, 370, 200, 30);

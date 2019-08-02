@@ -34,14 +34,7 @@ public class MainInterface {
 	
 	public void mainMethod() {
 		main.settingInterface();
-		main.setIconImage();
 	}
-	
-	private void setIconImage() {
-		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
-		
-	}
-
 	public void settingInterface() {
 		mainFrame.setVisible(true);
 		mainFrame.setBounds(700, 200, 500, 700);
@@ -55,7 +48,9 @@ public class MainInterface {
 		mainPanel.add(adc);
 		mainPanel.add(study);
 		mainPanel.setBackground(new Color(107,35,142));
+		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 
+		
 		mainText.setForeground(Color.WHITE);
 		study.setForeground(Color.WHITE);
 		study.setBackground(Color.BLACK);
