@@ -18,7 +18,7 @@ public class StudyQuestion extends CreateQuestions {
 	ImageIcon image = new ImageIcon(getClass().getResource("icons8-cor-48.png"));
 	JLabel imageIcon = new JLabel(image);
 	JButton continueQuestions = new JButton("Next");
-	JButton returnMain = new JButton("Return");
+	JButton returnMain = new JButton("Return to Menu");
 
 	int i = 0;
 
@@ -32,89 +32,75 @@ public class StudyQuestion extends CreateQuestions {
 		this.finalValue = finalValue;
 	}
 
-	JTextArea question = new JTextArea("asasasasasa");
-	JButton correct = new JButton();
-	JButton incorrect = new JButton();
+	JTextArea question = new JTextArea("asasasasasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	JButton answer1 = new JButton();
+	JButton answer2 = new JButton();
+	JButton answer3  = new JButton("sasasasasasasasasa");
+	JButton answer4  = new JButton();
 	JTextField textReceive = new JTextField();
 
 	public void questionsUser() {
 		settingInterfaceStudy();
-		receiveQuestions();
 	}
 
 	public void settingInterfaceStudy() {
 		mainFrame.setVisible(true);
-		mainFrame.setBounds(500, 300, 300, 500);
-		mainPanel.setBounds(500, 300, 300, 500);
+		mainFrame.setBounds(700, 200, 500, 700);
+		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
 		mainFrame.add(mainPanel);
 		mainPanel.add(continueQuestions);
 		mainPanel.setBackground(new Color(107, 35, 142));
 		mainPanel.add(imageIcon);
-		imageIcon.setBounds(-10, 220, 300, 450);
+		imageIcon.setBounds(92, 400, 300, 450);
 
 		mainPanel.add(question);
-		mainPanel.add(correct);
-		mainPanel.add(incorrect);
+		mainPanel.add(answer1);
+		mainPanel.add(answer2);
+		mainPanel.add(answer3);
+		mainPanel.add(answer4);
 		mainPanel.add(returnMain);
 
-		question.setBounds(0, 0, 300, 200);
+		question.setBounds(0, 0, 500, 250);
 		question.setBackground(Color.BLACK);
 		question.setLineWrap(true);
 		question.setEnabled(false);
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 
-		correct.setBounds(45, 250, 200, 30);
-		returnMain.setBounds(45, 370, 200, 30);
-		incorrect.setBounds(45, 290, 200, 30);
-		correct.setForeground(Color.BLACK);
-		correct.setForeground(Color.BLACK);
-		continueQuestions.setBounds(45, 330, 200, 30);
+		answer1.setBounds(25, 290, 440, 50);
+		answer1.setForeground(Color.BLACK);
+		answer1.setForeground(Color.BLACK);
+		
+		answer2.setBounds(25, 370, 440, 50);
+		answer2.setForeground(Color.BLACK);
+		answer2.setForeground(Color.BLACK);
+		
+		answer3.setBounds(25, 450, 440, 50);
+		answer3.setForeground(Color.BLACK);
+		answer3.setForeground(Color.BLACK);
+		
+		answer4.setBounds(25, 530, 440, 50);
+		answer4.setForeground(Color.BLACK);
+		answer4.setForeground(Color.BLACK);
+		
+		returnMain.setBounds(35, 630, 150, 35);
+		continueQuestions.setBounds(300, 630, 150, 35);
+		
+		returnMain.setBackground(Color.BLACK);
+		continueQuestions.setBackground(Color.BLACK);
+		continueQuestions.setForeground(Color.WHITE);
+		returnMain.setForeground(Color.WHITE);
+		returnMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		continueQuestions.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		
+		returnMain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainFrame.dispose();
+				maininterface.mainMethod();
+			}
+		});
 	}
 
-	public void receiveQuestions() {
-		/*
-		 * if(i>CreateQuestions.queueQuestions.size()) {
-		 * JOptionPane.showMessageDialog(null, "Fimzao");} else{
-		 * continueQuestions.setEnabled(false);
-		 * question.setText(String.valueOf((CreateQuestions.queueQuestions.get(i))));
-		 * correct.setText (String.valueOf((CreateQuestions.correctAnswer.get (i))));
-		 * incorrect.setText(String.valueOf((CreateQuestions.incorrectAnswer.get(i))));
-		 * 
-		 * correct.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) { JOptionPane.showMessageDialog(null,
-		 * "You hit squarely!", "Yeah!", 1); incorrect.setEnabled(false);
-		 * correct.setEnabled(false); continueQuestions.setEnabled(true);
-		 * 
-		 * } });
-		 * 
-		 * incorrect.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) { JOptionPane.showMessageDialog(null,
-		 * "You don't hit the answer!", "=(", 3); incorrect.setEnabled(false);
-		 * correct.setEnabled(false); continueQuestions.setEnabled(true);
-		 * 
-		 * } }); continueQuestions.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) { try { i++;
-		 * continueQuestions.setEnabled(false); incorrect.setEnabled(true);
-		 * correct.setEnabled(true);
-		 * question.setText(String.valueOf((CreateQuestions.queueQuestions.get(i))));
-		 * correct.setText (String.valueOf((CreateQuestions.correctAnswer.get (i))));
-		 * incorrect.setText(String.valueOf((CreateQuestions.incorrectAnswer.get(i))));}
-		 * catch(Exception error) { JOptionPane.showMessageDialog(null,
-		 * "Insert new questions to continue"); }
-		 * 
-		 * } });
-		 * 
-		 * returnMain.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) { maininterface.settingInterface();
-		 * StudyQuestion.mainFrame.dispose();
-		 * 
-		 * } });
-		 * 
-		 * setFinalValue(getFinalValue() + 1); }
-		 * 
-		 */
-	}
 }

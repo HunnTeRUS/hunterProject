@@ -72,25 +72,18 @@ public class MainInterface {
 			}
 		});
 
-		/*
-		 * study.addActionListener(new ActionListener() { public void
-		 * actionPerformed(ActionEvent e) { if(CreateQuestions.queueQuestions.size() ==
-		 * 0) { JOptionPane.showMessageDialog(null, "Add new questions to continue!",
-		 * "=)", 3); } else { try { objStudyQuestions.questionsUser();
-		 * mainFrame.dispose(); setTamanho(CreateQuestions.queueQuestions.size());
-		 * }catch(Exception error) { JOptionPane.showMessageDialog(null,
-		 * "Add new questions to continue!", "=)", 3);
-		 * CreateQuestions.mainFrame.setVisible(false); } } }
-		 * 
-		 * 
-		 * });
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * }
-		 */
+		study.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				objStudyQuestions.questionsUser();
+				mainFrame.dispose();
+			}
+			
+		});
+
 	}
+
+	public static void main(String[] args) {
+		objMain.mainMethod();
+	}
+
 }
