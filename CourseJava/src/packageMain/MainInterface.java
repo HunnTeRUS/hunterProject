@@ -23,7 +23,6 @@ public class MainInterface {
 	public int tamanho;
 	static MainInterface main = new MainInterface();
 
-
 	public int getTamanho() {
 		return tamanho;
 	}
@@ -33,8 +32,9 @@ public class MainInterface {
 	}
 
 	public void mainMethod() {
-		main.settingInterface();
+		settingInterface();
 	}
+
 	public void settingInterface() {
 		mainFrame.setVisible(true);
 		mainFrame.setBounds(700, 200, 500, 700);
@@ -47,9 +47,9 @@ public class MainInterface {
 		mainPanel.add(mainText);
 		mainPanel.add(adc);
 		mainPanel.add(study);
-		mainPanel.setBackground(new Color(107,35,142));
-		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
-
+		mainPanel.setBackground(new Color(107, 35, 142));
+		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 
 		mainText.setForeground(Color.WHITE);
 		study.setForeground(Color.WHITE);
@@ -67,36 +67,30 @@ public class MainInterface {
 
 		adc.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				objQuestions.visual();
+				mainFrame.dispose();
+				objQuestions.allMethods();
 			}
 		});
 
-		/*study.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { 
-					if(CreateQuestions.queueQuestions.size() == 0) {
-						JOptionPane.showMessageDialog(null, "Add new questions to continue!", "=)", 3);
-					}
-					else {
-						try {
-						objStudyQuestions.questionsUser();
-						mainFrame.dispose();
-						setTamanho(CreateQuestions.queueQuestions.size());
-						}catch(Exception error) {
-							JOptionPane.showMessageDialog(null, "Add new questions to continue!", "=)", 3);
-							CreateQuestions.mainFrame.setVisible(false);
-						}
-					}
-			}
-
-
-		});
-
-
-
-
-
-
-	}*/
-
+		/*
+		 * study.addActionListener(new ActionListener() { public void
+		 * actionPerformed(ActionEvent e) { if(CreateQuestions.queueQuestions.size() ==
+		 * 0) { JOptionPane.showMessageDialog(null, "Add new questions to continue!",
+		 * "=)", 3); } else { try { objStudyQuestions.questionsUser();
+		 * mainFrame.dispose(); setTamanho(CreateQuestions.queueQuestions.size());
+		 * }catch(Exception error) { JOptionPane.showMessageDialog(null,
+		 * "Add new questions to continue!", "=)", 3);
+		 * CreateQuestions.mainFrame.setVisible(false); } } }
+		 * 
+		 * 
+		 * });
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * }
+		 */
 	}
 }

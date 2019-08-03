@@ -1,4 +1,4 @@
-package packageMain;   
+package packageMain;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import javax.swing.*;
 
-public class CadastrarClientes { 
-	
+public class CadastrarClientes {
+
 	static LoginClientes objLogin = new LoginClientes();
 	static CadastrarClientes objSignUp = new CadastrarClientes();
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
@@ -15,7 +15,7 @@ public class CadastrarClientes {
 	public JLabel image2 = new JLabel(imagem2);
 	public JLabel image = new JLabel(imagem);
 	static JFrame framePrincipalCadastro = new JFrame();
-	static JPanel painelPrincipalCadastro= new JPanel();
+	static JPanel painelPrincipalCadastro = new JPanel();
 	JLabel labelEmail = new JLabel("Email: ");
 	JLabel labelsenha = new JLabel("Senha: ");
 	JLabel labelUsuario = new JLabel("Usuario: ");
@@ -28,24 +28,23 @@ public class CadastrarClientes {
 	private JButton cadastrar = new JButton("Cadastrar");
 	private JCheckBox adm = new JCheckBox("Administrator");
 	private JCheckBox student = new JCheckBox("Student");
-         
 
-	//Variaveis para armazenar os dados recebidos e/ou criptografados
+	// Variaveis para armazenar os dados recebidos e/ou criptografados
 	private String senhaCadastrada;
 	private String usuarioCadastrado;
 	private String emailCadastrado;
 	private String confirmacaoSenha;
 	public byte[] senhaCriptografadaDB;
-	
-	
-	//Dimensionar o frame de acordo com o tamanho da tela
-	private void Screen(){
+
+	// Dimensionar o frame de acordo com o tamanho da tela
+	private void Screen() {
 		Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
-		
-		framePrincipalCadastro.setLocation(((tela.width - framePrincipalCadastro.getSize().width)/2),((tela.height - framePrincipalCadastro.getSize().height)/2));
+
+		framePrincipalCadastro.setLocation(((tela.width - framePrincipalCadastro.getSize().width) / 2),
+				((tela.height - framePrincipalCadastro.getSize().height) / 2));
 		framePrincipalCadastro.setVisible(true);
 	}
-	
+
 	public void metodoPrincipalCadastro() {
 		metodoCriacao();
 		manipulandoDados();
@@ -60,11 +59,11 @@ public class CadastrarClientes {
 		this.senhaCriptografadaDB = senhaCriptografadaDB;
 	}
 
-	//Variaveis para conex�o no DB
+	// Variaveis para conex�o no DB
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String  URL   = "jdbc:mysql://127.0.0.1:3306/courseJava";
+	private final String URL = "jdbc:mysql://127.0.0.1:3306/courseJava";
 
-	//Gerando gets e sets para as variaveis
+	// Gerando gets e sets para as variaveis
 	public String getSenhaCadastrada() {
 		return senhaCadastrada;
 	}
@@ -72,7 +71,7 @@ public class CadastrarClientes {
 	public void setSenhaCadastrada(String senhaCadastrada) {
 		this.senhaCadastrada = senhaCadastrada;
 	}
-	
+
 	public String getUsuarioCadastrado() {
 		return usuarioCadastrado;
 	}
@@ -119,8 +118,9 @@ public class CadastrarClientes {
 		painelPrincipalCadastro.add(student);
 		painelPrincipalCadastro.add(adm);
 		Dimension tela = framePrincipalCadastro.getSize();
-		framePrincipalCadastro.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
-		
+		framePrincipalCadastro.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
+
 		painelPrincipalCadastro.setLayout(null);
 		labelEmail.setForeground(Color.WHITE);
 		labelsenha.setForeground(Color.WHITE);
@@ -130,23 +130,23 @@ public class CadastrarClientes {
 		labelEmail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelUsuario.setFont(new java.awt.Font("ink free", 1, 16));
 		labelConfirmarSenha.setFont(new java.awt.Font("ink free", 1, 16));
-		
-		student.setBounds(              ((tela.width/2)-180),          ((tela.height/2)+150), 350, 30);
-		adm.setBounds(                  ((tela.width/2)-180),          ((tela.height/2)+100), 350, 30);
-		image.setBounds(                ((tela.width/2)-350),          (-90), 400, 400);
-		image2.setBounds(                ((tela.width/2)-50),          (-70), 400, 400);
-		
-		labelEmail.setBounds(           ((tela.width/2)-155),          ((tela.height/2)-85), 200, 100);
-		labelsenha.setBounds(           ((tela.width/2)-160),          ((tela.height/2)-37), 200, 100); 
-		labelConfirmarSenha.setBounds(  ((tela.width/2)-255),          ((tela.height/2)+50), 200, 30);
-		labelUsuario.setBounds(         ((tela.width/2)-175),          ((tela.height/2)-135), 200, 100);
-		
-		campoUsuario.setBounds(         ((tela.width/2)-80),           ((tela.height/2)-100), 250, 30);
-		campoEmail.setBounds(           ((tela.width/2)-80),           ((tela.height/2)-50), 250, 30);
-		campoSenha.setBounds(           ((tela.width/2)-80),           ((tela.height/2)), 250, 30);
-		campoConfirmarSenha.setBounds(  ((tela.width/2)-80),           ((tela.height/2)+50), 250, 30);
-		cadastrar.setBounds(            ((tela.width/2)-180),          ((tela.height/2)+200), 350, 30);
-		returnLogin.setBounds(          ((tela.width/2)-180),          ((tela.height/2)+250), 350, 30);
+
+		student.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 150), 350, 30);
+		adm.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 100), 350, 30);
+		image.setBounds(((tela.width / 2) - 350), (-90), 400, 400);
+		image2.setBounds(((tela.width / 2) - 50), (-70), 400, 400);
+
+		labelEmail.setBounds(((tela.width / 2) - 155), ((tela.height / 2) - 85), 200, 100);
+		labelsenha.setBounds(((tela.width / 2) - 160), ((tela.height / 2) - 37), 200, 100);
+		labelConfirmarSenha.setBounds(((tela.width / 2) - 255), ((tela.height / 2) + 50), 200, 30);
+		labelUsuario.setBounds(((tela.width / 2) - 175), ((tela.height / 2) - 135), 200, 100);
+
+		campoUsuario.setBounds(((tela.width / 2) - 80), ((tela.height / 2) - 100), 250, 30);
+		campoEmail.setBounds(((tela.width / 2) - 80), ((tela.height / 2) - 50), 250, 30);
+		campoSenha.setBounds(((tela.width / 2) - 80), ((tela.height / 2)), 250, 30);
+		campoConfirmarSenha.setBounds(((tela.width / 2) - 80), ((tela.height / 2) + 50), 250, 30);
+		cadastrar.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 200), 350, 30);
+		returnLogin.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 250), 350, 30);
 	}
 
 	public void manipulandoDados() {
@@ -154,71 +154,78 @@ public class CadastrarClientes {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				student.setSelected(false);
-			}});
-		
+			}
+		});
+
 		student.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adm.setSelected(false);
-			}});
-		
+			}
+		});
+
 		cadastrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				setConfirmacaoSenha(String.valueOf(campoConfirmarSenha.getPassword()));
 				setUsuarioCadastrado(campoUsuario.getText());
-				setSenhaCadastrada(String.valueOf(campoSenha.getPassword())); 
+				setSenhaCadastrada(String.valueOf(campoSenha.getPassword()));
 				setEmailCadastrado(campoEmail.getText());
-				
 
-				if((getEmailCadastrado().equals("")) || (getSenhaCadastrada().equals("")) || (getConfirmacaoSenha().equals("")) || (getUsuarioCadastrado().equals(""))) {
+				if ((getEmailCadastrado().equals("")) || (getSenhaCadastrada().equals(""))
+						|| (getConfirmacaoSenha().equals("")) || (getUsuarioCadastrado().equals(""))) {
 					JOptionPane.showMessageDialog(null, "Fill in all the fields");
 					campoEmail.setText("");
 					campoSenha.setText("");
 					campoConfirmarSenha.setText("");
 					campoUsuario.setText("");
 				}
-				
-				if((!(adm.isSelected())) && (!(student.isSelected()))) {
+
+				if ((!(adm.isSelected())) && (!(student.isSelected()))) {
 					JOptionPane.showMessageDialog(null, "Choice between 'Administrator' and 'Student'");
 				}
-				
-				else if(!(getSenhaCadastrada().equals(getConfirmacaoSenha()))) {
+
+				else if (!(getSenhaCadastrada().equals(getConfirmacaoSenha()))) {
 					JOptionPane.showMessageDialog(null, "Password field is different from Confirm Password field");
-				}
-				else if((getSenhaCadastrada().length()) <= 3) {
+				} else if ((getSenhaCadastrada().length()) <= 3) {
 					JOptionPane.showMessageDialog(null, "Put a password more strong!");
-				}
-				else {	
+				} else {
 					try {
 						Class.forName(DRIVER);
 						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
 						Statement stmt = conecta.createStatement();
 
-						String sql; 
-						
-						if(adm.isSelected()) {
-							sql = "INSERT INTO users (userr, email, senha, adm, student) values('" + getEmailCadastrado() + "', '" + getUsuarioCadastrado() + "', '" + getSenhaCadastrada()  + "', true, false);";
-							stmt = conecta.prepareStatement(sql);	
-							stmt.execute(sql);		
+						String sql;
+
+						if (adm.isSelected()) {
+							sql = "INSERT INTO users (userr, email, senha, adm, student) values('" + getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"+ getSenhaCadastrada() + "', true, false);";
+							stmt = conecta.prepareStatement(sql);
+							stmt.execute(sql);
+							conecta.close();
+							stmt.close();
+						}
+
+						else if (student.isSelected()) {
+							sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
+									+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
+									+ getSenhaCadastrada() + "', false, true);";
+							stmt = conecta.prepareStatement(sql);
+							stmt.execute(sql);
+							conecta.close();
+							stmt.close();
 						}
 						
-						if (student.isSelected()) {
-							sql = "INSERT INTO users (userr, email, senha, adm, student) values('" + getEmailCadastrado() + "', '" + getUsuarioCadastrado() + "', '" + getSenhaCadastrada()  + "', false, true);";
-							stmt = conecta.prepareStatement(sql);	
-							stmt.execute(sql);		
+						else {						
+							JOptionPane.showMessageDialog(null, "What do you wnat to be, student or adm?");
 						}
-																										
-						conecta.close();
-						stmt.close();
-						
+
 						JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
-						
+
 						objLogin.metodoPrincipalLogin();
 						framePrincipalCadastro.setVisible(false);
-			
-					} catch (SQLException error) {						
+
+					} catch (SQLException error) {
 						System.out.println(error.toString());
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
@@ -226,14 +233,14 @@ public class CadastrarClientes {
 				}
 			}
 		});
-		
+
 		returnLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				objLogin.metodoPrincipalLogin();
 				CadastrarClientes.framePrincipalCadastro.dispose();
-			}});
-
+			}
+		});
 
 	}
 

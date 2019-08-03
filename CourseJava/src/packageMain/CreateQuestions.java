@@ -28,6 +28,8 @@ public class CreateQuestions {
 	// THE NECESSARY OBJECTS
 	MainInterface classeMain = new MainInterface();
 	MathQuestions mathobj = new MathQuestions();
+	ProgrammingQuestions programmingobj = new ProgrammingQuestions();
+	EnglishQuestions englishobj = new EnglishQuestions();
 	static CreateQuestions createobj = new CreateQuestions();
 
 	/*
@@ -221,6 +223,50 @@ public class CreateQuestions {
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
 					}
 				}
+
+				if (englishQuizz == true) {
+					if ((correctAnwser != anwser2) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
+						englishobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser4, explanation);
+						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+					}
+
+					if ((correctAnwser != anwser1) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
+						englishobj.addQuestions(question, correctAnwser, anwser1, anwser3, anwser4, explanation);
+						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+					}
+
+					if ((correctAnwser != anwser2) && (correctAnwser != anwser1) && (correctAnwser != anwser4)) {
+						englishobj.addQuestions(question, correctAnwser, anwser2, anwser1, anwser4, explanation);
+						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+					}
+
+					if ((correctAnwser != anwser3) && (correctAnwser != anwser1) && (correctAnwser != anwser2)) {
+						englishobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser1, explanation);
+						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+					}
+				}
+
+				if (programmingQuizz == true) {
+					if ((correctAnwser != anwser2) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
+						programmingobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser4, explanation);
+						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+					}
+
+					if ((correctAnwser != anwser1) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
+						programmingobj.addQuestions(question, correctAnwser, anwser1, anwser3, anwser4, explanation);
+						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+					}
+
+					if ((correctAnwser != anwser2) && (correctAnwser != anwser1) && (correctAnwser != anwser4)) {
+						programmingobj.addQuestions(question, correctAnwser, anwser2, anwser1, anwser4, explanation);
+						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+					}
+
+					if ((correctAnwser != anwser3) && (correctAnwser != anwser1) && (correctAnwser != anwser2)) {
+						programmingobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser1, explanation);
+						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+					}
+				}
 			}
 		});
 	}
@@ -238,14 +284,36 @@ public class CreateQuestions {
 				switchCorrectAnwser();
 			}
 		});
+
+		programmingButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				question = JOptionPane.showInputDialog(null, "Insert the question!", "Example: What is 2 + 2?");
+				anwser1 = JOptionPane.showInputDialog(null, "Insert the first anwser!", "Example: The anwser is 4");
+				anwser2 = JOptionPane.showInputDialog(null, "Insert the second anwser!", "Example: The anwser is 4");
+				anwser3 = JOptionPane.showInputDialog(null, "Insert the third anwser!", "Example: The anwser is 4");
+				anwser4 = JOptionPane.showInputDialog(null, "Insert the fourth anwser!", "Example: The anwser is 4");
+
+				programmingQuizz = true;
+				switchCorrectAnwser();
+			}
+		});
+
+		englishButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				question = JOptionPane.showInputDialog(null, "Insert the question!", "Example: What is 2 + 2?");
+				anwser1 = JOptionPane.showInputDialog(null, "Insert the first anwser!", "Example: The anwser is 4");
+				anwser2 = JOptionPane.showInputDialog(null, "Insert the second anwser!", "Example: The anwser is 4");
+				anwser3 = JOptionPane.showInputDialog(null, "Insert the third anwser!", "Example: The anwser is 4");
+				anwser4 = JOptionPane.showInputDialog(null, "Insert the fourth anwser!", "Example: The anwser is 4");
+
+				englishQuizz = true;
+				switchCorrectAnwser();
+			}
+		});
 	}
 
 	public void allMethods() {
 		actions();
 		visual();
-	}
-
-	public static void main(String[] args) {
-		createobj.allMethods();
 	}
 }
