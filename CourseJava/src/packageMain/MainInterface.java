@@ -11,7 +11,7 @@ public class MainInterface {
 	static CreateQuestions objQuestions = new CreateQuestions();
 	static StudyQuestion objStudyQuestions = new StudyQuestion();
 	static MainInterface objMain = new MainInterface();
-	
+
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
 	ImageIcon image = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
@@ -31,7 +31,7 @@ public class MainInterface {
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
 	}
-	
+
 	public void mainMethod() {
 		main.settingInterface();
 	}
@@ -50,7 +50,7 @@ public class MainInterface {
 		mainPanel.setBackground(new Color(107,35,142));
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 
-		
+
 		mainText.setForeground(Color.WHITE);
 		study.setForeground(Color.WHITE);
 		study.setBackground(Color.BLACK);
@@ -71,7 +71,7 @@ public class MainInterface {
 			}
 		});
 
-		study.addActionListener(new ActionListener() {
+		/*study.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
 					if(CreateQuestions.queueQuestions.size() == 0) {
 						JOptionPane.showMessageDialog(null, "Add new questions to continue!", "=)", 3);
@@ -96,6 +96,7 @@ public class MainInterface {
 
 
 
-	}
+	}*/
 
+	}
 }

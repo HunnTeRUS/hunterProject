@@ -74,7 +74,7 @@ public class StudyQuestion extends CreateQuestions {
 	}
 	
 	public void receiveQuestions() {		
-		if(i>CreateQuestions.queueQuestions.size()) {
+		/*if(i>CreateQuestions.queueQuestions.size()) {
 			JOptionPane.showMessageDialog(null, "Fimzao");}
 		else{
 			continueQuestions.setEnabled(false);
@@ -129,7 +129,7 @@ public class StudyQuestion extends CreateQuestions {
 			setFinalValue(getFinalValue() + 1);
 			}
 		
-	
+	*/
 }
 }
 

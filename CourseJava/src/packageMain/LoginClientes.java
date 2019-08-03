@@ -53,10 +53,7 @@ public class LoginClientes {
 			framePrincipalLogin.setVisible(true);
 		}*/
 		
-		
-	public static void main(String[] args) {
-		objLogin.metodoPrincipalLogin();
-	}
+
 
 	public void metodoPrincipalLogin() {
 		metodoCriacao();
