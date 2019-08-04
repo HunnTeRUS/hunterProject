@@ -3,6 +3,8 @@ package packageMain;
 import java.awt.Color;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.*;
 
@@ -22,6 +24,10 @@ public class StudyQuestion {
 	JButton englishButton = new JButton("Answer Questions");
 	JButton programmingButton = new JButton("Answer Questions");
 	JButton returnButton = new JButton("Return to Menu");
+	PreparedStatement stmt;
+	ResultSet rs;
+	ResultSet lenght;
+	String SQL, count;
 
 	// THE NECESSARY OBJECTS
 	MainInterface classeMain = new MainInterface();
@@ -32,6 +38,7 @@ public class StudyQuestion {
 	ProgrammingQuestions programmingobj = new ProgrammingQuestions();
 	EnglishQuestions englishobj = new EnglishQuestions();
 	static CreateQuestions createobj = new CreateQuestions();
+	private ConectionDB db = new ConectionDB();
 
 	/*
 	 * JTextArea insertQuestion = new JTextArea(""); JTextArea insertCorrect = new
@@ -103,45 +110,82 @@ public class StudyQuestion {
 	 */
 
 	public void actions() {
-		mathButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//if (MathQuestions.questionsMath.size() != 0) {
-					mainFrame.dispose();
-					quizzMath.questionsUser();
-				//} else {
-				//	JOptionPane.showMessageDialog(null, "We don't have any questions to show");
-				//}
-			}
-		});
+		if (db.getConnection()) {
 
-		programmingButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (ProgrammingQuestions.questionsProgramming.size() != 0) {
-					quizzProgramming.questionsUser();
-					mainFrame.dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "We don't have any questions to show");
+			mathButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						count = "SELECT COUNT(question) AS quantidade FROM mathExercises;";
+
+						stmt = db.con.prepareStatement(count);
+						lenght = stmt.executeQuery();
+
+						while (lenght.next()) {
+							if (lenght.getInt("quantidade") == 0) {
+								JOptionPane.showMessageDialog(null, "We don't have any questions to show :(");
+							} else {
+								mainFrame.dispose();
+								quizzMath.questionsUser();
+							}
+						}
+					} catch (Exception error) {
+						System.out.println("Erro:" + error.getMessage());
+					}
+
 				}
-			}
-		});
+			});
 
-		englishButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (EnglishQuestions.questionsEnglish.size() != 0) {
-					quizzEnglish.questionsUser();
-					mainFrame.dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "We don't have any questions to show");
+			programmingButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						count = "SELECT COUNT(question) AS quantidade FROM programmingExercises;";
+
+						stmt = db.con.prepareStatement(count);
+						lenght = stmt.executeQuery();
+
+						while (lenght.next()) {
+							if (lenght.getInt("quantidade") == 0) {
+								JOptionPane.showMessageDialog(null, "We don't have any questions to show :(");
+							} else {
+								mainFrame.dispose();
+								quizzProgramming.questionsUser();
+							}
+						}
+					} catch (Exception error) {
+						System.out.println("Erro:" + error.getMessage());
+					}
 				}
-			}
-		});
+			});
 
-		returnButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				classeMain.mainMethod();
-				mainFrame.dispose();
-			}
-		});
+			englishButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						count = "SELECT COUNT(question) AS quantidade FROM englishExercises;";
+
+						stmt = db.con.prepareStatement(count);
+						lenght = stmt.executeQuery();
+
+						while (lenght.next()) {
+							if (lenght.getInt("quantidade") == 0) {
+								JOptionPane.showMessageDialog(null, "We don't have any questions to show :(");
+							} else {
+								mainFrame.dispose();
+								quizzEnglish.questionsUser();
+							}
+						}
+					} catch (Exception error) {
+						System.out.println("Erro:" + error.getMessage());
+					}
+				}
+			});
+
+			returnButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					classeMain.mainMethod();
+					mainFrame.dispose();
+				}
+			});
+		}
 	}
 
 	public void allMethods() {

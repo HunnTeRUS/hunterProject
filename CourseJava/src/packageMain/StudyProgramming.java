@@ -1,9 +1,13 @@
 package packageMain;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -12,6 +16,7 @@ public class StudyProgramming extends CreateQuestions {
 	public static CreateQuestions questions = new CreateQuestions();
 	public static MainInterface maininterface = new MainInterface();
 	public static StudyQuestion objStudy = new StudyQuestion();
+	private ConectionDB db = new ConectionDB();
 
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
@@ -20,15 +25,28 @@ public class StudyProgramming extends CreateQuestions {
 	JButton continueQuestions = new JButton("Next");
 	JButton returnMain = new JButton("Return to Menu");
 
-	JTextArea question = new JTextArea("asasasasasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+	JTextArea question = new JTextArea();
 	JButton answer1 = new JButton();
 	JButton answer2 = new JButton();
-	JButton answer3  = new JButton("sasasasasasasasasa");
+	JButton answer3  = new JButton();
 	JButton answer4  = new JButton();
 	JTextField textReceive = new JTextField();
 
+	Font font1 = new Font("TimesRoman", Font.BOLD, 14);
+	
+	Random rand = new Random();
+	
+	PreparedStatement stmt;
+	ResultSet rs;
+	ResultSet lenght;
+
+	public int finalValue, i = 1;
+	String SQL, count;
+
+	
 	public void questionsUser() {
 		settingInterfaceStudy();
+		methodReceiver();
 	}
 
 	public void settingInterfaceStudy() {
@@ -90,6 +108,167 @@ public class StudyProgramming extends CreateQuestions {
 				maininterface.mainMethod();
 			}
 		});
+	}
+	
+	public void methodReceiver() {
+		if (db.getConnection()) {
+			try {
+				continueQuestions.setEnabled(false);
+				continueQuestions.setBackground(Color.gray);
+				continueQuestions.setForeground(Color.black);
+				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM programmingExercises WHERE codQuestion="
+						+ i + ";";
+				count = "SELECT COUNT(question) AS quantidade FROM programmingExercises;";
+
+				stmt = db.con.prepareStatement(count);
+				lenght = stmt.executeQuery();
+
+				while (lenght.next()) {
+					if (i > lenght.getInt("quantidade")) {
+						break;
+					}
+				}
+
+				stmt = db.con.prepareStatement(SQL);
+				rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					String[] vetor = new String[4];
+					vetor[0] = rs.getString("answer0");
+					vetor[1] = rs.getString("answer1");
+					vetor[2] = rs.getString("answer2");
+					vetor[3] = rs.getString("answer3");
+					int aleatorio = 10;
+					int[] aux = new int[4];
+
+					aleatorio = rand.nextInt(4);
+					answer1.setText(String.valueOf(vetor[aleatorio]));
+					aux[0] = aleatorio;
+
+					while (aux[0] == aleatorio)
+						aleatorio = rand.nextInt(4);
+					answer2.setText(String.valueOf(vetor[aleatorio]));
+					aux[1] = aleatorio;
+
+					while (aux[0] == aleatorio || aux[1] == aleatorio)
+						aleatorio = rand.nextInt(4);
+					answer3.setText(String.valueOf(vetor[aleatorio]));
+					aux[2] = aleatorio;
+
+					while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
+						aleatorio = rand.nextInt(4);
+					answer4.setText(String.valueOf(vetor[aleatorio]));
+
+					question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
+
+					question.setFont(font1);
+					
+					answer1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								if (answer1.getText().equals(vetor[0])) {
+									JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+								} else
+									JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+
+								answer1.setEnabled(false);
+								answer2.setEnabled(false);
+								answer3.setEnabled(false);
+								answer4.setEnabled(false);				
+								continueQuestions.setBackground(Color.black);
+								continueQuestions.setForeground(Color.white);
+								continueQuestions.setEnabled(true);
+							} catch (Exception e1) {
+								e1.getMessage();
+							}
+						}
+					});
+
+					answer2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								if (answer2.getText().equals(vetor[0])) {
+									JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+								} else
+									JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+								answer1.setEnabled(false);
+								answer2.setEnabled(false);
+								answer3.setEnabled(false);
+								answer4.setEnabled(false);
+								continueQuestions.setEnabled(true);
+								continueQuestions.setBackground(Color.black);
+								continueQuestions.setForeground(Color.white);
+							} catch (Exception e1) {
+								e1.getMessage();
+							}
+						}
+					});
+
+					answer3.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								if (answer3.getText().equals(vetor[0])) {
+									JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+								} else
+									JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+								answer1.setEnabled(false);
+								answer2.setEnabled(false);
+								answer3.setEnabled(false);
+								answer4.setEnabled(false);
+								continueQuestions.setEnabled(true);
+								continueQuestions.setBackground(Color.black);
+								continueQuestions.setForeground(Color.white);
+							} catch (Exception e1) {
+								e1.getMessage();
+							}
+						}
+					});
+
+					answer4.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							try {
+								if (answer4.getText().equals(vetor[0])) {
+									JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+								} else
+									JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+								answer1.setEnabled(false);
+								answer2.setEnabled(false);
+								answer3.setEnabled(false);
+								answer4.setEnabled(false);
+								continueQuestions.setEnabled(true);
+								continueQuestions.setBackground(Color.black);
+								continueQuestions.setForeground(Color.white);
+							} catch (Exception e1) {
+								e1.getMessage();
+							}
+						}
+					});
+					
+					continueQuestions.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							answer1.setEnabled(true);
+							answer2.setEnabled(true);
+							answer3.setEnabled(true);
+							answer4.setEnabled(true);
+							continueQuestions.setEnabled(false);
+							i = i + 1;
+							methodReceiver();
+						}});
+
+					returnMain.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							maininterface.settingInterface();
+							StudyQuestion.mainFrame.dispose();
+
+						}
+					});
+				}
+
+			} catch (Exception error) {
+				System.err.println("Error:" + error.getMessage());
+			}
+
+		}
 	}
 
 }

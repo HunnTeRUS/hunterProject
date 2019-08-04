@@ -29,10 +29,10 @@ public class ProgrammingQuestions {
 		ConectionDB db = new ConectionDB();
 		if(db.getConnection()) {
 			try {
-				SQL = "INSERT INTO programmingExercises (question, answer0=, answer1, answer2, answer3, explanation)Values('" +
+				SQL = "INSERT INTO programmingExercises (question, answer0, answer1, answer2, answer3, explanation)Values('" +
 						questionsProgramming.get(questionsProgramming.size()-1) + "', '" + anwser0.get(anwser0.size()-1) + "' , '" 
 						+ answer2Programming.get(answer2Programming.size()-1) + "', '" + answer3Programming.get(answer3Programming.size()-1) + "', '" 
-						+ answer4Programming.get(answer4Programming.size()-1)  + "', '" + explanation.get(explanation.size()-1) + "');";
+						+ answer4Programming.get(answer2Programming.size()-1)  + "', '" + explanation.get(answer2Programming.size()-1) + "');";
 
 				PreparedStatement stmt = db.con.prepareStatement(SQL);
 				stmt.execute();
