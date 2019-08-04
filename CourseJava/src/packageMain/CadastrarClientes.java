@@ -99,6 +99,7 @@ public class CadastrarClientes {
 	public void metodoCriacao() {
 		framePrincipalCadastro.setVisible(true);
 		framePrincipalCadastro.add(painelPrincipalCadastro);
+		framePrincipalCadastro.setResizable(false);
 		framePrincipalCadastro.setBounds(600, 200, 600, 700);
 		framePrincipalCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		framePrincipalCadastro.setTitle("Login");

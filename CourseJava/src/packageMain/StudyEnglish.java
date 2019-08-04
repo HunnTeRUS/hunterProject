@@ -32,6 +32,7 @@ public class StudyEnglish extends CreateQuestions {
 
 	public void settingInterfaceStudy() {
 		mainFrame.setVisible(true);
+		mainFrame.setResizable(false);
 		mainFrame.setBounds(700, 200, 500, 700);
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

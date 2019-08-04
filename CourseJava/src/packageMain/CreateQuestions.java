@@ -1,6 +1,5 @@
 package packageMain;
 
-import java.awt.Color;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -56,6 +55,7 @@ public class CreateQuestions {
 		mainFrame.setVisible(true);
 
 		mainPanel.setLayout(null);
+		mainFrame.setResizable(false);
 		mainFrame.add(mainPanel);
 		mainPanel.add(mathButton);
 		mainPanel.add(englishButton);
@@ -340,4 +340,5 @@ public class CreateQuestions {
 		actions();
 		visual();
 	}
+
 }

@@ -45,6 +45,7 @@ public class MainInterface {
 		mainFrame.add(mainPanel);
 		mainPanel.add(imageIcon);
 		mainPanel.add(mainText);
+		mainFrame.setResizable(false);
 		mainPanel.add(adc);
 		mainPanel.add(study);
 		mainPanel.setBackground(new Color(107, 35, 142));

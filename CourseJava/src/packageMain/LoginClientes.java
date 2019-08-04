@@ -23,6 +23,7 @@ public class LoginClientes {
 	ImageIcon imagem2 = new ImageIcon(getClass().getResource("logo-branco-transparente.png"));
 	public JLabel image = new JLabel(imagem);
 	public JLabel image2 = new JLabel(imagem2);
+	
 	static JFrame framePrincipalLogin = new JFrame();
 	static JPanel painelPrincipalLogin = new JPanel();
 	JLabel labelemail = new JLabel("Email: ");
@@ -107,6 +108,7 @@ public class LoginClientes {
 		framePrincipalLogin.setVisible(true);
 		framePrincipalLogin.setBounds(600, 200, 600, 700);
 		framePrincipalLogin.add(painelPrincipalLogin);
+		framePrincipalLogin.setResizable(false);
 		framePrincipalLogin.setTitle("Login");
 		painelPrincipalLogin.setBackground(new Color(35, 35, 142));
 		framePrincipalLogin.setIconImage(Toolkit.getDefaultToolkit()

@@ -1,13 +1,9 @@
 package packageMain;
 
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Random;
-
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+import java.util.*;
 import javax.swing.*;
 
 public class StudyMath {
@@ -29,7 +25,8 @@ public class StudyMath {
 	JButton answer3 = new JButton();
 	JButton answer4 = new JButton();
 	JTextField textReceive = new JTextField();
-
+	Font font1 = new Font("TimesRoman", Font.BOLD, 14);
+	
 	Random rand = new Random();
 	
 	PreparedStatement stmt;
@@ -54,6 +51,7 @@ public class StudyMath {
 
 	public void settingInterfaceStudy() {
 		mainFrame.setVisible(true);
+		mainFrame.setResizable(false);
 		mainFrame.setBounds(700, 200, 500, 700);
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,6 +114,8 @@ public class StudyMath {
 		if (db.getConnection()) {
 			try {
 				continueQuestions.setEnabled(false);
+				continueQuestions.setBackground(Color.gray);
+				continueQuestions.setForeground(Color.black);
 				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM mathExercises WHERE codQuestion="
 						+ i + ";";
 				count = "SELECT COUNT(question) AS quantidade FROM mathExercises;";
@@ -158,9 +158,11 @@ public class StudyMath {
 					while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
 						aleatorio = rand.nextInt(4);
 					answer4.setText(String.valueOf(vetor[aleatorio]));
-					
-					question.setText(String.valueOf(rs.getString("question")));
 
+					question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
+
+					question.setFont(font1);
+					
 					answer1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							try {
@@ -172,7 +174,9 @@ public class StudyMath {
 								answer1.setEnabled(false);
 								answer2.setEnabled(false);
 								answer3.setEnabled(false);
-								answer4.setEnabled(false);
+								answer4.setEnabled(false);				
+								continueQuestions.setBackground(Color.black);
+								continueQuestions.setForeground(Color.white);
 								continueQuestions.setEnabled(true);
 							} catch (Exception e1) {
 								e1.getMessage();
@@ -192,6 +196,8 @@ public class StudyMath {
 								answer3.setEnabled(false);
 								answer4.setEnabled(false);
 								continueQuestions.setEnabled(true);
+								continueQuestions.setBackground(Color.black);
+								continueQuestions.setForeground(Color.white);
 							} catch (Exception e1) {
 								e1.getMessage();
 							}
@@ -210,6 +216,8 @@ public class StudyMath {
 								answer3.setEnabled(false);
 								answer4.setEnabled(false);
 								continueQuestions.setEnabled(true);
+								continueQuestions.setBackground(Color.black);
+								continueQuestions.setForeground(Color.white);
 							} catch (Exception e1) {
 								e1.getMessage();
 							}
@@ -228,6 +236,8 @@ public class StudyMath {
 								answer3.setEnabled(false);
 								answer4.setEnabled(false);
 								continueQuestions.setEnabled(true);
+								continueQuestions.setBackground(Color.black);
+								continueQuestions.setForeground(Color.white);
 							} catch (Exception e1) {
 								e1.getMessage();
 							}
