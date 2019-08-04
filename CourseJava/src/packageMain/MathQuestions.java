@@ -12,7 +12,7 @@ public class MathQuestions {
 	private String SQL;
 
 	public static ArrayList<String> questionsMath = new ArrayList<String>();
-	public static ArrayList<String> correctAnswerMath = new ArrayList<String>();
+	public static ArrayList<String> anwser0 = new ArrayList<String>();
 	public static ArrayList<String> answer2Math = new ArrayList<String>();
 	public static ArrayList<String> answer3Math = new ArrayList<String>();
 	public static ArrayList<String> answer4Math = new ArrayList<String>();
@@ -24,7 +24,7 @@ public class MathQuestions {
 			String answerReceived4, String explanationQuestion) {
 
 		questionsMath.add(question);
-		correctAnswerMath.add(correctAnwser);
+		anwser0.add(correctAnwser);
 		answer2Math.add(answerReceived2);
 		answer3Math.add(answerReceived3);
 		answer4Math.add(answerReceived4);
@@ -33,8 +33,8 @@ public class MathQuestions {
 
 		if(db.getConnection()) {
 			try {
-				SQL = "INSERT INTO mathExercises (question, correctAnswer, answer2, answer3, answer4, explanation)Values('" +
-						questionsMath.get(questionsMath.size()-1) + "', '" + correctAnswerMath.get(correctAnswerMath.size()-1) + "' , '" 
+				SQL = "INSERT INTO mathExercises (question, answer0, answer1, answer2, answer3, explanation)Values('" +
+						questionsMath.get(questionsMath.size()-1) + "', '" + anwser0.get(anwser0.size()-1) + "' , '" 
 						+ answer2Math.get(answer2Math.size()-1) + "', '" + answer3Math.get(answer3Math.size()-1) + "', '" 
 						+ answer4Math.get(answer2Math.size()-1)  + "', '" + explanation.get(answer2Math.size()-1) + "');";
 

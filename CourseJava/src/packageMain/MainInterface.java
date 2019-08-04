@@ -74,7 +74,7 @@ public class MainInterface {
 
 		study.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				objStudyQuestions.questionsUser();
+				objStudyQuestions.allMethods();
 				mainFrame.dispose();
 			}
 			

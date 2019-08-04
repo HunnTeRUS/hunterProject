@@ -22,7 +22,7 @@ public class CreateQuestions {
 	JButton englishButton = new JButton("Add a english question");
 	JButton programmingButton = new JButton("Add a Programming question");
 
-	private String question, anwser1, anwser2, anwser3, anwser4, explanation, correctAnwser;
+	private String question, anwser1, anwser2, anwser3, anwser4, explanation, anwser0;
 	public boolean mathQuizz, englishQuizz, programmingQuizz;
 
 	// THE NECESSARY OBJECTS
@@ -133,7 +133,7 @@ public class CreateQuestions {
 
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				correctAnwser = anwser1;
+				anwser0 = anwser1;
 				button1.setEnabled(false);
 				button2.setEnabled(false);
 				button3.setEnabled(false);
@@ -145,7 +145,7 @@ public class CreateQuestions {
 
 		button2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				correctAnwser = anwser2;
+				anwser0 = anwser2;
 				button1.setEnabled(false);
 				button2.setEnabled(false);
 				button3.setEnabled(false);
@@ -157,7 +157,7 @@ public class CreateQuestions {
 
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				correctAnwser = anwser3;
+				anwser0 = anwser3;
 				button1.setEnabled(false);
 				button2.setEnabled(false);
 				button3.setEnabled(false);
@@ -169,7 +169,7 @@ public class CreateQuestions {
 
 		button4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				correctAnwser = anwser4;
+				anwser0 = anwser4;
 				button1.setEnabled(false);
 				button2.setEnabled(false);
 				button3.setEnabled(false);
@@ -203,68 +203,92 @@ public class CreateQuestions {
 				explanation = JOptionPane.showInputDialog("Insert the message");
 
 				if (mathQuizz == true) {
-					if ((correctAnwser != anwser2) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
-						mathobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser4, explanation);
+					if ((anwser0 != anwser2) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
+						mathobj.addQuestions(question, anwser0, anwser2, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser1) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
-						mathobj.addQuestions(question, correctAnwser, anwser1, anwser3, anwser4, explanation);
+					if ((anwser0 != anwser1) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
+						mathobj.addQuestions(question, anwser0, anwser1, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser2) && (correctAnwser != anwser1) && (correctAnwser != anwser4)) {
-						mathobj.addQuestions(question, correctAnwser, anwser2, anwser1, anwser4, explanation);
+					if ((anwser0 != anwser2) && (anwser0 != anwser1) && (anwser0 != anwser4)) {
+						mathobj.addQuestions(question, anwser0, anwser2, anwser1, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser3) && (correctAnwser != anwser1) && (correctAnwser != anwser2)) {
-						mathobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser1, explanation);
+					if ((anwser0 != anwser3) && (anwser0 != anwser1) && (anwser0 != anwser2)) {
+						mathobj.addQuestions(question, anwser0, anwser2, anwser3, anwser1, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 				}
 
 				if (englishQuizz == true) {
-					if ((correctAnwser != anwser2) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
-						englishobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser4, explanation);
+					if ((anwser0 != anwser2) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
+						englishobj.addQuestions(question, anwser0, anwser2, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser1) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
-						englishobj.addQuestions(question, correctAnwser, anwser1, anwser3, anwser4, explanation);
+					if ((anwser0 != anwser1) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
+						englishobj.addQuestions(question, anwser0, anwser1, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser2) && (correctAnwser != anwser1) && (correctAnwser != anwser4)) {
-						englishobj.addQuestions(question, correctAnwser, anwser2, anwser1, anwser4, explanation);
+					if ((anwser0 != anwser2) && (anwser0 != anwser1) && (anwser0 != anwser4)) {
+						englishobj.addQuestions(question, anwser0, anwser2, anwser1, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser3) && (correctAnwser != anwser1) && (correctAnwser != anwser2)) {
-						englishobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser1, explanation);
+					if ((anwser0 != anwser3) && (anwser0 != anwser1) && (anwser0 != anwser2)) {
+						englishobj.addQuestions(question, anwser0, anwser2, anwser3, anwser1, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 				}
 
 				if (programmingQuizz == true) {
-					if ((correctAnwser != anwser2) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
-						programmingobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser4, explanation);
+					if ((anwser0 != anwser2) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
+						programmingobj.addQuestions(question, anwser0, anwser2, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser1) && (correctAnwser != anwser3) && (correctAnwser != anwser4)) {
-						programmingobj.addQuestions(question, correctAnwser, anwser1, anwser3, anwser4, explanation);
+					if ((anwser0 != anwser1) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
+						programmingobj.addQuestions(question, anwser0, anwser1, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser2) && (correctAnwser != anwser1) && (correctAnwser != anwser4)) {
-						programmingobj.addQuestions(question, correctAnwser, anwser2, anwser1, anwser4, explanation);
+					if ((anwser0 != anwser2) && (anwser0 != anwser1) && (anwser0 != anwser4)) {
+						programmingobj.addQuestions(question, anwser0, anwser2, anwser1, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 
-					if ((correctAnwser != anwser3) && (correctAnwser != anwser1) && (correctAnwser != anwser2)) {
-						programmingobj.addQuestions(question, correctAnwser, anwser2, anwser3, anwser1, explanation);
+					if ((anwser0 != anwser3) && (anwser0 != anwser1) && (anwser0 != anwser2)) {
+						programmingobj.addQuestions(question, anwser0, anwser2, anwser3, anwser1, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
+						classeMain.mainMethod();
+						mainFrame.dispose();
 					}
 				}
 			}
