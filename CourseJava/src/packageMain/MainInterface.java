@@ -12,7 +12,7 @@ public class MainInterface {
 	static StudyQuestion objStudyQuestions = new StudyQuestion();
 	static MainInterface objMain = new MainInterface();
 
-	static JFrame mainFrame = new JFrame();
+	 JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
 	ImageIcon image = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
 	JLabel imageIcon = new JLabel(image);
@@ -82,9 +82,4 @@ public class MainInterface {
 		});
 
 	}
-
-	public static void main(String[] args) {
-		objMain.mainMethod();
-	}
-
 }
