@@ -31,8 +31,12 @@ public class StudyMath {
 	JTextField textReceive = new JTextField();
 
 	Random rand = new Random();
+	
+	PreparedStatement stmt;
+	ResultSet rs;
+	ResultSet lenght;
 
-	int finalValue, i = 2;
+	public int finalValue, i = 2;
 	String SQL, count;
 
 	public int getFinalValue() {
@@ -46,7 +50,6 @@ public class StudyMath {
 	public void questionsUser() {
 		settingInterfaceStudy();
 		methodReceiver();
-		actions();
 	}
 
 	public void settingInterfaceStudy() {
@@ -109,37 +112,9 @@ public class StudyMath {
 		});
 	}
 
-	public void actions() {
-		continueQuestions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				i++;
-				answer1.setEnabled(true);
-				answer2.setEnabled(true);
-				answer3.setEnabled(true);
-				answer4.setEnabled(true);
-				continueQuestions.setEnabled(false);
-				methodReceiver();
-			}
-		});
-
-		returnMain.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				maininterface.settingInterface();
-				StudyQuestion.mainFrame.dispose();
-
-			}
-		});
-
-		setFinalValue(getFinalValue() + 1);
-	}
-
 	public void methodReceiver() {
 		if (db.getConnection()) {
 			try {
-				continueQuestions.setEnabled(false);
-				PreparedStatement stmt;
-				ResultSet rs;
-				ResultSet lenght;
 				continueQuestions.setEnabled(false);
 				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM mathExercises WHERE codQuestion="
 						+ i + ";";
@@ -183,6 +158,8 @@ public class StudyMath {
 					while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
 						aleatorio = rand.nextInt(4);
 					answer4.setText(String.valueOf(vetor[aleatorio]));
+					
+					question.setText(String.valueOf(rs.getString("question")));
 
 					answer1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -256,8 +233,25 @@ public class StudyMath {
 							}
 						}
 					});
+					
+					continueQuestions.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							answer1.setEnabled(true);
+							answer2.setEnabled(true);
+							answer3.setEnabled(true);
+							answer4.setEnabled(true);
+							continueQuestions.setEnabled(false);
+							i = i + 1;
+							methodReceiver();
+						}});
 
-					question.setText(String.valueOf(rs.getString("question")));
+					returnMain.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							maininterface.settingInterface();
+							StudyQuestion.mainFrame.dispose();
+
+						}
+					});
 				}
 
 			} catch (Exception error) {
@@ -266,4 +260,7 @@ public class StudyMath {
 
 		}
 	}
+	
+	
+	
 }
