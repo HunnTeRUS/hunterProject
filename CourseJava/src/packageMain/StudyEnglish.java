@@ -30,21 +30,27 @@ public class StudyEnglish extends CreateQuestions {
 	JButton answer3  = new JButton("");
 	JButton answer4  = new JButton();
 	JTextField textReceive = new JTextField();
-
+	private int c=0;
 	Font font1 = new Font("TimesRoman", Font.BOLD, 14);
-	
+	public String[] vetor = new String[4];
 	Random rand = new Random();
 	
 	PreparedStatement stmt;
 	ResultSet rs;
 	ResultSet lenght;
 
-	public int finalValue, i = 2;
+	public int finalValue, i = 1, az = 1 ;
 	String SQL, count;
 
 	public void questionsUser() {
+		if(c==0){
 		settingInterfaceStudy();
 		methodReceiver();
+		c++;
+	}
+		else{
+			mainFrame.setVisible(true);
+		}
 	}
 
 	public void settingInterfaceStudy() {
@@ -111,6 +117,7 @@ public class StudyEnglish extends CreateQuestions {
 	public void methodReceiver() {
 		if (db.getConnection()) {
 			try {
+				if(az == i){
 				continueQuestions.setEnabled(false);
 				continueQuestions.setBackground(Color.gray);
 				continueQuestions.setForeground(Color.black);
@@ -131,7 +138,7 @@ public class StudyEnglish extends CreateQuestions {
 				rs = stmt.executeQuery();
 
 				while (rs.next()) {
-					String[] vetor = new String[4];
+					
 					vetor[0] = rs.getString("answer0");
 					vetor[1] = rs.getString("answer1");
 					vetor[2] = rs.getString("answer2");
@@ -161,107 +168,9 @@ public class StudyEnglish extends CreateQuestions {
 
 					question.setFont(font1);
 					
-					answer1.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							try {
-								if (answer1.getText().equals(vetor[0])) {
-									JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-								} else
-									JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-
-								answer1.setEnabled(false);
-								answer2.setEnabled(false);
-								answer3.setEnabled(false);
-								answer4.setEnabled(false);				
-								continueQuestions.setBackground(Color.black);
-								continueQuestions.setForeground(Color.white);
-								continueQuestions.setEnabled(true);
-							} catch (Exception e1) {
-								e1.getMessage();
-							}
-						}
-					});
-
-					answer2.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							try {
-								if (answer2.getText().equals(vetor[0])) {
-									JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-								} else
-									JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-								answer1.setEnabled(false);
-								answer2.setEnabled(false);
-								answer3.setEnabled(false);
-								answer4.setEnabled(false);
-								continueQuestions.setEnabled(true);
-								continueQuestions.setBackground(Color.black);
-								continueQuestions.setForeground(Color.white);
-							} catch (Exception e1) {
-								e1.getMessage();
-							}
-						}
-					});
-
-					answer3.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							try {
-								if (answer3.getText().equals(vetor[0])) {
-									JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-								} else
-									JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-								answer1.setEnabled(false);
-								answer2.setEnabled(false);
-								answer3.setEnabled(false);
-								answer4.setEnabled(false);
-								continueQuestions.setEnabled(true);
-								continueQuestions.setBackground(Color.black);
-								continueQuestions.setForeground(Color.white);
-							} catch (Exception e1) {
-								e1.getMessage();
-							}
-						}
-					});
-
-					answer4.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							try {
-								if (answer4.getText().equals(vetor[0])) {
-									JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-								} else
-									JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-								answer1.setEnabled(false);
-								answer2.setEnabled(false);
-								answer3.setEnabled(false);
-								answer4.setEnabled(false);
-								continueQuestions.setEnabled(true);
-								continueQuestions.setBackground(Color.black);
-								continueQuestions.setForeground(Color.white);
-							} catch (Exception e1) {
-								e1.getMessage();
-							}
-						}
-					});
-					
-					continueQuestions.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							answer1.setEnabled(true);
-							answer2.setEnabled(true);
-							answer3.setEnabled(true);
-							answer4.setEnabled(true);
-							continueQuestions.setEnabled(false);
-							i = i + 1;
-							methodReceiver();
-						}});
-
-					returnMain.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							maininterface.settingInterface();
-							StudyQuestion.mainFrame.dispose();
-
-						}
-					});
+					az++;
 				}
-
+				}
 			} catch (Exception error) {
 				System.err.println("Error:" + error.getMessage());
 			}
@@ -269,4 +178,112 @@ public class StudyEnglish extends CreateQuestions {
 		}
 	}
 
+	
+	
+	
+	
+	public void Acoes(){
+		answer1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					i++;
+					if (answer1.getText().equals(vetor[0])) {
+						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+					} else
+						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+
+					answer1.setEnabled(false);
+					answer2.setEnabled(false);
+					answer3.setEnabled(false);
+					answer4.setEnabled(false);				
+					continueQuestions.setBackground(Color.black);
+					continueQuestions.setForeground(Color.white);
+					continueQuestions.setEnabled(true);
+				} catch (Exception e1) {
+					e1.getMessage();
+				}
+			}
+		});
+
+		answer2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					i++;
+					if (answer2.getText().equals(vetor[0])) {
+						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+					} else
+						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+					answer1.setEnabled(false);
+					answer2.setEnabled(false);
+					answer3.setEnabled(false);
+					answer4.setEnabled(false);
+					continueQuestions.setEnabled(true);
+					continueQuestions.setBackground(Color.black);
+					continueQuestions.setForeground(Color.white);
+				} catch (Exception e1) {
+					e1.getMessage();
+				}
+			}
+		});
+
+		answer3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					i++;
+					if (answer3.getText().equals(vetor[0])) {
+						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+					} else
+						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+					answer1.setEnabled(false);
+					answer2.setEnabled(false);
+					answer3.setEnabled(false);
+					answer4.setEnabled(false);
+					continueQuestions.setEnabled(true);
+					continueQuestions.setBackground(Color.black);
+					continueQuestions.setForeground(Color.white);
+				} catch (Exception e1) {
+					e1.getMessage();
+				}
+			}
+		});
+
+		answer4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					i++;
+					if (answer4.getText().equals(vetor[0])) {
+						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+					} else
+						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+					answer1.setEnabled(false);
+					answer2.setEnabled(false);
+					answer3.setEnabled(false);
+					answer4.setEnabled(false);
+					continueQuestions.setEnabled(true);
+					continueQuestions.setBackground(Color.black);
+					continueQuestions.setForeground(Color.white);
+				} catch (Exception e1) {
+					e1.getMessage();
+				}
+			}
+		});
+		
+		continueQuestions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				answer1.setEnabled(true);
+				answer2.setEnabled(true);
+				answer3.setEnabled(true);
+				answer4.setEnabled(true);
+				continueQuestions.setEnabled(false);
+				methodReceiver();
+			}});
+
+		returnMain.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				maininterface.settingInterface();
+				StudyQuestion.mainFrame.dispose();
+
+			}
+		});
+	}
 }

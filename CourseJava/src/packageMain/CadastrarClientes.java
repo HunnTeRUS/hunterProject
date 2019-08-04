@@ -28,7 +28,7 @@ public class CadastrarClientes {
 	private JButton cadastrar = new JButton("Cadastrar");
 	private JCheckBox adm = new JCheckBox("Administrator");
 	private JCheckBox student = new JCheckBox("Student");
-
+	private int c=0;
 	// Variaveis para armazenar os dados recebidos e/ou criptografados
 	private String senhaCadastrada;
 	private String usuarioCadastrado;
@@ -46,9 +46,15 @@ public class CadastrarClientes {
 	}
 
 	public void metodoPrincipalCadastro() {
+		if(c==0){
 		metodoCriacao();
 		manipulandoDados();
 		Screen();
+		c++;
+		}
+		else{
+			framePrincipalCadastro.setVisible(true);
+		}
 	}
 
 	public byte[] getSenhaCriptografadaDB() {

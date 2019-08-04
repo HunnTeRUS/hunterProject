@@ -45,11 +45,10 @@ public class LoginClientes extends Thread {
 	public String usuario;
 	private String senhaDecriptada;
 	private byte[] senhaCriptografada;
-
+	private int c = 0;
 	// Criando a parte de "logando"
 	static JPanel painelPrincipalLogin2 = new JPanel();
 	JLabel log = new JLabel("Logging in...");
-
 	// Dimensionar o frame de acordo com o tamanho da tela
 	/*
 	 * private void Screen(){
@@ -62,9 +61,14 @@ public class LoginClientes extends Thread {
 	 */
 
 	public void metodoPrincipalLogin() {
-		metodoCriacao();
-		manipulandoDados();
-		// Screen();
+		if (c == 0) {
+			metodoCriacao();
+			manipulandoDados();
+			// Screen();
+			c++;
+		} else {
+			framePrincipalLogin.setVisible(true);
+		}
 	}
 
 	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -197,6 +201,7 @@ public class LoginClientes extends Thread {
 								JDialog dialog = pane.createDialog(null, "Title");
 								sleep(1000);
 								dialog.dispose();
+								framePrincipalLogin.dispose();
 								objClient.mainMethod();
 
 							}

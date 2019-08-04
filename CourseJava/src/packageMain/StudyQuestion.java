@@ -1,3 +1,4 @@
+
 package packageMain;
 
 import java.awt.Color;
@@ -28,7 +29,7 @@ public class StudyQuestion {
 	ResultSet rs;
 	ResultSet lenght;
 	String SQL, count;
-
+	private int c=0;
 	// THE NECESSARY OBJECTS
 	MainInterface classeMain = new MainInterface();
 	StudyMath quizzMath = new StudyMath();
@@ -189,7 +190,13 @@ public class StudyQuestion {
 	}
 
 	public void allMethods() {
+		if(c==0){
 		actions();
 		visual();
+		c++;
+		}
+		else{
+			mainFrame.setVisible(true);
+		}
 	}
 }

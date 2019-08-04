@@ -19,7 +19,7 @@ public class MainInterface {
 	JLabel mainText = new JLabel("What do you want to do?");
 	JButton adc = new JButton("Add new questions");
 	JButton study = new JButton("I want to study");
-
+	private int c=0;
 	public int tamanho;
 	static MainInterface main = new MainInterface();
 
@@ -32,7 +32,13 @@ public class MainInterface {
 	}
 
 	public void mainMethod() {
+		if(c==0){
 		settingInterface();
+		c++;
+		}
+		else{
+			mainFrame.setVisible(true);
+		}
 	}
 
 	public void settingInterface() {

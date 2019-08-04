@@ -20,7 +20,7 @@ public class CreateQuestions {
 	JButton mathButton = new JButton("Add a Math question");
 	JButton englishButton = new JButton("Add a english question");
 	JButton programmingButton = new JButton("Add a Programming question");
-
+	private int c=0;
 	private String question, anwser1, anwser2, anwser3, anwser4, explanation, anwser0;
 	public boolean mathQuizz, englishQuizz, programmingQuizz;
 
@@ -337,8 +337,14 @@ public class CreateQuestions {
 	}
 
 	public void allMethods() {
+		if(c==0){
 		actions();
 		visual();
+		c++;
+		}
+		else{
+			mainFrame.setVisible(true);
+		}
 	}
 
 }
