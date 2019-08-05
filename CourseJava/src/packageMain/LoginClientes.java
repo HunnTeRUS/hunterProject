@@ -17,6 +17,9 @@ public class LoginClientes {
 	static LoginClientes objLogin = new LoginClientes();
 	static MainInterface objClient = new MainInterface();
 	public static CadastrarClientes objCadastrorCliente = new CadastrarClientes();
+	private static ClassAdm objAdm = new ClassAdm();
+	private static ClassStudent objStudent = new ClassStudent();
+
 
 	// Criando os objetos visuais
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
@@ -180,18 +183,26 @@ public class LoginClientes {
 
 					String sql;
 
-					sql = "SELECT userr, email, senha FROM users WHERE userr='" + getUsuario() + "' OR email='"
+					sql = "SELECT userr, email, senha, adm, student FROM users WHERE userr='" + getUsuario() + "' OR email='"
 							+ getEmail() + "';";
 
 					PreparedStatement stmt = conecta.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
-   
-					while (rs.next()) {
+     
+					while (rs.next()) {  		
 						if (((getUsuario().equals(rs.getString("userr"))) && (getSenha().equals(rs.getString("senha")))) || ((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha")))) ||
 								((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha"))) && (getUsuario().equals(rs.getString("userr"))) )) {
+							
+							if(rs.getInt("adm")==1) {
 							JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
 							LoginClientes.framePrincipalLogin.dispose();
-							objClient.mainMethod();
+							objAdm.mainMethod();
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+								LoginClientes.framePrincipalLogin.dispose();
+								objStudent.mainMethod();
+							}
 						} else {
 							JOptionPane.showMessageDialog(null, "Usuario/Email e senha incorretos!");
 						}
