@@ -181,7 +181,7 @@ public class LoginClientes {
 					// getSenhaRecebidaDB() = Pega a senha que esta no BG (criptografada) e �
 					// decriptada para a compara��o ser feita
 
-					String sql;
+					String sql; 
 
 					sql = "SELECT userr, email, senha, adm, student FROM users WHERE userr='" + getUsuario() + "' OR email='"
 							+ getEmail() + "';";
