@@ -62,6 +62,7 @@ public class StudyProgramming extends CreateQuestions {
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
 		mainFrame.add(mainPanel);
+		mainFrame.setTitle("Programming Questions");
 		mainFrame.setResizable(false);
 		mainPanel.add(continueQuestions);
 		mainPanel.setBackground(new Color(107, 35, 142));

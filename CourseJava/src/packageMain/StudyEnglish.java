@@ -61,6 +61,7 @@ public class StudyEnglish extends CreateQuestions {
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
 		mainFrame.add(mainPanel);
+		mainFrame.setTitle("English Questions");
 		mainPanel.add(continueQuestions);
 		mainPanel.setBackground(new Color(107, 35, 142));
 		mainPanel.add(imageIcon);

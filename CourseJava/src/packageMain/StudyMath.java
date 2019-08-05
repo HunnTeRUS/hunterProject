@@ -33,7 +33,7 @@ public class StudyMath {
 	ResultSet rs;
 	ResultSet lenght;
 
-	public int finalValue, i = 2,az=1;
+	public int finalValue, i = 2,az=2;
 	String SQL, count;
 
 	public int getFinalValue() {
@@ -65,6 +65,7 @@ public class StudyMath {
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
+		mainFrame.setTitle("Math Questions");
 		mainFrame.add(mainPanel);
 		mainPanel.add(continueQuestions);
 		mainPanel.setBackground(new Color(107, 35, 142));

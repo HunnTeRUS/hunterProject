@@ -53,7 +53,7 @@ public class StudyQuestion {
 		mainFrame.setBounds(700, 200, 500, 600);
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setVisible(true);
-
+		mainFrame.setTitle("Choice Page");
 		mainPanel.setLayout(null);
 		mainFrame.setResizable(false);
 		mainFrame.add(mainPanel);

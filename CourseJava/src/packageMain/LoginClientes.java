@@ -11,11 +11,10 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-public class LoginClientes extends Thread {
+public class LoginClientes {
 
 	// Instanciando os objetos
 	static LoginClientes objLogin = new LoginClientes();
-	static LoginClientes objLogin2 = new LoginClientes();
 	static MainInterface objClient = new MainInterface();
 	public static CadastrarClientes objCadastrorCliente = new CadastrarClientes();
 
@@ -24,7 +23,7 @@ public class LoginClientes extends Thread {
 	ImageIcon imagem2 = new ImageIcon(getClass().getResource("logo-branco-transparente.png"));
 	public JLabel image = new JLabel(imagem);
 	public JLabel image2 = new JLabel(imagem2);
-
+	
 	static JFrame framePrincipalLogin = new JFrame();
 	static JPanel painelPrincipalLogin = new JPanel();
 	JLabel labelemail = new JLabel("Email: ");
@@ -36,19 +35,15 @@ public class LoginClientes extends Thread {
 	private JButton enviarDados = new JButton("Login");
 	private JButton botaoCadastro = new JButton("Não tem cadastro? Clique aqui!");
 	private JButton RecSenha = new JButton("Esqueci minha senha - Em breve kkk");
-	JOptionPane msg = new JOptionPane("Mensagem de advertência", JOptionPane.WARNING_MESSAGE);
-	final JDialog dlg = msg.createDialog("Advertência");
 
+	// Toolkit.getDefaultToolkit().getScreenSize();
 	// Criando as variaveis com get e set
 	public String senha;
 	public String email;
 	public String usuario;
 	private String senhaDecriptada;
 	private byte[] senhaCriptografada;
-	private int c = 0;
-	// Criando a parte de "logando"
-	static JPanel painelPrincipalLogin2 = new JPanel();
-	JLabel log = new JLabel("Logging in...");
+	private int c=0;
 	// Dimensionar o frame de acordo com o tamanho da tela
 	/*
 	 * private void Screen(){
@@ -61,12 +56,13 @@ public class LoginClientes extends Thread {
 	 */
 
 	public void metodoPrincipalLogin() {
-		if (c == 0) {
-			metodoCriacao();
-			manipulandoDados();
-			// Screen();
-			c++;
-		} else {
+		if(c==0){
+		metodoCriacao();
+		manipulandoDados();
+		// Screen();
+		c++;
+		}
+		else{
 			framePrincipalLogin.setVisible(true);
 		}
 	}
@@ -136,12 +132,6 @@ public class LoginClientes extends Thread {
 		painelPrincipalLogin.add(botaoCadastro);
 		Dimension tela = framePrincipalLogin.getSize();
 
-		painelPrincipalLogin2.setBounds(600, 200, 600, 700);
-		painelPrincipalLogin2.setBackground(new Color(35, 35, 142));
-		painelPrincipalLogin2.add(log);
-		log.setForeground(Color.RED);
-		log.setBounds(((tela.width / 2) - 40), ((tela.height / 2)), 250, 30);
-
 		painelPrincipalLogin.setLayout(null);
 		enviarDados.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 150), 350, 30);
 		RecSenha.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 200), 350, 30);
@@ -175,36 +165,33 @@ public class LoginClientes extends Thread {
 				setSenha(String.valueOf(campoSenha.getPassword()));
 				setEmail(campoEmail.getText());
 				setUsuario(campoUsuario.getText());
-				try {
 
+				try {
 					Class.forName(DRIVER);
 					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
 
+					// getSenha() = Senha recebida do usuario
+					// getSenhaDecriptada() = Senha enviada pelo usuario decriptada (nao tem
+					// necessidade)
+					// getSenhaCriptografada() = sENHA recebida do usuario e enviada a outra classse
+					// para ser criptografada
+					// getSenhaRecebidaDB() = Pega a senha que esta no BG (criptografada) e �
+					// decriptada para a compara��o ser feita
+
 					String sql;
 
-					sql = "SELECT userr, email, senha, adm, student FROM users WHERE userr='" + getUsuario()
-							+ "' OR email='" + getEmail() + "';";
+					sql = "SELECT userr, email, senha FROM users WHERE userr='" + getUsuario() + "' OR email='"
+							+ getEmail() + "';";
 
 					PreparedStatement stmt = conecta.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
 
 					while (rs.next()) {
-						if (((getUsuario().equals(rs.getString("userr"))) && (getSenha().equals(rs.getString("senha"))))
-								|| ((getEmail().equals(rs.getString("email")))
-										&& (getSenha().equals(rs.getString("senha"))))
-								|| ((getEmail().equals(rs.getString("email")))
-										&& (getSenha().equals(rs.getString("senha")))
-										&& (getUsuario().equals(rs.getString("userr"))))) {
-
-							if (rs.getInt("adm") == 1) {
-								JOptionPane pane = new JOptionPane("Logging in...", JOptionPane.INFORMATION_MESSAGE);
-								JDialog dialog = pane.createDialog(null, "Title");
-								sleep(1000);
-								dialog.dispose();
-								framePrincipalLogin.dispose();
-								objClient.mainMethod();
-
-							}
+						if (((getUsuario().equals(rs.getString("userr"))) && (getSenha().equals(rs.getString("senha")))) || ((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha")))) ||
+								((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha"))) && (getUsuario().equals(rs.getString("userr"))) )) {
+							JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+							LoginClientes.framePrincipalLogin.dispose();
+							objClient.mainMethod();
 						} else {
 							JOptionPane.showMessageDialog(null, "Usuario/Email e senha incorretos!");
 						}
@@ -218,10 +205,8 @@ public class LoginClientes extends Thread {
 					System.out.println(error.toString());
 				} catch (ClassNotFoundException e1) {
 					e1.printStackTrace();
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
+
 			}
 		});
 
@@ -233,13 +218,5 @@ public class LoginClientes extends Thread {
 			}
 		});
 
-	}
-
-	public static void main(String args[]) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				objLogin.metodoPrincipalLogin();
-			}
-		});
 	}
 }

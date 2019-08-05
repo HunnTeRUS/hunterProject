@@ -108,7 +108,7 @@ public class CadastrarClientes {
 		framePrincipalCadastro.setResizable(false);
 		framePrincipalCadastro.setBounds(600, 200, 600, 700);
 		framePrincipalCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		framePrincipalCadastro.setTitle("Login");
+		framePrincipalCadastro.setTitle("Cadaster");
 		painelPrincipalCadastro.setBackground(new Color(35, 35, 142));
 		painelPrincipalCadastro.add(campoEmail);
 		painelPrincipalCadastro.add(labelsenha);
