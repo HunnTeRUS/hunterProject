@@ -185,7 +185,7 @@ public class LoginClientes {
 
 					PreparedStatement stmt = conecta.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
-
+   
 					while (rs.next()) {
 						if (((getUsuario().equals(rs.getString("userr"))) && (getSenha().equals(rs.getString("senha")))) || ((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha")))) ||
 								((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha"))) && (getUsuario().equals(rs.getString("userr"))) )) {
