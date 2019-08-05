@@ -219,4 +219,9 @@ public class LoginClientes {
 		});
 
 	}
+	
+
+	public static void main(String[] args) {
+		objLogin.metodoPrincipalLogin();
+	}
 }
