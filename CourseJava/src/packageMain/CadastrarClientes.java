@@ -206,7 +206,7 @@ public class CadastrarClientes {
 				} else {
 					try {
 						Class.forName(DRIVER);
-						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+						Connection conecta = DriverManager.getConnection(URL, "root", "");
 						Statement stmt = conecta.createStatement();
 
 						String sql;

@@ -169,7 +169,7 @@ public class LoginClientes {
 
 				try {
 					Class.forName(DRIVER);
-					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+					Connection conecta = DriverManager.getConnection(URL, "root", "");
 
 					// getSenha() = Senha recebida do usuario
 					// getSenhaDecriptada() = Senha enviada pelo usuario
@@ -211,7 +211,8 @@ public class LoginClientes {
 										try {
 											Thread.sleep(2000);
 											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-											objClient.mainMethod();
+											//objClient.mainMethod();
+											objAdm.mainMethod();
 											LoginClientes.framePrincipalLogin.dispose();
 										} catch (InterruptedException e) {
 
