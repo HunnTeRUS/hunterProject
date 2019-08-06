@@ -20,13 +20,12 @@ public class LoginClientes {
 	private static ClassAdm objAdm = new ClassAdm();
 	private static ClassStudent objStudent = new ClassStudent();
 
-
 	// Criando os objetos visuais
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
 	ImageIcon imagem2 = new ImageIcon(getClass().getResource("logo-branco-transparente.png"));
 	public JLabel image = new JLabel(imagem);
 	public JLabel image2 = new JLabel(imagem2);
-	
+
 	static JFrame framePrincipalLogin = new JFrame();
 	static JPanel painelPrincipalLogin = new JPanel();
 	JLabel labelemail = new JLabel("Email: ");
@@ -46,7 +45,7 @@ public class LoginClientes {
 	public String usuario;
 	private String senhaDecriptada;
 	private byte[] senhaCriptografada;
-	private int c=0;
+	private int c = 0;
 	// Dimensionar o frame de acordo com o tamanho da tela
 	/*
 	 * private void Screen(){
@@ -59,13 +58,12 @@ public class LoginClientes {
 	 */
 
 	public void metodoPrincipalLogin() {
-		if(c==0){
-		metodoCriacao();
-		manipulandoDados();
-		// Screen();
-		c++;
-		}
-		else{
+		if (c == 0) {
+			metodoCriacao();
+			manipulandoDados();
+			// Screen();
+			c++;
+		} else {
 			framePrincipalLogin.setVisible(true);
 		}
 	}
@@ -163,7 +161,7 @@ public class LoginClientes {
 
 	private void manipulandoDados() {
 		enviarDados.addActionListener(new ActionListener() {
-			@Override  
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				setSenha(String.valueOf(campoSenha.getPassword()));
 				setEmail(campoEmail.getText());
@@ -174,32 +172,53 @@ public class LoginClientes {
 					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
 
 					// getSenha() = Senha recebida do usuario
-					// getSenhaDecriptada() = Senha enviada pelo usuario decriptada (nao tem
+					// getSenhaDecriptada() = Senha enviada pelo usuario
+					// decriptada (nao tem
 					// necessidade)
-					// getSenhaCriptografada() = sENHA recebida do usuario e enviada a outra classse
+					// getSenhaCriptografada() = sENHA recebida do usuario e
+					// enviada a outra classse
 					// para ser criptografada
-					// getSenhaRecebidaDB() = Pega a senha que esta no BG (criptografada) e �
+					// getSenhaRecebidaDB() = Pega a senha que esta no BG
+					// (criptografada) e �
 					// decriptada para a compara��o ser feita
 
-					String sql; 
+					String sql;
 
-					sql = "SELECT userr, email, senha, adm, student FROM users WHERE userr='" + getUsuario() + "' OR email='"
-							+ getEmail() + "';";
+					sql = "SELECT userr, email, senha, adm, student FROM users WHERE userr='" + getUsuario()
+							+ "' OR email='" + getEmail() + "';";
 
 					PreparedStatement stmt = conecta.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
-     
-					
-					while (rs.next()) {  		
-						if (((getUsuario().equals(rs.getString("userr"))) && (getSenha().equals(rs.getString("senha")))) || ((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha")))) ||
-								((getEmail().equals(rs.getString("email"))) && (getSenha().equals(rs.getString("senha"))) && (getUsuario().equals(rs.getString("userr"))) )) {
-							
-							if(rs.getInt("adm")==1) {
-							JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-							LoginClientes.framePrincipalLogin.dispose();
-							objAdm.mainMethod();
-							}
-							else {
+
+					while (rs.next()) {
+						if (((getUsuario().equals(rs.getString("userr"))) && (getSenha().equals(rs.getString("senha"))))
+								|| ((getEmail().equals(rs.getString("email")))
+										&& (getSenha().equals(rs.getString("senha"))))
+								|| ((getEmail().equals(rs.getString("email")))
+										&& (getSenha().equals(rs.getString("senha")))
+										&& (getUsuario().equals(rs.getString("userr"))))) {
+
+							if (rs.getInt("adm") == 1) {
+
+								// JOptionPane.showMessageDialog(null, "Login
+								// realizado com sucesso!");
+								enviarDados.setText("teste");
+								// objAdm.mainMethod();
+								new Thread(new Runnable() {
+									public void run() {
+
+										try {
+											Thread.sleep(10000);
+											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+											objClient.mainMethod();
+											LoginClientes.framePrincipalLogin.dispose();
+										} catch (InterruptedException e) {
+
+											e.printStackTrace();
+										}
+									}
+								}).start();
+							} else {
 								JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
 								LoginClientes.framePrincipalLogin.dispose();
 								objStudent.mainMethod();
@@ -231,11 +250,9 @@ public class LoginClientes {
 		});
 
 	}
-	
 
 	public static void main(String[] args) {
 		objLogin.metodoPrincipalLogin();
 	}
-	
-	
+
 }
