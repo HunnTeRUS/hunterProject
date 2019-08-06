@@ -11,6 +11,7 @@ public class StudyMath {
 	public static CreateQuestions questions = new CreateQuestions();
 	public static MainInterface maininterface = new MainInterface();
 	public static StudyQuestion objStudy = new StudyQuestion();
+	public static StudyMath objMath = new StudyMath();
 	private ConectionDB db = new ConectionDB();
 
 	static JFrame mainFrame = new JFrame();
@@ -26,14 +27,20 @@ public class StudyMath {
 	JButton answer4 = new JButton();
 	JTextField textReceive = new JTextField();
 	Font font1 = new Font("TimesRoman", Font.BOLD, 14);
-	private int c=0;
+	private int c = 0;
 	Random rand = new Random();
 	public String[] vetor = new String[4];
 	PreparedStatement stmt;
 	ResultSet rs;
 	ResultSet lenght;
 
-	public int finalValue, i = 2,az=2;
+	// EXPLANATION QUESTION
+	static JPanel mainPanelExplanation = new JPanel();
+	JTextArea explanationArea = new JTextArea();
+	JButton returnQuestion = new JButton("Return");
+
+	
+	public int finalValue, i = 2, az = 2;
 	String SQL, count;
 
 	public int getFinalValue() {
@@ -45,16 +52,15 @@ public class StudyMath {
 	}
 
 	public void questionsUser() {
-		if(c==0){
-		settingInterfaceStudy();
-		methodReceiver();
-		Acoes();
-		c++;
-		}
-		else{
-			
+		if (c == 0) {
+			settingInterfaceStudy();
+			methodReceiver();
+			Acoes();
+			c++;
+		} else {
+
 			mainFrame.setVisible(true);
-			
+
 		}
 	}
 
@@ -123,91 +129,89 @@ public class StudyMath {
 	public void methodReceiver() {
 		if (db.getConnection()) {
 			try {
-				
-				if(i==az){
-				
-				continueQuestions.setEnabled(false);
-				continueQuestions.setBackground(Color.gray);
-				continueQuestions.setForeground(Color.black);
-				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM mathExercises WHERE codQuestion="
-						+ i + ";";
-				count = "SELECT COUNT(question) AS quantidade FROM mathExercises;";
 
-				stmt = db.con.prepareStatement(count);
-				lenght = stmt.executeQuery();
+				if (i == az) {
 
-				while (lenght.next()) {
-					if (i > lenght.getInt("quantidade")) {
-						break;
+					continueQuestions.setEnabled(false);
+					continueQuestions.setBackground(Color.gray);
+					continueQuestions.setForeground(Color.black);
+					SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM mathExercises WHERE codQuestion="
+							+ i + ";";
+					count = "SELECT COUNT(question) AS quantidade FROM mathExercises;";
+
+					stmt = db.con.prepareStatement(count);
+					lenght = stmt.executeQuery();
+
+					while (lenght.next()) {
+						if (i > lenght.getInt("quantidade")) {
+							break;
+						}
 					}
-				}
 
-				stmt = db.con.prepareStatement(SQL);
-				rs = stmt.executeQuery();
+					stmt = db.con.prepareStatement(SQL);
+					rs = stmt.executeQuery();
 
-				while (rs.next()) {
-					
-					vetor[0] = rs.getString("answer0");
-					vetor[1] = rs.getString("answer1");
-					vetor[2] = rs.getString("answer2");
-					vetor[3] = rs.getString("answer3");
-					int aleatorio = 10;
-					int[] aux = new int[4];
+					while (rs.next()) {
 
-					aleatorio = rand.nextInt(4);
-					answer1.setText(String.valueOf(vetor[aleatorio]));
-					aux[0] = aleatorio;
+						vetor[0] = rs.getString("answer0");
+						vetor[1] = rs.getString("answer1");
+						vetor[2] = rs.getString("answer2");
+						vetor[3] = rs.getString("answer3");
+						int aleatorio = 10;
+						int[] aux = new int[4];
 
-					while (aux[0] == aleatorio)
 						aleatorio = rand.nextInt(4);
-					answer2.setText(String.valueOf(vetor[aleatorio]));
-					aux[1] = aleatorio;
+						answer1.setText(String.valueOf(vetor[aleatorio]));
+						aux[0] = aleatorio;
 
-					while (aux[0] == aleatorio || aux[1] == aleatorio)
-						aleatorio = rand.nextInt(4);
-					answer3.setText(String.valueOf(vetor[aleatorio]));
-					aux[2] = aleatorio;
+						while (aux[0] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer2.setText(String.valueOf(vetor[aleatorio]));
+						aux[1] = aleatorio;
 
-					while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
-						aleatorio = rand.nextInt(4);
-					answer4.setText(String.valueOf(vetor[aleatorio]));
+						while (aux[0] == aleatorio || aux[1] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer3.setText(String.valueOf(vetor[aleatorio]));
+						aux[2] = aleatorio;
 
-					question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
+						while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer4.setText(String.valueOf(vetor[aleatorio]));
 
-					question.setFont(font1);
-					az++;
-				}
-					
-				}
-				else{
+						question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
+
+						question.setFont(font1);
+						az++;
+					}
+
+				} else {
 					i--;
-					//System.out.println("Merda!!!!!!!");
+					// System.out.println("Merda!!!!!!!");
 				}
-			
+
 			} catch (Exception error) {
 				System.err.println("Error:" + error.getMessage());
 			}
 
 		}
 	}
-	
-	
-	
-	
-	public void Acoes(){
+
+	public void Acoes() {
 		answer1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					i++;
 					if (answer1.getText().equals(vetor[0])) {
 						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
+					} else {
 						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+						//objMath.explanationQuestion(i);
+						}
 
 					answer1.setEnabled(false);
 					answer2.setEnabled(false);
 					answer3.setEnabled(false);
-					answer4.setEnabled(false);				
+					answer4.setEnabled(false);
 					continueQuestions.setBackground(Color.black);
 					continueQuestions.setForeground(Color.white);
 					continueQuestions.setEnabled(true);
@@ -223,9 +227,11 @@ public class StudyMath {
 					i++;
 					if (answer2.getText().equals(vetor[0])) {
 						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
+					} else {
 						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-					
+						//objMath.explanationQuestion(i);
+						}
+
 					answer1.setEnabled(false);
 					answer2.setEnabled(false);
 					answer3.setEnabled(false);
@@ -245,8 +251,10 @@ public class StudyMath {
 					i++;
 					if (answer3.getText().equals(vetor[0])) {
 						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
+					} else {
 						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+						//objMath.explanationQuestion(i);
+						}
 					answer1.setEnabled(false);
 					answer2.setEnabled(false);
 					answer3.setEnabled(false);
@@ -266,8 +274,10 @@ public class StudyMath {
 					i++;
 					if (answer4.getText().equals(vetor[0])) {
 						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
+					} else {
 						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+						//objMath.explanationQuestion(i);
+						}
 					answer1.setEnabled(false);
 					answer2.setEnabled(false);
 					answer3.setEnabled(false);
@@ -280,7 +290,7 @@ public class StudyMath {
 				}
 			}
 		});
-	
+
 		continueQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				answer1.setEnabled(true);
@@ -288,12 +298,12 @@ public class StudyMath {
 				answer3.setEnabled(true);
 				answer4.setEnabled(true);
 				continueQuestions.setEnabled(false);
-				
+
 				methodReceiver();
-				//questionsUser();
-				//az++;
-				
-			}});
+				// az++;
+
+			}
+		});
 
 		returnMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -303,4 +313,47 @@ public class StudyMath {
 			}
 		});
 	}
+
+	/*public void explanationQuestion(int i) {
+		mainPanelExplanation.setBounds(700, 200, 500, 700);
+		mainPanelExplanation.setLayout(null);
+		mainPanel.setVisible(false);
+		mainFrame.add(mainPanelExplanation);
+		mainPanelExplanation.add(returnQuestion);
+		mainPanelExplanation.add(explanationArea);
+		mainPanelExplanation.setBackground(new Color(107, 35, 142));
+		returnQuestion.setBounds(300, 630, 150, 35);
+		explanationArea.setFont(font1);
+		returnQuestion.setBounds(35, 630, 150, 35);
+		returnQuestion.setBackground(Color.BLACK);
+		returnQuestion.setForeground(Color.WHITE);
+		returnQuestion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+
+		explanationArea.setBounds(0, 0, 500, 250);
+		explanationArea.setBackground(Color.BLACK);
+		explanationArea.setLineWrap(true);
+		explanationArea.setEnabled(false);
+
+		if (db.getConnection()) {
+			try {
+				SQL = "SELECT explanation FROM mathExercises WHERE codQuestion=" + i + ";";
+				stmt = db.con.prepareStatement(SQL);
+				rs = stmt.executeQuery();
+				while(rs.next()) {
+					explanationArea.setText(String.valueOf(rs.getString("explanation")));
+				}
+				
+				db.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+
+		returnQuestion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanelExplanation.setVisible(false);
+				mainPanel.setVisible(true);
+			}
+		});
+	}*/
 }
