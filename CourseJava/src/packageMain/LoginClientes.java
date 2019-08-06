@@ -202,13 +202,14 @@ public class LoginClientes {
 
 								// JOptionPane.showMessageDialog(null, "Login
 								// realizado com sucesso!");
-								enviarDados.setText("teste");
+								enviarDados.setText("Logging in...");
+								enviarDados.setForeground(Color.RED);
 								// objAdm.mainMethod();
 								new Thread(new Runnable() {
 									public void run() {
 
 										try {
-											Thread.sleep(10000);
+											Thread.sleep(2000);
 											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
 											objClient.mainMethod();
 											LoginClientes.framePrincipalLogin.dispose();
