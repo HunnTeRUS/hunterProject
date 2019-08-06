@@ -175,6 +175,12 @@ public class CadastrarClientes {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				
+				
+				
+				
+				
+				
 				setConfirmacaoSenha(String.valueOf(campoConfirmarSenha.getPassword()));
 				setUsuarioCadastrado(campoUsuario.getText());
 				setSenhaCadastrada(String.valueOf(campoSenha.getPassword()));
