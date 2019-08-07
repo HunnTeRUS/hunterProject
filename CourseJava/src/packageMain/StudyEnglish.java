@@ -118,6 +118,14 @@ public class StudyEnglish extends CreateQuestions {
 	public void methodReceiver() {
 		if (db.getConnection()) {
 			try {
+				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM englishExercises;";
+				stmt = db.con.prepareStatement(rsLenght);
+				ResultSet lenght2 = stmt.executeQuery();
+
+				while (lenght2.next()) {
+					i = lenght2.getInt("firstRow");
+				}
+
 				if(az == i){
 				continueQuestions.setEnabled(false);
 				continueQuestions.setBackground(Color.gray);

@@ -40,7 +40,7 @@ public class StudyProgramming extends CreateQuestions {
 	ResultSet rs;
 	ResultSet lenght;
 
-	public int finalValue, i = 1,az = 1;
+	public int finalValue, i,az = 1;
 	String SQL, count;
 
 	
@@ -120,6 +120,14 @@ public class StudyProgramming extends CreateQuestions {
 	public void methodReceiver() {
 		if (db.getConnection()) {
 			try {
+				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM programmingExercises;";
+				stmt = db.con.prepareStatement(rsLenght);
+				ResultSet lenght2 = stmt.executeQuery();
+
+				while (lenght2.next()) {
+					i = lenght2.getInt("firstRow");
+				}
+
 				continueQuestions.setEnabled(false);
 				continueQuestions.setBackground(Color.gray);
 				continueQuestions.setForeground(Color.black);
