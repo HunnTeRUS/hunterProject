@@ -48,6 +48,7 @@ public class StudyProgramming extends CreateQuestions {
 		if(c==0){
 		settingInterfaceStudy();
 		methodReceiver();
+		Acoes();
 		c++;
 		}
 		else{
