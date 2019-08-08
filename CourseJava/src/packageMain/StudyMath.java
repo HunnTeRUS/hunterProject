@@ -6,6 +6,9 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.*;
 
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
+
 public class StudyMath {
 
 	public static CreateQuestions questions = new CreateQuestions();
@@ -51,19 +54,22 @@ public class StudyMath {
 	public void setFinalValue(int finalValue) {
 		this.finalValue = finalValue;
 	}
-
+ 
 	public void questionsUser() {
 		try {
-			String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM mathExercises;";
-			stmt = db.con.prepareStatement(rsLenght);
-			ResultSet lenght2 = stmt.executeQuery();
+			if (db.getConnection()) {
+				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM mathExercises;";
+				stmt = db.con.prepareStatement(rsLenght);
+				ResultSet lenght2 = stmt.executeQuery();
 
-			while (lenght2.next()) {
-				i = lenght2.getInt("firstRow");
+				while (lenght2.next()) {
+					i = lenght2.getInt("firstRow");
+				}
+				
+				System.out.println(i);
 			}
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -136,7 +142,6 @@ public class StudyMath {
 		if (db.getConnection()) {
 			if (i == az) {
 				try {
-					System.out.println(i);
 					continueQuestions.setEnabled(false);
 					continueQuestions.setBackground(Color.gray);
 					continueQuestions.setForeground(Color.black);
@@ -149,7 +154,7 @@ public class StudyMath {
 
 					while (lenght.next()) {
 						if (i > lenght.getInt("quantidade")) {
-							break;
+							continue;
 						}
 					}
 
@@ -213,6 +218,7 @@ public class StudyMath {
 
 	public void Acoes() {
 		try {
+			System.out.println(i);
 			SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM mathExercises WHERE codQuestion="
 					+ i + ";";
 
@@ -330,9 +336,7 @@ public class StudyMath {
 					answer3.setEnabled(true);
 					answer4.setEnabled(true);
 					continueQuestions.setEnabled(false);
-					test = i;
-					objMath.methodReceiver();
-
+					methodReceiver();
 				}
 			});
 

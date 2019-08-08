@@ -4,7 +4,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+
+import javax.print.SimpleDoc;
 import javax.swing.*;
+
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 
 public class CadastrarClientes {
 
@@ -161,6 +166,7 @@ public class CadastrarClientes {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				student.setSelected(false);
+				
 			}
 		});
 
@@ -175,12 +181,6 @@ public class CadastrarClientes {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				
-				
-				
-				
-				
-				
 				setConfirmacaoSenha(String.valueOf(campoConfirmarSenha.getPassword()));
 				setUsuarioCadastrado(campoUsuario.getText());
 				setSenhaCadastrada(String.valueOf(campoSenha.getPassword()));
@@ -237,14 +237,14 @@ public class CadastrarClientes {
 
 						objLogin.metodoPrincipalLogin();
 						framePrincipalCadastro.setVisible(false);
-
-					} catch (SQLException error) {
+					}
+					 catch (SQLException error) {
 						System.out.println(error.toString());
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
-					}
+					
 				}
-			}
+			}}
 		});
 
 		returnLogin.addActionListener(new ActionListener() {

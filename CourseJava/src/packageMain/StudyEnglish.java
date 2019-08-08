@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Random;
 
 import javax.swing.*;
@@ -27,28 +28,45 @@ public class StudyEnglish extends CreateQuestions {
 	JTextArea question = new JTextArea("");
 	JButton answer1 = new JButton();
 	JButton answer2 = new JButton();
-	JButton answer3  = new JButton("");
-	JButton answer4  = new JButton();
+	JButton answer3 = new JButton("");
+	JButton answer4 = new JButton();
 	JTextField textReceive = new JTextField();
-	private int c=0;
+	private int c = 0;
 	Font font1 = new Font("TimesRoman", Font.BOLD, 14);
 	public String[] vetor = new String[4];
 	Random rand = new Random();
-	
+
 	PreparedStatement stmt;
 	ResultSet rs;
 	ResultSet lenght;
-
-	public int finalValue, i = 1, az = 1 ;
+	String explanation = null;
+	
+	public int finalValue, i = 1, az = 1;
 	String SQL, count;
 
 	public void questionsUser() {
-		if(c==0){
-		settingInterfaceStudy();
-		methodReceiver();
-		c++;
-	}
-		else{
+		try {
+			if (db.getConnection()) {
+				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM englishExercises;";
+				stmt = db.con.prepareStatement(rsLenght);
+				ResultSet lenght2 = stmt.executeQuery();
+
+				while (lenght2.next()) {
+					i = lenght2.getInt("firstRow");
+				}
+
+				System.out.println(i);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		if (c == 0) {
+			settingInterfaceStudy();
+			methodReceiver();
+			c++;
+		} else {
 			mainFrame.setVisible(true);
 		}
 	}
@@ -84,29 +102,29 @@ public class StudyEnglish extends CreateQuestions {
 		answer1.setBounds(25, 290, 440, 50);
 		answer1.setForeground(Color.BLACK);
 		answer1.setForeground(Color.BLACK);
-		
+
 		answer2.setBounds(25, 370, 440, 50);
 		answer2.setForeground(Color.BLACK);
 		answer2.setForeground(Color.BLACK);
-		
+
 		answer3.setBounds(25, 450, 440, 50);
 		answer3.setForeground(Color.BLACK);
 		answer3.setForeground(Color.BLACK);
-		
+
 		answer4.setBounds(25, 530, 440, 50);
 		answer4.setForeground(Color.BLACK);
 		answer4.setForeground(Color.BLACK);
-		
+
 		returnMain.setBounds(35, 630, 150, 35);
 		continueQuestions.setBounds(300, 630, 150, 35);
-		
+
 		returnMain.setBackground(Color.BLACK);
 		continueQuestions.setBackground(Color.BLACK);
 		continueQuestions.setForeground(Color.WHITE);
 		returnMain.setForeground(Color.WHITE);
 		returnMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		continueQuestions.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
-		
+
 		returnMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.dispose();
@@ -114,185 +132,206 @@ public class StudyEnglish extends CreateQuestions {
 			}
 		});
 	}
-	
+
 	public void methodReceiver() {
 		if (db.getConnection()) {
-			try {
-				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM englishExercises;";
-				stmt = db.con.prepareStatement(rsLenght);
-				ResultSet lenght2 = stmt.executeQuery();
+			if (i == az) {
+				try {
+					continueQuestions.setEnabled(false);
+					continueQuestions.setBackground(Color.gray);
+					continueQuestions.setForeground(Color.black);
+					SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM englishExercises WHERE codQuestion="
+							+ i + ";";
+					count = "SELECT COUNT(question) AS quantidade FROM englishExercises;";
 
-				while (lenght2.next()) {
-					i = lenght2.getInt("firstRow");
-				}
+					stmt = db.con.prepareStatement(count);
+					lenght = stmt.executeQuery();
 
-				if(az == i){
-				continueQuestions.setEnabled(false);
-				continueQuestions.setBackground(Color.gray);
-				continueQuestions.setForeground(Color.black);
-				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM englishExercises WHERE codQuestion="
-						+ i + ";";
-				count = "SELECT COUNT(question) AS quantidade FROM englishExercises;";
-
-				stmt = db.con.prepareStatement(count);
-				lenght = stmt.executeQuery();
-
-				while (lenght.next()) {
-					if (i > lenght.getInt("quantidade")) {
-						break;
+					while (lenght.next()) {
+						if (i > lenght.getInt("quantidade")) {
+							continue;
+						}
 					}
-				}    
 
-				stmt = db.con.prepareStatement(SQL);
-				rs = stmt.executeQuery();
+					stmt = db.con.prepareStatement(SQL);
+					rs = stmt.executeQuery();
 
-				while (rs.next()) {
-					
-					vetor[0] = rs.getString("answer0");
-					vetor[1] = rs.getString("answer1");
-					vetor[2] = rs.getString("answer2");
-					vetor[3] = rs.getString("answer3");
-					int aleatorio = 10;
-					int[] aux = new int[4];
-   
-					aleatorio = rand.nextInt(4);
-					answer1.setText(String.valueOf(vetor[aleatorio]));
-					aux[0] = aleatorio;
+					while (rs.next()) {
 
-					while (aux[0] == aleatorio)
+						vetor[0] = rs.getString("answer0");
+						vetor[1] = rs.getString("answer1");
+						vetor[2] = rs.getString("answer2");
+						vetor[3] = rs.getString("answer3");
+						int aleatorio = 10;
+						int[] aux = new int[4];
+
 						aleatorio = rand.nextInt(4);
-					answer2.setText(String.valueOf(vetor[aleatorio]));
-					aux[1] = aleatorio;
+						answer1.setText(String.valueOf(vetor[aleatorio]));
+						aux[0] = aleatorio;
 
-					while (aux[0] == aleatorio || aux[1] == aleatorio)
-						aleatorio = rand.nextInt(4);
-					answer3.setText(String.valueOf(vetor[aleatorio]));
-					aux[2] = aleatorio;
+						while (aux[0] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer2.setText(String.valueOf(vetor[aleatorio]));
+						aux[1] = aleatorio;
 
-					while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
-						aleatorio = rand.nextInt(4);
-					answer4.setText(String.valueOf(vetor[aleatorio]));
+						while (aux[0] == aleatorio || aux[1] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer3.setText(String.valueOf(vetor[aleatorio]));
+						aux[2] = aleatorio;
 
-					question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
+						while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer4.setText(String.valueOf(vetor[aleatorio]));
 
-					question.setFont(font1);
-					
-					az++;
+						question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
+
+						question.setFont(font1);
+
+						az++;
+					}
+				} catch (Exception error) {
+					System.err.println("Error:" + error.getMessage());
 				}
-				}
-			} catch (Exception error) {
-				System.err.println("Error:" + error.getMessage());
+
 			}
-
 		}
+
 	}
 
-	
-	
-	
-	
-	public void Acoes(){
-		answer1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					i++;
-					if (answer1.getText().equals(vetor[0])) {
-						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
-						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+	public void Acoes() {
+		try {
+			System.out.println(i);
+			SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM englishExercises WHERE codQuestion="
+					+ i + ";";
 
-					answer1.setEnabled(false);
-					answer2.setEnabled(false);
-					answer3.setEnabled(false);
-					answer4.setEnabled(false);				
-					continueQuestions.setBackground(Color.black);
-					continueQuestions.setForeground(Color.white);
-					continueQuestions.setEnabled(true);
-				} catch (Exception e1) {
-					e1.getMessage();
+			stmt = db.con.prepareStatement(SQL);
+			lenght = stmt.executeQuery();
+			while (lenght.next())
+				explanation = String.valueOf(lenght.getString("explanation"));
+
+			answer1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						i++;
+						if (answer1.getText().equals(vetor[0])) {
+							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+						} else {
+							question.setText("Explanation of this question: " + explanation);
+							question.setForeground(Color.RED);
+						}
+
+						answer1.setEnabled(false);
+						answer2.setEnabled(false);
+						answer3.setEnabled(false);
+						answer4.setEnabled(false);
+						continueQuestions.setBackground(Color.black);
+						continueQuestions.setForeground(Color.white);
+						continueQuestions.setEnabled(true);
+					} catch (Exception e1) {
+						e1.getMessage();
+					}
 				}
-			}
-		});
+			});
 
-		answer2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					i++;
-					if (answer2.getText().equals(vetor[0])) {
-						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
-						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-					answer1.setEnabled(false);
-					answer2.setEnabled(false);
-					answer3.setEnabled(false);
-					answer4.setEnabled(false);
-					continueQuestions.setEnabled(true);
-					continueQuestions.setBackground(Color.black);
-					continueQuestions.setForeground(Color.white);
-				} catch (Exception e1) {
-					e1.getMessage();
+			answer2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						i++;
+						if (answer2.getText().equals(vetor[0])) {
+							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+						} else {
+							question.setText("Explanation of this question: " + explanation);
+							question.setForeground(Color.RED);
+
+							// objMath.explanationQuestion(i);
+						}
+
+						answer1.setEnabled(false);
+						answer2.setEnabled(false);
+						answer3.setEnabled(false);
+						answer4.setEnabled(false);
+						continueQuestions.setEnabled(true);
+						continueQuestions.setBackground(Color.black);
+						continueQuestions.setForeground(Color.white);
+					} catch (Exception e1) {
+						e1.getMessage();
+					}
 				}
-			}
-		});
+			});
 
-		answer3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					i++;
-					if (answer3.getText().equals(vetor[0])) {
-						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
-						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-					answer1.setEnabled(false);
-					answer2.setEnabled(false);
-					answer3.setEnabled(false);
-					answer4.setEnabled(false);
-					continueQuestions.setEnabled(true);
-					continueQuestions.setBackground(Color.black);
-					continueQuestions.setForeground(Color.white);
-				} catch (Exception e1) {
-					e1.getMessage();
+			answer3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						i++;
+						if (answer3.getText().equals(vetor[0])) {
+							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+						} else {
+							question.setText("Explanation of this question: " + explanation);
+							question.setForeground(Color.RED);
+
+							// objMath.explanationQuestion(i);
+						}
+						answer1.setEnabled(false);
+						answer2.setEnabled(false);
+						answer3.setEnabled(false);
+						answer4.setEnabled(false);
+						continueQuestions.setEnabled(true);
+						continueQuestions.setBackground(Color.black);
+						continueQuestions.setForeground(Color.white);
+					} catch (Exception e1) {
+						e1.getMessage();
+					}
 				}
-			}
-		});
+			});
 
-		answer4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					i++;
-					if (answer4.getText().equals(vetor[0])) {
-						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
-						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-					answer1.setEnabled(false);
-					answer2.setEnabled(false);
-					answer3.setEnabled(false);
-					answer4.setEnabled(false);
-					continueQuestions.setEnabled(true);
-					continueQuestions.setBackground(Color.black);
-					continueQuestions.setForeground(Color.white);
-				} catch (Exception e1) {
-					e1.getMessage();
+			answer4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						i++;
+						if (answer4.getText().equals(vetor[0])) {
+							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+						} else {
+							JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+							question.setText("Explanation of this question: " + explanation);
+							question.setForeground(Color.RED);
+
+							// objMath.explanationQuestion(i);
+						}
+						answer1.setEnabled(false);
+						answer2.setEnabled(false);
+						answer3.setEnabled(false);
+						answer4.setEnabled(false);
+						continueQuestions.setEnabled(true);
+						continueQuestions.setBackground(Color.black);
+						continueQuestions.setForeground(Color.white);
+					} catch (Exception e1) {
+						e1.getMessage();
+					}
 				}
-			}
-		});
-		
-		continueQuestions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				answer1.setEnabled(true);
-				answer2.setEnabled(true);
-				answer3.setEnabled(true);
-				answer4.setEnabled(true);
-				continueQuestions.setEnabled(false);
-				methodReceiver();
-			}});
+			});
 
-		returnMain.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				maininterface.settingInterface();
-				StudyQuestion.mainFrame.dispose();
+			continueQuestions.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.out.println(i);
+					answer1.setEnabled(true);
+					answer2.setEnabled(true);
+					answer3.setEnabled(true);
+					answer4.setEnabled(true);
+					continueQuestions.setEnabled(false);
+					methodReceiver();
+				}
+			});
 
-			}
-		});
+			returnMain.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					maininterface.settingInterface();
+					mainFrame.dispose();
+
+				}
+			});
+
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 	}
 }

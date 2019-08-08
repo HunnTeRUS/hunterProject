@@ -146,7 +146,4 @@ public class ClassAdm {
 		});
 
 	}
-	public static void main(String[] args) {
-		objAdm.mainMethod();
-	}
 }

@@ -9,5 +9,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="src/packageMain/Biblioteca/mysql-connector-java-8.0.15.jar"/>
+	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/commons-email-1.0.jar"/>
+	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/mail.jar"/>
+	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/activation.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

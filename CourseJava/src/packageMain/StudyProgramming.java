@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Random;
 
 import javax.swing.*;
@@ -39,12 +40,31 @@ public class StudyProgramming extends CreateQuestions {
 	PreparedStatement stmt;
 	ResultSet rs;
 	ResultSet lenght;
+	String explanation = null;
 
 	public int finalValue, i,az = 1;
 	String SQL, count;
 
 	
 	public void questionsUser() {
+		try {
+			if (db.getConnection()) {
+				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM programmingExercises;";
+				stmt = db.con.prepareStatement(rsLenght);
+				ResultSet lenght2 = stmt.executeQuery();
+
+				while (lenght2.next()) {
+					i = lenght2.getInt("firstRow");
+				}
+				
+				System.out.println(i);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
 		if(c==0){
 		settingInterfaceStudy();
 		methodReceiver();
@@ -120,26 +140,28 @@ public class StudyProgramming extends CreateQuestions {
 	
 	public void methodReceiver() {
 		if (db.getConnection()) {
-			try {
-				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM programmingExercises;";
-				stmt = db.con.prepareStatement(rsLenght);
-				ResultSet lenght2 = stmt.executeQuery();
+			if (i == az) {
+				try {
+					continueQuestions.setEnabled(false);
+					continueQuestions.setBackground(Color.gray);
+					continueQuestions.setForeground(Color.black);
+					SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM programmingExercises WHERE codQuestion="
+							+ i + ";";
+					count = "SELECT COUNT(question) AS quantidade FROM programmingExercises;";
 
-				while (lenght2.next()) {
-					i = lenght2.getInt("firstRow");
-				}
+					stmt = db.con.prepareStatement(count);
+					lenght = stmt.executeQuery();
 
-				continueQuestions.setEnabled(false);
-				continueQuestions.setBackground(Color.gray);
-				continueQuestions.setForeground(Color.black);
-				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM programmingExercises WHERE codQuestion="
-						+ i + ";";
-				count = "SELECT COUNT(question) AS quantidade FROM programmingExercises;";
+					while (lenght.next()) {
+						if (i > lenght.getInt("quantidade")) {
+							continue;
+						}
+					}
 
-				stmt = db.con.prepareStatement(count);
-				lenght = stmt.executeQuery();
+					stmt = db.con.prepareStatement(SQL);
+					rs = stmt.executeQuery();
 
-				while (lenght.next()) {
+					while (rs.next()) {
 					if (i > lenght.getInt("quantidade")) {
 						break;
 					}
@@ -187,112 +209,145 @@ public class StudyProgramming extends CreateQuestions {
 			}
 
 		}
+		}
 	}
 
 	
 	
-	public void Acoes(){
-		answer1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					i++;
-					if (answer1.getText().equals(vetor[0])) {
-						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
-						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+	public void Acoes() {
+		try {
+			System.out.println(i);
+			SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM programmingExercises WHERE codQuestion="
+					+ i + ";";
 
-					answer1.setEnabled(false);
-					answer2.setEnabled(false);
-					answer3.setEnabled(false);
-					answer4.setEnabled(false);				
-					continueQuestions.setBackground(Color.black);
-					continueQuestions.setForeground(Color.white);
-					continueQuestions.setEnabled(true);
-				} catch (Exception e1) {
-					e1.getMessage();
+			stmt = db.con.prepareStatement(SQL);
+			lenght = stmt.executeQuery();
+			while (lenght.next())
+				explanation = String.valueOf(lenght.getString("explanation"));
+
+			answer1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						i++;
+						if (answer1.getText().equals(vetor[0])) {
+							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+						} else {
+							question.setText("Explanation of this question: " + explanation);
+							question.setForeground(Color.RED);
+						}
+
+						answer1.setEnabled(false);
+						answer2.setEnabled(false);
+						answer3.setEnabled(false);
+						answer4.setEnabled(false);
+						continueQuestions.setBackground(Color.black);
+						continueQuestions.setForeground(Color.white);
+						continueQuestions.setEnabled(true);
+					} catch (Exception e1) {
+						e1.getMessage();
+					}
 				}
-			}
-		});
+			});
 
-		answer2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					i++;
-					if (answer2.getText().equals(vetor[0])) {
-						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
-						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-					answer1.setEnabled(false);
-					answer2.setEnabled(false);
-					answer3.setEnabled(false);
-					answer4.setEnabled(false);
-					continueQuestions.setEnabled(true);
-					continueQuestions.setBackground(Color.black);
-					continueQuestions.setForeground(Color.white);
-				} catch (Exception e1) {
-					e1.getMessage();
+			answer2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						i++;
+						if (answer2.getText().equals(vetor[0])) {
+							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+						} else {
+							question.setText("Explanation of this question: " + explanation);
+							question.setForeground(Color.RED);
+
+							// objMath.explanationQuestion(i);
+						}
+
+						answer1.setEnabled(false);
+						answer2.setEnabled(false);
+						answer3.setEnabled(false);
+						answer4.setEnabled(false);
+						continueQuestions.setEnabled(true);
+						continueQuestions.setBackground(Color.black);
+						continueQuestions.setForeground(Color.white);
+					} catch (Exception e1) {
+						e1.getMessage();
+					}
 				}
-			}
-		});
+			});
 
-		answer3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					i++;
-					if (answer3.getText().equals(vetor[0])) {
-						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
-						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-					answer1.setEnabled(false);
-					answer2.setEnabled(false);
-					answer3.setEnabled(false);
-					answer4.setEnabled(false);
-					continueQuestions.setEnabled(true);
-					continueQuestions.setBackground(Color.black);
-					continueQuestions.setForeground(Color.white);
-				} catch (Exception e1) {
-					e1.getMessage();
+			answer3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						i++;
+						if (answer3.getText().equals(vetor[0])) {
+							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+						} else {
+							question.setText("Explanation of this question: " + explanation);
+							question.setForeground(Color.RED);
+
+							// objMath.explanationQuestion(i);
+						}
+						answer1.setEnabled(false);
+						answer2.setEnabled(false);
+						answer3.setEnabled(false);
+						answer4.setEnabled(false);
+						continueQuestions.setEnabled(true);
+						continueQuestions.setBackground(Color.black);
+						continueQuestions.setForeground(Color.white);
+					} catch (Exception e1) {
+						e1.getMessage();
+					}
 				}
-			}
-		});
+			});
 
-		answer4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					i++;
-					if (answer4.getText().equals(vetor[0])) {
-						JOptionPane.showMessageDialog(null, "You hit the correct answer!");
-					} else
-						JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-					answer1.setEnabled(false);
-					answer2.setEnabled(false);
-					answer3.setEnabled(false);
-					answer4.setEnabled(false);
-					continueQuestions.setEnabled(true);
-					continueQuestions.setBackground(Color.black);
-					continueQuestions.setForeground(Color.white);
-				} catch (Exception e1) {
-					e1.getMessage();
+			answer4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						i++;
+						if (answer4.getText().equals(vetor[0])) {
+							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+						} else {
+							JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
+							question.setText("Explanation of this question: " + explanation);
+							question.setForeground(Color.RED);
+
+							// objMath.explanationQuestion(i);
+						}
+						answer1.setEnabled(false);
+						answer2.setEnabled(false);
+						answer3.setEnabled(false);
+						answer4.setEnabled(false);
+						continueQuestions.setEnabled(true);
+						continueQuestions.setBackground(Color.black);
+						continueQuestions.setForeground(Color.white);
+					} catch (Exception e1) {
+						e1.getMessage();
+					}
 				}
-			}
-		});
-		
-		continueQuestions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				answer1.setEnabled(true);
-				answer2.setEnabled(true);
-				answer3.setEnabled(true);
-				answer4.setEnabled(true);
-				continueQuestions.setEnabled(false);
-				methodReceiver();
-			}});
+			});
 
-		returnMain.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				maininterface.settingInterface();
-				StudyQuestion.mainFrame.dispose();
+			continueQuestions.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.out.println(i);
+					answer1.setEnabled(true);
+					answer2.setEnabled(true);
+					answer3.setEnabled(true);
+					answer4.setEnabled(true);
+					continueQuestions.setEnabled(false);
+					methodReceiver();
+				}
+			});
 
-			}
-		});
+			returnMain.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					maininterface.settingInterface();
+					mainFrame.dispose();
+
+				}
+			});
+
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 	}
 }
