@@ -3,6 +3,8 @@ package packageMain;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,6 +21,7 @@ public class LoginClientes {
 	public static CadastrarClientes objCadastrorCliente = new CadastrarClientes();
 	private static ClassAdm objAdm = new ClassAdm();
 	private static ClassStudent objStudent = new ClassStudent();
+	static ForgotPassword objPassword = new ForgotPassword();
 
 	// Criando os objetos visuais
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
@@ -29,14 +32,14 @@ public class LoginClientes {
 	static JFrame framePrincipalLogin = new JFrame();
 	static JPanel painelPrincipalLogin = new JPanel();
 	JLabel labelemail = new JLabel("Email: ");
-	JLabel labelusuario = new JLabel("Usuario: ");
-	JLabel labelsenha = new JLabel("Senha: ");
+	JLabel labelusuario = new JLabel("User: ");
+	JLabel labelsenha = new JLabel("Password: ");
 	private JTextField campoEmail = new JTextField();
 	private JTextField campoUsuario = new JTextField();
 	private JPasswordField campoSenha = new JPasswordField();
 	private JButton enviarDados = new JButton("Login");
-	private JButton botaoCadastro = new JButton("Não tem cadastro? Clique aqui!");
-	private JButton RecSenha = new JButton("Esqueci minha senha - Em breve kkk");
+	private JButton botaoCadastro = new JButton("No registration? click here!");
+	private JButton RecSenha = new JButton("I forgot my password!");
 
 	// Toolkit.getDefaultToolkit().getScreenSize();
 	// Criando as variaveis com get e set
@@ -155,11 +158,22 @@ public class LoginClientes {
 		labelsenha.setFont(new java.awt.Font("ink free", 1, 16));
 		labelemail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelusuario.setFont(new java.awt.Font("ink free", 1, 16));
-
-		RecSenha.setEnabled(false);
 	}
 
 	private void manipulandoDados() {
+		RecSenha.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				objPassword.settingInterface();
+				framePrincipalLogin.dispose();
+			}});
+		
+		enviarDados.addFocusListener(new FocusAdapter() {			
+			public void focusGained(FocusEvent e) {
+				System.out.println("field 2 - Focus gained");
+			}						
+		});
+		
 		enviarDados.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
