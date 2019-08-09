@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.Random;
 
 import javax.print.SimpleDoc;
 import javax.swing.*;
@@ -15,6 +16,7 @@ public class CadastrarClientes {
 
 	static LoginClientes objLogin = new LoginClientes();
 	static CadastrarClientes objSignUp = new CadastrarClientes();
+	static SendEmails objEmails = new SendEmails();
 	ImageIcon imagem = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
 	ImageIcon imagem2 = new ImageIcon(getClass().getResource("logo-branco-transparente.png"));
 	public JLabel image2 = new JLabel(imagem2);
@@ -33,13 +35,17 @@ public class CadastrarClientes {
 	private JButton cadastrar = new JButton("Cadastrar");
 	private JCheckBox adm = new JCheckBox("Administrator");
 	private JCheckBox student = new JCheckBox("Student");
-	private int c=0;
+	private int c = 0;
 	// Variaveis para armazenar os dados recebidos e/ou criptografados
 	private String senhaCadastrada;
 	private String usuarioCadastrado;
 	private String emailCadastrado;
 	private String confirmacaoSenha;
 	public byte[] senhaCriptografadaDB;
+	String codeReceived; 
+	private int[] vetor = new int[5];
+	Random rand = new Random();
+	String finalValueCode;
 
 	// Dimensionar o frame de acordo com o tamanho da tela
 	private void Screen() {
@@ -51,13 +57,12 @@ public class CadastrarClientes {
 	}
 
 	public void metodoPrincipalCadastro() {
-		if(c==0){
-		metodoCriacao();
-		manipulandoDados();
-		Screen();
-		c++;
-		}
-		else{
+		if (c == 0) {
+			metodoCriacao();
+			manipulandoDados();
+			Screen();
+			c++;
+		} else {
 			framePrincipalCadastro.setVisible(true);
 		}
 	}
@@ -166,7 +171,7 @@ public class CadastrarClientes {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				student.setSelected(false);
-				
+
 			}
 		});
 
@@ -212,11 +217,15 @@ public class CadastrarClientes {
 						String sql;
 
 						if (adm.isSelected()) {
-							sql = "INSERT INTO users (userr, email, senha, adm, student) values('" + getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"+ getSenhaCadastrada() + "', true, false);";
-							stmt = conecta.prepareStatement(sql);
-							stmt.execute(sql);
-							conecta.close();
-							stmt.close();
+							if (sendEmail() == true) {
+								sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
+										+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
+										+ getSenhaCadastrada() + "', true, false);";
+								stmt = conecta.prepareStatement(sql);
+								stmt.execute(sql);
+								conecta.close();
+								stmt.close();
+							}
 						}
 
 						else if (student.isSelected()) {
@@ -228,8 +237,8 @@ public class CadastrarClientes {
 							conecta.close();
 							stmt.close();
 						}
-						
-						else {						
+
+						else {
 							JOptionPane.showMessageDialog(null, "What do you wnat to be, student or adm?");
 						}
 
@@ -237,14 +246,14 @@ public class CadastrarClientes {
 
 						objLogin.metodoPrincipalLogin();
 						framePrincipalCadastro.setVisible(false);
-					}
-					 catch (SQLException error) {
+					} catch (SQLException error) {
 						System.out.println(error.toString());
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
-					
+
+					}
 				}
-			}}
+			}
 		});
 
 		returnLogin.addActionListener(new ActionListener() {
@@ -255,6 +264,54 @@ public class CadastrarClientes {
 			}
 		});
 
+	}
+
+	public boolean sendEmail() {
+		vetor[0] = rand.nextInt(9);
+
+		vetor[1] = rand.nextInt(9);
+		while (vetor[0] == vetor[1])
+			vetor[1] = rand.nextInt(9);
+
+		vetor[2] = rand.nextInt(9);
+		while (vetor[1] == vetor[2] || vetor[2] == vetor[0])
+			vetor[2] = rand.nextInt(9);
+
+		vetor[3] = rand.nextInt(9);
+		while (vetor[3] == vetor[0] || vetor[3] == vetor[1] || vetor[3] == vetor[2])
+			vetor[3] = rand.nextInt(9);
+
+		vetor[4] = rand.nextInt(9);
+		while (vetor[4] == vetor[0] || vetor[4] == vetor[1] || vetor[4] == vetor[2] || vetor[4] == vetor[3])
+			vetor[4] = rand.nextInt(9);
+
+		finalValueCode = vetor[0] + "" + vetor[1] + "" + vetor[2] + "" + vetor[3] + "" + vetor[4];
+
+		objEmails.enviandoEmail(getEmailCadastrado(), finalValueCode);
+		cadastrar.setText("Please, wait!");
+		cadastrar.setForeground(Color.RED);
+		
+		new Thread(new Runnable() {
+			public void run() {
+
+				try {
+					Thread.sleep(2000);
+					JOptionPane.showMessageDialog(null, "Enviamos um código no seu email, reescreva ele aqui logo em seguida para continuar como adm!", "Attention", 3);
+					
+					codeReceived = JOptionPane.showInputDialog("Digite o codigo que foi enviado!");
+					
+					LoginClientes.framePrincipalLogin.dispose();
+				} catch (InterruptedException e) {
+
+					e.printStackTrace();
+				}
+			}
+		}).start();
+
+		if (finalValueCode == codeReceived)
+			return true;
+
+		return false;		
 	}
 
 }

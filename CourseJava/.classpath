@@ -12,5 +12,10 @@
 	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/commons-email-1.0.jar"/>
 	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/mail.jar"/>
 	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/activation.jar"/>
+	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/dsn.jar"/>
+	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/imap.jar"/>
+	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/mailapi.jar"/>
+	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/pop3.jar"/>
+	<classpathentry kind="lib" path="/home/hunter/Área de Trabalho/smtp.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
