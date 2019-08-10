@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
-  
+
 public class CadastrarClientes {
 
 	static LoginClientes objLogin = new LoginClientes();
@@ -42,10 +42,11 @@ public class CadastrarClientes {
 	private String emailCadastrado;
 	private String confirmacaoSenha;
 	public byte[] senhaCriptografadaDB;
-	String codeReceived; 
+	String codeReceived;
 	private int[] vetor = new int[5];
 	Random rand = new Random();
 	String finalValueCode;
+	ResultSet rs;
 
 	// Dimensionar o frame de acordo com o tamanho da tela
 	private void Screen() {
@@ -211,21 +212,37 @@ public class CadastrarClientes {
 				} else {
 					try {
 						Class.forName(DRIVER);
-						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+						Connection conecta = DriverManager.getConnection(URL, "root", "");
 						Statement stmt = conecta.createStatement();
 
 						String sql;
 
 						if (adm.isSelected()) {
-							if (sendEmail() == true) {
-								sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
-										+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
-										+ getSenhaCadastrada() + "', true, false);";
-								stmt = conecta.prepareStatement(sql);
-								stmt.execute(sql);
-								conecta.close();
-								stmt.close();
+							sql = "SELECT userr, email FROM users";
+							stmt = conecta.prepareStatement(sql);
+							rs = stmt.executeQuery(sql);
+
+							while (rs.next()) {
+								if (rs.getString("email").equals(getEmailCadastrado())) {
+									campoEmail.setText("");
+									JOptionPane.showMessageDialog(null,
+											"This email has been inserted on the app, please, input another email!");
+								}
+
+								if (rs.getString("userr").equals(getUsuarioCadastrado())) {
+									campoUsuario.setText("");
+									JOptionPane.showMessageDialog(null,
+											"This user has been inserted on the app, please, input another user!");
+								}
 							}
+
+							sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
+									+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
+									+ getSenhaCadastrada() + "', true, false);";
+							stmt = conecta.prepareStatement(sql);
+							stmt.execute(sql);
+							conecta.close();
+							stmt.close();
 						}
 
 						else if (student.isSelected()) {
@@ -266,52 +283,45 @@ public class CadastrarClientes {
 
 	}
 
-	public boolean sendEmail() {
-		vetor[0] = rand.nextInt(9);
-
-		vetor[1] = rand.nextInt(9);
-		while (vetor[0] == vetor[1])
-			vetor[1] = rand.nextInt(9);
-
-		vetor[2] = rand.nextInt(9);
-		while (vetor[1] == vetor[2] || vetor[2] == vetor[0])
-			vetor[2] = rand.nextInt(9);
-
-		vetor[3] = rand.nextInt(9);
-		while (vetor[3] == vetor[0] || vetor[3] == vetor[1] || vetor[3] == vetor[2])
-			vetor[3] = rand.nextInt(9);
-
-		vetor[4] = rand.nextInt(9);
-		while (vetor[4] == vetor[0] || vetor[4] == vetor[1] || vetor[4] == vetor[2] || vetor[4] == vetor[3])
-			vetor[4] = rand.nextInt(9);
-
-		finalValueCode = vetor[0] + "" + vetor[1] + "" + vetor[2] + "" + vetor[3] + "" + vetor[4];
-
-		objEmails.enviandoEmail(getEmailCadastrado(), finalValueCode);
-		cadastrar.setText("Please, wait!");
-		cadastrar.setForeground(Color.RED);
-		
-		new Thread(new Runnable() {
-			public void run() {
-
-				try {
-					Thread.sleep(2000);
-					JOptionPane.showMessageDialog(null, "Enviamos um código no seu email, reescreva ele aqui logo em seguida para continuar como adm!", "Attention", 3);
-					
-					codeReceived = JOptionPane.showInputDialog("Digite o codigo que foi enviado!");
-					
-					LoginClientes.framePrincipalLogin.dispose();
-				} catch (InterruptedException e) {
-
-					e.printStackTrace();
-				}
-			}
-		}).start();
-
-		if (finalValueCode == codeReceived)
-			return true;
-
-		return false;		
-	}
+	/*
+	 * public boolean sendEmail() { vetor[0] = rand.nextInt(9);
+	 * 
+	 * vetor[1] = rand.nextInt(9); while (vetor[0] == vetor[1]) vetor[1] =
+	 * rand.nextInt(9);
+	 * 
+	 * vetor[2] = rand.nextInt(9); while (vetor[1] == vetor[2] || vetor[2] ==
+	 * vetor[0]) vetor[2] = rand.nextInt(9);
+	 * 
+	 * vetor[3] = rand.nextInt(9); while (vetor[3] == vetor[0] || vetor[3] ==
+	 * vetor[1] || vetor[3] == vetor[2]) vetor[3] = rand.nextInt(9);
+	 * 
+	 * vetor[4] = rand.nextInt(9); while (vetor[4] == vetor[0] || vetor[4] ==
+	 * vetor[1] || vetor[4] == vetor[2] || vetor[4] == vetor[3]) vetor[4] =
+	 * rand.nextInt(9);
+	 * 
+	 * finalValueCode = vetor[0] + "" + vetor[1] + "" + vetor[2] + "" + vetor[3] +
+	 * "" + vetor[4];
+	 * 
+	 * objEmails.enviandoEmail(getEmailCadastrado(), finalValueCode);
+	 * cadastrar.setText("Please, wait!"); cadastrar.setForeground(Color.RED);
+	 * 
+	 * new Thread(new Runnable() { public void run() {
+	 * 
+	 * try { Thread.sleep(2000); JOptionPane.showMessageDialog(null,
+	 * "Enviamos um código no seu email, reescreva ele aqui logo em seguida para continuar como adm!"
+	 * , "Attention", 3);
+	 * 
+	 * codeReceived =
+	 * JOptionPane.showInputDialog("Digite o codigo que foi enviado!");
+	 * 
+	 * LoginClientes.framePrincipalLogin.dispose(); } catch (InterruptedException e)
+	 * {
+	 * 
+	 * e.printStackTrace(); } } }).start();
+	 * 
+	 * if (finalValueCode == codeReceived) return true;
+	 * 
+	 * return false; }
+	 */
 
 }

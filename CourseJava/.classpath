@@ -9,13 +9,13 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="src/packageMain/Biblioteca/mysql-connector-java-8.0.15.jar"/>
-	<classpathentry kind="lib" path="/home/hunter/git/hunterProject/CourseJava/src/packageMain/Biblioteca/activation.jar"/>
-	<classpathentry kind="lib" path="/home/hunter/git/hunterProject/CourseJava/src/packageMain/Biblioteca/commons-email-1.0.jar"/>
-	<classpathentry kind="lib" path="/home/hunter/git/hunterProject/CourseJava/src/packageMain/Biblioteca/dsn.jar"/>
-	<classpathentry kind="lib" path="/home/hunter/git/hunterProject/CourseJava/src/packageMain/Biblioteca/imap.jar"/>
-	<classpathentry kind="lib" path="/home/hunter/git/hunterProject/CourseJava/src/packageMain/Biblioteca/mail.jar"/>
-	<classpathentry kind="lib" path="/home/hunter/git/hunterProject/CourseJava/src/packageMain/Biblioteca/mailapi.jar"/>
-	<classpathentry kind="lib" path="/home/hunter/git/hunterProject/CourseJava/src/packageMain/Biblioteca/pop3.jar"/>
-	<classpathentry kind="lib" path="/home/hunter/git/hunterProject/CourseJava/src/packageMain/Biblioteca/smtp.jar"/>
+	<classpathentry kind="lib" path="C:/Users/otavi/git/hunterProject/CourseJava/src/packageMain/Biblioteca/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/otavi/git/hunterProject/CourseJava/src/packageMain/Biblioteca/commons-email-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/otavi/git/hunterProject/CourseJava/src/packageMain/Biblioteca/dsn.jar"/>
+	<classpathentry kind="lib" path="C:/Users/otavi/git/hunterProject/CourseJava/src/packageMain/Biblioteca/imap.jar"/>
+	<classpathentry kind="lib" path="C:/Users/otavi/git/hunterProject/CourseJava/src/packageMain/Biblioteca/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/otavi/git/hunterProject/CourseJava/src/packageMain/Biblioteca/mailapi.jar"/>
+	<classpathentry kind="lib" path="C:/Users/otavi/git/hunterProject/CourseJava/src/packageMain/Biblioteca/pop3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/otavi/git/hunterProject/CourseJava/src/packageMain/Biblioteca/smtp.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

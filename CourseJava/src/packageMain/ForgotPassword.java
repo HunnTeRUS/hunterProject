@@ -262,7 +262,7 @@ public class ForgotPassword {
 					setEmailCadastrado(receiveEmail.getText());
 					Thread.sleep(2000);
 					JOptionPane.showMessageDialog(null,
-							"Enviamos um cÃ³digo no seu email, reescreva ele aqui logo em seguida para continuar como adm!",
+							"Enviamos um codigo no seu email, reescreva ele aqui logo em seguida para continuar com a recuperação da senha!",
 							"Attention", 3);
 
 					codeReceived = JOptionPane.showInputDialog("Digite o codigo que foi enviado!");

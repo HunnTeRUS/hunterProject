@@ -183,7 +183,7 @@ public class LoginClientes {
 
 				try {
 					Class.forName(DRIVER);
-					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+					Connection conecta = DriverManager.getConnection(URL, "root", "");
 
 					// getSenha() = Senha recebida do usuario
 					// getSenhaDecriptada() = Senha enviada pelo usuario
