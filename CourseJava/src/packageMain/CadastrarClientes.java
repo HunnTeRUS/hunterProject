@@ -212,57 +212,96 @@ public class CadastrarClientes {
 				} else {
 					try {
 						Class.forName(DRIVER);
-						Connection conecta = DriverManager.getConnection(URL, "root", "");
+						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
 						Statement stmt = conecta.createStatement();
 
 						String sql;
 
 						if (adm.isSelected()) {
-							sql = "SELECT userr, email FROM users";
+							sql = "SELECT COUNT(email) AS quantidade FROM users where email='" + getEmailCadastrado()
+									+ "';";
 							stmt = conecta.prepareStatement(sql);
 							rs = stmt.executeQuery(sql);
 
-							while (rs.next()) {
-								if (rs.getString("email").equals(getEmailCadastrado())) {
-									campoEmail.setText("");
-									JOptionPane.showMessageDialog(null,
-											"This email has been inserted on the app, please, input another email!");
+							String sqlUser = "SELECT COUNT(userr) AS quantidade FROM users where userr='"
+									+ getUsuarioCadastrado() + "';";
+							PreparedStatement stmt2 = conecta.prepareStatement(sqlUser);
+							ResultSet rs2 = stmt2.executeQuery(sqlUser);
+
+							while (rs.next() && rs2.next()) {
+								if ((rs.getInt("quantidade") == 0) && (rs2.getInt("quantidade") == 0)) {
+									sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
+											+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
+											+ getSenhaCadastrada() + "', true, false);";
+									stmt = conecta.prepareStatement(sql);
+									stmt.execute(sql);
+									JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
+									objLogin.metodoPrincipalLogin();
+									framePrincipalCadastro.setVisible(false);
 								}
 
-								if (rs.getString("userr").equals(getUsuarioCadastrado())) {
-									campoUsuario.setText("");
+								else if (rs.getInt("quantidade") != 0) {
 									JOptionPane.showMessageDialog(null,
-											"This user has been inserted on the app, please, input another user!");
+											"This email has been inserted on the app, please, input another email");
+									campoEmail.setText("");
+									campoUsuario.setText("");
 								}
+
+								else if (rs2.getInt("quantidade") != 0) {
+									JOptionPane.showMessageDialog(null,
+											"This user has been inserted on the app, please, input another user");
+									campoEmail.setText("");
+									campoUsuario.setText("");
+								}
+
 							}
 
-							sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
-									+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
-									+ getSenhaCadastrada() + "', true, false);";
-							stmt = conecta.prepareStatement(sql);
-							stmt.execute(sql);
-							conecta.close();
-							stmt.close();
 						}
 
 						else if (student.isSelected()) {
-							sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
-									+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
-									+ getSenhaCadastrada() + "', false, true);";
+							sql = "SELECT COUNT(email) AS quantidade FROM users where email='" + getEmailCadastrado()
+									+ "';";
 							stmt = conecta.prepareStatement(sql);
-							stmt.execute(sql);
-							conecta.close();
-							stmt.close();
+							rs = stmt.executeQuery(sql);
+
+							String sqlUser = "SELECT COUNT(userr) AS quantidade FROM users where userr='"
+									+ getUsuarioCadastrado() + "';";
+							PreparedStatement stmt2 = conecta.prepareStatement(sqlUser);
+							ResultSet rs2 = stmt2.executeQuery(sqlUser);
+
+							while (rs.next() && rs2.next()) {
+								if ((rs.getInt("quantidade") == 0) && (rs2.getInt("quantidade") == 0)) {
+									sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
+											+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
+											+ getSenhaCadastrada() + "', false, true);";
+									stmt = conecta.prepareStatement(sql);
+									stmt.execute(sql);
+									JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
+									objLogin.metodoPrincipalLogin();
+									framePrincipalCadastro.setVisible(false);
+								}
+
+								else if (rs.getInt("quantidade") != 0) {
+									JOptionPane.showMessageDialog(null,
+											"This email has been inserted on the app, please, input another email");
+									campoEmail.setText("");
+									campoUsuario.setText("");
+								}
+
+								else if (rs2.getInt("quantidade") != 0) {
+									JOptionPane.showMessageDialog(null,
+											"This user has been inserted on the app, please, input another user");
+									campoEmail.setText("");
+									campoUsuario.setText("");
+								}
+
+							}
 						}
 
 						else {
-							JOptionPane.showMessageDialog(null, "What do you wnat to be, student or adm?");
+							JOptionPane.showMessageDialog(null, "What do you wat to be, student or adm?");
 						}
 
-						JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
-
-						objLogin.metodoPrincipalLogin();
-						framePrincipalCadastro.setVisible(false);
 					} catch (SQLException error) {
 						System.out.println(error.toString());
 					} catch (ClassNotFoundException e1) {
