@@ -31,10 +31,10 @@ public class LoginClientes {
 
 	static JFrame framePrincipalLogin = new JFrame();
 	static JPanel painelPrincipalLogin = new JPanel();
-	JLabel labelemail = new JLabel("Email: ");
-	JLabel labelusuario = new JLabel("User: ");
+	// JLabel labelemail = new JLabel("Email: ");
+	JLabel labelusuario = new JLabel("User/Email: ");
 	JLabel labelsenha = new JLabel("Password: ");
-	private JTextField campoEmail = new JTextField();
+	// private JTextField campoEmail = new JTextField();
 	private JTextField campoUsuario = new JTextField();
 	private JPasswordField campoSenha = new JPasswordField();
 	private JButton enviarDados = new JButton("Login");
@@ -123,11 +123,11 @@ public class LoginClientes {
 		painelPrincipalLogin.setBackground(new Color(35, 35, 142));
 		framePrincipalLogin.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
-		painelPrincipalLogin.add(labelemail);
+		// painelPrincipalLogin.add(labelemail);
 		painelPrincipalLogin.add(labelsenha);
 		painelPrincipalLogin.add(labelusuario);
 		painelPrincipalLogin.add(campoUsuario);
-		painelPrincipalLogin.add(campoEmail);
+		// painelPrincipalLogin.add(campoEmail);
 		painelPrincipalLogin.add(campoSenha);
 		painelPrincipalLogin.add(image);
 		painelPrincipalLogin.add(image2);
@@ -144,19 +144,21 @@ public class LoginClientes {
 		image.setBounds(((tela.width / 2) - 350), -70, 400, 400);
 		image2.setBounds((tela.width / 2) - 50, -50, 400, 400);
 
-		labelemail.setBounds(((tela.width / 2) - 180), ((tela.height / 2) - 80), 200, 100);
-		labelusuario.setBounds(((tela.width / 2) - 180), ((tela.height / 2) - 30), 200, 100);
-		labelsenha.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 20), 250, 100);
+		// labelemail.setBounds(((tela.width / 2) - 180), ((tela.height / 2) - 80), 200,
+		// 100);
+		labelusuario.setBounds(((tela.width / 2) - 200), ((tela.height / 2) - 30), 200, 100);
+		labelsenha.setBounds(((tela.width / 2) - 190), ((tela.height / 2) + 20), 250, 100);
 
-		campoEmail.setBounds(((tela.width / 2) - 80), ((tela.height / 2) - 40), 250, 30);
+		// campoEmail.setBounds(((tela.width / 2) - 80), ((tela.height / 2) - 40), 250,
+		// 30);
 		campoSenha.setBounds(((tela.width / 2) - 80), ((tela.height / 2) + 60), 250, 30);
 		campoUsuario.setBounds(((tela.width / 2) - 80), ((tela.height / 2) + 10), 250, 30);
 
-		labelemail.setForeground(Color.WHITE);
+		// labelemail.setForeground(Color.WHITE);
 		labelsenha.setForeground(Color.WHITE);
 		labelusuario.setForeground(Color.WHITE);
 		labelsenha.setFont(new java.awt.Font("ink free", 1, 16));
-		labelemail.setFont(new java.awt.Font("ink free", 1, 16));
+		// labelemail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelusuario.setFont(new java.awt.Font("ink free", 1, 16));
 	}
 
@@ -166,58 +168,36 @@ public class LoginClientes {
 			public void actionPerformed(ActionEvent e) {
 				objPassword.settingInterface();
 				framePrincipalLogin.dispose();
-			}});
-		
-		enviarDados.addFocusListener(new FocusAdapter() {			
-			public void focusGained(FocusEvent e) {
-				System.out.println("field 2 - Focus gained");
-			}						
+			}
 		});
-		
+
 		enviarDados.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				enviarDados.setText("Logging in...");
+				enviarDados.setForeground(Color.RED);
+				
 				setSenha(String.valueOf(campoSenha.getPassword()));
-				setEmail(campoEmail.getText());
+				// setEmail(campoEmail.getText());
 				setUsuario(campoUsuario.getText());
 
 				try {
 					Class.forName(DRIVER);
 					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
 
-					// getSenha() = Senha recebida do usuario
-					// getSenhaDecriptada() = Senha enviada pelo usuario
-					// decriptada (nao tem
-					// necessidade)
-					// getSenhaCriptografada() = sENHA recebida do usuario e
-					// enviada a outra classse
-					// para ser criptografada
-					// getSenhaRecebidaDB() = Pega a senha que esta no BG
-					// (criptografada) e �
-					// decriptada para a compara��o ser feita
-
 					String sql;
 
 					sql = "SELECT userr, email, senha, adm, student FROM users WHERE userr='" + getUsuario()
-							+ "' OR email='" + getEmail() + "';";
+							+ "' OR email='" + getUsuario() + "';";
 
 					PreparedStatement stmt = conecta.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
 
-					while (rs.next()) {
-						if (((getUsuario().equals(rs.getString("userr"))) && (getSenha().equals(rs.getString("senha"))))
-								|| ((getEmail().equals(rs.getString("email")))
-										&& (getSenha().equals(rs.getString("senha"))))
-								|| ((getEmail().equals(rs.getString("email")))
-										&& (getSenha().equals(rs.getString("senha")))
-										&& (getUsuario().equals(rs.getString("userr"))))) {
-
+					if(rs.next()) {
+						if (((getUsuario().equals(rs.getString("userr"))
+								|| (getUsuario().equals(rs.getString("email"))))
+								&& (getSenha().equals(rs.getString("senha"))))) {
 							if (rs.getInt("adm") == 1) {
-
-								// JOptionPane.showMessageDialog(null, "Login
-								// realizado com sucesso!");
-								enviarDados.setText("Logging in...");
-								enviarDados.setForeground(Color.RED);
 								// objAdm.mainMethod();
 								new Thread(new Runnable() {
 									public void run() {
@@ -225,7 +205,7 @@ public class LoginClientes {
 										try {
 											Thread.sleep(2000);
 											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-											//objClient.mainMethod();
+											// objClient.mainMethod();
 											objAdm.mainMethod();
 											LoginClientes.framePrincipalLogin.dispose();
 										} catch (InterruptedException e) {

@@ -5,12 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Random;
-
-import javax.print.SimpleDoc;
 import javax.swing.*;
-
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
 
 public class CadastrarClientes {
 
@@ -192,6 +187,10 @@ public class CadastrarClientes {
 				setSenhaCadastrada(String.valueOf(campoSenha.getPassword()));
 				setEmailCadastrado(campoEmail.getText());
 
+				if (!(getEmailCadastrado().contains("@"))) {
+					JOptionPane.showMessageDialog(null, "Insert a one correct email");
+				}
+				
 				if ((getEmailCadastrado().equals("")) || (getSenhaCadastrada().equals(""))
 						|| (getConfirmacaoSenha().equals("")) || (getUsuarioCadastrado().equals(""))) {
 					JOptionPane.showMessageDialog(null, "Fill in all the fields");

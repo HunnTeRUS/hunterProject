@@ -22,10 +22,10 @@ public class ForgotPassword {
 	static private LoginClientes objLogin = new LoginClientes();
 	static private ForgotPassword objLost = new ForgotPassword();
 
-	// Variables
+	// Variables 
 	int vetor[] = new int[5];
 	Random rand = new Random();
-	String finalValueCode;
+	private String finalValueCode;
 	String codeReceived;
 	private int c = 0;
 	PreparedStatement stmt;
@@ -148,6 +148,12 @@ public class ForgotPassword {
 				setSenhaCadastrada(String.valueOf(password.getPassword()));
 				setConfirmacaoSenha(String.valueOf(passwordConfirm.getPassword()));
 
+				if((getSenhaCadastrada().equals("")) || (getConfirmacaoSenha().equals("")))
+					JOptionPane.showMessageDialog(null, "Insert your new password!");
+					
+				if((getSenhaCadastrada().length() <=4) || (getConfirmacaoSenha().length() <=4))
+					JOptionPane.showMessageDialog(null, "Put a password more strong!");
+				
 				if (getSenhaCadastrada().equals(getConfirmacaoSenha())) {
 					if (db.getConnection()) {
 						try {
@@ -163,9 +169,7 @@ public class ForgotPassword {
 						} catch (SQLException error) {
 							error.getStackTrace();
 						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Password field is different from Confirm Password field");
-					}
+					} 
 				} else {
 					JOptionPane.showMessageDialog(null, "Password field is different from Confirm Password field");
 				}
@@ -211,7 +215,8 @@ public class ForgotPassword {
 
 		returnMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				settingInterface2();
+				mainFrame.dispose();
+				objLogin.metodoPrincipalLogin();
 			}
 		});
 
@@ -253,16 +258,18 @@ public class ForgotPassword {
 
 		objEmails.enviandoEmail(receiveEmail.getText(), finalValueCode);
 
+
+		receiveEmail.setText("Please, wait!");
+		receiveEmail.setForeground(Color.RED);
+		
 		new Thread(new Runnable() {
 			public void run() {
 
 				try {
-					receiveEmail.setText("Please, wait!");
-					receiveEmail.setForeground(Color.RED);
 					setEmailCadastrado(receiveEmail.getText());
 					Thread.sleep(2000);
 					JOptionPane.showMessageDialog(null,
-							"Enviamos um codigo no seu email, reescreva ele aqui logo em seguida para continuar com a recuperação da senha!",
+							"Enviamos um codigo no seu email, reescreva ele aqui logo em seguida para continuar com a recuperaï¿½ï¿½o da senha!",
 							"Attention", 3);
 
 					codeReceived = JOptionPane.showInputDialog("Digite o codigo que foi enviado!");
@@ -271,6 +278,9 @@ public class ForgotPassword {
 						settingInterface2();
 					} else {
 						JOptionPane.showMessageDialog(null, "Your code is incorrect!");
+						codeReceived = "";
+						receiveEmail.setText("");
+						receiveEmail.setForeground(Color.white);
 					}
 
 					LoginClientes.framePrincipalLogin.dispose();
