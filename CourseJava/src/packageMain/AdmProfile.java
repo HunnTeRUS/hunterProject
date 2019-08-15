@@ -111,10 +111,10 @@ public class AdmProfile {
 		cpfField.setBounds(373, 185, 200, 30);
 		birthField.setBounds(373, 235, 200, 30);
 
-		birthField.setDocument(new text());
-		phoneField.setDocument(new text());
-		nameField.setDocument(new text2());
-		cpfField.setDocument(new text());
+		birthField.setDocument(new limitBirth());
+		phoneField.setDocument(new limitPhone());
+		nameField.setDocument(new limitName());
+		cpfField.setDocument(new limitCPF());
 
 		birthField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		phoneField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
@@ -123,26 +123,57 @@ public class AdmProfile {
 
 	}
 
-	class text extends PlainDocument {
+	class limitPhone extends PlainDocument {
 		private static final long serialVersionUID = 323;
 
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			int tamanho = (this.getLength());
-			
-			while(tamanho > 11) {
+
+			if (tamanho > 14)
 				super.insertString(arg0, arg1.replaceAll("[0123456789]", ""), arg2);
-			}
-			
-			super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
+
+			else
+				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 		}
 	}
 
-	class text2 extends PlainDocument {
+	class limitBirth extends PlainDocument {
+		private static final long serialVersionUID = 323;
+
+		@Override
+		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
+			int tamanho = (this.getLength());
+
+			if (tamanho > 9)
+				super.insertString(arg0, arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
+
+			else
+				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
+		}
+	}
+
+	class limitCPF extends PlainDocument {
 		private static final long serialVersionUID = 324;
 
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
+			if (tamanho > 11)
+				super.insertString(arg0, arg1.replaceAll("[0123456789]", ""), arg2);
+
+			else
+				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
+		}
+	}
+
+	class limitName extends PlainDocument {
+		private static final long serialVersionUID = 323;
+
+		@Override
+		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
+
+			// super.insertString(arg0, arg1.replaceAll("[aA-zZ
+			// @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 			super.insertString(arg0, arg1.replaceAll("[1234567890@#!$%&*_+=-?/:;^)(\\\\p{ASCII}]", ""), arg2);
 		}
 	}
