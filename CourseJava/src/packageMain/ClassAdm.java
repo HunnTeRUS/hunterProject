@@ -21,6 +21,7 @@ public class ClassAdm {
 	JButton adc = new JButton("Add new questions");
 	JButton study = new JButton("I want to study");
 	JButton profileButton = new JButton("My Profile");
+	
 	private int c = 0;
 	public int tamanho;
 
