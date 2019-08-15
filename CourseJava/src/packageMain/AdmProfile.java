@@ -43,7 +43,6 @@ public class AdmProfile {
 
 	private int c = 0;
 	public int tamanho;
-	private MaskFormatter formatonome;
 
 	public int getTamanho() {
 		return tamanho;
@@ -115,7 +114,8 @@ public class AdmProfile {
 		birthField.setDocument(new text());
 		phoneField.setDocument(new text());
 		nameField.setDocument(new text2());
-		
+		cpfField.setDocument(new text());
+
 		birthField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		phoneField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		nameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
@@ -123,24 +123,30 @@ public class AdmProfile {
 
 	}
 
-
 	class text extends PlainDocument {
 		private static final long serialVersionUID = 323;
+
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
+			int tamanho = (this.getLength());
+			
+			while(tamanho > 11) {
+				super.insertString(arg0, arg1.replaceAll("[0123456789]", ""), arg2);
+			}
+			
 			super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 		}
 	}
-	
+
 	class text2 extends PlainDocument {
 		private static final long serialVersionUID = 324;
+
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			super.insertString(arg0, arg1.replaceAll("[1234567890@#!$%&*_+=-?/:;^)(\\\\p{ASCII}]", ""), arg2);
 		}
 	}
-	
-	
+
 	public static void main(String[] args) {
 		objAdmProfile.mainMethod();
 	}
