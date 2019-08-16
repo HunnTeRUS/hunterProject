@@ -1,12 +1,11 @@
 package packageMain;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.geom.AffineTransform;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
@@ -21,9 +20,6 @@ public class AdmProfile {
 	static ClassAdm objAdm = new ClassAdm();
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
-	ImageIcon imagem = new ImageIcon(getClass().getResource("zoio.jpg"));
-	public JLabel image = new JLabel(imagem);
-
 
 	// ImageIcon image = new
 	// ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
@@ -41,15 +37,18 @@ public class AdmProfile {
 	JTextField admField = new JTextField("");
 	JTextField changePasswordField = new JTextField();
 	JTextField changePasswordFieldConfirmation = new JTextField();
-	
+
 	JButton setNewPassword = new JButton("Define new password");
+	JButton setNewPicture = new JButton("Define new profile Pic");
+
 	JTextArea profilePicture = new JTextArea();
-	
+
 	JLabel changePassword = new JLabel("Change Password");
 	JLabel newPassword = new JLabel("New Password");
 	JLabel newPasswordConfirmation = new JLabel("Confirm Password");
-	
-    final Image backgroundImage = imagem.getImage();
+
+	ImageIcon imagem2 = null;
+	JLabel image2 = new JLabel(imagem2);
 
 	private int c = 0;
 	public int tamanho;
@@ -71,12 +70,6 @@ public class AdmProfile {
 		}
 	}
 
-	public void addImage() {
-		mainPanel.add(image);
-		image.setBounds(20, 90, 200, 170);
-		
-	}
-	
 	public void settingInterface() {
 		mainFrame.setVisible(true);
 		mainFrame.setBounds(700, 200, 600, 700);
@@ -92,7 +85,7 @@ public class AdmProfile {
 		mainPanel.add(cpfText);
 		mainPanel.add(birthText);
 		mainPanel.add(admText);
-		
+
 		mainPanel.add(setNewPassword);
 		mainPanel.add(newPassword);
 		mainPanel.add(newPasswordConfirmation);
@@ -101,23 +94,22 @@ public class AdmProfile {
 		mainPanel.add(changePassword);
 
 		mainPanel.add(nameField);
+		mainPanel.add(setNewPicture);
 		mainPanel.add(phoneField);
 		mainPanel.add(cpfField);
 		mainPanel.add(birthField);
 		mainPanel.add(admField);
 		mainPanel.add(profilePicture);
-		
-		addImage();
-		
-		//profilePicture.setEnabled(false);
-		//profilePicture.setBackground(new Color(107, 35, 142));
-		//profilePicture.setBounds(20, 90, 200, 170);
+
+		// profilePicture.setEnabled(false);
+		// profilePicture.setBackground(new Color(107, 35, 142));
+		// profilePicture.setBounds(20, 90, 200, 170);
 		profilePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
 		mainFrame.setResizable(false);
-		mainPanel.setBackground(new Color(107, 35, 142));
+		mainPanel.setBackground(new Color(35, 35, 142));
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.jpg")));
+				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 
 		nameText.setForeground(Color.WHITE);
 		phoneText.setForeground(Color.WHITE);
@@ -126,13 +118,14 @@ public class AdmProfile {
 		admText.setForeground(Color.WHITE);
 		changePassword.setForeground(Color.WHITE);
 
-		
+		// fc.setBounds(260, 250, 200, 200);
+
 		nameText.setBounds(260, 0, 200, 200);
 		phoneText.setBounds(260, 50, 200, 200);
 		cpfText.setBounds(260, 100, 200, 200);
 		birthText.setBounds(260, 150, 200, 200);
 		admText.setBounds(260, 200, 200, 200);
-		
+
 		changePassword.setBounds(45, 340, 200, 200);
 		changePassword.setForeground(Color.WHITE);
 		setNewPassword.setBounds(10, 610, 200, 30);
@@ -143,6 +136,7 @@ public class AdmProfile {
 		newPassword.setForeground(Color.white);
 		newPasswordConfirmation.setForeground(Color.white);
 
+		setNewPicture.setBounds(20, 300, 200, 30);
 
 		nameField.setBounds(373, 85, 200, 30);
 		phoneField.setBounds(373, 135, 200, 30);
@@ -159,16 +153,20 @@ public class AdmProfile {
 		nameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		cpfField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 
+		setNewPicture.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				adcImage();
+			}
+		});
+
 	}
 
-	
-	
 	class limitPhone extends PlainDocument {
 		private static final long serialVersionUID = 323;
 
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
-			int tamanho = (this.getLength());
+			tamanho = (this.getLength());
 
 			if (tamanho > 14)
 				super.insertString(arg0, arg1.replaceAll("[0123456789]", ""), arg2);
@@ -183,10 +181,11 @@ public class AdmProfile {
 
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
-			int tamanho = (this.getLength());
+			tamanho = (this.getLength());
 
 			if (tamanho > 9)
-				super.insertString(arg0, arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
+				super.insertString(arg0,
+						arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else
 				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
@@ -198,9 +197,10 @@ public class AdmProfile {
 
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
-			int tamanho = (this.getLength());
+			tamanho = (this.getLength());
 			if (tamanho > 11)
-				super.insertString(arg0, arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
+				super.insertString(arg0, arg1.replaceAll(
+						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else
 				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
@@ -212,13 +212,48 @@ public class AdmProfile {
 
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
-			int tamanho = (this.getLength());
+			tamanho = (this.getLength());
 			// super.insertString(arg0, arg1.replaceAll("[aA-zZ
 			// @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 			super.insertString(arg0, arg1.replaceAll("[1234567890@#!$%&*_+=-?/:;^)(\\\\p{ASCII}]", ""), arg2);
 		}
 	}
-	
+
+	public void adcImage() {
+		FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("jpg", "png", "jpeg");
+		JFileChooser fc = new JFileChooser();
+		fc.setFileFilter(fileNameExtensionFilter);
+		fc.setDialogTitle("Insert picture");
+
+		int response = fc.showOpenDialog(fc);
+
+		
+		if (response == JFileChooser.APPROVE_OPTION) {
+			// File file = new File(fc.getSelectedFile(), fc.getSelectedFile().toString());
+
+			try {
+				//String icons = (getClass().(fc.getIcon(fc.getSelectedFile())));
+			//	imagem2 = new ImageIcon(icons);
+
+				image2 = new JLabel(imagem2);
+				mainPanel.add(image2);
+				image2.setBounds(20, 90, 200, 170);
+
+				/*
+				 * file = fc.getSelectedFile().getAbsoluteFile();
+				 * 
+				 * imagem2 = new
+				 * ImageIcon(getClass().getResource(file.getCanonicalPath().toString())); image2
+				 * = new JLabel(imagem2); mainPanel.add(image2);
+				 * 
+				 * image2.setBounds(20, 90, 200, 170);
+				 */
+			} catch (Exception error) {
+				error.printStackTrace();
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		objAdmProfile.mainMethod();
 	}
