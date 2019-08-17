@@ -29,6 +29,7 @@ public class AdmProfile {
 	JLabel cpfText = new JLabel("CPF: ");
 	JLabel birthText = new JLabel("Date of Birth: ");
 	JLabel admText = new JLabel("Student/Adm: ");
+	JLabel recordText = new JLabel("Sequence of correct answers: ");
 
 	JTextField nameField = new JTextField("");
 	JTextField phoneField = new JTextField("");
@@ -37,6 +38,7 @@ public class AdmProfile {
 	JTextField admField = new JTextField("");
 	JTextField changePasswordField = new JTextField();
 	JTextField changePasswordFieldConfirmation = new JTextField();
+	JTextField recordField = new JTextField("");
 
 	JButton setNewPassword = new JButton("Define new password");
 	JButton setNewPicture = new JButton("Define new profile Pic");
@@ -85,14 +87,14 @@ public class AdmProfile {
 		mainPanel.add(cpfText);
 		mainPanel.add(birthText);
 		mainPanel.add(admText);
-
+		mainPanel.add(recordText);
 		mainPanel.add(setNewPassword);
 		mainPanel.add(newPassword);
 		mainPanel.add(newPasswordConfirmation);
 		mainPanel.add(changePasswordField);
 		mainPanel.add(changePasswordFieldConfirmation);
 		mainPanel.add(changePassword);
-
+		mainPanel.add(recordField);
 		mainPanel.add(nameField);
 		mainPanel.add(setNewPicture);
 		mainPanel.add(phoneField);
@@ -116,6 +118,7 @@ public class AdmProfile {
 		cpfText.setForeground(Color.WHITE);
 		birthText.setForeground(Color.WHITE);
 		admText.setForeground(Color.WHITE);
+		recordText.setForeground(Color.WHITE);
 		changePassword.setForeground(Color.WHITE);
 
 		// fc.setBounds(260, 250, 200, 200);
@@ -125,12 +128,14 @@ public class AdmProfile {
 		cpfText.setBounds(260, 100, 200, 200);
 		birthText.setBounds(260, 150, 200, 200);
 		admText.setBounds(260, 200, 200, 200);
+		recordText.setBounds(330, 340, 300, 200);
 
 		changePassword.setBounds(45, 340, 200, 200);
 		changePassword.setForeground(Color.WHITE);
 		setNewPassword.setBounds(10, 610, 200, 30);
 		changePasswordField.setBounds(10, 480, 200, 30);
 		changePasswordFieldConfirmation.setBounds(10, 550, 200, 30);
+		recordField.setBounds(330, 470, 200, 30);
 		newPasswordConfirmation.setBounds(45, 520, 200, 30);
 		newPassword.setBounds(55, 450, 200, 30);
 		newPassword.setForeground(Color.white);
@@ -148,10 +153,13 @@ public class AdmProfile {
 		nameField.setDocument(new limitName());
 		cpfField.setDocument(new limitCPF());
 
+		recordField.setEnabled(false);
+
 		birthField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		phoneField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		nameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		cpfField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		recordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 
 		setNewPicture.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -159,6 +167,11 @@ public class AdmProfile {
 			}
 		});
 
+		birthField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 	}
 
 	class limitPhone extends PlainDocument {
@@ -198,12 +211,12 @@ public class AdmProfile {
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
-			if (tamanho > 11)
+			if (tamanho > 10)
 				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
+						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", ""), arg2);
 
 			else
-				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
+				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+.=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 		}
 	}
 
@@ -217,6 +230,7 @@ public class AdmProfile {
 			// @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 			super.insertString(arg0, arg1.replaceAll("[1234567890@#!$%&*_+=-?/:;^)(\\\\p{ASCII}]", ""), arg2);
 		}
+
 	}
 
 	public void adcImage() {
@@ -227,13 +241,12 @@ public class AdmProfile {
 
 		int response = fc.showOpenDialog(fc);
 
-		
 		if (response == JFileChooser.APPROVE_OPTION) {
 			// File file = new File(fc.getSelectedFile(), fc.getSelectedFile().toString());
 
 			try {
-				//String icons = (getClass().(fc.getIcon(fc.getSelectedFile())));
-			//	imagem2 = new ImageIcon(icons);
+				// String icons = (getClass().(fc.getIcon(fc.getSelectedFile())));
+				// imagem2 = new ImageIcon(icons);
 
 				image2 = new JLabel(imagem2);
 				mainPanel.add(image2);
