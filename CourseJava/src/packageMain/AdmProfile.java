@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AttributeSet;
@@ -49,8 +51,7 @@ public class AdmProfile {
 	JLabel newPassword = new JLabel("New Password");
 	JLabel newPasswordConfirmation = new JLabel("Confirm Password");
 
-	ImageIcon imagem2 = null;
-	JLabel image2 = new JLabel(imagem2);
+	JLabel image2 = new JLabel();
 
 	private int c = 0;
 	public int tamanho;
@@ -236,31 +237,23 @@ public class AdmProfile {
 	public void adcImage() {
 		FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("jpg", "png", "jpeg");
 		JFileChooser fc = new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fc.setFileFilter(fileNameExtensionFilter);
 		fc.setDialogTitle("Insert picture");
 
+		
+		
 		int response = fc.showOpenDialog(fc);
 
 		if (response == JFileChooser.APPROVE_OPTION) {
-			// File file = new File(fc.getSelectedFile(), fc.getSelectedFile().toString());
+			File file = fc.getSelectedFile();
 
 			try {
-				// String icons = (getClass().(fc.getIcon(fc.getSelectedFile())));
-				// imagem2 = new ImageIcon(icons);
-
-				image2 = new JLabel(imagem2);
-				mainPanel.add(image2);
+				image2.setIcon(new ImageIcon(file.getPath()));
+				
+				mainPanel.add(image2);  
 				image2.setBounds(20, 90, 200, 170);
-
-				/*
-				 * file = fc.getSelectedFile().getAbsoluteFile();
-				 * 
-				 * imagem2 = new
-				 * ImageIcon(getClass().getResource(file.getCanonicalPath().toString())); image2
-				 * = new JLabel(imagem2); mainPanel.add(image2);
-				 * 
-				 * image2.setBounds(20, 90, 200, 170);
-				 */
+				 
 			} catch (Exception error) {
 				error.printStackTrace();
 			}
