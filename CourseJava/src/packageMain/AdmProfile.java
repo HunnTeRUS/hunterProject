@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AttributeSet;
@@ -15,43 +14,47 @@ import javax.swing.text.PlainDocument;
 public class AdmProfile {
 
 	static CreateQuestions objQuestions = new CreateQuestions();
-	static StudyQuestion objStudyQuestions = new StudyQuestion();
-	static MainInterface objMain = new MainInterface();
-	static LoginClientes objLogin = new LoginClientes();
-	static AdmProfile objAdmProfile = new AdmProfile();
-	static ClassAdm objAdm = new ClassAdm();
-	static JFrame mainFrame = new JFrame();
-	static JPanel mainPanel = new JPanel();
+	static StudyQuestion   objStudyQuestions = new StudyQuestion();
+	static MainInterface   objMain = new MainInterface();
+	static LoginClientes   objLogin = new LoginClientes();
+	static AdmProfile      objAdmProfile = new AdmProfile();
+	static ClassAdm        objAdm = new ClassAdm();
+	static JFrame          mainFrame = new JFrame();
+	static JPanel          mainPanel = new JPanel();
 
-	// ImageIcon image = new
-	// ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
-	// JLabel imageIcon = new JLabel(image);
-	JLabel nameText = new JLabel("Name: ");
-	JLabel phoneText = new JLabel("Phone: ");
-	JLabel cpfText = new JLabel("CPF: ");
-	JLabel birthText = new JLabel("Date of Birth: ");
-	JLabel admText = new JLabel("Student/Adm: ");
-	JLabel recordText = new JLabel("Sequence of correct answers: ");
+	JLabel                 nameText = new JLabel("Name: ");
+	JLabel                 phoneText = new JLabel("Phone: ");
+	JLabel                 cpfText = new JLabel("CPF: ");
+	JLabel                 birthText = new JLabel("Date of Birth: ");
+	JLabel                 admText = new JLabel("Student/Adm: ");
+	JLabel                 recordText = new JLabel("Sequence of correct answers: ");
+	JLabel                 changePassword = new JLabel("Change Password");
+	JLabel                 newPassword = new JLabel("New Password");
+	JLabel                 newPasswordConfirmation = new JLabel("Confirm Password");
+	JLabel                 recordMath = new JLabel("Math");
+	JLabel                 recordEnglish = new JLabel("English");
+	JLabel                 recordProgramming = new JLabel("Programming");
 
-	JTextField nameField = new JTextField("");
-	JTextField phoneField = new JTextField("");
-	JTextField cpfField = new JTextField("");
-	JTextField birthField = new JFormattedTextField();
-	JTextField admField = new JTextField("");
-	JTextField changePasswordField = new JTextField();
-	JTextField changePasswordFieldConfirmation = new JTextField();
-	JTextField recordField = new JTextField("");
+	JLabel                 image2 = new JLabel();
 
-	JButton setNewPassword = new JButton("Define new password");
-	JButton setNewPicture = new JButton("Define new profile Pic");
+	JTextField             nameField = new JTextField("");
+	JTextField             phoneField = new JTextField("");
+	JTextField             cpfField = new JTextField("");
+	JTextField             birthField = new JFormattedTextField();
+	JTextField             admField = new JTextField("");
+	JTextField             mathField = new JTextField("");
+	JTextField             englishField = new JTextField("");
+	JTextField             programmingField = new JTextField("");
 
-	JTextArea profilePicture = new JTextArea();
+	JPasswordField             changePasswordField = new JPasswordField();
+	JPasswordField             changePasswordFieldConfirmation = new JPasswordField();
+	
+	JTextArea              profilePicture = new JTextArea();
 
-	JLabel changePassword = new JLabel("Change Password");
-	JLabel newPassword = new JLabel("New Password");
-	JLabel newPasswordConfirmation = new JLabel("Confirm Password");
+	JButton                setNewPassword = new JButton("Define new password");
+	JButton                setNewPicture = new JButton("Define new profile Pic");
+	JButton                setInformation = new JButton("Define Informations");	
 
-	JLabel image2 = new JLabel();
 
 	private int c = 0;
 	public int tamanho;
@@ -95,9 +98,15 @@ public class AdmProfile {
 		mainPanel.add(changePasswordField);
 		mainPanel.add(changePasswordFieldConfirmation);
 		mainPanel.add(changePassword);
-		mainPanel.add(recordField);
+		mainPanel.add(mathField);
+		mainPanel.add(recordMath);
+		mainPanel.add(recordEnglish);
+		mainPanel.add(programmingField);
+		mainPanel.add(recordProgramming);
+		mainPanel.add(englishField);
 		mainPanel.add(nameField);
 		mainPanel.add(setNewPicture);
+		mainPanel.add(setInformation);
 		mainPanel.add(phoneField);
 		mainPanel.add(cpfField);
 		mainPanel.add(birthField);
@@ -121,7 +130,10 @@ public class AdmProfile {
 		admText.setForeground(Color.WHITE);
 		recordText.setForeground(Color.WHITE);
 		changePassword.setForeground(Color.WHITE);
-
+		recordMath.setForeground(Color.WHITE);
+		recordEnglish.setForeground(Color.WHITE);
+		recordProgramming.setForeground(Color.WHITE);
+		
 		// fc.setBounds(260, 250, 200, 200);
 
 		nameText.setBounds(260, 0, 200, 200);
@@ -131,19 +143,28 @@ public class AdmProfile {
 		admText.setBounds(260, 200, 200, 200);
 		recordText.setBounds(330, 340, 300, 200);
 
-		changePassword.setBounds(45, 340, 200, 200);
+		changePassword.setBounds(55, 340, 200, 200);
 		changePassword.setForeground(Color.WHITE);
-		setNewPassword.setBounds(10, 610, 200, 30);
-		changePasswordField.setBounds(10, 480, 200, 30);
-		changePasswordFieldConfirmation.setBounds(10, 550, 200, 30);
-		recordField.setBounds(330, 470, 200, 30);
-		newPasswordConfirmation.setBounds(45, 520, 200, 30);
-		newPassword.setBounds(55, 450, 200, 30);
+		setNewPassword.setBounds(20, 620, 200, 30);
+		changePasswordField.setBounds(20, 480, 200, 30);
+		changePasswordFieldConfirmation.setBounds(20, 550, 200, 30);
+		mathField.setBounds(330, 480, 200, 30);
+		recordMath.setBounds(400, 460, 200, 20);
+		recordEnglish.setBounds(395, 530, 200, 20);
+		recordProgramming.setBounds(380, 600, 200, 20);
+		programmingField.setBounds(330, 620, 200, 30);
+		englishField.setBounds(330, 550, 200, 30);
+		newPasswordConfirmation.setBounds(55, 520, 200, 30);
+		newPassword.setBounds(65, 450, 200, 30);
 		newPassword.setForeground(Color.white);
 		newPasswordConfirmation.setForeground(Color.white);
 
 		setNewPicture.setBounds(20, 300, 200, 30);
+		setInformation.setBounds(330, 330, 200, 30);
 
+		image2.setIcon(new ImageIcon(getClass().getResource("download2.jpeg")));
+		mainPanel.add(image2);
+		image2.setBounds(20, 90, 200, 200);
 		nameField.setBounds(373, 85, 200, 30);
 		phoneField.setBounds(373, 135, 200, 30);
 		cpfField.setBounds(373, 185, 200, 30);
@@ -154,14 +175,20 @@ public class AdmProfile {
 		nameField.setDocument(new limitName());
 		cpfField.setDocument(new limitCPF());
 
-		recordField.setEnabled(false);
+		mathField.setEnabled(false);
+		programmingField.setEnabled(false);
+		englishField.setEnabled(false);
 
 		birthField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		phoneField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		nameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		cpfField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
-		recordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
-
+		mathField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		programmingField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		englishField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		changePasswordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		changePasswordFieldConfirmation.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		
 		setNewPicture.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				adcImage();
@@ -170,7 +197,7 @@ public class AdmProfile {
 
 		birthField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 	}
@@ -239,10 +266,8 @@ public class AdmProfile {
 		JFileChooser fc = new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fc.setFileFilter(fileNameExtensionFilter);
-		fc.setDialogTitle("Insert picture");
+		fc.setDialogTitle("Insert picture (Preferred Size: 200x200px)");
 
-		
-		
 		int response = fc.showOpenDialog(fc);
 
 		if (response == JFileChooser.APPROVE_OPTION) {
@@ -250,10 +275,7 @@ public class AdmProfile {
 
 			try {
 				image2.setIcon(new ImageIcon(file.getPath()));
-				
-				mainPanel.add(image2);  
-				image2.setBounds(20, 90, 200, 170);
-				 
+
 			} catch (Exception error) {
 				error.printStackTrace();
 			}
