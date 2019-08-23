@@ -54,7 +54,11 @@ public class AdmProfile {
 	JButton setNewPassword = new JButton("Define new password");
 	JButton setNewPicture = new JButton("Define new profile Pic");
 	JButton setInformation = new JButton("Define Informations");
+	JButton returnButton = new JButton("Return");
+	JButton setNewAdmButton = new JButton("Set a new administrator");
 
+	
+	
 	private int c = 0;
 	public int tamanho;
 
@@ -77,14 +81,13 @@ public class AdmProfile {
 
 	public void settingInterface() {
 		mainFrame.setVisible(true);
-		mainFrame.setBounds(700, 200, 600, 700);
-		mainPanel.setBounds(700, 200, 500, 700);
+		mainFrame.setBounds(700, 200, 600, 850);
+		mainPanel.setBounds(700, 200, 500, 850);
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
 		mainFrame.setTitle("Adm Profile");
 		mainFrame.add(mainPanel);
-// mainPanel.add(imageIcon);
 		mainPanel.add(nameText);
 		mainPanel.add(phoneText);
 		mainPanel.add(cpfText);
@@ -106,15 +109,14 @@ public class AdmProfile {
 		mainPanel.add(nameField);
 		mainPanel.add(setNewPicture);
 		mainPanel.add(setInformation);
+		mainPanel.add(returnButton);
+		mainPanel.add(setNewAdmButton);
 		mainPanel.add(phoneField);
 		mainPanel.add(cpfField);
 		mainPanel.add(birthField);
 		mainPanel.add(admField);
 		mainPanel.add(profilePicture);
 
-// profilePicture.setEnabled(false);
-// profilePicture.setBackground(new Color(107, 35, 142));
-// profilePicture.setBounds(20, 90, 200, 170);
 		profilePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
 		mainFrame.setResizable(false);
@@ -133,26 +135,24 @@ public class AdmProfile {
 		recordEnglish.setForeground(Color.WHITE);
 		recordProgramming.setForeground(Color.WHITE);
 
-// fc.setBounds(260, 250, 200, 200);
-
 		nameText.setBounds(260, 0, 200, 200);
 		phoneText.setBounds(260, 50, 200, 200);
 		cpfText.setBounds(260, 100, 200, 200);
 		birthText.setBounds(260, 150, 200, 200);
 		admText.setBounds(260, 200, 200, 200);
-		recordText.setBounds(330, 340, 300, 200);
+		recordText.setBounds(370, 340, 300, 200);
 
 		changePassword.setBounds(55, 340, 200, 200);
 		changePassword.setForeground(Color.WHITE);
 		setNewPassword.setBounds(20, 620, 200, 30);
 		changePasswordField.setBounds(20, 480, 200, 30);
 		changePasswordFieldConfirmation.setBounds(20, 550, 200, 30);
-		mathField.setBounds(330, 480, 200, 30);
-		recordMath.setBounds(400, 460, 200, 20);
-		recordEnglish.setBounds(395, 530, 200, 20);
-		recordProgramming.setBounds(380, 600, 200, 20);
-		programmingField.setBounds(330, 620, 200, 30);
-		englishField.setBounds(330, 550, 200, 30);
+		mathField.setBounds(367, 480, 200, 30);
+		recordMath.setBounds(450, 460, 200, 20);
+		recordEnglish.setBounds(440, 530, 200, 20);
+		recordProgramming.setBounds(420, 600, 200, 20);
+		programmingField.setBounds(367, 620, 200, 30);
+		englishField.setBounds(367, 550, 200, 30);
 		newPasswordConfirmation.setBounds(55, 520, 200, 30);
 		newPassword.setBounds(65, 450, 200, 30);
 		newPassword.setForeground(Color.white);
@@ -160,7 +160,8 @@ public class AdmProfile {
 
 		setNewPicture.setBounds(20, 300, 200, 30);
 		setInformation.setBounds(330, 330, 200, 30);
-
+		returnButton.setBounds(190, 750, 200, 35);
+		setNewAdmButton.setBounds(190, 700, 200, 35);
 		image2.setIcon(new ImageIcon(getClass().getResource("download2.jpeg")));
 		mainPanel.add(image2);
 		image2.setBounds(20, 90, 200, 200);
@@ -177,7 +178,15 @@ public class AdmProfile {
 		mathField.setEnabled(false);
 		programmingField.setEnabled(false);
 		englishField.setEnabled(false);
+		
 
+		setNewAdmButton.setBackground(Color.BLACK);
+		setNewAdmButton.setForeground(Color.WHITE);
+		returnButton.setBackground(Color.BLACK);
+		returnButton.setForeground(Color.WHITE);
+		
+		setNewAdmButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+		returnButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		birthField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		phoneField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		nameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
@@ -197,21 +206,7 @@ public class AdmProfile {
 
 		birthField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String birth1;
-				String birth2;
-				for (int i = birthField.getText().length(); i <= 12;) {
-					if (birthField.getText().length() == 2) {
-						birth1 = birthField.getText();
-						birth1.concat("/");
-						birthField.setText(birth1);
-					}
 
-					if (birthField.getText().length() == 5) {
-						birth2 = birthField.getText();
-						birth2.concat("/");
-						birthField.setText(birth2);
-					}
-				}
 			}
 		});
 	}
@@ -223,7 +218,7 @@ public class AdmProfile {
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
 
-			if (tamanho > 14)
+			if (tamanho > 12)
 				super.insertString(arg0, arg1.replaceAll("[0123456789]", ""), arg2);
 
 			else
@@ -262,22 +257,22 @@ public class AdmProfile {
 			tamanho = (this.getLength());
 			if(tamanho==2) {
 				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "."), arg2);
+						"[0123456789aA-zZ -@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "."), arg2);
 			}
 			
 			if(tamanho==6) {
 				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "."), arg2);
+						"[0123456789aA-zZ -@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "."), arg2);
 			}
 			
 			if(tamanho==10) {
 				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "-"), arg2);
+						"[0123456789aA-zZ -@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "-"), arg2);
 			}
 			
 			if (tamanho > 13)
 				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", ""), arg2);
+						"[0123456789aA-zZ -@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", ""), arg2);
 
 			else
 				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+.=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
