@@ -14,47 +14,46 @@ import javax.swing.text.PlainDocument;
 public class AdmProfile {
 
 	static CreateQuestions objQuestions = new CreateQuestions();
-	static StudyQuestion   objStudyQuestions = new StudyQuestion();
-	static MainInterface   objMain = new MainInterface();
-	static LoginClientes   objLogin = new LoginClientes();
-	static AdmProfile      objAdmProfile = new AdmProfile();
-	static ClassAdm        objAdm = new ClassAdm();
-	static JFrame          mainFrame = new JFrame();
-	static JPanel          mainPanel = new JPanel();
+	static StudyQuestion objStudyQuestions = new StudyQuestion();
+	static MainInterface objMain = new MainInterface();
+	static LoginClientes objLogin = new LoginClientes();
+	static AdmProfile objAdmProfile = new AdmProfile();
+	static ClassAdm objAdm = new ClassAdm();
+	static JFrame mainFrame = new JFrame();
+	static JPanel mainPanel = new JPanel();
 
-	JLabel                 nameText = new JLabel("Name: ");
-	JLabel                 phoneText = new JLabel("Phone: ");
-	JLabel                 cpfText = new JLabel("CPF: ");
-	JLabel                 birthText = new JLabel("Date of Birth: ");
-	JLabel                 admText = new JLabel("Student/Adm: ");
-	JLabel                 recordText = new JLabel("Sequence of correct answers: ");
-	JLabel                 changePassword = new JLabel("Change Password");
-	JLabel                 newPassword = new JLabel("New Password");
-	JLabel                 newPasswordConfirmation = new JLabel("Confirm Password");
-	JLabel                 recordMath = new JLabel("Math");
-	JLabel                 recordEnglish = new JLabel("English");
-	JLabel                 recordProgramming = new JLabel("Programming");
+	JLabel nameText = new JLabel("Name: ");
+	JLabel phoneText = new JLabel("Phone: ");
+	JLabel cpfText = new JLabel("CPF: ");
+	JLabel birthText = new JLabel("Date of Birth: ");
+	JLabel admText = new JLabel("Student/Adm: ");
+	JLabel recordText = new JLabel("Sequence of correct answers: ");
+	JLabel changePassword = new JLabel("Change Password");
+	JLabel newPassword = new JLabel("New Password");
+	JLabel newPasswordConfirmation = new JLabel("Confirm Password");
+	JLabel recordMath = new JLabel("Math");
+	JLabel recordEnglish = new JLabel("English");
+	JLabel recordProgramming = new JLabel("Programming");
 
-	JLabel                 image2 = new JLabel();
+	JLabel image2 = new JLabel();
 
-	JTextField             nameField = new JTextField("");
-	JTextField             phoneField = new JTextField("");
-	JTextField             cpfField = new JTextField("");
-	JTextField             birthField = new JFormattedTextField();
-	JTextField             admField = new JTextField("");
-	JTextField             mathField = new JTextField("");
-	JTextField             englishField = new JTextField("");
-	JTextField             programmingField = new JTextField("");
+	JTextField nameField = new JTextField("");
+	JTextField phoneField = new JTextField("");
+	JTextField cpfField = new JTextField("");
+	JTextField birthField = new JFormattedTextField();
+	JTextField admField = new JTextField("");
+	JTextField mathField = new JTextField("");
+	JTextField englishField = new JTextField("");
+	JTextField programmingField = new JTextField("");
 
-	JPasswordField             changePasswordField = new JPasswordField();
-	JPasswordField             changePasswordFieldConfirmation = new JPasswordField();
-	
-	JTextArea              profilePicture = new JTextArea();
+	JPasswordField changePasswordField = new JPasswordField();
+	JPasswordField changePasswordFieldConfirmation = new JPasswordField();
 
-	JButton                setNewPassword = new JButton("Define new password");
-	JButton                setNewPicture = new JButton("Define new profile Pic");
-	JButton                setInformation = new JButton("Define Informations");	
+	JTextArea profilePicture = new JTextArea();
 
+	JButton setNewPassword = new JButton("Define new password");
+	JButton setNewPicture = new JButton("Define new profile Pic");
+	JButton setInformation = new JButton("Define Informations");
 
 	private int c = 0;
 	public int tamanho;
@@ -85,7 +84,7 @@ public class AdmProfile {
 		mainPanel.setLayout(null);
 		mainFrame.setTitle("Adm Profile");
 		mainFrame.add(mainPanel);
-		// mainPanel.add(imageIcon);
+// mainPanel.add(imageIcon);
 		mainPanel.add(nameText);
 		mainPanel.add(phoneText);
 		mainPanel.add(cpfText);
@@ -113,9 +112,9 @@ public class AdmProfile {
 		mainPanel.add(admField);
 		mainPanel.add(profilePicture);
 
-		// profilePicture.setEnabled(false);
-		// profilePicture.setBackground(new Color(107, 35, 142));
-		// profilePicture.setBounds(20, 90, 200, 170);
+// profilePicture.setEnabled(false);
+// profilePicture.setBackground(new Color(107, 35, 142));
+// profilePicture.setBounds(20, 90, 200, 170);
 		profilePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
 		mainFrame.setResizable(false);
@@ -133,8 +132,8 @@ public class AdmProfile {
 		recordMath.setForeground(Color.WHITE);
 		recordEnglish.setForeground(Color.WHITE);
 		recordProgramming.setForeground(Color.WHITE);
-		
-		// fc.setBounds(260, 250, 200, 200);
+
+// fc.setBounds(260, 250, 200, 200);
 
 		nameText.setBounds(260, 0, 200, 200);
 		phoneText.setBounds(260, 50, 200, 200);
@@ -187,8 +186,9 @@ public class AdmProfile {
 		programmingField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		englishField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		changePasswordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
-		changePasswordFieldConfirmation.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
-		
+		changePasswordFieldConfirmation
+				.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
+
 		setNewPicture.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				adcImage();
@@ -197,7 +197,21 @@ public class AdmProfile {
 
 		birthField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String birth1;
+				String birth2;
+				for (int i = birthField.getText().length(); i <= 12;) {
+					if (birthField.getText().length() == 2) {
+						birth1 = birthField.getText();
+						birth1.concat("/");
+						birthField.setText(birth1);
+					}
 
+					if (birthField.getText().length() == 5) {
+						birth2 = birthField.getText();
+						birth2.concat("/");
+						birthField.setText(birth2);
+					}
+				}
 			}
 		});
 	}
@@ -223,6 +237,13 @@ public class AdmProfile {
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
+			if (tamanho == 1)
+				super.insertString(arg0,
+						arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", "/"), arg2);
+
+			if (tamanho == 4)
+				super.insertString(arg0,
+						arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", "/"), arg2);
 
 			if (tamanho > 9)
 				super.insertString(arg0,
@@ -239,7 +260,22 @@ public class AdmProfile {
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
-			if (tamanho > 10)
+			if(tamanho==2) {
+				super.insertString(arg0, arg1.replaceAll(
+						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "."), arg2);
+			}
+			
+			if(tamanho==6) {
+				super.insertString(arg0, arg1.replaceAll(
+						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "."), arg2);
+			}
+			
+			if(tamanho==10) {
+				super.insertString(arg0, arg1.replaceAll(
+						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "-"), arg2);
+			}
+			
+			if (tamanho > 13)
 				super.insertString(arg0, arg1.replaceAll(
 						"[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", ""), arg2);
 
@@ -254,8 +290,6 @@ public class AdmProfile {
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
-			// super.insertString(arg0, arg1.replaceAll("[aA-zZ
-			// @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 			super.insertString(arg0, arg1.replaceAll("[1234567890@#!$%&*_+=-?/:;^)(\\\\p{ASCII}]", ""), arg2);
 		}
 
