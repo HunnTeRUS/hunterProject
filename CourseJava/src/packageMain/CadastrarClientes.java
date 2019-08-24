@@ -306,7 +306,7 @@ public class CadastrarClientes {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				objLogin.metodoPrincipalLogin();
-				CadastrarClientes.framePrincipalCadastro.dispose();
+				framePrincipalCadastro.dispose();
 			}
 		});
 
