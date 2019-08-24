@@ -234,22 +234,21 @@ public class ForgotPassword {
 					emailAddr.validate();
 
 					if (db.getConnection()) {
-						SQL = "SELECT email FROM users WHERE email= '" + receiveEmail.getText() + "';";
-						stmt = db.con.prepareStatement(SQL);
-						rs = stmt.executeQuery(SQL);					
-						
-						while (rs.next()) {
-							System.out.println("ookkook");
-							if (lenght.getString("email") == "") {
-								JOptionPane.showMessageDialog(null,
-										"We don't have any account in our database with this email.");
-							} else {
+						try {
+							SQL = "SELECT email FROM users WHERE email= '" + receiveEmail.getText() + "';";
+							stmt = db.con.prepareStatement(SQL);
+							rs = stmt.executeQuery(SQL);
+
+							if (rs.next()) {
 								sendEmail();
+							} else {
+								JOptionPane.showMessageDialog(null, "We don't have any account registered with this email!");
 							}
+						} catch (SQLException e1) {
+							JOptionPane.showMessageDialog(null, "Insert a one correct email");
 						}
+
 					}
-				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Insert a one correct email");
 				} catch (AddressException e1) {
 					JOptionPane.showMessageDialog(null, "Insert a one correct email");
 				}
@@ -290,7 +289,7 @@ public class ForgotPassword {
 					setEmailCadastrado(receiveEmail.getText());
 					Thread.sleep(2000);
 					JOptionPane.showMessageDialog(null,
-							"Enviamos um codigo no seu email, reescreva ele aqui logo em seguida para continuar com a recuperacao da senha!",
+							"We have send a one code in your email, insert him here to continue with the password recuperation!",
 							"Attention", 3);
 
 					codeReceived = JOptionPane.showInputDialog("Digite o codigo que foi enviado!");

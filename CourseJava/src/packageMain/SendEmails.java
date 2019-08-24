@@ -35,9 +35,8 @@ public class SendEmails {
 			});
 
 		try {
-
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("otavio201378@gmail.com"));
+			message.setFrom(new InternetAddress("otavio@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailPerson));
 			message.setSubject("App Hunter");
 			message.setText("Olá!! Este é seu código para iniciar em nosso app como administrador: " + code);
