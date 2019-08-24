@@ -1,23 +1,19 @@
 package packageMain;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Random;
-
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+import java.util.*;
 import javax.swing.*;
 
-public class StudyProgramming extends CreateQuestions {
+public class StudyProgramming {
 
 	public static CreateQuestions questions = new CreateQuestions();
 	public static MainInterface maininterface = new MainInterface();
 	public static StudyQuestion objStudy = new StudyQuestion();
+	public static StudyMath objMath = new StudyMath();
 	private ConectionDB db = new ConectionDB();
+	public static ClassStudent objMain = new ClassStudent();
 
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
@@ -25,27 +21,38 @@ public class StudyProgramming extends CreateQuestions {
 	JLabel imageIcon = new JLabel(image);
 	JButton continueQuestions = new JButton("Next");
 	JButton returnMain = new JButton("Return to Menu");
-
 	JTextArea question = new JTextArea();
 	JButton answer1 = new JButton();
 	JButton answer2 = new JButton();
-	JButton answer3  = new JButton();
-	JButton answer4  = new JButton();
+	JButton answer3 = new JButton();
+	JButton answer4 = new JButton();
 	JTextField textReceive = new JTextField();
-	private int c=0;
 	Font font1 = new Font("TimesRoman", Font.BOLD, 14);
-	public String[] vetor = new String[4];
+	public int c = 0;
 	Random rand = new Random();
-	
+	public String[] vetor = new String[4];
 	PreparedStatement stmt;
 	ResultSet rs;
 	ResultSet lenght;
 	String explanation = null;
 
-	public int finalValue, i,az = 1;
-	String SQL, count;
+	// EXPLANATION QUESTION
+	static JPanel mainPanelExplanation = new JPanel();
+	JTextArea explanationArea = new JTextArea();
+	JButton returnQuestion = new JButton("Return");
 
-	
+	public int finalValue, i, az = 2;
+	String SQL, count;
+	int test;
+
+	public int getFinalValue() {
+		return finalValue;
+	}
+
+	public void setFinalValue(int finalValue) {
+		this.finalValue = finalValue;
+	}
+ 
 	public void questionsUser() {
 		try {
 			if (db.getConnection()) {
@@ -60,31 +67,29 @@ public class StudyProgramming extends CreateQuestions {
 				System.out.println(i);
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		
-		if(c==0){
-		settingInterfaceStudy();
-		methodReceiver();
-		Acoes();
-		c++;
-		}
-		else{
+		if (c == 0) {
+			settingInterfaceStudy();
+			methodReceiver();
+			Acoes();
+			c++;
+		} else {
 			mainFrame.setVisible(true);
 		}
 	}
 
 	public void settingInterfaceStudy() {
 		mainFrame.setVisible(true);
+		mainFrame.setResizable(false);
 		mainFrame.setBounds(700, 200, 500, 700);
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
-		mainFrame.add(mainPanel);
 		mainFrame.setTitle("Programming Questions");
-		mainFrame.setResizable(false);
+		mainFrame.add(mainPanel);
 		mainPanel.add(continueQuestions);
 		mainPanel.setBackground(new Color(107, 35, 142));
 		mainPanel.add(imageIcon);
@@ -107,37 +112,30 @@ public class StudyProgramming extends CreateQuestions {
 		answer1.setBounds(25, 290, 440, 50);
 		answer1.setForeground(Color.BLACK);
 		answer1.setForeground(Color.BLACK);
-		
+
 		answer2.setBounds(25, 370, 440, 50);
 		answer2.setForeground(Color.BLACK);
 		answer2.setForeground(Color.BLACK);
-		
+
 		answer3.setBounds(25, 450, 440, 50);
 		answer3.setForeground(Color.BLACK);
 		answer3.setForeground(Color.BLACK);
-		
+
 		answer4.setBounds(25, 530, 440, 50);
 		answer4.setForeground(Color.BLACK);
 		answer4.setForeground(Color.BLACK);
-		
+
 		returnMain.setBounds(35, 630, 150, 35);
 		continueQuestions.setBounds(300, 630, 150, 35);
-		
+
 		returnMain.setBackground(Color.BLACK);
 		continueQuestions.setBackground(Color.BLACK);
 		continueQuestions.setForeground(Color.WHITE);
 		returnMain.setForeground(Color.WHITE);
 		returnMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		continueQuestions.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
-		
-		returnMain.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mainFrame.dispose();
-				maininterface.mainMethod();
-			}
-		});
 	}
-	
+
 	public void methodReceiver() {
 		if (db.getConnection()) {
 			if (i == az) {
@@ -154,7 +152,9 @@ public class StudyProgramming extends CreateQuestions {
 
 					while (lenght.next()) {
 						if (i > lenght.getInt("quantidade")) {
-							continue;
+							JOptionPane.showMessageDialog(null, "You have finished all questions, please, try another course!");
+							objMain.mainMethod();
+							mainFrame.dispose();
 						}
 					}
 
@@ -162,58 +162,60 @@ public class StudyProgramming extends CreateQuestions {
 					rs = stmt.executeQuery();
 
 					while (rs.next()) {
-					if (i > lenght.getInt("quantidade")) {
-						break;
+
+						vetor[0] = rs.getString("answer0");
+						vetor[1] = rs.getString("answer1");
+						vetor[2] = rs.getString("answer2");
+						vetor[3] = rs.getString("answer3");
+						int aleatorio = 10;
+						int[] aux = new int[4];
+
+						aleatorio = rand.nextInt(4);
+						answer1.setText(String.valueOf(vetor[aleatorio]));
+						aux[0] = aleatorio;
+
+						while (aux[0] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer2.setText(String.valueOf(vetor[aleatorio]));
+						aux[1] = aleatorio;
+
+						while (aux[0] == aleatorio || aux[1] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer3.setText(String.valueOf(vetor[aleatorio]));
+						aux[2] = aleatorio;
+
+						while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
+							aleatorio = rand.nextInt(4);
+						answer4.setText(String.valueOf(vetor[aleatorio]));
+
+						question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
+
+						question.setFont(font1);
+						az++;
+
+						returnMain.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								maininterface.settingInterface();
+								mainFrame.dispose();
+
+							}
+						});
 					}
+				} catch (Exception error) {
+					System.err.println("Error:" + error.getMessage());
+					System.err.println("Error:" + error.toString());
+
 				}
+			}
 
-				stmt = db.con.prepareStatement(SQL);
-				rs = stmt.executeQuery();
-
-				while (rs.next()) {
-					
-					vetor[0] = rs.getString("answer0");
-					vetor[1] = rs.getString("answer1");
-					vetor[2] = rs.getString("answer2");
-					vetor[3] = rs.getString("answer3");
-					int aleatorio = 10;
-					int[] aux = new int[4];
-
-					aleatorio = rand.nextInt(4);
-					answer1.setText(String.valueOf(vetor[aleatorio]));
-					aux[0] = aleatorio;
-
-					while (aux[0] == aleatorio)
-						aleatorio = rand.nextInt(4);
-					answer2.setText(String.valueOf(vetor[aleatorio]));
-					aux[1] = aleatorio;
-
-					while (aux[0] == aleatorio || aux[1] == aleatorio)
-						aleatorio = rand.nextInt(4);
-					answer3.setText(String.valueOf(vetor[aleatorio]));
-					aux[2] = aleatorio;
-
-					while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
-						aleatorio = rand.nextInt(4);
-					answer4.setText(String.valueOf(vetor[aleatorio]));
-
-					question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
-
-					question.setFont(font1);
-					az++;
-					
-				}
-
-			} catch (Exception error) {
-				System.err.println("Error:" + error.getMessage());
+			else {
+				i--;
+				// System.out.println("Merda!!!!!!!");
 			}
 
 		}
-		}
 	}
 
-	
-	
 	public void Acoes() {
 		try {
 			System.out.println(i);
@@ -350,4 +352,5 @@ public class StudyProgramming extends CreateQuestions {
 			e2.printStackTrace();
 		}
 	}
+
 }

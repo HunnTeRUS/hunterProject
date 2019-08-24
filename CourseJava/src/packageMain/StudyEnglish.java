@@ -1,22 +1,18 @@
 package packageMain;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Random;
-
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+import java.util.*;
 import javax.swing.*;
 
-public class StudyEnglish extends CreateQuestions {
+public class StudyEnglish {
 
 	public static CreateQuestions questions = new CreateQuestions();
 	public static MainInterface maininterface = new MainInterface();
 	public static StudyQuestion objStudy = new StudyQuestion();
+	public static StudyMath objMath = new StudyMath();
+	public static ClassStudent objMain = new ClassStudent();
 	private ConectionDB db = new ConectionDB();
 
 	static JFrame mainFrame = new JFrame();
@@ -25,25 +21,38 @@ public class StudyEnglish extends CreateQuestions {
 	JLabel imageIcon = new JLabel(image);
 	JButton continueQuestions = new JButton("Next");
 	JButton returnMain = new JButton("Return to Menu");
-	JTextArea question = new JTextArea("");
+	JTextArea question = new JTextArea();
 	JButton answer1 = new JButton();
 	JButton answer2 = new JButton();
-	JButton answer3 = new JButton("");
+	JButton answer3 = new JButton();
 	JButton answer4 = new JButton();
 	JTextField textReceive = new JTextField();
-	private int c = 0;
 	Font font1 = new Font("TimesRoman", Font.BOLD, 14);
-	public String[] vetor = new String[4];
+	public int c = 0;
 	Random rand = new Random();
-
+	public String[] vetor = new String[4];
 	PreparedStatement stmt;
 	ResultSet rs;
 	ResultSet lenght;
 	String explanation = null;
-	
-	public int finalValue, i = 1, az = 1;
-	String SQL, count;
 
+	// EXPLANATION QUESTION
+	static JPanel mainPanelExplanation = new JPanel();
+	JTextArea explanationArea = new JTextArea();
+	JButton returnQuestion = new JButton("Return");
+
+	public int finalValue, i, az = 2;
+	String SQL, count;
+	int test;
+
+	public int getFinalValue() {
+		return finalValue;
+	}
+
+	public void setFinalValue(int finalValue) {
+		this.finalValue = finalValue;
+	}
+ 
 	public void questionsUser() {
 		try {
 			if (db.getConnection()) {
@@ -54,17 +63,18 @@ public class StudyEnglish extends CreateQuestions {
 				while (lenght2.next()) {
 					i = lenght2.getInt("firstRow");
 				}
-
+				
 				System.out.println(i);
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		if (c == 0) {
 			settingInterfaceStudy();
 			methodReceiver();
+			Acoes();
 			c++;
 		} else {
 			mainFrame.setVisible(true);
@@ -78,8 +88,8 @@ public class StudyEnglish extends CreateQuestions {
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
-		mainFrame.add(mainPanel);
 		mainFrame.setTitle("English Questions");
+		mainFrame.add(mainPanel);
 		mainPanel.add(continueQuestions);
 		mainPanel.setBackground(new Color(107, 35, 142));
 		mainPanel.add(imageIcon);
@@ -124,13 +134,6 @@ public class StudyEnglish extends CreateQuestions {
 		returnMain.setForeground(Color.WHITE);
 		returnMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 		continueQuestions.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
-
-		returnMain.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mainFrame.dispose();
-				maininterface.mainMethod();
-			}
-		});
 	}
 
 	public void methodReceiver() {
@@ -149,8 +152,10 @@ public class StudyEnglish extends CreateQuestions {
 
 					while (lenght.next()) {
 						if (i > lenght.getInt("quantidade")) {
-							continue;
-						}
+							JOptionPane.showMessageDialog(null, "You have finished all questions, please, try another course!");
+							objMain.mainMethod();
+							mainFrame.dispose();
+							}
 					}
 
 					stmt = db.con.prepareStatement(SQL);
@@ -186,16 +191,29 @@ public class StudyEnglish extends CreateQuestions {
 						question.setText("Question " + i + " - " + String.valueOf(rs.getString("question")));
 
 						question.setFont(font1);
-
 						az++;
+
+						returnMain.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								maininterface.settingInterface();
+								mainFrame.dispose();
+
+							}
+						});
 					}
 				} catch (Exception error) {
 					System.err.println("Error:" + error.getMessage());
+					System.err.println("Error:" + error.toString());
+
 				}
-
 			}
-		}
 
+			else {
+				i--;
+				// System.out.println("Merda!!!!!!!");
+			}
+
+		}
 	}
 
 	public void Acoes() {
@@ -334,4 +352,5 @@ public class StudyEnglish extends CreateQuestions {
 			e2.printStackTrace();
 		}
 	}
+
 }

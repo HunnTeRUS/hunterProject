@@ -15,6 +15,7 @@ public class StudyMath {
 	public static MainInterface maininterface = new MainInterface();
 	public static StudyQuestion objStudy = new StudyQuestion();
 	public static StudyMath objMath = new StudyMath();
+	public static ClassStudent objMain = new ClassStudent();
 	private ConectionDB db = new ConectionDB();
 
 	static JFrame mainFrame = new JFrame();
@@ -154,8 +155,10 @@ public class StudyMath {
 
 					while (lenght.next()) {
 						if (i > lenght.getInt("quantidade")) {
-							continue;
-						}
+							JOptionPane.showMessageDialog(null, "You have finished all questions, please, try another course!");
+							objMain.mainMethod();
+							mainFrame.dispose();
+							}
 					}
 
 					stmt = db.con.prepareStatement(SQL);

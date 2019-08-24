@@ -123,7 +123,7 @@ public class StudyQuestion {
 
 						while (lenght.next()) {
 							if (lenght.getInt("quantidade") == 0) {
-								JOptionPane.showMessageDialog(null, "We don't have any questions to show :(");
+								JOptionPane.showMessageDialog(null, "Wait for new questions, soon...");
 							} else {
 								mainFrame.dispose();
 								quizzMath.questionsUser();
@@ -146,7 +146,7 @@ public class StudyQuestion {
 
 						while (lenght.next()) {
 							if (lenght.getInt("quantidade") == 0) {
-								JOptionPane.showMessageDialog(null, "We don't have any questions to show :(");
+								JOptionPane.showMessageDialog(null, "Wait for new questions, soon...");
 							} else {
 								mainFrame.dispose();
 								quizzProgramming.questionsUser();
@@ -168,7 +168,7 @@ public class StudyQuestion {
 
 						while (lenght.next()) {
 							if (lenght.getInt("quantidade") == 0) {
-								JOptionPane.showMessageDialog(null, "We don't have any questions to show :(");
+								JOptionPane.showMessageDialog(null, "Wait for new questions, soon...");
 							} else {
 								mainFrame.dispose();
 								quizzEnglish.questionsUser();
