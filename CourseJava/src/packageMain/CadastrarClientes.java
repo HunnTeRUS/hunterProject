@@ -28,8 +28,8 @@ public class CadastrarClientes {
 	private JPasswordField campoConfirmarSenha = new JPasswordField();
 	private JButton returnLogin = new JButton("Voltar para a p�gina de login");
 	private JButton cadastrar = new JButton("Cadastrar");
-	private JCheckBox adm = new JCheckBox("Administrator");
-	private JCheckBox student = new JCheckBox("Student");
+	// private JCheckBox adm = new JCheckBox("Administrator");
+	// private JCheckBox student = new JCheckBox("Student");
 	private int c = 0;
 	// Variaveis para armazenar os dados recebidos e/ou criptografados
 	private String senhaCadastrada;
@@ -128,8 +128,8 @@ public class CadastrarClientes {
 		painelPrincipalCadastro.add(cadastrar);
 		painelPrincipalCadastro.add(campoUsuario);
 		painelPrincipalCadastro.add(returnLogin);
-		painelPrincipalCadastro.add(student);
-		painelPrincipalCadastro.add(adm);
+		// painelPrincipalCadastro.add(student);
+		// painelPrincipalCadastro.add(adm);
 		Dimension tela = framePrincipalCadastro.getSize();
 		framePrincipalCadastro.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
@@ -144,8 +144,9 @@ public class CadastrarClientes {
 		labelUsuario.setFont(new java.awt.Font("ink free", 1, 16));
 		labelConfirmarSenha.setFont(new java.awt.Font("ink free", 1, 16));
 
-		student.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 150), 350, 30);
-		adm.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 100), 350, 30);
+		// student.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 150), 350,
+		// 30);
+		// adm.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 100), 350, 30);
 		image.setBounds(((tela.width / 2) - 350), (-90), 400, 400);
 		image2.setBounds(((tela.width / 2) - 50), (-70), 400, 400);
 
@@ -163,20 +164,19 @@ public class CadastrarClientes {
 	}
 
 	public void manipulandoDados() {
-		adm.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				student.setSelected(false);
-
-			}
-		});
-
-		student.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				adm.setSelected(false);
-			}
-		});
+		/*
+		 * adm.addActionListener(new ActionListener() {
+		 * 
+		 * @Override public void actionPerformed(ActionEvent e) {
+		 * student.setSelected(false);
+		 * 
+		 * } });
+		 * 
+		 * student.addActionListener(new ActionListener() {
+		 * 
+		 * @Override public void actionPerformed(ActionEvent e) {
+		 * adm.setSelected(false); } });
+		 */
 
 		cadastrar.addActionListener(new ActionListener() {
 			@Override
@@ -190,7 +190,7 @@ public class CadastrarClientes {
 				if (!(getEmailCadastrado().contains("@"))) {
 					JOptionPane.showMessageDialog(null, "Insert a one correct email");
 				}
-				
+
 				if ((getEmailCadastrado().equals("")) || (getSenhaCadastrada().equals(""))
 						|| (getConfirmacaoSenha().equals("")) || (getUsuarioCadastrado().equals(""))) {
 					JOptionPane.showMessageDialog(null, "Fill in all the fields");
@@ -200,9 +200,11 @@ public class CadastrarClientes {
 					campoUsuario.setText("");
 				}
 
-				if ((!(adm.isSelected())) && (!(student.isSelected()))) {
-					JOptionPane.showMessageDialog(null, "Choice between 'Administrator' and 'Student'");
-				}
+				/*
+				 * if ((!(adm.isSelected())) && (!(student.isSelected()))) {
+				 * JOptionPane.showMessageDialog(null,
+				 * "Choice between 'Administrator' and 'Student'"); }
+				 */
 
 				else if (!(getSenhaCadastrada().equals(getConfirmacaoSenha()))) {
 					JOptionPane.showMessageDialog(null, "Password field is different from Confirm Password field");
@@ -216,90 +218,79 @@ public class CadastrarClientes {
 
 						String sql;
 
-						if (adm.isSelected()) {
-							sql = "SELECT COUNT(email) AS quantidade FROM users where email='" + getEmailCadastrado()
-									+ "';";
-							stmt = conecta.prepareStatement(sql);
-							rs = stmt.executeQuery(sql);
+						sql = "SELECT COUNT(email) AS quantidade FROM users where email='" + getEmailCadastrado()
+								+ "';";
+						stmt = conecta.prepareStatement(sql);
+						rs = stmt.executeQuery(sql);
 
-							String sqlUser = "SELECT COUNT(userr) AS quantidade FROM users where userr='"
-									+ getUsuarioCadastrado() + "';";
-							PreparedStatement stmt2 = conecta.prepareStatement(sqlUser);
-							ResultSet rs2 = stmt2.executeQuery(sqlUser);
+						String sqlUser = "SELECT COUNT(userr) AS quantidade FROM users where userr='"
+								+ getUsuarioCadastrado() + "';";
+						PreparedStatement stmt2 = conecta.prepareStatement(sqlUser);
+						ResultSet rs2 = stmt2.executeQuery(sqlUser);
 
-							while (rs.next() && rs2.next()) {
-								if ((rs.getInt("quantidade") == 0) && (rs2.getInt("quantidade") == 0)) {
-									sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
-											+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
-											+ getSenhaCadastrada() + "', true, false);";
-									stmt = conecta.prepareStatement(sql);
-									stmt.execute(sql);
-									JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
-									objLogin.metodoPrincipalLogin();
-									framePrincipalCadastro.setVisible(false);
-								}
+						while (rs.next() && rs2.next()) {
+							if ((rs.getInt("quantidade") == 0) && (rs2.getInt("quantidade") == 0)) {
+								sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
+										+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
+										+ getSenhaCadastrada() + "', false, true);";
+								stmt = conecta.prepareStatement(sql);
+								stmt.execute(sql);
+								JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
+								objLogin.metodoPrincipalLogin();
+								framePrincipalCadastro.setVisible(false);
+							}
 
-								else if (rs.getInt("quantidade") != 0) {
-									JOptionPane.showMessageDialog(null,
-											"This email has been inserted on the app, please, input another email");
-									campoEmail.setText("");
-									campoUsuario.setText("");
-								}
+							else if (rs.getInt("quantidade") != 0) {
+								JOptionPane.showMessageDialog(null,
+										"This email has been inserted on the app, please, input another email");
+								campoEmail.setText("");
+								campoUsuario.setText("");
+							}
 
-								else if (rs2.getInt("quantidade") != 0) {
-									JOptionPane.showMessageDialog(null,
-											"This user has been inserted on the app, please, input another user");
-									campoEmail.setText("");
-									campoUsuario.setText("");
-								}
-
+							else if (rs2.getInt("quantidade") != 0) {
+								JOptionPane.showMessageDialog(null,
+										"This user has been inserted on the app, please, input another user");
+								campoEmail.setText("");
+								campoUsuario.setText("");
 							}
 
 						}
 
-						else if (student.isSelected()) {
-							sql = "SELECT COUNT(email) AS quantidade FROM users where email='" + getEmailCadastrado()
-									+ "';";
-							stmt = conecta.prepareStatement(sql);
-							rs = stmt.executeQuery(sql);
+						/*
+						 * else if (student.isSelected()) { sql =
+						 * "SELECT COUNT(email) AS quantidade FROM users where email='" +
+						 * getEmailCadastrado() + "';"; stmt = conecta.prepareStatement(sql); rs =
+						 * stmt.executeQuery(sql);
+						 * 
+						 * String sqlUser = "SELECT COUNT(userr) AS quantidade FROM users where userr='"
+						 * + getUsuarioCadastrado() + "';"; PreparedStatement stmt2 =
+						 * conecta.prepareStatement(sqlUser); ResultSet rs2 =
+						 * stmt2.executeQuery(sqlUser);
+						 * 
+						 * while (rs.next() && rs2.next()) { if ((rs.getInt("quantidade") == 0) &&
+						 * (rs2.getInt("quantidade") == 0)) { sql =
+						 * "INSERT INTO users (userr, email, senha, adm, student) values('" +
+						 * getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '" +
+						 * getSenhaCadastrada() + "', false, true);"; stmt =
+						 * conecta.prepareStatement(sql); stmt.execute(sql);
+						 * JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
+						 * objLogin.metodoPrincipalLogin(); framePrincipalCadastro.setVisible(false); }
+						 * 
+						 * else if (rs.getInt("quantidade") != 0) { JOptionPane.showMessageDialog(null,
+						 * "This email has been inserted on the app, please, input another email");
+						 * campoEmail.setText(""); campoUsuario.setText(""); }
+						 * 
+						 * else if (rs2.getInt("quantidade") != 0) { JOptionPane.showMessageDialog(null,
+						 * "This user has been inserted on the app, please, input another user");
+						 * campoEmail.setText(""); campoUsuario.setText(""); }
+						 * 
+						 * } }
+						 */
 
-							String sqlUser = "SELECT COUNT(userr) AS quantidade FROM users where userr='"
-									+ getUsuarioCadastrado() + "';";
-							PreparedStatement stmt2 = conecta.prepareStatement(sqlUser);
-							ResultSet rs2 = stmt2.executeQuery(sqlUser);
-
-							while (rs.next() && rs2.next()) {
-								if ((rs.getInt("quantidade") == 0) && (rs2.getInt("quantidade") == 0)) {
-									sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
-											+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
-											+ getSenhaCadastrada() + "', false, true);";
-									stmt = conecta.prepareStatement(sql);
-									stmt.execute(sql);
-									JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
-									objLogin.metodoPrincipalLogin();
-									framePrincipalCadastro.setVisible(false);
-								}
-
-								else if (rs.getInt("quantidade") != 0) {
-									JOptionPane.showMessageDialog(null,
-											"This email has been inserted on the app, please, input another email");
-									campoEmail.setText("");
-									campoUsuario.setText("");
-								}
-
-								else if (rs2.getInt("quantidade") != 0) {
-									JOptionPane.showMessageDialog(null,
-											"This user has been inserted on the app, please, input another user");
-									campoEmail.setText("");
-									campoUsuario.setText("");
-								}
-
-							}
-						}
-
-						else {
-							JOptionPane.showMessageDialog(null, "What do you wat to be, student or adm?");
-						}
+						/*
+						 * else { JOptionPane.showMessageDialog(null,
+						 * "What do you wat to be, student or adm?"); }
+						 */
 
 					} catch (SQLException error) {
 						System.out.println(error.toString());

@@ -12,6 +12,7 @@ public class ClassStudent {
 	static MainInterface objMain = new MainInterface();
 	static ClassStudent objStudent = new ClassStudent();
 	static MainInterface main = new MainInterface();
+	static StudentProfile objProfileStudent = new StudentProfile();
 
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
@@ -104,6 +105,8 @@ public class ClassStudent {
 
 		profileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				objProfileStudent.mainMethod();
+				mainFrame.dispose();
 			}
 		});
 

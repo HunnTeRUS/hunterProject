@@ -209,6 +209,13 @@ public class AdmProfile {
 
 			}
 		});
+		
+		returnButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				objAdm.mainMethod();
+				mainFrame.dispose();
+			}
+		});
 	}
 
 	class limitPhone extends PlainDocument {
@@ -309,9 +316,5 @@ public class AdmProfile {
 				error.printStackTrace();
 			}
 		}
-	}
-
-	public static void main(String[] args) {
-		objAdmProfile.mainMethod();
 	}
 }

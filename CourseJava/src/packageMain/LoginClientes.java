@@ -176,7 +176,7 @@ public class LoginClientes {
 			public void actionPerformed(ActionEvent e) {
 				enviarDados.setText("Logging in...");
 				enviarDados.setForeground(Color.RED);
-				
+
 				setSenha(String.valueOf(campoSenha.getPassword()));
 				// setEmail(campoEmail.getText());
 				setUsuario(campoUsuario.getText());
@@ -193,7 +193,7 @@ public class LoginClientes {
 					PreparedStatement stmt = conecta.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
 
-					if(rs.next()) {
+					if (rs.next()) {
 						if (((getUsuario().equals(rs.getString("userr"))
 								|| (getUsuario().equals(rs.getString("email"))))
 								&& (getSenha().equals(rs.getString("senha"))))) {
@@ -205,7 +205,6 @@ public class LoginClientes {
 										try {
 											Thread.sleep(2000);
 											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-											// objClient.mainMethod();
 											objAdm.mainMethod();
 											LoginClientes.framePrincipalLogin.dispose();
 										} catch (InterruptedException e) {
@@ -245,5 +244,9 @@ public class LoginClientes {
 			}
 		});
 
+	}
+
+	public static void main(String[] args) {
+		objLogin.metodoPrincipalLogin();
 	}
 }
