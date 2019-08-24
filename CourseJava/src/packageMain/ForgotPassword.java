@@ -9,8 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
+
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.swing.*;
+
+import com.mysql.cj.xdevapi.Statement;
 
 public class ForgotPassword {
 	// Objects
@@ -22,7 +26,7 @@ public class ForgotPassword {
 	static private LoginClientes objLogin = new LoginClientes();
 	static private ForgotPassword objLost = new ForgotPassword();
 
-	// Variables 
+	// Variables
 	int vetor[] = new int[5];
 	Random rand = new Random();
 	private String finalValueCode;
@@ -148,16 +152,17 @@ public class ForgotPassword {
 				setSenhaCadastrada(String.valueOf(password.getPassword()));
 				setConfirmacaoSenha(String.valueOf(passwordConfirm.getPassword()));
 
-				if((getSenhaCadastrada().equals("")) || (getConfirmacaoSenha().equals("")))
+				if ((getSenhaCadastrada().equals("")) || (getConfirmacaoSenha().equals("")))
 					JOptionPane.showMessageDialog(null, "Insert your new password!");
-					
-				if((getSenhaCadastrada().length() <=4) || (getConfirmacaoSenha().length() <=4))
+
+				if ((getSenhaCadastrada().length() <= 4) || (getConfirmacaoSenha().length() <= 4))
 					JOptionPane.showMessageDialog(null, "Put a password more strong!");
-				
+
 				if (getSenhaCadastrada().equals(getConfirmacaoSenha())) {
-					if (db.getConnection()) {
-						try {
-							SQL = "UPDATE users SET senha = '" + getSenhaCadastrada().toString() + "' WHERE email = '" + receiveEmail.getText() + "';";
+					try {
+						if (db.getConnection()) {
+							SQL = "UPDATE users SET senha = '" + getSenhaCadastrada().toString() + "' WHERE email = '"
+									+ receiveEmail.getText() + "';";
 
 							stmt = db.con.prepareStatement(SQL);
 							stmt.executeUpdate(SQL);
@@ -166,10 +171,11 @@ public class ForgotPassword {
 							objLogin.metodoPrincipalLogin();
 							mainFrame.dispose();
 
-						} catch (SQLException error) {
-							error.getStackTrace();
 						}
-					} 
+					} catch (SQLException error) {
+						error.getStackTrace();
+
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Password field is different from Confirm Password field");
 				}
@@ -186,7 +192,7 @@ public class ForgotPassword {
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
 		mainFrame.add(mainPanel);
-		mainFrame.setTitle("English Questions");
+		mainFrame.setTitle("Forgot Password");
 		mainPanel.setBackground(new Color(107, 35, 142));
 		mainPanel.add(imageIcon);
 		mainPanel.add(emailRequest);
@@ -222,13 +228,29 @@ public class ForgotPassword {
 
 		sendEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InternetAddress emailAddr;
 				try {
+					InternetAddress emailAddr;
 					emailAddr = new InternetAddress(receiveEmail.getText());
 					emailAddr.validate();
-					sendEmail();
 
-				} catch (Exception e1) {
+					if (db.getConnection()) {
+						SQL = "SELECT email FROM users WHERE email= '" + receiveEmail.getText() + "';";
+						stmt = db.con.prepareStatement(SQL);
+						rs = stmt.executeQuery(SQL);					
+						
+						while (rs.next()) {
+							System.out.println("ookkook");
+							if (lenght.getString("email") == "") {
+								JOptionPane.showMessageDialog(null,
+										"We don't have any account in our database with this email.");
+							} else {
+								sendEmail();
+							}
+						}
+					}
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Insert a one correct email");
+				} catch (AddressException e1) {
 					JOptionPane.showMessageDialog(null, "Insert a one correct email");
 				}
 			}
@@ -258,10 +280,9 @@ public class ForgotPassword {
 
 		objEmails.enviandoEmail(receiveEmail.getText(), finalValueCode);
 
-
 		receiveEmail.setText("Please, wait!");
 		receiveEmail.setForeground(Color.RED);
-		
+
 		new Thread(new Runnable() {
 			public void run() {
 
