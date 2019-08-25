@@ -181,7 +181,7 @@ public class LoginClientes {
 
 				try {
 					Class.forName(DRIVER);
-					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+					Connection conecta = DriverManager.getConnection(URL, "root", "");
 
 					String sql;
 
@@ -203,7 +203,7 @@ public class LoginClientes {
 										try {
 											Thread.sleep(2000);
 											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-											objAdm.mainMethod();
+											MainPage tst = new MainPage();										
 											LoginClientes.framePrincipalLogin.dispose();
 										} catch (InterruptedException e) {
 
@@ -214,7 +214,8 @@ public class LoginClientes {
 							} else {
 								JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
 								LoginClientes.framePrincipalLogin.dispose();
-								objStudent.mainMethod();
+								MainPage tst = new MainPage();
+								tst.all();
 							}
 						} else {
 							JOptionPane.showMessageDialog(null, "Usuario/Email e senha incorretos!");
