@@ -154,9 +154,8 @@ public class ForgotPassword {
 					setConfirmacaoSenha("");
 				}
 
-				else if ((getSenhaCadastrada().length() <= 4) || (getConfirmacaoSenha().length() <= 4)
-						|| (!(getSenhaCadastrada().contains("0123456789@#$%*_-+=?/:;~][}{")))) {
-					JOptionPane.showMessageDialog(null, "Put a password more strong! Use simbols e/or numbers.");
+				else if ((getSenhaCadastrada().length() <= 6) || (getConfirmacaoSenha().length() <= 6)){
+					JOptionPane.showMessageDialog(null, "Put a password more strong. Use a password higher than 6 characters!");
 					setSenhaCadastrada("");
 					setConfirmacaoSenha("");
 				}
