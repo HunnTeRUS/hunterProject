@@ -6,9 +6,6 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.*;
 
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
-
 public class StudyMath {
 
 	public static CreateQuestions questions = new CreateQuestions();

@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Random;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.swing.*;
 
 public class CadastrarClientes {
@@ -28,8 +31,6 @@ public class CadastrarClientes {
 	private JPasswordField campoConfirmarSenha = new JPasswordField();
 	private JButton returnLogin = new JButton("Voltar para a p�gina de login");
 	private JButton cadastrar = new JButton("Cadastrar");
-	// private JCheckBox adm = new JCheckBox("Administrator");
-	// private JCheckBox student = new JCheckBox("Student");
 	private int c = 0;
 	// Variaveis para armazenar os dados recebidos e/ou criptografados
 	private String senhaCadastrada;
@@ -38,7 +39,6 @@ public class CadastrarClientes {
 	private String confirmacaoSenha;
 	public byte[] senhaCriptografadaDB;
 	String codeReceived;
-	private int[] vetor = new int[5];
 	Random rand = new Random();
 	String finalValueCode;
 	ResultSet rs;
@@ -128,8 +128,6 @@ public class CadastrarClientes {
 		painelPrincipalCadastro.add(cadastrar);
 		painelPrincipalCadastro.add(campoUsuario);
 		painelPrincipalCadastro.add(returnLogin);
-		// painelPrincipalCadastro.add(student);
-		// painelPrincipalCadastro.add(adm);
 		Dimension tela = framePrincipalCadastro.getSize();
 		framePrincipalCadastro.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
@@ -143,10 +141,6 @@ public class CadastrarClientes {
 		labelEmail.setFont(new java.awt.Font("ink free", 1, 16));
 		labelUsuario.setFont(new java.awt.Font("ink free", 1, 16));
 		labelConfirmarSenha.setFont(new java.awt.Font("ink free", 1, 16));
-
-		// student.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 150), 350,
-		// 30);
-		// adm.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 100), 350, 30);
 		image.setBounds(((tela.width / 2) - 350), (-90), 400, 400);
 		image2.setBounds(((tela.width / 2) - 50), (-70), 400, 400);
 
@@ -164,19 +158,6 @@ public class CadastrarClientes {
 	}
 
 	public void manipulandoDados() {
-		/*
-		 * adm.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * student.setSelected(false);
-		 * 
-		 * } });
-		 * 
-		 * student.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * adm.setSelected(false); } });
-		 */
 
 		cadastrar.addActionListener(new ActionListener() {
 			@Override
@@ -187,24 +168,19 @@ public class CadastrarClientes {
 				setSenhaCadastrada(String.valueOf(campoSenha.getPassword()));
 				setEmailCadastrado(campoEmail.getText());
 
-				if (!(getEmailCadastrado().contains("@"))) {
-					JOptionPane.showMessageDialog(null, "Insert a one correct email");
+				try {
+				InternetAddress emailAddr;
+				emailAddr = new InternetAddress(getEmailCadastrado());
+				emailAddr.validate();
+				}
+				catch(AddressException e1) {
+					JOptionPane.showMessageDialog(null, "Put a one valid email");
 				}
 
 				if ((getEmailCadastrado().equals("")) || (getSenhaCadastrada().equals(""))
 						|| (getConfirmacaoSenha().equals("")) || (getUsuarioCadastrado().equals(""))) {
 					JOptionPane.showMessageDialog(null, "Fill in all the fields");
-					campoEmail.setText("");
-					campoSenha.setText("");
-					campoConfirmarSenha.setText("");
-					campoUsuario.setText("");
 				}
-
-				/*
-				 * if ((!(adm.isSelected())) && (!(student.isSelected()))) {
-				 * JOptionPane.showMessageDialog(null,
-				 * "Choice between 'Administrator' and 'Student'"); }
-				 */
 
 				else if (!(getSenhaCadastrada().equals(getConfirmacaoSenha()))) {
 					JOptionPane.showMessageDialog(null, "Password field is different from Confirm Password field");
