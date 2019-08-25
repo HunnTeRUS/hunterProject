@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 import oldClass.ClassAdm;
+import oldClass.ClassStudent;
 
 public class LoginClientes {
 
@@ -205,7 +206,8 @@ public class LoginClientes {
 										try {
 											Thread.sleep(2000);
 											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-											MainPage tst = new MainPage();										
+											MainPageAdm tstAdm = new MainPageAdm();	
+											tstAdm.all();
 											LoginClientes.framePrincipalLogin.dispose();
 										} catch (InterruptedException e) {
 
@@ -216,11 +218,13 @@ public class LoginClientes {
 							} else {
 								JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
 								LoginClientes.framePrincipalLogin.dispose();
-								MainPage tst = new MainPage();
+								MainPageStudent tst = new MainPageStudent();
 								tst.all();
 							}
 						} else {
 							JOptionPane.showMessageDialog(null, "Usuario/Email e senha incorretos!");
+							enviarDados.setText("Login");
+							enviarDados.setForeground(Color.BLACK);
 						}
 					}
 

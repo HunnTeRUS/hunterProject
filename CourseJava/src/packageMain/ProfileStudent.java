@@ -79,7 +79,6 @@ public class ProfileStudent extends JFrame {
 		JButton returnButton = new JButton("Return");
 		returnButton.setBackground(SystemColor.scrollbar);
 		returnButton.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_exit_sign_25px.png")));
-		returnButton.setSelectedIcon(new ImageIcon(MainPage.class.getResource("/packageMain/icons8_code_25px.png")));
 		returnButton.setFont(UIManager.getFont("TextArea.font"));
 		returnButton.setBounds(10, 451, 248, 33);
 		panel1.add(returnButton);

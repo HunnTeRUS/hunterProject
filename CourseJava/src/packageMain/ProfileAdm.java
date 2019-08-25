@@ -49,12 +49,11 @@ public class ProfileAdm extends JFrame {
 		this.tamanho = tamanho;
 	}
 
-	//
-	public ProfileAdm() {
-		setTitle("Adm Profile");
-	//public void ProfileAdmMethod() {
+	//public ProfileAdm() {
+	public void ProfileAdmMethod() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 940, 570);
+		setTitle("Adm Profile");
 		contentPane = new JPanel();
 		setVisible(true);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -75,7 +74,6 @@ public class ProfileAdm extends JFrame {
 		JButton returnButton = new JButton("Return");
 		returnButton.setBackground(SystemColor.scrollbar);
 		returnButton.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_exit_sign_25px.png")));
-		returnButton.setSelectedIcon(new ImageIcon(MainPage.class.getResource("/packageMain/icons8_code_25px.png")));
 		returnButton.setFont(UIManager.getFont("TextArea.font"));
 		returnButton.setBounds(10, 451, 248, 33);
 		panel1.add(returnButton);
@@ -391,18 +389,18 @@ public class ProfileAdm extends JFrame {
 			tamanho = (this.getLength());
 			if (tamanho == 1)
 				super.insertString(arg0,
-						arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", "/"), arg2);
+						arg1.replaceAll("[0123456789aA-zZ /@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", "/"), arg2);
 
 			if (tamanho == 4)
 				super.insertString(arg0,
-						arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", "/"), arg2);
+						arg1.replaceAll("[0123456789aA-zZ /@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", "/"), arg2);
 
 			if (tamanho > 9)
 				super.insertString(arg0,
-						arg1.replaceAll("[0123456789aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
+						arg1.replaceAll("[0123456789aA-zZ /@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else
-				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
+				super.insertString(arg0, arg1.replaceAll("[aA-zZ /@#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 		}
 	}
 
