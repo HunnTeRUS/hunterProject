@@ -92,12 +92,12 @@ ProfileStudent studentObj = new ProfileStudent();
 		
 		JPanel panel2 = new JPanel();
 		panel2.setBackground(new Color(176,196,222));
-		panel2.setBounds(359, 0, 762, 627);
+		panel2.setBounds(359, 0, 772, 627);
 		contentPane.add(panel2);
 		panel2.setLayout(null);
 		
 		JPanel panel3 = new JPanel();
-		panel3.setBounds(-13, 0, 775, 73);
+		panel3.setBounds(-13, 0, 785, 70);
 		panel3.setBackground(new Color(54, 33, 89));
 		panel2.add(panel3);
 		panel3.setLayout(null);

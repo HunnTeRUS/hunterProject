@@ -11,7 +11,6 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
-import packageMain.ClassAdm;
 import packageMain.CreateQuestions;
 import packageMain.LoginClientes;
 import packageMain.MainInterface;

@@ -1,10 +1,14 @@
-package packageMain;
+package oldClass;
 
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import packageMain.CreateQuestions;
+import packageMain.MainInterface;
+import packageMain.StudyQuestion;
 
 public class ClassAdm {
 
