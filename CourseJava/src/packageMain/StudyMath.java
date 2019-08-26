@@ -6,8 +6,6 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.*;
 
-import oldClass.ClassStudent;
-
 public class StudyMath {
 
 	public static CreateQuestions questions = new CreateQuestions();
@@ -75,7 +73,7 @@ public class StudyMath {
 
 		if (c == 0) {
 			settingInterfaceStudy();
-			methodReceiver();
+			//methodReceiver();
 			Acoes();
 			c++;
 		} else {
@@ -138,16 +136,16 @@ public class StudyMath {
 		continueQuestions.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 	}
 
-	public void methodReceiver() {
+	public void methodReceiver(String course) {
 		if (db.getConnection()) {
 			if (i == az) {
 				try {
 					continueQuestions.setEnabled(false);
 					continueQuestions.setBackground(Color.gray);
 					continueQuestions.setForeground(Color.black);
-					SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM mathExercises WHERE codQuestion="
+					SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM " + course + "WHERE codQuestion="
 							+ i + ";";
-					count = "SELECT COUNT(question) AS quantidade FROM mathExercises;";
+					count = "SELECT COUNT(question) AS quantidade FROM " + course + ";";
 
 					stmt = db.con.prepareStatement(count);
 					lenght = stmt.executeQuery();
@@ -338,7 +336,7 @@ public class StudyMath {
 					answer3.setEnabled(true);
 					answer4.setEnabled(true);
 					continueQuestions.setEnabled(false);
-					methodReceiver();
+					//methodReceiver();
 				}
 			});
 

@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 import oldClass.ClassAdm;
-import oldClass.ClassStudent;
 
 public class LoginClientes {
 

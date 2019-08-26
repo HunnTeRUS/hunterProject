@@ -404,43 +404,13 @@ public class ProfileAdm extends JFrame {
 		}
 	}
 
-	class limitCPF extends PlainDocument {
-		private static final long serialVersionUID = 325;
-
-		@Override
-		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
-			tamanho = (this.getLength());
-			if(tamanho==2) {
-				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ -@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "."), arg2);
-			}
-			
-			if(tamanho==6) {
-				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ -@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "."), arg2);
-			}
-			
-			if(tamanho==10) {
-				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ -@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", "-"), arg2);
-			}
-			
-			if (tamanho > 13)
-				super.insertString(arg0, arg1.replaceAll(
-						"[0123456789aA-zZ -@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\p{ASCII}.]", ""), arg2);
-
-			else
-				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+.=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
-		}
-	}
-
 	class limitName extends PlainDocument {
 		private static final long serialVersionUID = 326;
 
 		@Override
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
-			super.insertString(arg0, arg1.replaceAll("[1234567890@#!$%&*_+=-?/:;^)(\\\\p{ASCII}]", ""), arg2);
+			super.insertString(arg0, arg1.replaceAll("[1234567890@#!$%&*_+=-?/:;]", ""), arg2);
 		}
 
 	}

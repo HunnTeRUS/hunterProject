@@ -21,8 +21,10 @@ import java.awt.GridBagLayout;
 public class MainPageStudent extends JFrame {
 	private JPanel contentPane;
 
-ProfileStudent studentObj = new ProfileStudent();
+		ProfileStudent studentObj = new ProfileStudent();
+		MainPageQuizz quizzObj = new MainPageQuizz();
 	
+
 	public void all() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1137, 656);
@@ -106,6 +108,13 @@ ProfileStudent studentObj = new ProfileStudent();
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				studentObj.ProfileStudentMethod();
+			}
+		});
+		
+		btnQuizz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				quizzObj.mainMethodQuizz();
 			}
 		});
 	}

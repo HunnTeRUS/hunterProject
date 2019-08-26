@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 public class MainPageAdm extends JFrame {
 	private JPanel contentPane;
 
-ProfileAdm studentAdm = new ProfileAdm();
+	ProfileAdm studentAdm = new ProfileAdm();
 	
 	public void all() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

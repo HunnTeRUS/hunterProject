@@ -1,4 +1,4 @@
-package oldClass;
+package packageMain;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -6,8 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import packageMain.MainInterface;
-import packageMain.StudyQuestion;
+import oldClass.StudentProfile;
 
 public class ClassStudent {
 

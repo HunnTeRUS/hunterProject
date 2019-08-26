@@ -6,8 +6,6 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.*;
 
-import oldClass.ClassStudent;
-
 public class StudyEnglish {
 
 	public static CreateQuestions questions = new CreateQuestions();
