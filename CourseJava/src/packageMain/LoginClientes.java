@@ -178,12 +178,11 @@ public class LoginClientes {
 				enviarDados.setForeground(Color.RED);
 
 				setSenha(String.valueOf(campoSenha.getPassword()));
-				// setEmail(campoEmail.getText());
 				setUsuario(campoUsuario.getText());
 
 				try {
 					Class.forName(DRIVER);
-					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+					Connection conecta = DriverManager.getConnection(URL, "root", "");
 
 					String sql;
 
@@ -198,14 +197,13 @@ public class LoginClientes {
 								|| (getUsuario().equals(rs.getString("email"))))
 								&& (getSenha().equals(rs.getString("senha"))))) {
 							if (rs.getInt("adm") == 1) {
-								// objAdm.mainMethod();
 								new Thread(new Runnable() {
 									public void run() {
 
 										try {
 											Thread.sleep(2000);
 											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-											MainPageAdm tstAdm = new MainPageAdm();	
+											MainPageAdm tstAdm = new MainPageAdm();
 											tstAdm.all();
 											LoginClientes.framePrincipalLogin.dispose();
 										} catch (InterruptedException e) {
@@ -231,12 +229,10 @@ public class LoginClientes {
 					rs.close();
 					stmt.close();
 
-				} catch (SQLException error) {
-					System.out.println(error.toString());
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				}
+				} catch (Exception error) {
+					JOptionPane.showMessageDialog(null, "Our server is going through problems, try again");
 
+			}
 			}
 		});
 

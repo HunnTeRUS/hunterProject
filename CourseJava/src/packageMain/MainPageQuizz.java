@@ -301,6 +301,24 @@ public class MainPageQuizz extends JFrame {
 				actionsMath();
 			}
 		});
+		
+		englishButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelMath.setVisible(false);
+				panelEnglish.setVisible(true);
+				panelProgramming.setVisible(false);
+				chosenQuizz.setText("English Quizz");
+			}
+		});
+		
+		programmingButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelEnglish.setVisible(false);
+				panelMath.setVisible(false);
+				panelProgramming.setVisible(true);
+				chosenQuizz.setText("Programming Quizz");
+			}
+		});
 	}
 	
 	public void methodReceiverMath() {
