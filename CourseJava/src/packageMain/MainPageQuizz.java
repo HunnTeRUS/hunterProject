@@ -146,7 +146,7 @@ public class MainPageQuizz extends JFrame {
 		btnExit.setFont(UIManager.getFont("TextArea.font"));
 		
 		buttonSeparatorMath.setEnabled(false);
-		buttonSeparatorMath.setBounds(345, 156, 15, 51);
+		buttonSeparatorMath.setBounds(344, 156, 15, 51);
 		buttonSeparatorMath.setBackground(new Color(54, 33, 89));
 		panel1.add(buttonSeparatorMath);
 		
@@ -155,12 +155,12 @@ public class MainPageQuizz extends JFrame {
 		buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
 
 		buttonSeparatorProgramming.setEnabled(false);
-		buttonSeparatorProgramming.setBounds(345, 218, 15, 50);
+		buttonSeparatorProgramming.setBounds(344, 218, 15, 50);
 		buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
 		
 		panel1.add(buttonSeparatorProgramming);
 		buttonSeparatorEnglish.setEnabled(false);
-		buttonSeparatorEnglish.setBounds(345, 279, 15, 51);
+		buttonSeparatorEnglish.setBounds(344, 279, 15, 51);
 		buttonSeparatorEnglish.setBackground(new Color(54, 33, 89));
 		
 		panel1.add(buttonSeparatorEnglish);
@@ -183,7 +183,7 @@ public class MainPageQuizz extends JFrame {
 		panel3.add(chosenQuizz);
 
 		panelQuizz.setBounds(-3, 70, 786, 557);
-		panelQuizz.setBackground(new Color(176, 196, 222));
+		panelQuizz.setBackground(UIManager.getColor("Button.focus"));
 		panel2.add(panelQuizz);
 		panelQuizz.setLayout(null);
 
@@ -227,10 +227,12 @@ public class MainPageQuizz extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panelQuizz.setVisible(true);
 				chosenQuizz.setText("Math Quizz");
-				buttonSeparatorMath.setBackground(new Color(176, 196, 222));
-				mathButton.setBackground(new Color(176, 196, 222));
-				buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
-				mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
+				buttonSeparatorMath.setBackground(new Color(102, 102, 153));
+				mathButton.setBackground(new Color(102, 102, 153));
+				panelQuizz.setBackground(new Color(102, 102, 153));
+				mathButton.setForeground(Color.WHITE);
+				buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 153), 1, true));
+				mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 153), 1, true));
 				
 				buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
 				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
@@ -254,10 +256,11 @@ public class MainPageQuizz extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panelQuizz.setVisible(true);
 				chosenQuizz.setText("English Quizz");
-				buttonSeparatorEnglish.setBackground(new Color(176, 196, 222));
-				englishButton.setBackground(new Color(176, 196, 222));
-				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
-				englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
+				buttonSeparatorEnglish.setBackground(new Color(32, 178, 170));
+				englishButton.setBackground(new Color(32, 178, 170));
+				panelQuizz.setBackground(new Color(32, 178, 170));
+				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 178, 170), 1, true));
+				englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 178, 170), 1, true));
 				
 				buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
 				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
@@ -279,10 +282,11 @@ public class MainPageQuizz extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panelQuizz.setVisible(true);
 				chosenQuizz.setText("Programming Quizz");
-				buttonSeparatorProgramming.setBackground(new Color(176, 196, 222));
-				programmingButton.setBackground(new Color(176, 196, 222));
-				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
-				programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
+				buttonSeparatorProgramming.setBackground(new Color(97, 202, 144));
+				programmingButton.setBackground(new Color(97, 202, 144));
+				panelQuizz.setBackground(new Color(97, 202, 144));
+				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(97, 202, 144), 1, true));
+				programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(97, 202, 144), 1, true));
 				
 				buttonSeparatorEnglish.setBackground(new Color(54, 33, 89));
 				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
@@ -359,7 +363,6 @@ public class MainPageQuizz extends JFrame {
 				System.err.println("Error:" + error.toString());
 
 			}
-
 		}
 	}
 
@@ -477,7 +480,7 @@ public class MainPageQuizz extends JFrame {
 					methodReceiverMath();
 				}
 			});
-
+			db.close();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
@@ -660,7 +663,7 @@ public class MainPageQuizz extends JFrame {
 					methodReceiverEnglish();
 				}
 			});
-
+			db.close();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
@@ -843,7 +846,7 @@ public class MainPageQuizz extends JFrame {
 					methodReceiverProgramming();
 				}
 			});
-
+			db.close();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
