@@ -40,7 +40,7 @@ public class MainPageQuizz extends JFrame {
 	JButton programmingButton = new JButton("Programming");
 	JButton englishButton = new JButton("English");
 	JButton btnExit = new JButton("");
-	JLabel chosenQuizz = new JLabel("Test");
+	JLabel chosenQuizz = new JLabel("Quizz");
 	JButton continueQuestionsMath = new JButton("Next");
 	JTextArea question = new JTextArea();
 	JButton answer1 = new JButton("");
@@ -97,7 +97,6 @@ public class MainPageQuizz extends JFrame {
 	}
 
 	public void MainQuizz() {
-	//public MainPageQuizz() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1137, 656);
 		setVisible(true);
@@ -119,13 +118,13 @@ public class MainPageQuizz extends JFrame {
 		labelSwitch.setBounds(29, 77, 293, 56);
 		panel1.add(labelSwitch);
 
-		mathButton.setBackground(SystemColor.scrollbar);
+		mathButton.setBackground(Color.LIGHT_GRAY);
 		mathButton.setIcon(new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_math_25px.png")));
 		mathButton.setFont(UIManager.getFont("TextArea.font"));
 		mathButton.setBounds(10, 156, 339, 51);
 		panel1.add(mathButton);
 
-		programmingButton.setBackground(SystemColor.scrollbar);
+		programmingButton.setBackground(Color.LIGHT_GRAY);
 		programmingButton.setIcon(new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_code_25px.png")));
 		programmingButton
 				.setSelectedIcon(new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_code_25px.png")));
@@ -133,7 +132,7 @@ public class MainPageQuizz extends JFrame {
 		programmingButton.setBounds(10, 218, 339, 50);
 		panel1.add(programmingButton);
 
-		englishButton.setBackground(SystemColor.scrollbar);
+		englishButton.setBackground(Color.LIGHT_GRAY);
 		englishButton.setIcon(
 				new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_language_filled_25px.png")));
 		englishButton.setFont(UIManager.getFont("TextArea.font"));
@@ -156,7 +155,7 @@ public class MainPageQuizz extends JFrame {
 		buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
 
 		buttonSeparatorProgramming.setEnabled(false);
-		buttonSeparatorProgramming.setBounds(345, 218, 15, 51);
+		buttonSeparatorProgramming.setBounds(345, 218, 15, 50);
 		buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
 		
 		panel1.add(buttonSeparatorProgramming);
@@ -232,6 +231,20 @@ public class MainPageQuizz extends JFrame {
 				mathButton.setBackground(new Color(176, 196, 222));
 				buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
 				mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
+				
+				buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
+				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				buttonSeparatorEnglish.setBackground(new Color(54, 33, 89));
+				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				englishButton.setBackground(Color.LIGHT_GRAY);
+				programmingButton.setBackground(Color.LIGHT_GRAY);
+
+
 				methodReceiverMath();
 				actionsMath();
 			}
@@ -241,6 +254,22 @@ public class MainPageQuizz extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panelQuizz.setVisible(true);
 				chosenQuizz.setText("English Quizz");
+				buttonSeparatorEnglish.setBackground(new Color(176, 196, 222));
+				englishButton.setBackground(new Color(176, 196, 222));
+				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
+				englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
+				
+				buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
+				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				buttonSeparatorMath.setBackground(new Color(54, 33, 89));
+				buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				mathButton.setBackground(Color.LIGHT_GRAY);
+				programmingButton.setBackground(Color.LIGHT_GRAY);
 				methodReceiverEnglish();
 				actionsEnglish();
 			}
@@ -250,6 +279,23 @@ public class MainPageQuizz extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panelQuizz.setVisible(true);
 				chosenQuizz.setText("Programming Quizz");
+				buttonSeparatorProgramming.setBackground(new Color(176, 196, 222));
+				programmingButton.setBackground(new Color(176, 196, 222));
+				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
+				programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(176, 196, 222), 1, true));
+				
+				buttonSeparatorEnglish.setBackground(new Color(54, 33, 89));
+				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				buttonSeparatorMath.setBackground(new Color(54, 33, 89));
+				buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
+				
+				mathButton.setBackground(Color.LIGHT_GRAY);
+				englishButton.setBackground(Color.LIGHT_GRAY);
+				
 				methodReceiverProgramming();
 				actionsProgramming();
 			}
