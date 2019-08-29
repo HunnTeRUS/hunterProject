@@ -182,7 +182,7 @@ public class LoginClientes {
 
 				try {
 					Class.forName(DRIVER);
-					Connection conecta = DriverManager.getConnection(URL, "root", "");
+					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
 
 					String sql;
 
@@ -230,8 +230,9 @@ public class LoginClientes {
 					stmt.close();
 
 				} catch (Exception error) {
-					JOptionPane.showMessageDialog(null, "Our server is going through problems, try again");
-
+					JOptionPane.showMessageDialog(null, "Our server is going through problems, try again later.");
+					enviarDados.setText("Login");
+					enviarDados.setForeground(Color.BLACK);
 			}
 			}
 		});

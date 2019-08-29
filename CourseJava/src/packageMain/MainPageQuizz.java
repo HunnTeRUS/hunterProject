@@ -18,6 +18,7 @@ import java.sql.*;
 import java.util.Random;
 
 import javax.swing.JTextArea;
+import javax.swing.Box;
 
 public class MainPageQuizz extends JFrame {
 	Random rand = new Random();
@@ -46,22 +47,8 @@ public class MainPageQuizz extends JFrame {
 	JButton answer2Math = new JButton("");
 	JButton answer3Math = new JButton("");
 	JButton answer4Math = new JButton("");
-	JButton continueQuestionsEnglish = new JButton("Next");
-	JTextArea questionEnglish = new JTextArea();
-	JButton answer1English = new JButton("");
-	JButton answer2English = new JButton("");
-	JButton answer3English = new JButton("");
-	JButton answer4English = new JButton("");
-	JButton continueQuestionsProgramming = new JButton("Next");
-	JTextArea questionProgramming = new JTextArea();
-	JButton answer1Programming = new JButton("");
-	JButton answer2Programming = new JButton("");
-	JButton answer3Programming = new JButton("");
-	JButton answer4Programming = new JButton("");
 
 	JPanel panel3 = new JPanel();
-	JPanel panelEnglish = new JPanel();
-	JPanel panelProgramming = new JPanel();
 	JPanel panelMath = new JPanel();
 	JPanel panel2 = new JPanel();
 	JPanel panel1 = new JPanel();
@@ -70,7 +57,7 @@ public class MainPageQuizz extends JFrame {
 	public void mainMethodQuizz() {
 		questionsUser();
 		MainQuizz();
-	}
+		}
 
 	public void questionsUser() {
 		try {
@@ -107,7 +94,7 @@ public class MainPageQuizz extends JFrame {
 	}
 
 	public void MainQuizz() {
-// public MainPageQuizz() {
+	//public MainPageQuizz() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1137, 656);
 		setVisible(true);
@@ -186,13 +173,11 @@ public class MainPageQuizz extends JFrame {
 		panelMath.add(continueQuestionsMath);
 		questionMath.setText("");
 		questionMath.setBackground(UIManager.getColor("Button.darkShadow"));
-		questionProgramming.setBackground(UIManager.getColor("Button.darkShadow"));
-		questionEnglish.setBackground(UIManager.getColor("Button.darkShadow"));
 //questionMath.setBackground(new Color(54, 33, 89));
 		questionMath.setRows(20);
 		questionMath.setLineWrap(true);
 		questionMath.setEnabled(false);
-		questionMath.setBounds(10, 11, 755, 266);
+		questionMath.setBounds(10, 12, 755, 266);
 		questionMath.setFont(font1);
 		panelMath.add(questionMath);
 
@@ -216,88 +201,9 @@ public class MainPageQuizz extends JFrame {
 		answer4Math.setBounds(426, 368, 339, 51);
 		panelMath.add(answer4Math);
 
-		panelEnglish.setLayout(null);
-		panelEnglish.setBackground(new Color(176, 196, 222));
-		panelEnglish.setBounds(0, 0, 775, 557);
-		panel2.add(panelEnglish);
-
-		continueQuestionsEnglish.setFont(UIManager.getFont("TextArea.font"));
-		continueQuestionsEnglish.setBackground(SystemColor.scrollbar);
-		continueQuestionsEnglish.setBounds(286, 509, 215, 37);
-		panelEnglish.add(continueQuestionsEnglish);
-
-		questionEnglish.setRows(20);
-		questionEnglish.setLineWrap(true);
-		questionEnglish.setForeground(Color.BLACK);
-		questionEnglish.setEnabled(false);
-		questionEnglish.setBounds(10, 11, 755, 266);
-		questionEnglish.setFont(font1);
-		panelEnglish.add(questionEnglish);
-
-		answer1English.setFont(UIManager.getFont("TextArea.font"));
-		answer1English.setBackground(SystemColor.scrollbar);
-		answer1English.setBounds(10, 296, 339, 51);
-		panelEnglish.add(answer1English);
-
-		answer2English.setFont(UIManager.getFont("TextArea.font"));
-		answer2English.setBackground(SystemColor.scrollbar);
-		answer2English.setBounds(10, 368, 339, 51);
-		panelEnglish.add(answer2English);
-
-		answer3English.setFont(UIManager.getFont("TextArea.font"));
-		answer3English.setBackground(SystemColor.scrollbar);
-		answer3English.setBounds(426, 296, 339, 51);
-		panelEnglish.add(answer3English);
-
-		answer4English.setFont(UIManager.getFont("TextArea.font"));
-		answer4English.setBackground(SystemColor.scrollbar);
-		answer4English.setBounds(426, 368, 339, 51);
-		panelEnglish.add(answer4English);
-
-		panelProgramming.setLayout(null);
-		panelProgramming.setBackground(new Color(176, 196, 222));
-		panelProgramming.setBounds(-3, 70, 786, 557);
-
-		panel2.add(panelProgramming);
-
-		continueQuestionsProgramming.setFont(UIManager.getFont("TextArea.font"));
-		continueQuestionsProgramming.setBackground(SystemColor.scrollbar);
-		continueQuestionsProgramming.setBounds(286, 509, 215, 37);
-		panelProgramming.add(continueQuestionsProgramming);
-
-		questionProgramming.setRows(20);
-		questionProgramming.setLineWrap(true);
-		questionProgramming.setForeground(Color.BLACK);
-		questionProgramming.setEnabled(false);
-		questionProgramming.setBounds(10, 11, 755, 266);
-		questionProgramming.setFont(font1);
-		panelProgramming.add(questionProgramming);
-
-		answer1Programming.setFont(UIManager.getFont("TextArea.font"));
-		answer1Programming.setBackground(SystemColor.scrollbar);
-		answer1Programming.setBounds(10, 296, 339, 51);
-		panelProgramming.add(answer1Programming);
-
-		answer2Programming.setFont(UIManager.getFont("TextArea.font"));
-		answer2Programming.setBackground(SystemColor.scrollbar);
-		answer2Programming.setBounds(10, 368, 339, 51);
-		panelProgramming.add(answer2Programming);
-
-		answer3Programming.setFont(UIManager.getFont("TextArea.font"));
-		answer3Programming.setBackground(SystemColor.scrollbar);
-		answer3Programming.setBounds(426, 296, 339, 51);
-		panelProgramming.add(answer3Programming);
-
-		answer4Programming.setFont(UIManager.getFont("TextArea.font"));
-		answer4Programming.setBackground(SystemColor.scrollbar);
-		answer4Programming.setBounds(426, 368, 339, 51);
-		panelProgramming.add(answer4Programming);
-
 		mathButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEnglish.setVisible(false);
 				panelMath.setVisible(true);
-				panelProgramming.setVisible(false);
 				chosenQuizz.setText("Math Quizz");
 				methodReceiverMath();
 				actionsMath();
@@ -306,9 +212,7 @@ public class MainPageQuizz extends JFrame {
 
 		englishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelMath.setVisible(false);
-				panelEnglish.setVisible(true);
-				panelProgramming.setVisible(false);
+				panelMath.setVisible(true);
 				chosenQuizz.setText("English Quizz");
 				methodReceiverEnglish();
 				actionsEnglish();
@@ -317,9 +221,7 @@ public class MainPageQuizz extends JFrame {
 
 		programmingButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelEnglish.setVisible(false);
-				panelMath.setVisible(false);
-				panelProgramming.setVisible(true);
+				panelMath.setVisible(true);
 				chosenQuizz.setText("Programming Quizz");
 				methodReceiverProgramming();
 				actionsProgramming();
@@ -540,24 +442,24 @@ public class MainPageQuizz extends JFrame {
 					int[] aux = new int[4];
 
 					aleatorio = rand.nextInt(4);
-					answer1English.setText(String.valueOf(vetor[aleatorio]));
+					answer1Math.setText(String.valueOf(vetor[aleatorio]));
 					aux[0] = aleatorio;
 
 					while (aux[0] == aleatorio)
 						aleatorio = rand.nextInt(4);
-					answer2English.setText(String.valueOf(vetor[aleatorio]));
+					answer2Math.setText(String.valueOf(vetor[aleatorio]));
 					aux[1] = aleatorio;
 
 					while (aux[0] == aleatorio || aux[1] == aleatorio)
 						aleatorio = rand.nextInt(4);
-					answer3English.setText(String.valueOf(vetor[aleatorio]));
+					answer3Math.setText(String.valueOf(vetor[aleatorio]));
 					aux[2] = aleatorio;
 
 					while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
 						aleatorio = rand.nextInt(4);
-					answer4English.setText(String.valueOf(vetor[aleatorio]));
+					answer4Math.setText(String.valueOf(vetor[aleatorio]));
 
-					questionEnglish
+					questionMath
 							.setText("Question " + lenghtEnglish + " - " + String.valueOf(rs.getString("question")));
 
 					az++;
@@ -582,69 +484,69 @@ public class MainPageQuizz extends JFrame {
 			while (lenght.next())
 				explanation = String.valueOf(lenght.getString("explanation"));
 
-			answer1English.addActionListener(new ActionListener() {
+			answer1Math.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						lenghtEnglish++;
-						if (answer1English.getText().equals(vetor[0])) {
+						if (answer1Math.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
 						} else {
-							questionEnglish.setText("Explanation of this question: " + explanation);
-							questionEnglish.setForeground(Color.RED);
+							questionMath.setText("Explanation of this question: " + explanation);
+							questionMath.setForeground(Color.RED);
 						}
 
-						answer1English.setEnabled(false);
-						answer2English.setEnabled(false);
-						answer3English.setEnabled(false);
-						answer4English.setEnabled(false);
-						continueQuestionsEnglish.setEnabled(true);
+						answer1Math.setEnabled(false);
+						answer2Math.setEnabled(false);
+						answer3Math.setEnabled(false);
+						answer4Math.setEnabled(false);
+						continueQuestionsMath.setEnabled(true);
 					} catch (Exception e1) {
 						e1.getMessage();
 					}
 				}
 			});
 
-			answer2English.addActionListener(new ActionListener() {
+			answer2Math.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						lenghtEnglish++;
-						if (answer2English.getText().equals(vetor[0])) {
+						if (answer2Math.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
 						} else {
-							questionEnglish.setText("Explanation of this question: " + explanation);
-							questionEnglish.setForeground(Color.RED);
+							questionMath.setText("Explanation of this question: " + explanation);
+							questionMath.setForeground(Color.RED);
 
 // objMath.explanationQuestion(i);
 						}
 
-						answer1English.setEnabled(false);
-						answer2English.setEnabled(false);
-						answer3English.setEnabled(false);
-						answer4English.setEnabled(false);
-						continueQuestionsEnglish.setEnabled(true);
+						answer1Math.setEnabled(false);
+						answer2Math.setEnabled(false);
+						answer3Math.setEnabled(false);
+						answer4Math.setEnabled(false);
+						continueQuestionsMath.setEnabled(true);
 					} catch (Exception e1) {
 						e1.getMessage();
 					}
 				}
 			});
 
-			answer3English.addActionListener(new ActionListener() {
+			answer3Math.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						lenghtEnglish++;
-						if (answer3English.getText().equals(vetor[0])) {
+						if (answer3Math.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
 						} else {
-							questionEnglish.setText("Explanation of this question: " + explanation);
-							questionEnglish.setForeground(Color.RED);
+							questionMath.setText("Explanation of this question: " + explanation);
+							questionMath.setForeground(Color.RED);
 
 // objMath.explanationQuestion(i);
 						}
-						answer1English.setEnabled(false);
-						answer2English.setEnabled(false);
-						answer3English.setEnabled(false);
-						answer4English.setEnabled(false);
-						continueQuestionsEnglish.setEnabled(true);
+						answer1Math.setEnabled(false);
+						answer2Math.setEnabled(false);
+						answer3Math.setEnabled(false);
+						answer4Math.setEnabled(false);
+						continueQuestionsMath.setEnabled(true);
 					} catch (Exception e1) {
 						e1.getMessage();
 					}
@@ -664,11 +566,11 @@ public class MainPageQuizz extends JFrame {
 
 // objMath.explanationQuestion(i);
 						}
-						answer1English.setEnabled(false);
-						answer2English.setEnabled(false);
-						answer3English.setEnabled(false);
-						answer4English.setEnabled(false);
-						continueQuestionsEnglish.setEnabled(true);
+						answer1Math.setEnabled(false);
+						answer2Math.setEnabled(false);
+						answer3Math.setEnabled(false);
+						answer4Math.setEnabled(false);
+						continueQuestionsMath.setEnabled(true);
 					} catch (Exception e1) {
 						e1.getMessage();
 					}
@@ -677,11 +579,11 @@ public class MainPageQuizz extends JFrame {
 
 			continueQuestionsMath.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					answer1English.setEnabled(true);
-					answer2English.setEnabled(true);
-					answer3English.setEnabled(true);
-					answer4English.setEnabled(true);
-					continueQuestionsEnglish.setEnabled(false);
+					answer1Math.setEnabled(true);
+					answer2Math.setEnabled(true);
+					answer3Math.setEnabled(true);
+					answer4Math.setEnabled(true);
+					continueQuestionsMath.setEnabled(false);
 					methodReceiverEnglish();
 				}
 			});
@@ -723,24 +625,24 @@ public class MainPageQuizz extends JFrame {
 					int[] aux = new int[4];
 
 					aleatorio = rand.nextInt(4);
-					answer1Programming.setText(String.valueOf(vetor[aleatorio]));
+					answer1Math.setText(String.valueOf(vetor[aleatorio]));
 					aux[0] = aleatorio;
 
 					while (aux[0] == aleatorio)
 						aleatorio = rand.nextInt(4);
-					answer2Programming.setText(String.valueOf(vetor[aleatorio]));
+					answer2Math.setText(String.valueOf(vetor[aleatorio]));
 					aux[1] = aleatorio;
 
 					while (aux[0] == aleatorio || aux[1] == aleatorio)
 						aleatorio = rand.nextInt(4);
-					answer3Programming.setText(String.valueOf(vetor[aleatorio]));
+					answer3Math.setText(String.valueOf(vetor[aleatorio]));
 					aux[2] = aleatorio;
 
 					while (aux[0] == aleatorio || aux[1] == aleatorio || aux[2] == aleatorio)
 						aleatorio = rand.nextInt(4);
-					answer4Programming.setText(String.valueOf(vetor[aleatorio]));
+					answer4Math.setText(String.valueOf(vetor[aleatorio]));
 
-					questionProgramming.setText(
+					questionMath.setText(
 							"Question " + lenghtProgramming + " - " + String.valueOf(rs.getString("question")));
 
 					az++;
@@ -765,106 +667,106 @@ public class MainPageQuizz extends JFrame {
 			while (lenght.next())
 				explanation = String.valueOf(lenght.getString("explanation"));
 
-			answer1Programming.addActionListener(new ActionListener() {
+			answer1Math.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						lenghtProgramming++;
-						if (answer1Programming.getText().equals(vetor[0])) {
+						if (answer1Math.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
 						} else {
-							questionProgramming.setText("Explanation of this question: " + explanation);
-							questionProgramming.setForeground(Color.RED);
+							questionMath.setText("Explanation of this question: " + explanation);
+							questionMath.setForeground(Color.RED);
 						}
 
-						answer1Programming.setEnabled(false);
-						answer2Programming.setEnabled(false);
-						answer3Programming.setEnabled(false);
-						answer4Programming.setEnabled(false);
-						continueQuestionsProgramming.setEnabled(true);
+						answer1Math.setEnabled(false);
+						answer2Math.setEnabled(false);
+						answer3Math.setEnabled(false);
+						answer4Math.setEnabled(false);
+						continueQuestionsMath.setEnabled(true);
 					} catch (Exception e1) {
 						e1.getMessage();
 					}
 				}
 			});
 
-			answer2Programming.addActionListener(new ActionListener() {
+			answer2Math.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						lenghtProgramming++;
-						if (answer2Programming.getText().equals(vetor[0])) {
+						if (answer2Math.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
 						} else {
-							questionProgramming.setText("Explanation of this question: " + explanation);
-							questionProgramming.setForeground(Color.RED);
+							questionMath.setText("Explanation of this question: " + explanation);
+							questionMath.setForeground(Color.RED);
 
 // objMath.explanationQuestion(i);
 						}
 
-						answer1Programming.setEnabled(false);
-						answer2Programming.setEnabled(false);
-						answer3Programming.setEnabled(false);
-						answer4Programming.setEnabled(false);
-						continueQuestionsProgramming.setEnabled(true);
+						answer1Math.setEnabled(false);
+						answer2Math.setEnabled(false);
+						answer3Math.setEnabled(false);
+						answer4Math.setEnabled(false);
+						continueQuestionsMath.setEnabled(true);
 					} catch (Exception e1) {
 						e1.getMessage();
 					}
 				}
 			});
 
-			answer3Programming.addActionListener(new ActionListener() {
+			answer3Math.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						lenghtProgramming++;
-						if (answer3Programming.getText().equals(vetor[0])) {
+						if (answer3Math.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
 						} else {
-							questionProgramming.setText("Explanation of this question: " + explanation);
-							questionProgramming.setForeground(Color.RED);
+							questionMath.setText("Explanation of this question: " + explanation);
+							questionMath.setForeground(Color.RED);
 
 // objMath.explanationQuestion(i);
 						}
-						answer1Programming.setEnabled(false);
-						answer2Programming.setEnabled(false);
-						answer3Programming.setEnabled(false);
-						answer4Programming.setEnabled(false);
-						continueQuestionsProgramming.setEnabled(true);
+						answer1Math.setEnabled(false);
+						answer2Math.setEnabled(false);
+						answer3Math.setEnabled(false);
+						answer4Math.setEnabled(false);
+						continueQuestionsMath.setEnabled(true);
 					} catch (Exception e1) {
 						e1.getMessage();
 					}
 				}
 			});
 
-			answer4Programming.addActionListener(new ActionListener() {
+			answer4Math.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						lenghtProgramming++;
-						if (answer4Programming.getText().equals(vetor[0])) {
+						if (answer4Math.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
 						} else {
 							JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
-							questionProgramming.setText("Explanation of this question: " + explanation);
-							questionProgramming.setForeground(Color.RED);
+							questionMath.setText("Explanation of this question: " + explanation);
+							questionMath.setForeground(Color.RED);
 
 // objMath.explanationQuestion(i);
 						}
-						answer1Programming.setEnabled(false);
-						answer2Programming.setEnabled(false);
-						answer3Programming.setEnabled(false);
-						answer4Programming.setEnabled(false);
-						continueQuestionsProgramming.setEnabled(true);
+						answer1Math.setEnabled(false);
+						answer2Math.setEnabled(false);
+						answer3Math.setEnabled(false);
+						answer4Math.setEnabled(false);
+						continueQuestionsMath.setEnabled(true);
 					} catch (Exception e1) {
 						e1.getMessage();
 					}
 				}
 			});
 
-			continueQuestionsProgramming.addActionListener(new ActionListener() {
+			continueQuestionsMath.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					answer1Programming.setEnabled(true);
-					answer2Programming.setEnabled(true);
-					answer3Programming.setEnabled(true);
-					answer4Programming.setEnabled(true);
-					continueQuestionsProgramming.setEnabled(false);
+					answer1Math.setEnabled(true);
+					answer2Math.setEnabled(true);
+					answer3Math.setEnabled(true);
+					answer4Math.setEnabled(true);
+					continueQuestionsMath.setEnabled(false);
 					methodReceiverProgramming();
 				}
 			});
@@ -873,5 +775,4 @@ public class MainPageQuizz extends JFrame {
 			e2.printStackTrace();
 		}
 	}
-
 }
