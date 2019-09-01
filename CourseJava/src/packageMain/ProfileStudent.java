@@ -71,8 +71,8 @@ public class ProfileStudent extends JFrame {
 		this.tamanho = tamanho;
 	}
 
-	// public ProfileStudent() {
-	public void ProfileStudentMethod() {
+	 public ProfileStudent() {
+	//public void ProfileStudentMethod() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 945, 638);
 		contentPane = new JPanel();
@@ -146,7 +146,7 @@ public class ProfileStudent extends JFrame {
 		nameLabel.setBounds(270, 46, 67, 30);
 		panel_1.add(nameLabel);
 
-		JLabel ageLabel = new JLabel("Age:");
+		JLabel ageLabel = new JLabel("Birthday:");
 		ageLabel.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		ageLabel.setBounds(270, 105, 101, 30);
 		panel_1.add(ageLabel);
@@ -292,7 +292,7 @@ public class ProfileStudent extends JFrame {
 
 		JSeparator separator_8 = new JSeparator();
 		separator_8.setBackground(Color.BLACK);
-		separator_8.setBounds(347, 133, 243, 2);
+		separator_8.setBounds(375, 133, 243, 2);
 		panel_1.add(separator_8);
 
 		JSeparator separator_9 = new JSeparator();
@@ -307,7 +307,7 @@ public class ProfileStudent extends JFrame {
 
 		ageField = new JTextField();
 		ageField.setColumns(10);
-		ageField.setBounds(347, 105, 243, 27);
+		ageField.setBounds(375, 105, 243, 27);
 		panel_1.add(ageField);
 
 		admStudentField = new JTextField();
@@ -384,8 +384,9 @@ public class ProfileStudent extends JFrame {
 				InsertInfoProfile info = new InsertInfoProfile();
 
 				//Integer.parseInt(phoneField.getText()),
+				int x = Integer.parseInt(phoneField.getText());
 				
-				info.insertData(nameField.getText(), ageField.getText(), Integer.parseUnsignedInt(phoneField.getText()), githubField.getText(), facebookField.getText(),
+				info.insertData(nameField.getText(), ageField.getText(), x, githubField.getText(), facebookField.getText(),
 						instagramField.getText(), LoginClientes.getUsuario());
 			}
 		});
@@ -399,7 +400,7 @@ public class ProfileStudent extends JFrame {
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
 
-			if (tamanho >= 12)
+			if (tamanho > 9)
 				super.insertString(arg0, arg1.replaceAll("[0123456789 aA-zZ @#!$%&*_=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else
