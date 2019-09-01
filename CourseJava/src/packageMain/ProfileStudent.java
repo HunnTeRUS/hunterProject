@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,10 +22,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
+
+import com.mysql.cj.jdbc.Blob;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 
@@ -344,6 +352,9 @@ public class ProfileStudent extends JFrame {
 		mathRecordField.setText(" ");
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
+		
+		if(loadImage() != null)
+		labelPhoto.setIcon(new ImageIcon(loadImage()));
 
 		JButton updateInfo = new JButton("Update My Informations");
 		updateInfo.setFont(UIManager.getFont("TextArea.font"));
@@ -425,7 +436,7 @@ public class ProfileStudent extends JFrame {
 		fc.setDialogTitle("Insert picture (Preferred Size: 200x200px)");
 
 		int response = fc.showOpenDialog(fc);
-   
+
 		if (response == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
 
@@ -433,18 +444,15 @@ public class ProfileStudent extends JFrame {
 				if (db.getConnection()) {
 					FileInputStream input = new FileInputStream(file);
 					labelPhoto.setIcon(new ImageIcon(file.getPath()));
-					String SQL;
 					PreparedStatement stmt;
 
-					SQL = "UPDATE users SET photo = " + input + " where userr = otavio OR email = otavio;";
-					
-					stmt = db.con.prepareStatement(SQL);
-					
+					stmt = db.con
+							.prepareStatement("UPDATE users SET photo = ? where userr = '" + log.getUsuario() + "' OR email = '" + log.getUsuario() + "';");
+					stmt.setBinaryStream(1, input, (int) file.length());
 					stmt.executeUpdate();
 
 					db.close();
 					stmt.close();
-
 				}
 
 			}
@@ -453,6 +461,32 @@ public class ProfileStudent extends JFrame {
 				error.printStackTrace();
 			}
 		}
+	}
+
+	public byte[] loadImage() {
+		if (db.getConnection()) {
+			ResultSet rs;
+			PreparedStatement stmt;
+			byte[] imagem;
+
+			String SQL = "SELECT photo FROM users WHERE userr= '" + log.getUsuario() + "' or email= '" + log.getUsuario() + "' ";
+
+			try {
+				stmt = db.con.prepareStatement(SQL);
+				rs = stmt.executeQuery();
+				rs.next();
+
+				imagem = rs.getBytes("photo");
+				
+				return imagem;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		return null ;
 	}
 
 }

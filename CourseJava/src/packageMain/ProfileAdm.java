@@ -7,6 +7,9 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,6 +48,10 @@ public class ProfileAdm extends JFrame {
 	private JLabel labelPhoto = new JLabel();
 	
 	public int tamanho;
+	
+	LoginClientes log = new LoginClientes();
+	ConectionDB db = new ConectionDB();
+	
 
 	public int getTamanho() {
 		return tamanho;
@@ -351,6 +358,9 @@ public class ProfileAdm extends JFrame {
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
 		
+		if(loadImage() != null)
+			labelPhoto.setIcon(new ImageIcon(loadImage()));
+		
 		JButton updateInfo = new JButton("Update My Informations");
 		updateInfo.setFont(UIManager.getFont("TextArea.font"));
 		updateInfo.setBackground(SystemColor.windowBorder);
@@ -426,11 +436,51 @@ public class ProfileAdm extends JFrame {
 			File file = fc.getSelectedFile();
 
 			try {
-				labelPhoto.setIcon(new ImageIcon(file.getPath()));
+				if (db.getConnection()) {
+					FileInputStream input = new FileInputStream(file);
+					labelPhoto.setIcon(new ImageIcon(file.getPath()));
+					PreparedStatement stmt;
 
-			} catch (Exception error) {
+					stmt = db.con
+							.prepareStatement("UPDATE users SET photo = ? where userr = '" + log.getUsuario() + "' OR email = '" + log.getUsuario() + "';");
+					stmt.setBinaryStream(1, input, (int) file.length());
+					stmt.executeUpdate();
+
+					db.close();
+					stmt.close();
+				}
+
+			}
+
+			catch (Exception error) {
 				error.printStackTrace();
 			}
 		}
 	}
+
+	public byte[] loadImage() {
+		if (db.getConnection()) {
+			ResultSet rs;
+			PreparedStatement stmt;
+			byte[] imagem;
+
+			String SQL = "SELECT photo FROM users WHERE userr= '" + log.getUsuario() + "' or email= '" + log.getUsuario() + "' ";
+
+			try {
+				stmt = db.con.prepareStatement(SQL);
+				rs = stmt.executeQuery();
+				rs.next();
+
+				imagem = rs.getBytes("photo");
+				
+				return imagem;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		return null;}
+
 }
