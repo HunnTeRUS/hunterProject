@@ -81,7 +81,7 @@ public class ProfileStudent extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel panel = new JPanel();
+		JPanel panel = new JPanel(); 
 		panel.setBounds(0, 0, 945, 610);
 		contentPane.add(panel);
 		panel.setLayout(null);
