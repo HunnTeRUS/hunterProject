@@ -70,9 +70,10 @@ public class ProfileStudent extends JFrame {
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
 	}
-
-	 public ProfileStudent() {
-	//public void ProfileStudentMethod() {
+	
+	public void ProfileStudentMethod() {
+	 	setResizable(false);
+	 	setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 945, 638);
 		contentPane = new JPanel();
@@ -382,11 +383,8 @@ public class ProfileStudent extends JFrame {
 		updateInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InsertInfoProfile info = new InsertInfoProfile();
-
-				//Integer.parseInt(phoneField.getText()),
-				int x = Integer.parseInt(phoneField.getText());
 				
-				info.insertData(nameField.getText(), ageField.getText(), x, githubField.getText(), facebookField.getText(),
+				info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(), githubField.getText(), facebookField.getText(),
 						instagramField.getText(), LoginClientes.getUsuario());
 			}
 		});
@@ -400,7 +398,7 @@ public class ProfileStudent extends JFrame {
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
 
-			if (tamanho > 9)
+			if (tamanho > 13)
 				super.insertString(arg0, arg1.replaceAll("[0123456789 aA-zZ @#!$%&*_=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else

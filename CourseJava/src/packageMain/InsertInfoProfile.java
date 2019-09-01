@@ -8,7 +8,7 @@ public class InsertInfoProfile {
 	private String SQL;
 	private PreparedStatement stmt;
 
-	public boolean insertData(String name, String age, int phone, String github, String facebook, String instagram,
+	public boolean insertData(String name, String age, String phone, String github, String facebook, String instagram,
 			String user) {
 
 		if (db.getConnection()) {
@@ -31,7 +31,7 @@ public class InsertInfoProfile {
 				
 				SQL = "UPDATE users SET phone = ? WHERE userr=? OR email=?";
 				stmt = db.con.prepareStatement(SQL);
-				stmt.setInt(1, phone);
+				stmt.setString(1, phone);
 				stmt.setString(2, user);
 				stmt.setString(3, user);
 				
