@@ -33,7 +33,7 @@ public class LoginClientes {
 	JLabel labelusuario = new JLabel("User/Email: ");
 	JLabel labelsenha = new JLabel("Password: ");
 	// private JTextField campoEmail = new JTextField();
-	private JTextField campoUsuario = new JTextField();
+	JTextField campoUsuario = new JTextField();
 	private JPasswordField campoSenha = new JPasswordField();
 	private JButton enviarDados = new JButton("Login");
 	private JButton botaoCadastro = new JButton("No registration? click here!");
@@ -43,7 +43,7 @@ public class LoginClientes {
 	// Criando as variaveis com get e set
 	public String senha;
 	public String email;
-	public String usuario;
+	public static String usuario;
 	private String senhaDecriptada;
 	private byte[] senhaCriptografada;
 	private int c = 0;
@@ -80,12 +80,12 @@ public class LoginClientes {
 		this.senhaCriptografada = senhaCriptografada;
 	}
 
-	public String getUsuario() {
+	static public String getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	static public void setUsuario(String usuario) {
+		LoginClientes.usuario = usuario;
 	}
 
 	public String getSenhaDecriptada() {
@@ -160,7 +160,7 @@ public class LoginClientes {
 		labelusuario.setFont(new java.awt.Font("ink free", 1, 16));
 	}
 
-	private void manipulandoDados() {
+	public void manipulandoDados() {
 		RecSenha.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -172,11 +172,14 @@ public class LoginClientes {
 		enviarDados.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ProfileStudent stud = new ProfileStudent();
 				enviarDados.setText("Logging in...");
 				enviarDados.setForeground(Color.RED);
 
 				setSenha(String.valueOf(campoSenha.getPassword()));
 				setUsuario(campoUsuario.getText());
+				
+				stud.setUser(String.valueOf(getUsuario()));
 
 				try {
 					Class.forName(DRIVER);

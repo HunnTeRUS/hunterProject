@@ -442,7 +442,7 @@ public class ProfileAdm extends JFrame {
 					PreparedStatement stmt;
 
 					stmt = db.con
-							.prepareStatement("UPDATE users SET photo = ? where userr = '" + log.getUsuario() + "' OR email = '" + log.getUsuario() + "';");
+							.prepareStatement("UPDATE users SET photo = ? where userr = '" + LoginClientes.getUsuario() + "' OR email = '" + LoginClientes.getUsuario() + "';");
 					stmt.setBinaryStream(1, input, (int) file.length());
 					stmt.executeUpdate();
 
@@ -464,7 +464,7 @@ public class ProfileAdm extends JFrame {
 			PreparedStatement stmt;
 			byte[] imagem;
 
-			String SQL = "SELECT photo FROM users WHERE userr= '" + log.getUsuario() + "' or email= '" + log.getUsuario() + "' ";
+			String SQL = "SELECT photo FROM users WHERE userr= '" + LoginClientes.getUsuario() + "' or email= '" + LoginClientes.getUsuario() + "' ";
 
 			try {
 				stmt = db.con.prepareStatement(SQL);

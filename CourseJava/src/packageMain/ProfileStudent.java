@@ -52,6 +52,16 @@ public class ProfileStudent extends JFrame {
 	ConectionDB db = new ConectionDB();
 
 	public int tamanho;
+	
+	public String user;
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String usuario) {
+		this.user = usuario;
+	}
 
 	public int getTamanho() {
 		return tamanho;
@@ -353,6 +363,8 @@ public class ProfileStudent extends JFrame {
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
 		
+		System.out.println(LoginClientes.getUsuario());
+
 		if(loadImage() != null)
 		labelPhoto.setIcon(new ImageIcon(loadImage()));
 
@@ -446,8 +458,9 @@ public class ProfileStudent extends JFrame {
 					labelPhoto.setIcon(new ImageIcon(file.getPath()));
 					PreparedStatement stmt;
 
+					
 					stmt = db.con
-							.prepareStatement("UPDATE users SET photo = ? where userr = '" + log.getUsuario() + "' OR email = '" + log.getUsuario() + "';");
+							.prepareStatement("UPDATE users SET photo = ? where userr = '" + LoginClientes.getUsuario() + "' OR email = '" + LoginClientes.getUsuario()  + "';");
 					stmt.setBinaryStream(1, input, (int) file.length());
 					stmt.executeUpdate();
 
@@ -469,7 +482,7 @@ public class ProfileStudent extends JFrame {
 			PreparedStatement stmt;
 			byte[] imagem;
 
-			String SQL = "SELECT photo FROM users WHERE userr= '" + log.getUsuario() + "' or email= '" + log.getUsuario() + "' ";
+			String SQL = "SELECT photo FROM users WHERE userr= '" + LoginClientes.getUsuario()  + "' or email= '" + LoginClientes.getUsuario() + "' ";
 
 			try {
 				stmt = db.con.prepareStatement(SQL);
