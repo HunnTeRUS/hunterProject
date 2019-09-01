@@ -425,7 +425,7 @@ public class ProfileStudent extends JFrame {
 		fc.setDialogTitle("Insert picture (Preferred Size: 200x200px)");
 
 		int response = fc.showOpenDialog(fc);
-
+   
 		if (response == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
 

@@ -23,7 +23,7 @@ public class InsertInfoProfile {
 				stmt.close();
 				db.close();
 				return true;
-
+   
 			} catch (SQLException e) {
 				e.getMessage();
 			}
