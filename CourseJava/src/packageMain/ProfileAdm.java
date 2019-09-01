@@ -358,7 +358,7 @@ public class ProfileAdm extends JFrame {
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
 		
-		if(loadImage() != null)
+		if(loadImage() != null)  
 			labelPhoto.setIcon(new ImageIcon(loadImage()));
 		
 		JButton updateInfo = new JButton("Update My Informations");
