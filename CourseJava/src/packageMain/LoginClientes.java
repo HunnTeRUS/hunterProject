@@ -19,8 +19,6 @@ public class LoginClientes {
 	static LoginClientes objLogin = new LoginClientes();
 	static MainInterface objClient = new MainInterface();
 	public static CadastrarClientes objCadastrorCliente = new CadastrarClientes();
-	private static ClassAdm objAdm = new ClassAdm();
-	private static ClassStudent objStudent = new ClassStudent();
 	static ForgotPassword objPassword = new ForgotPassword();
 
 	// Criando os objetos visuais

@@ -19,10 +19,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.DropMode;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Dimension;
 import javax.swing.JSeparator;
 
 public class ProfileAdm extends JFrame {
@@ -49,11 +54,11 @@ public class ProfileAdm extends JFrame {
 		this.tamanho = tamanho;
 	}
 
+	
 	//public ProfileAdm() {
 	public void ProfileAdmMethod() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 940, 570);
-		setTitle("Adm Profile");
+		setBounds(100, 100, 945, 638);
 		contentPane = new JPanel();
 		setVisible(true);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -61,13 +66,13 @@ public class ProfileAdm extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 924, 531);
+		panel.setBounds(0, 0, 945, 610);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(new Color(54, 33, 89));
-		panel1.setBounds(0, 0, 268, 531);
+		panel1.setBounds(0, 0, 268, 614);
 		panel.add(panel1);
 		panel1.setLayout(null);
 		
@@ -75,47 +80,47 @@ public class ProfileAdm extends JFrame {
 		returnButton.setBackground(SystemColor.scrollbar);
 		returnButton.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_exit_sign_25px.png")));
 		returnButton.setFont(UIManager.getFont("TextArea.font"));
-		returnButton.setBounds(10, 451, 248, 33);
+		returnButton.setBounds(12, 549, 248, 33);
 		panel1.add(returnButton);
 		
 		JLabel lblMyProfile = new JLabel("My Profile");
 		lblMyProfile.setForeground(Color.WHITE);
 		lblMyProfile.setFont(new Font("Monospaced", Font.PLAIN, 19));
 		lblMyProfile.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMyProfile.setBounds(39, 23, 184, 83);
+		lblMyProfile.setBounds(40, 78, 184, 83);
 		panel1.add(lblMyProfile);
 		
 		JButton btnChangePassword = new JButton("Change Password");
 		btnChangePassword.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_show_password_25px_1.png")));
 		btnChangePassword.setFont(UIManager.getFont("TextArea.font"));
 		btnChangePassword.setBackground(SystemColor.scrollbar);
-		btnChangePassword.setBounds(10, 180, 248, 33);
+		btnChangePassword.setBounds(12, 219, 248, 33);
 		panel1.add(btnChangePassword);
 		
-		JButton btnIWannaBe = new JButton("Set a new Adm");
-		btnIWannaBe.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_administrator_25px.png")));
-		btnIWannaBe.setFont(UIManager.getFont("TextArea.font"));
-		btnIWannaBe.setBackground(SystemColor.scrollbar);
-		btnIWannaBe.setBounds(10, 224, 248, 33);
-		panel1.add(btnIWannaBe);
+		JButton buttonSetNewAdm = new JButton("Set a New Adm");
+		buttonSetNewAdm.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_administrator_25px.png")));
+		buttonSetNewAdm.setFont(UIManager.getFont("TextArea.font"));
+		buttonSetNewAdm.setBackground(SystemColor.scrollbar);
+		buttonSetNewAdm.setBounds(12, 276, 248, 33);
+		panel1.add(buttonSetNewAdm);
 		
 		JButton btnUpdateMyProfile = new JButton("Update My Picture");
 		btnUpdateMyProfile.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_unspalsh_25px.png")));
 		btnUpdateMyProfile.setFont(UIManager.getFont("TextArea.font"));
 		btnUpdateMyProfile.setBackground(SystemColor.scrollbar);
-		btnUpdateMyProfile.setBounds(10, 268, 248, 33);
+		btnUpdateMyProfile.setBounds(12, 332, 248, 33);
 		panel1.add(btnUpdateMyProfile);
 		
-		JButton btnAddNewQuestions = new JButton("Add new Questions");
-		btnAddNewQuestions.setIcon(new ImageIcon(ProfileAdm.class.getResource("/packageMain/icons8_school_25px.png")));
-		btnAddNewQuestions.setFont(UIManager.getFont("TextArea.font"));
-		btnAddNewQuestions.setBackground(SystemColor.scrollbar);
-		btnAddNewQuestions.setBounds(10, 312, 248, 33);
-		panel1.add(btnAddNewQuestions);
+		JButton adcQuestions = new JButton("Add New Questions");
+		adcQuestions.setIcon(new ImageIcon(ProfileAdm.class.getResource("/packageMain/icons8_school_25px.png")));
+		adcQuestions.setFont(UIManager.getFont("TextArea.font"));
+		adcQuestions.setBackground(SystemColor.windowBorder);
+		adcQuestions.setBounds(12, 387, 248, 33);
+		panel1.add(adcQuestions);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(169, 197, 248));
-		panel_1.setBounds(267, 0, 657, 531);
+		panel_1.setBounds(267, 0, 679, 614);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -141,7 +146,7 @@ public class ProfileAdm extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(54, 33, 89));
-		panel_2.setBounds(0, 230, 657, 169);
+		panel_2.setBounds(0, 231, 679, 169);
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -153,63 +158,59 @@ public class ProfileAdm extends JFrame {
 		
 		JLabel lblFacebook = new JLabel("Facebook:");
 		lblFacebook.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_facebook_25px.png")));
-		lblFacebook.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		lblFacebook.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		lblFacebook.setForeground(Color.WHITE);
-		lblFacebook.setBounds(56, 104, 133, 25);
+		lblFacebook.setBounds(56, 118, 133, 25);
 		panel_2.add(lblFacebook);
 		
 		JLabel lblPhone = new JLabel("Phone:");
 		lblPhone.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_phone_25px.png")));
 		lblPhone.setForeground(Color.WHITE);
-		lblPhone.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		lblPhone.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		lblPhone.setBounds(375, 68, 92, 25);
 		panel_2.add(lblPhone);
 		
 		JLabel lblWhatsapp = new JLabel("GitHub:");
 		lblWhatsapp.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_github_25px.png")));
 		lblWhatsapp.setForeground(Color.WHITE);
-		lblWhatsapp.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		lblWhatsapp.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		lblWhatsapp.setBounds(56, 68, 108, 25);
 		panel_2.add(lblWhatsapp);
 		
 		JLabel lblInstagram = new JLabel("Instagram:");
 		lblInstagram.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_instagram_new_25px.png")));
 		lblInstagram.setForeground(Color.WHITE);
-		lblInstagram.setFont(new Font("Monospaced", Font.PLAIN, 17));
-		lblInstagram.setBounds(363, 104, 133, 25);
+		lblInstagram.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		lblInstagram.setBounds(375, 118, 133, 25);
 		panel_2.add(lblInstagram);
 		
 		facebookField = new JTextField();
 		facebookField.setForeground(Color.WHITE);
 		facebookField.setHorizontalAlignment(SwingConstants.LEFT);
 		facebookField.setColumns(10);
-		facebookField.setBounds(184, 108, 108, 20);
+		facebookField.setBounds(184, 117, 108, 20);
 		panel_2.add(facebookField);
 		
 		phoneField = new JTextField();
 		phoneField.setForeground(Color.WHITE);
 		phoneField.setColumns(10);
-		phoneField.setBounds(506, 72, 108, 20);
+		phoneField.setBounds(510, 67, 108, 20);
 		panel_2.add(phoneField);
 		
 		instagramField = new JTextField();
 		instagramField.setForeground(Color.WHITE);
 		instagramField.setColumns(10);
-		instagramField.setBounds(506, 108, 108, 20);
+		instagramField.setBounds(510, 117, 108, 20);
 		panel_2.add(instagramField);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(317, 42, 40, 2);
-		panel_2.add(separator);
-		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(184, 127, 108, 2);
+		separator_1.setBounds(184, 141, 108, 2);
 		panel_2.add(separator_1);
 		
 		githubField = new JTextField();
 		githubField.setForeground(Color.WHITE);
 		githubField.setColumns(10);
-		githubField.setBounds(184, 72, 108, 20);
+		githubField.setBounds(184, 67, 108, 20);
 		panel_2.add(githubField);
 		
 		facebookField.setBackground(new Color(54, 33, 89));
@@ -231,7 +232,7 @@ public class ProfileAdm extends JFrame {
 		panel_2.add(separator_3);
 		
 		JSeparator separator_4 = new JSeparator();
-		separator_4.setBounds(506, 127, 108, 2);
+		separator_4.setBounds(506, 141, 108, 2);
 		panel_2.add(separator_4);
 		
 		JSeparator separator_5 = new JSeparator();
@@ -243,51 +244,33 @@ public class ProfileAdm extends JFrame {
 		
 		JLabel lblMathRecord = new JLabel("Math");
 		lblMathRecord.setForeground(Color.BLACK);
-		lblMathRecord.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		lblMathRecord.setBounds(88, 464, 58, 25);
+		lblMathRecord.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		lblMathRecord.setBounds(94, 550, 58, 25);
 		panel_1.add(lblMathRecord);
 		
 		JLabel lblProgramming = new JLabel("Programming ");
 		lblProgramming.setForeground(Color.BLACK);
-		lblProgramming.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		lblProgramming.setBounds(280, 464, 138, 25);
+		lblProgramming.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		lblProgramming.setBounds(300, 550, 138, 25);
 		panel_1.add(lblProgramming);
 		
 		JLabel lblEnglish = new JLabel("English");
 		lblEnglish.setForeground(Color.BLACK);
-		lblEnglish.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		lblEnglish.setBounds(521, 464, 88, 25);
+		lblEnglish.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		lblEnglish.setBounds(537, 550, 88, 25);
 		panel_1.add(lblEnglish);
 		
 		JLabel lblRecords = new JLabel("Records");
 		lblRecords.setBackground(Color.BLACK);
 		lblRecords.setForeground(Color.BLACK);
 		lblRecords.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		lblRecords.setBounds(299, 417, 91, 25);
+		lblRecords.setBounds(310, 510, 91, 25);
 		panel_1.add(lblRecords);
 		
-		mathRecordField = new JTextField();
-		mathRecordField.setBackground(SystemColor.activeCaption);
-		mathRecordField.setText(" ");
-		mathRecordField.setBounds(63, 497, 106, 20);
-		panel_1.add(mathRecordField);
-		mathRecordField.setColumns(10);
-		
-		programmingRecordField = new JTextField();
-		programmingRecordField.setText(" ");
-		programmingRecordField.setColumns(10);
-		programmingRecordField.setBounds(290, 497, 106, 20);
-		panel_1.add(programmingRecordField);
-		
-		englishRecordField = new JTextField();
-		englishRecordField.setText(" ");
-		englishRecordField.setColumns(10);
-		englishRecordField.setBounds(510, 497, 106, 20);
-		panel_1.add(englishRecordField);
-		
 		JSeparator separator_6 = new JSeparator();
-		separator_6.setBackground(Color.BLACK);
-		separator_6.setBounds(315, 451, 40, 2);
+		separator_6.setForeground(Color.LIGHT_GRAY);
+		separator_6.setBackground(Color.LIGHT_GRAY);
+		separator_6.setBounds(0, 472, 679, 13);
 		panel_1.add(separator_6);
 		
 		JSeparator separator_7 = new JSeparator();
@@ -330,34 +313,49 @@ public class ProfileAdm extends JFrame {
 		admStudentField.setBackground(new Color(169, 197, 248));
 		admStudentField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
 		
-		JSeparator separator_10 = new JSeparator();
-		separator_10.setBackground(Color.BLACK);
-		separator_10.setBounds(63, 518, 108, 2);
-		panel_1.add(separator_10);
-		
-		JSeparator separator_11 = new JSeparator();
-		separator_11.setBackground(Color.BLACK);
-		separator_11.setBounds(288, 518, 108, 2);
-		panel_1.add(separator_11);
-		
-		JSeparator separator_12 = new JSeparator();
-		separator_12.setBackground(Color.BLACK);
-		separator_12.setBounds(510, 518, 108, 2);
-		panel_1.add(separator_12);
-		
-		mathRecordField.setBackground(new Color(169, 197, 248));
-		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
-		
-		programmingRecordField.setBackground(new Color(169, 197, 248));
-		programmingRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
-		
-		englishRecordField.setBackground(new Color(169, 197, 248));
-		englishRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
-		
 
 		ageField.setDocument(new limitBirth());
 		phoneField.setDocument(new limitPhone());
 		nameField.setDocument(new limitName());
+		
+		englishRecordField = new JTextField();
+		englishRecordField.setHorizontalAlignment(SwingConstants.CENTER);
+		englishRecordField.setForeground(Color.BLACK);
+		englishRecordField.setBounds(519, 575, 106, 20);
+		panel_1.add(englishRecordField);
+		englishRecordField.setText(" ");
+		englishRecordField.setColumns(10);
+		
+		englishRecordField.setBackground(Color.LIGHT_GRAY);
+		englishRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
+		
+		programmingRecordField = new JTextField();
+		programmingRecordField.setHorizontalAlignment(SwingConstants.CENTER);
+		programmingRecordField.setForeground(Color.BLACK);
+		programmingRecordField.setEnabled(false);
+		programmingRecordField.setBounds(300, 575, 106, 20);
+		panel_1.add(programmingRecordField);
+		programmingRecordField.setText(" ");
+		programmingRecordField.setColumns(10);
+		
+		programmingRecordField.setBackground(Color.LIGHT_GRAY);
+		programmingRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
+		
+		mathRecordField = new JTextField();
+		mathRecordField.setHorizontalAlignment(SwingConstants.CENTER);
+		mathRecordField.setForeground(Color.BLACK);
+		mathRecordField.setBounds(66, 575, 106, 20);
+		panel_1.add(mathRecordField);
+		mathRecordField.setBackground(Color.LIGHT_GRAY);
+		mathRecordField.setText(" ");
+		mathRecordField.setColumns(10);
+		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
+		
+		JButton updateInfo = new JButton("Update My Informations");
+		updateInfo.setFont(UIManager.getFont("TextArea.font"));
+		updateInfo.setBackground(SystemColor.windowBorder);
+		updateInfo.setBounds(224, 417, 248, 33);
+		panel_1.add(updateInfo);
 		
 		btnUpdateMyProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
