@@ -372,6 +372,15 @@ public class ProfileAdm extends JFrame {
 				adcImage();
 			}
 		});
+		
+		updateInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InsertInfoProfile info = new InsertInfoProfile();
+				
+				info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(), githubField.getText(), facebookField.getText(),
+						instagramField.getText(), LoginClientes.getUsuario());
+			}
+		});
 	}
 	
 	class limitPhone extends PlainDocument {
