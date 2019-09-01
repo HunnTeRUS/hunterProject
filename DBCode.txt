@@ -48,7 +48,9 @@ primary key(codQuestion)
 
 
 ALTER TABLE users ADD COLUMN photo LONGBLOB;
-ALTER TABLE users ADD COLUMN phone int(13);
+ALTER TABLE users ADD COLUMN nameUser VARCHAR(100) AFTER userr;
+ALTER TABLE users ADD COLUMN age VARCHAR(10) AFTER nameUser;
+ALTER TABLE users ADD COLUMN phone VARCHAR(20);
 ALTER TABLE users ADD COLUMN github varchar(30);
 ALTER TABLE users ADD COLUMN facebook varchar(30);
 ALTER TABLE users ADD COLUMN instagram varchar(30);
