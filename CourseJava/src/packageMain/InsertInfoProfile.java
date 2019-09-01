@@ -13,13 +13,58 @@ public class InsertInfoProfile {
 
 		if (db.getConnection()) {
 			try {
-				SQL = "UPDATE users(nameUser, age, phone, github, facebook, instagram) SET ('" + name + "' , '" + age
-						+ "', " + phone + ", '" + github + "', '" + facebook + "', '" + instagram + "') WHERE userr = '"
-						+ user + "' OR email = '" + user + "';";
+				SQL = "UPDATE users SET nameUser = ? WHERE userr=? OR email=?";
 				stmt = db.con.prepareStatement(SQL);
-
+				stmt.setString(1, name);
+				stmt.setString(2, user);
+				stmt.setString(3, user);
+				
 				stmt.executeUpdate();
 
+				SQL = "UPDATE users SET age = ? WHERE userr=? OR email=?";
+				stmt = db.con.prepareStatement(SQL);
+				stmt.setString(1, age);
+				stmt.setString(2, user);
+				stmt.setString(3, user);
+				
+				stmt.executeUpdate();
+				
+				SQL = "UPDATE users SET phone = ? WHERE userr=? OR email=?";
+				stmt = db.con.prepareStatement(SQL);
+				stmt.setInt(1, phone);
+				stmt.setString(2, user);
+				stmt.setString(3, user);
+				
+				stmt.executeUpdate();
+
+				
+				SQL = "UPDATE users SET github = ? WHERE userr=? OR email=?";
+				stmt = db.con.prepareStatement(SQL);
+				stmt.setString(1, github);
+				stmt.setString(2, user);
+				stmt.setString(3, user);
+				
+				stmt.executeUpdate();
+
+				
+				SQL = "UPDATE users SET facebook= ? WHERE userr=? OR email=?";
+				stmt = db.con.prepareStatement(SQL);
+				stmt.setString(1, facebook);
+				stmt.setString(2, user);
+				stmt.setString(3, user);
+				
+				stmt.executeUpdate();
+
+				
+				SQL = "UPDATE users SET instagram= ? WHERE userr=? OR email=?";
+				stmt = db.con.prepareStatement(SQL);
+				stmt.setString(1, instagram);
+				stmt.setString(2, user);
+				stmt.setString(3, user);
+				
+				stmt.executeUpdate();
+
+				
 				stmt.close();
 				db.close();
 				return true;

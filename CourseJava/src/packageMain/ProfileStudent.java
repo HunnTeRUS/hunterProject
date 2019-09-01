@@ -37,7 +37,6 @@ import javax.swing.JSeparator;
 public class ProfileStudent extends JFrame {
 	private JPanel contentPane;
 	private JTextField facebookField;
-	private JTextField phoneField;
 	private JTextField instagramField;
 	private JTextField githubField;
 	private JTextField mathRecordField;
@@ -47,12 +46,13 @@ public class ProfileStudent extends JFrame {
 	private JTextField ageField;
 	private JTextField admStudentField;
 	private JLabel labelPhoto = new JLabel();
+	public static JTextField phoneField = new JTextField();
 
 	LoginClientes log = new LoginClientes();
 	ConectionDB db = new ConectionDB();
 
 	public int tamanho;
-	
+
 	public String user;
 
 	public String getUser() {
@@ -204,10 +204,9 @@ public class ProfileStudent extends JFrame {
 		facebookField.setBounds(184, 117, 108, 20);
 		panel_2.add(facebookField);
 
-		phoneField = new JTextField();
 		phoneField.setForeground(Color.WHITE);
 		phoneField.setColumns(10);
-		phoneField.setBounds(510, 67, 108, 20);
+		phoneField.setBounds(510, 71, 108, 20);
 		panel_2.add(phoneField);
 
 		instagramField = new JTextField();
@@ -362,11 +361,11 @@ public class ProfileStudent extends JFrame {
 		mathRecordField.setText(" ");
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
-		
+
 		System.out.println(LoginClientes.getUsuario());
 
-		if(loadImage() != null)
-		labelPhoto.setIcon(new ImageIcon(loadImage()));
+		if (loadImage() != null)
+			labelPhoto.setIcon(new ImageIcon(loadImage()));
 
 		JButton updateInfo = new JButton("Update My Informations");
 		updateInfo.setFont(UIManager.getFont("TextArea.font"));
@@ -384,13 +383,15 @@ public class ProfileStudent extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				InsertInfoProfile info = new InsertInfoProfile();
 
-				info.insertData(nameField.getText(), ageField.getText(), Integer.parseInt(phoneField.getText()),
-						githubField.getText(), facebookField.getText(), instagramField.getText(), log.getUsuario());
+				//Integer.parseInt(phoneField.getText()),
+				
+				info.insertData(nameField.getText(), ageField.getText(), Integer.parseUnsignedInt(phoneField.getText()), githubField.getText(), facebookField.getText(),
+						instagramField.getText(), LoginClientes.getUsuario());
 			}
 		});
 
 	}
-
+	
 	class limitPhone extends PlainDocument {
 		private static final long serialVersionUID = 323;
 
@@ -398,8 +399,8 @@ public class ProfileStudent extends JFrame {
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
 
-			if (tamanho > 12)
-				super.insertString(arg0, arg1.replaceAll("[0123456789]", ""), arg2);
+			if (tamanho >= 12)
+				super.insertString(arg0, arg1.replaceAll("[0123456789 aA-zZ @#!$%&*_=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else
 				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
@@ -458,9 +459,8 @@ public class ProfileStudent extends JFrame {
 					labelPhoto.setIcon(new ImageIcon(file.getPath()));
 					PreparedStatement stmt;
 
-					
-					stmt = db.con
-							.prepareStatement("UPDATE users SET photo = ? where userr = '" + LoginClientes.getUsuario() + "' OR email = '" + LoginClientes.getUsuario()  + "';");
+					stmt = db.con.prepareStatement("UPDATE users SET photo = ? where userr = '"
+							+ LoginClientes.getUsuario() + "' OR email = '" + LoginClientes.getUsuario() + "';");
 					stmt.setBinaryStream(1, input, (int) file.length());
 					stmt.executeUpdate();
 
@@ -482,7 +482,8 @@ public class ProfileStudent extends JFrame {
 			PreparedStatement stmt;
 			byte[] imagem;
 
-			String SQL = "SELECT photo FROM users WHERE userr= '" + LoginClientes.getUsuario()  + "' or email= '" + LoginClientes.getUsuario() + "' ";
+			String SQL = "SELECT photo FROM users WHERE userr= '" + LoginClientes.getUsuario() + "' or email= '"
+					+ LoginClientes.getUsuario() + "' ";
 
 			try {
 				stmt = db.con.prepareStatement(SQL);
@@ -490,7 +491,7 @@ public class ProfileStudent extends JFrame {
 				rs.next();
 
 				imagem = rs.getBytes("photo");
-				
+
 				return imagem;
 
 			} catch (Exception e) {
@@ -499,7 +500,7 @@ public class ProfileStudent extends JFrame {
 
 		}
 
-		return null ;
+		return null;
 	}
 
 }
