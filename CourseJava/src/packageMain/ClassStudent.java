@@ -6,15 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import oldClass.StudentProfile;
-
 public class ClassStudent {
 
 	static StudyQuestion objStudyQuestions = new StudyQuestion();
 	static MainInterface objMain = new MainInterface();
 	static ClassStudent objStudent = new ClassStudent();
 	static MainInterface main = new MainInterface();
-	static StudentProfile objProfileStudent = new StudentProfile();
 
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
@@ -107,7 +104,6 @@ public class ClassStudent {
 
 		profileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				objProfileStudent.mainMethod();
 				mainFrame.dispose();
 			}
 		});

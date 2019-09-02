@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,6 +49,10 @@ public class ProfileStudent extends JFrame {
 	private JLabel labelPhoto = new JLabel();
 	public static JTextField phoneField = new JTextField();
 
+	String SQL;
+	ResultSet rs;
+	PreparedStatement stmt;
+
 	LoginClientes log = new LoginClientes();
 	ConectionDB db = new ConectionDB();
 
@@ -70,10 +75,10 @@ public class ProfileStudent extends JFrame {
 	public void setTamanho(int tamanho) {
 		this.tamanho = tamanho;
 	}
-	
+
 	public void ProfileStudentMethod() {
-	 	setResizable(false);
-	 	setLocationRelativeTo(null);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 945, 638);
 		contentPane = new JPanel();
@@ -82,7 +87,7 @@ public class ProfileStudent extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel panel = new JPanel(); 
+		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 945, 610);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -363,8 +368,6 @@ public class ProfileStudent extends JFrame {
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
 
-		System.out.println(LoginClientes.getUsuario());
-
 		if (loadImage() != null)
 			labelPhoto.setIcon(new ImageIcon(loadImage()));
 
@@ -380,17 +383,40 @@ public class ProfileStudent extends JFrame {
 			}
 		});
 
+		btnIWannaBe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (db.getConnection()) {
+					SendEmails send = new SendEmails();
+					try {
+
+						SQL = "SELECT * FROM users WHERE userr = '" + LoginClientes.getUsuario() + "' OR email = '"
+								+ LoginClientes.getUsuario() + "';";
+
+						stmt = db.con.prepareStatement(SQL);
+						rs = stmt.executeQuery();
+
+						rs.next();
+
+						send.sendEmailVerification(rs.getString("nameUser"), rs.getString("email"),
+								rs.getInt("codeUser"), rs.getString("phone"));
+					} catch (SQLException error) {
+						error.getMessage();
+					}
+				}
+			}
+		});
+
 		updateInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InsertInfoProfile info = new InsertInfoProfile();
-				
-				info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(), githubField.getText(), facebookField.getText(),
-						instagramField.getText(), LoginClientes.getUsuario());
+
+				info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(), githubField.getText(),
+						facebookField.getText(), instagramField.getText(), LoginClientes.getUsuario());
 			}
 		});
 
 	}
-	
+
 	class limitPhone extends PlainDocument {
 		private static final long serialVersionUID = 323;
 
@@ -399,7 +425,8 @@ public class ProfileStudent extends JFrame {
 			tamanho = (this.getLength());
 
 			if (tamanho > 13)
-				super.insertString(arg0, arg1.replaceAll("[0123456789 aA-zZ @#!$%&*_=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
+				super.insertString(arg0,
+						arg1.replaceAll("[0123456789 aA-zZ @#!$%&*_=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else
 				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
