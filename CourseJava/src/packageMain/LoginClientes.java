@@ -102,7 +102,7 @@ public class LoginClientes {
 	}
 	
 	public void LoginPage() {
-		framePrincipalLogin.setLayout(null);
+		framePrincipalLogin.getContentPane().setLayout(null);
 		framePrincipalLogin.setVisible(true);
 		framePrincipalLogin.setLocation(new Point(400, 300));
 		framePrincipalLogin.setBounds(new Rectangle(400, 200, 1000, 700));
@@ -113,7 +113,7 @@ public class LoginClientes {
 		
 		panel.setBackground(new Color(70, 130, 180));
 		panel.setBounds(-11, -15, 505, 702);
-		framePrincipalLogin.add(panel);
+		framePrincipalLogin.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		lblSignIn.setForeground(new Color(255, 255, 255));
@@ -200,7 +200,7 @@ public class LoginClientes {
 		panel.add(separator_5);
 		
 		panel_1.setBounds(498, 0, 484, 687);
-		framePrincipalLogin.add(panel_1);
+		framePrincipalLogin.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		lblLoginIn.setBounds(195, 89, 104, 27);
@@ -209,9 +209,10 @@ public class LoginClientes {
 		
 		campoUsuario = new JTextField();
 		campoUsuario.setBounds(71, 223, 340, 32);
+		campoUsuario.setBackground(new Color(240, 240, 240 ));
 		panel_1.add(campoUsuario);
 		campoUsuario.setColumns(10);
-		campoUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255,255,255), 1, true));
+		campoUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(240,240,240), 1, true));
 
 		
 		lblUseremail.setFont(new Font("Monospaced", Font.BOLD, 16));
@@ -225,7 +226,8 @@ public class LoginClientes {
 		campoSenha.setEchoChar('*');
 		campoSenha.setBounds(71, 340, 340, 32);
 		panel_1.add(campoSenha);
-		campoSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255,255,255), 1, true));
+		campoSenha.setBackground(new Color(240,240,240));
+		campoSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(240,240,240), 1, true));
 		
 		enviarDados.setHorizontalTextPosition(SwingConstants.CENTER);
 		enviarDados.setBackground(new Color(0, 0, 0));
@@ -235,7 +237,7 @@ public class LoginClientes {
 		
 		RecSenha.setForeground(Color.WHITE);
 		RecSenha.setBackground(Color.BLACK);
-		RecSenha.setBounds(71, 493, 340, 43);
+		RecSenha.setBounds(71, 501, 340, 43);
 		panel_1.add(RecSenha);
 		
 		separator.setForeground(new Color(0, 0, 0));
