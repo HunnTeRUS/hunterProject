@@ -25,10 +25,10 @@ public class CadastrarClientes {
 	JLabel labelsenha = new JLabel("Senha: ");
 	JLabel labelUsuario = new JLabel("Usuario: ");
 	JLabel labelConfirmarSenha = new JLabel("Confirmar Senha: ");
-	private JTextField campoEmail = new JTextField();
-	private JTextField campoUsuario = new JTextField();
-	private JPasswordField campoSenha = new JPasswordField();
-	private JPasswordField campoConfirmarSenha = new JPasswordField();
+	private JTextField campoEmailCadastrar = new JTextField();
+	private JTextField campoUsuarioCadastrar = new JTextField();
+	private JPasswordField campoSenhaCadastrar = new JPasswordField();
+	private JPasswordField campoConfirmarSenhaCadastrar = new JPasswordField();
 	private JButton returnLogin = new JButton("Voltar para a p�gina de login");
 	private JButton cadastrar = new JButton("Cadastrar");
 	private int c = 0;
@@ -116,17 +116,17 @@ public class CadastrarClientes {
 		framePrincipalCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		framePrincipalCadastro.setTitle("Cadaster");
 		painelPrincipalCadastro.setBackground(new Color(35, 35, 142));
-		painelPrincipalCadastro.add(campoEmail);
+		painelPrincipalCadastro.add(campoEmailCadastrar);
 		painelPrincipalCadastro.add(labelsenha);
 		painelPrincipalCadastro.add(labelEmail);
-		painelPrincipalCadastro.add(campoSenha);
+		painelPrincipalCadastro.add(campoSenhaCadastrar);
 		painelPrincipalCadastro.add(labelUsuario);
-		painelPrincipalCadastro.add(campoConfirmarSenha);
+		painelPrincipalCadastro.add(campoConfirmarSenhaCadastrar);
 		painelPrincipalCadastro.add(image2);
 		painelPrincipalCadastro.add(labelConfirmarSenha);
 		painelPrincipalCadastro.add(image);
 		painelPrincipalCadastro.add(cadastrar);
-		painelPrincipalCadastro.add(campoUsuario);
+		painelPrincipalCadastro.add(campoUsuarioCadastrar);
 		painelPrincipalCadastro.add(returnLogin);
 		Dimension tela = framePrincipalCadastro.getSize();
 		framePrincipalCadastro.setIconImage(Toolkit.getDefaultToolkit()
@@ -149,10 +149,10 @@ public class CadastrarClientes {
 		labelConfirmarSenha.setBounds(((tela.width / 2) - 255), ((tela.height / 2) + 50), 200, 30);
 		labelUsuario.setBounds(((tela.width / 2) - 175), ((tela.height / 2) - 135), 200, 100);
 
-		campoUsuario.setBounds(((tela.width / 2) - 80), ((tela.height / 2) - 100), 250, 30);
-		campoEmail.setBounds(((tela.width / 2) - 80), ((tela.height / 2) - 50), 250, 30);
-		campoSenha.setBounds(((tela.width / 2) - 80), ((tela.height / 2)), 250, 30);
-		campoConfirmarSenha.setBounds(((tela.width / 2) - 80), ((tela.height / 2) + 50), 250, 30);
+		campoUsuarioCadastrar.setBounds(((tela.width / 2) - 80), ((tela.height / 2) - 100), 250, 30);
+		campoEmailCadastrar.setBounds(((tela.width / 2) - 80), ((tela.height / 2) - 50), 250, 30);
+		campoSenhaCadastrar.setBounds(((tela.width / 2) - 80), ((tela.height / 2)), 250, 30);
+		campoConfirmarSenhaCadastrar.setBounds(((tela.width / 2) - 80), ((tela.height / 2) + 50), 250, 30);
 		cadastrar.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 200), 350, 30);
 		returnLogin.setBounds(((tela.width / 2) - 180), ((tela.height / 2) + 250), 350, 30);
 	}
@@ -163,10 +163,10 @@ public class CadastrarClientes {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				setConfirmacaoSenha(String.valueOf(campoConfirmarSenha.getPassword()));
-				setUsuarioCadastrado(campoUsuario.getText());
-				setSenhaCadastrada(String.valueOf(campoSenha.getPassword()));
-				setEmailCadastrado(campoEmail.getText());
+				setConfirmacaoSenha(String.valueOf(campoConfirmarSenhaCadastrar.getPassword()));
+				setUsuarioCadastrado(campoUsuarioCadastrar.getText());
+				setSenhaCadastrada(String.valueOf(campoSenhaCadastrar.getPassword()));
+				setEmailCadastrado(campoEmailCadastrar.getText());
 
 				try {
 				InternetAddress emailAddr;
@@ -212,22 +212,22 @@ public class CadastrarClientes {
 								stmt = conecta.prepareStatement(sql);
 								stmt.execute(sql);
 								JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
-								objLogin.metodoPrincipalLogin();
+								//objLogin.metodoPrincipalLogin();
 								framePrincipalCadastro.setVisible(false);
 							}
 
 							else if (rs.getInt("quantidade") != 0) {
 								JOptionPane.showMessageDialog(null,
 										"This email has been inserted on the app, please, input another email");
-								campoEmail.setText("");
-								campoUsuario.setText("");
+								campoEmailCadastrar.setText("");
+								campoUsuarioCadastrar.setText("");
 							}
 
 							else if (rs2.getInt("quantidade") != 0) {
 								JOptionPane.showMessageDialog(null,
 										"This user has been inserted on the app, please, input another user");
-								campoEmail.setText("");
-								campoUsuario.setText("");
+								campoEmailCadastrar.setText("");
+								campoUsuarioCadastrar.setText("");
 							}
 
 						}
@@ -281,7 +281,7 @@ public class CadastrarClientes {
 		returnLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				objLogin.metodoPrincipalLogin();
+				//objLogin.metodoPrincipalLogin();
 				framePrincipalCadastro.dispose();
 			}
 		});

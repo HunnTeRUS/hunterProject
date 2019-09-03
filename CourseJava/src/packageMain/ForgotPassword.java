@@ -179,7 +179,7 @@ public class ForgotPassword {
 							db.close();
 
 							JOptionPane.showMessageDialog(null, "Your password was sucessfully updated!");
-							objLogin.metodoPrincipalLogin();
+						//	objLogin.metodoPrincipalLogin();
 							mainFrame.dispose();
 							receiveEmail.setText("");
 						}
@@ -231,7 +231,7 @@ public class ForgotPassword {
 		returnMain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.dispose();
-				objLogin.metodoPrincipalLogin();
+				//objLogin.metodoPrincipalLogin();
 			}
 		});
 

@@ -238,8 +238,4 @@ public class SendEmails {
 			e.printStackTrace();
 		}
 	}
-}
-
-
-  
-    
+}    
