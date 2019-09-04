@@ -120,6 +120,7 @@ public class LoginClientes {
 		lblSignIn.setFont(new Font("Monospaced", Font.BOLD, 22));
 		lblSignIn.setBounds(223, 101, 104, 27);
 		panel.add(lblSignIn);
+		cadastrar.setIcon(new ImageIcon(LoginClientes.class.getResource("/packageMain/icons8_add_user_25px_1.png")));
 		
 		cadastrar.setForeground(new Color(255, 255, 255));
 		cadastrar.setBackground(new Color(0, 0, 0));
@@ -228,12 +229,13 @@ public class LoginClientes {
 		panel_1.add(campoSenha);
 		campoSenha.setBackground(new Color(240,240,240));
 		campoSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(240,240,240), 1, true));
-		
-		enviarDados.setHorizontalTextPosition(SwingConstants.CENTER);
+		enviarDados.setHorizontalTextPosition(SwingConstants.LEADING);
+		enviarDados.setIcon(new ImageIcon(LoginClientes.class.getResource("/packageMain/icons8_login_rounded_right_25px_3.png")));
 		enviarDados.setBackground(new Color(0, 0, 0));
 		enviarDados.setForeground(new Color(255, 255, 255));
 		enviarDados.setBounds(71, 424, 340, 43);
 		panel_1.add(enviarDados);
+		RecSenha.setIcon(new ImageIcon(LoginClientes.class.getResource("/packageMain/icons8_one_time_password_25px.png")));
 		
 		RecSenha.setForeground(Color.WHITE);
 		RecSenha.setBackground(Color.BLACK);
