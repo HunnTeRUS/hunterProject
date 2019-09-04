@@ -25,6 +25,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
 import com.mysql.cj.jdbc.Blob;
+import com.mysql.cj.protocol.Resultset;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -317,7 +318,7 @@ public class ProfileStudent extends JFrame {
 		panel_1.add(ageField);
 
 		admStudentField = new JTextField();
-		admStudentField.setEnabled(false);
+		admStudentField.setEditable(false);
 		admStudentField.setColumns(10);
 		admStudentField.setBounds(400, 158, 190, 27);
 		panel_1.add(admStudentField);
@@ -330,14 +331,14 @@ public class ProfileStudent extends JFrame {
 
 		admStudentField.setBackground(new Color(169, 197, 248));
 		admStudentField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
-
-		ageField.setDocument(new limitBirth());
-		phoneField.setDocument(new limitPhone());
-		nameField.setDocument(new limitName());
+		admStudentField.setForeground(Color.BLACK);
+		
+	
 
 		englishRecordField = new JTextField();
 		englishRecordField.setHorizontalAlignment(SwingConstants.CENTER);
 		englishRecordField.setForeground(Color.BLACK);
+		englishRecordField.setEditable(false);
 		englishRecordField.setBounds(519, 575, 106, 20);
 		panel_1.add(englishRecordField);
 		englishRecordField.setText(" ");
@@ -349,7 +350,7 @@ public class ProfileStudent extends JFrame {
 		programmingRecordField = new JTextField();
 		programmingRecordField.setHorizontalAlignment(SwingConstants.CENTER);
 		programmingRecordField.setForeground(Color.BLACK);
-		programmingRecordField.setEnabled(false);
+		programmingRecordField.setEditable(false);
 		programmingRecordField.setBounds(300, 575, 106, 20);
 		panel_1.add(programmingRecordField);
 		programmingRecordField.setText(" ");
@@ -361,13 +362,23 @@ public class ProfileStudent extends JFrame {
 		mathRecordField = new JTextField();
 		mathRecordField.setHorizontalAlignment(SwingConstants.CENTER);
 		mathRecordField.setForeground(Color.BLACK);
+		mathRecordField.setEditable(false);
 		mathRecordField.setBounds(66, 575, 106, 20);
 		panel_1.add(mathRecordField);
 		mathRecordField.setBackground(Color.LIGHT_GRAY);
 		mathRecordField.setText(" ");
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
-
+		
+		
+		
+		
+		phoneField.setDocument(new limitPhone());
+		nameField.setDocument(new limitName());
+		loadInf();
+		ageField.setDocument(new limitBirth());
+		
+		
 		if (loadImage() != null)
 			labelPhoto.setIcon(new ImageIcon(loadImage()));
 
@@ -527,6 +538,47 @@ public class ProfileStudent extends JFrame {
 		}
 
 		return null;
+	}
+
+	public void loadInf() {
+		if (db.getConnection()) {
+
+			PreparedStatement stmt;
+
+			String sql = "SELECT nameUser,age,phone,github,adm,student,facebook,instagram,mathRecord,englishRecord,programmingRecord FROM users WHERE userr = '"
+					+ LoginClientes.getUsuario() + "' OR email = '" + LoginClientes.getUsuario() + "';";
+			boolean auxAdm;
+			boolean auxStdt;
+			try {
+				stmt = db.con.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					nameField.setText(rs.getString("nameUser"));
+					facebookField.setText(rs.getString("facebook"));
+					instagramField.setText(rs.getString("instagram"));
+					githubField.setText(rs.getString("github"));
+					mathRecordField.setText(Integer.toString(rs.getInt("mathRecord")));
+					programmingRecordField.setText(Integer.toString(rs.getInt("programmingRecord")));
+					ageField.setText(rs.getString("age"));
+					englishRecordField.setText(Integer.toString(rs.getInt("englishRecord")));
+					phoneField.setText(rs.getString("phone"));
+					auxAdm = rs.getBoolean("adm");
+					auxStdt = rs.getBoolean("student");
+					
+					
+					if (auxAdm == true) {
+						admStudentField.setText("Administrator");
+					}
+					else if (auxStdt == true) {
+						admStudentField.setText("Student");
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 }
