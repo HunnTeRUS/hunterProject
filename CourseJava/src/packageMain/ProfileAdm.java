@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +23,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
+
+import packageMain.ProfileStudent.limitBirth;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -361,6 +364,8 @@ public class ProfileAdm extends JFrame {
 		if(loadImage() != null)  
 			labelPhoto.setIcon(new ImageIcon(loadImage()));
 		
+		
+		loadInf();
 		JButton updateInfo = new JButton("Update My Informations");
 		updateInfo.setFont(UIManager.getFont("TextArea.font"));
 		updateInfo.setBackground(SystemColor.windowBorder);
@@ -417,7 +422,7 @@ public class ProfileAdm extends JFrame {
 						arg1.replaceAll("[0123456789aA-zZ /@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else
-				super.insertString(arg0, arg1.replaceAll("[aA-zZ /@#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
+				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 		}
 	}
 
@@ -491,5 +496,77 @@ public class ProfileAdm extends JFrame {
 		}
 
 		return null;}
+	
+	public void loadInf() {
+		if (db.getConnection()) {
+
+			PreparedStatement stmt;
+
+			String sql = "SELECT nameUser,age,phone,github,adm,student,facebook,instagram,mathRecord,englishRecord,programmingRecord FROM users WHERE userr = '"
+					+ LoginClientes.getUsuario() + "' OR email = '" + LoginClientes.getUsuario() + "';";
+			boolean auxAdm;
+			boolean auxStdt;
+			try {
+				stmt = db.con.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+					nameField.setText(rs.getString("nameUser"));
+					facebookField.setText(rs.getString("facebook"));
+					instagramField.setText(rs.getString("instagram"));
+					githubField.setText(rs.getString("github"));
+					mathRecordField.setText(Integer.toString(rs.getInt("mathRecord")));
+					programmingRecordField.setText(Integer.toString(rs.getInt("programmingRecord")));
+					englishRecordField.setText(Integer.toString(rs.getInt("englishRecord")));
+					phoneField.setText(rs.getString("phone"));
+					ageField.setDocument(new limitBirth());
+					auxAdm = rs.getBoolean("adm");
+					auxStdt = rs.getBoolean("student");
+
+					if (auxAdm == true) {
+						admStudentField.setText("Administrator");
+					} else if (auxStdt == true) {
+						admStudentField.setText("Student");
+					}
+
+				}
+
+				try {
+					String sqlDay = "SELECT SUBSTRING(users.age,1,2) AS dayDate FROM users WHERE userr='"
+							+ LoginClientes.getUsuario() + "' ;";
+					stmt = db.con.prepareStatement(sqlDay);
+					rs = stmt.executeQuery();
+					rs.next();
+
+					String day = rs.getString("dayDate");
+
+					String sqlMonth = "SELECT SUBSTRING(users.age,3,4) AS dayDate FROM users WHERE userr='"
+							+ LoginClientes.getUsuario() + "';";
+					stmt = db.con.prepareStatement(sqlMonth);
+					rs = stmt.executeQuery();
+					rs.next();
+
+					String month = rs.getString("dayDate");
+
+					String sqlYear = "SELECT SUBSTRING(users.age,7,7) AS dayDate FROM users WHERE userr='"
+							+ LoginClientes.getUsuario() + "';";
+					stmt = db.con.prepareStatement(sqlYear);
+					rs = stmt.executeQuery();
+					rs.next();
+
+					String year = rs.getString("dayDate");
+
+					ageField.setText(day + month + year);
+
+				} catch (SQLException e) {
+
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
+
 
 }

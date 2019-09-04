@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,10 +43,10 @@ public class ProfileStudent extends JFrame {
 	private JTextField programmingRecordField;
 	private JTextField englishRecordField;
 	private JTextField nameField;
-	private JTextField ageField;
 	private JTextField admStudentField;
 	private JLabel labelPhoto = new JLabel();
 	public static JTextField phoneField = new JTextField();
+	public JTextField ageField = new JTextField();
 
 	String SQL;
 	ResultSet rs;
@@ -77,6 +75,7 @@ public class ProfileStudent extends JFrame {
 		this.tamanho = tamanho;
 	}
 
+	//public ProfileStudent() {
 	public void ProfileStudentMethod() {
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -294,7 +293,7 @@ public class ProfileStudent extends JFrame {
 
 		JSeparator separator_7 = new JSeparator();
 		separator_7.setBackground(Color.BLACK);
-		separator_7.setBounds(347, 74, 243, 2);
+		separator_7.setBounds(347, 74, 275, 2);
 		panel_1.add(separator_7);
 
 		JSeparator separator_8 = new JSeparator();
@@ -304,15 +303,14 @@ public class ProfileStudent extends JFrame {
 
 		JSeparator separator_9 = new JSeparator();
 		separator_9.setBackground(Color.BLACK);
-		separator_9.setBounds(400, 186, 190, 2);
+		separator_9.setBounds(400, 186, 220, 2);
 		panel_1.add(separator_9);
 
 		nameField = new JTextField();
-		nameField.setBounds(347, 46, 243, 27);
+		nameField.setBounds(347, 46, 276, 27);
 		panel_1.add(nameField);
 		nameField.setColumns(10);
 
-		ageField = new JTextField();
 		ageField.setColumns(10);
 		ageField.setBounds(375, 105, 243, 27);
 		panel_1.add(ageField);
@@ -320,7 +318,7 @@ public class ProfileStudent extends JFrame {
 		admStudentField = new JTextField();
 		admStudentField.setEditable(false);
 		admStudentField.setColumns(10);
-		admStudentField.setBounds(400, 158, 190, 27);
+		admStudentField.setBounds(400, 158, 223, 27);
 		panel_1.add(admStudentField);
 
 		nameField.setBackground(new Color(169, 197, 248));
@@ -332,8 +330,6 @@ public class ProfileStudent extends JFrame {
 		admStudentField.setBackground(new Color(169, 197, 248));
 		admStudentField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
 		admStudentField.setForeground(Color.BLACK);
-		
-	
 
 		englishRecordField = new JTextField();
 		englishRecordField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -369,16 +365,11 @@ public class ProfileStudent extends JFrame {
 		mathRecordField.setText(" ");
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
-		
-		
-		
-		
+
 		phoneField.setDocument(new limitPhone());
 		nameField.setDocument(new limitName());
-		loadInf();
 		ageField.setDocument(new limitBirth());
-		
-		
+
 		if (loadImage() != null)
 			labelPhoto.setIcon(new ImageIcon(loadImage()));
 
@@ -387,6 +378,7 @@ public class ProfileStudent extends JFrame {
 		updateInfo.setBackground(SystemColor.windowBorder);
 		updateInfo.setBounds(224, 417, 248, 33);
 		panel_1.add(updateInfo);
+		loadInf();
 
 		btnUpdateMyProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -410,6 +402,9 @@ public class ProfileStudent extends JFrame {
 
 						send.sendEmailVerification(rs.getString("nameUser"), rs.getString("email"),
 								rs.getInt("codeUser"), rs.getString("phone"));
+
+						JOptionPane.showMessageDialog(null, "Your Message have been sent sucessfully!");
+						btnIWannaBe.setEnabled(false);
 					} catch (SQLException error) {
 						error.getMessage();
 					}
@@ -420,9 +415,13 @@ public class ProfileStudent extends JFrame {
 		updateInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InsertInfoProfile info = new InsertInfoProfile();
+				if ((nameField.getText() == "") || (ageField.getText() == "") || (phoneField.getText() == ""))
+					JOptionPane.showMessageDialog(null, "You have blank fields, complete them, please!");
 
-				info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(), githubField.getText(),
-						facebookField.getText(), instagramField.getText(), LoginClientes.getUsuario());
+				else
+					info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(),
+							githubField.getText(), facebookField.getText(), instagramField.getText(),
+							LoginClientes.getUsuario());
 			}
 		});
 
@@ -463,7 +462,7 @@ public class ProfileStudent extends JFrame {
 						arg1.replaceAll("[0123456789aA-zZ /@#!$%&*_+=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
 
 			else
-				super.insertString(arg0, arg1.replaceAll("[aA-zZ /@#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
+				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_+=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);
 		}
 	}
 
@@ -559,19 +558,49 @@ public class ProfileStudent extends JFrame {
 					githubField.setText(rs.getString("github"));
 					mathRecordField.setText(Integer.toString(rs.getInt("mathRecord")));
 					programmingRecordField.setText(Integer.toString(rs.getInt("programmingRecord")));
-					ageField.setText(rs.getString("age"));
 					englishRecordField.setText(Integer.toString(rs.getInt("englishRecord")));
 					phoneField.setText(rs.getString("phone"));
+					ageField.setDocument(new limitBirth());
 					auxAdm = rs.getBoolean("adm");
 					auxStdt = rs.getBoolean("student");
-					
-					
+
 					if (auxAdm == true) {
 						admStudentField.setText("Administrator");
-					}
-					else if (auxStdt == true) {
+					} else if (auxStdt == true) {
 						admStudentField.setText("Student");
 					}
+
+				}
+
+				try {
+					String sqlDay = "SELECT SUBSTRING(users.age,1,2) AS dayDate FROM users WHERE userr='"
+							+ LoginClientes.getUsuario() + "' ;";
+					stmt = db.con.prepareStatement(sqlDay);
+					rs = stmt.executeQuery();
+					rs.next();
+
+					String day = rs.getString("dayDate");
+
+					String sqlMonth = "SELECT SUBSTRING(users.age,3,4) AS dayDate FROM users WHERE userr='"
+							+ LoginClientes.getUsuario() + "';";
+					stmt = db.con.prepareStatement(sqlMonth);
+					rs = stmt.executeQuery();
+					rs.next();
+
+					String month = rs.getString("dayDate");
+
+					String sqlYear = "SELECT SUBSTRING(users.age,7,7) AS dayDate FROM users WHERE userr='"
+							+ LoginClientes.getUsuario() + "';";
+					stmt = db.con.prepareStatement(sqlYear);
+					rs = stmt.executeQuery();
+					rs.next();
+
+					String year = rs.getString("dayDate");
+
+					ageField.setText(day + month + year);
+
+				} catch (SQLException e) {
+
 				}
 
 			} catch (Exception e) {
