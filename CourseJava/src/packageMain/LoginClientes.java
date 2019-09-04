@@ -310,8 +310,8 @@ public class LoginClientes {
 				} else {
 					try {
 						Class.forName(DRIVER);
-						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-						//Connection conecta = DriverManager.getConnection(URL, "root", "");
+						//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+						Connection conecta = DriverManager.getConnection(URL, "root", "");
 						Statement stmt = conecta.createStatement();
 
 						String sql;
@@ -413,9 +413,9 @@ public class LoginClientes {
 											MainPageAdm tstAdm = new MainPageAdm();
 											tstAdm.all();
 											LoginClientes.framePrincipalLogin.dispose();
-										} catch (InterruptedException e) {
+										} catch (InterruptedException error) {
 
-											e.printStackTrace();
+											error.printStackTrace();
 										}
 									}
 								}).start();

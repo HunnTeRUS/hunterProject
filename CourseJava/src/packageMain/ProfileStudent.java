@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -382,7 +383,11 @@ public class ProfileStudent extends JFrame {
 
 		btnUpdateMyProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				adcImage();
+				try {
+					adcImage();
+				} catch (SQLException | FileNotFoundException eror) {
+					JOptionPane.showMessageDialog(null, "An error was ocorred, please, try again later");
+				}
 			}
 		});
 
@@ -477,19 +482,20 @@ public class ProfileStudent extends JFrame {
 
 	}
 
-	public void adcImage() {
-		FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("jpg", "png", "jpeg");
-		JFileChooser fc = new JFileChooser();
-		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		fc.setFileFilter(fileNameExtensionFilter);
-		fc.setDialogTitle("Insert picture (Preferred Size: 200x200px)");
+	public void adcImage() throws SQLException, FileNotFoundException {
+		try {
+			JFileChooser fc = new JFileChooser();
+			fc.setFileFilter(new FileNameExtensionFilter("Image files", "bmp", "png", "jpg"));
+			fc.setAcceptAllFileFilterUsed(false);
+			fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			// fc.setFileFilter(fileNameExtensionFilter);
+			fc.setDialogTitle("Insert picture (Preferred Size: 200x200px)");
 
-		int response = fc.showOpenDialog(fc);
+			int response = fc.showOpenDialog(fc);
 
-		if (response == JFileChooser.APPROVE_OPTION) {
-			File file = fc.getSelectedFile();
+			if (response == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
 
-			try {
 				if (db.getConnection()) {
 					FileInputStream input = new FileInputStream(file);
 					labelPhoto.setIcon(new ImageIcon(file.getPath()));
@@ -503,15 +509,14 @@ public class ProfileStudent extends JFrame {
 					db.close();
 					stmt.close();
 				}
-
-			}
-
-			catch (Exception error) {
-				error.printStackTrace();
 			}
 		}
-	}
 
+		catch (Exception error) {
+			JOptionPane.showMessageDialog(null, "An error was ocorred, please, choose another picture!");
+			labelPhoto.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/download2.jpeg")));
+		}
+	}
 	public byte[] loadImage() {
 		if (db.getConnection()) {
 			ResultSet rs;
