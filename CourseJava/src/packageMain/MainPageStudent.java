@@ -78,7 +78,7 @@ public class MainPageStudent extends JFrame {
 		btnQuizz.setBounds(10, 341, 339, 51);
 		panel1.add(btnQuizz);
 		
-		JButton btnExit = new JButton("");
+		JButton btnExit = new JButton("Logout");
 		btnExit.setIcon(new ImageIcon(MainPageStudent.class.getResource("/packageMain/icons8_exit_sign_25px.png")));
 		btnExit.setBackground(SystemColor.scrollbar);
 		btnExit.setBounds(70, 567, 215, 37);
@@ -115,6 +115,21 @@ public class MainPageStudent extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				quizzObj.mainMethodQuizz();
+			}
+		});
+		
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginClientes log = new LoginClientes();
+				log.mainMethod();
+				log.setSenhaCadastrada("");
+				log.setEmail("");
+				log.setSenha("");
+				log.setUsuarioCadastrado("");
+				LoginClientes.setUsuario("");
+				log.setEmailCadastrado("");
+				
+				dispose();
 			}
 		});
 	}

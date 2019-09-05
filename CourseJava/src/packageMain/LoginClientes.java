@@ -312,8 +312,8 @@ public class LoginClientes {
 				} else {
 					try {
 						Class.forName(DRIVER);
-						//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-						Connection conecta = DriverManager.getConnection(URL, "root", "");
+						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+						//Connection conecta = DriverManager.getConnection(URL, "root", "");
 						Statement stmt = conecta.createStatement();
 
 						String sql;
@@ -374,6 +374,15 @@ public class LoginClientes {
 				
 			}
 		});
+		
+		RecSenha.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				objPassword.settingInterface();
+				framePrincipalLogin.dispose();
+				
+			}
+		});
 
 		enviarDados.addActionListener(new ActionListener() {
 			@Override
@@ -406,31 +415,39 @@ public class LoginClientes {
 								|| (getUsuario().equals(rs.getString("email"))))
 								&& (getSenha().equals(rs.getString("senha"))))) {
 							if (rs.getInt("adm") == 1) {
-								new Thread(new Runnable() {
-									public void run() {
+								//new Thread(new Runnable() {
+								//	public void run() {
 
-										try {
-											Thread.sleep(2000);
+										//try {
+										//	Thread.sleep(2000);
 											JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
 											MainPageAdm tstAdm = new MainPageAdm();
 											tstAdm.all();
 											LoginClientes.framePrincipalLogin.dispose();
-										} catch (InterruptedException error) {
+											enviarDados.setText("Login");
+											enviarDados.setForeground(Color.WHITE);
+											setUsuario("");
+											setSenha("");
+										//} catch (InterruptedException error) {
 
-											error.printStackTrace();
-										}
-									}
-								}).start();
+										//	error.printStackTrace();
+										//}
+								//	}
+								//}).start();
 							} else {
 								JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
 								LoginClientes.framePrincipalLogin.dispose();
 								MainPageStudent tst = new MainPageStudent();
+								enviarDados.setText("Login");
+								enviarDados.setForeground(Color.WHITE);
 								tst.all();
+								setUsuario("");
+								setSenha("");
 							}
 						} else {
 							JOptionPane.showMessageDialog(null, "Usuario/Email e senha incorretos!");
 							enviarDados.setText("Login");
-							enviarDados.setForeground(Color.BLACK);
+							enviarDados.setForeground(Color.WHITE);
 						}
 					}
 
@@ -441,7 +458,7 @@ public class LoginClientes {
 				} catch (Exception error) {
 					JOptionPane.showMessageDialog(null, "Our server is going through problems, try again later.");
 					enviarDados.setText("Login");
-					enviarDados.setForeground(Color.BLACK);
+					enviarDados.setForeground(Color.WHITE);
 			}
 			}
 		});
