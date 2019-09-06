@@ -58,39 +58,35 @@ public class MainPageQuizz extends JFrame {
 
 	//public MainPageQuizz() {
 	public void mainMethodQuizz() {
+		db.getConnection();
 		questionsUser();
 		MainQuizz();
 		}
 
 	public void questionsUser() {
 		try {
-			if (db.getConnection()) {
 				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM mathExercises;";
 				stmt = db.con.prepareStatement(rsLenght);
 				ResultSet lenght2 = stmt.executeQuery();
 
-				while (lenght2.next()) {
-					lenghtMath = lenght2.getInt("firstRow");
-				}
+				lenght2.next();
+				lenghtMath = lenght2.getInt("firstRow");
 
 				rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM englishExercises;";
 				stmt = db.con.prepareStatement(rsLenght);
 				lenght2 = stmt.executeQuery();
 
-				while (lenght2.next()) {
-					lenghtEnglish = lenght2.getInt("firstRow");
-				}
+				lenght2.next();
+				lenghtEnglish = lenght2.getInt("firstRow");
 
 				rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM programmingExercises;";
 				stmt = db.con.prepareStatement(rsLenght);
 				lenght2 = stmt.executeQuery();
 
-				while (lenght2.next()) {
-					lenghtProgramming = lenght2.getInt("firstRow");
-				}
+				lenght2.next();
+				lenghtProgramming = lenght2.getInt("firstRow");
 
-			}
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -246,7 +242,6 @@ public class MainPageQuizz extends JFrame {
 				englishButton.setBackground(Color.LIGHT_GRAY);
 				programmingButton.setBackground(Color.LIGHT_GRAY);
 
-
 				methodReceiverMath();
 				actionsMath();
 			}
@@ -273,6 +268,7 @@ public class MainPageQuizz extends JFrame {
 				
 				mathButton.setBackground(Color.LIGHT_GRAY);
 				programmingButton.setBackground(Color.LIGHT_GRAY);
+				
 				methodReceiverEnglish();
 				actionsEnglish();
 			}
@@ -280,6 +276,7 @@ public class MainPageQuizz extends JFrame {
 
 		programmingButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				panelQuizz.setVisible(true);
 				chosenQuizz.setText("Programming Quizz");
 				buttonSeparatorProgramming.setBackground(new Color(97, 202, 144));
@@ -307,7 +304,6 @@ public class MainPageQuizz extends JFrame {
 	}
 
 	public void methodReceiverMath() {
-		if (db.getConnection()) {
 			try {
 				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM mathExercises WHERE codQuestion="
 						+ lenghtMath + ";";
@@ -320,6 +316,7 @@ public class MainPageQuizz extends JFrame {
 					if (lenghtMath > lenght.getInt("quantidade")) {
 						JOptionPane.showMessageDialog(null,
 								"You have finished all questions, please, try another course!");
+						break;
 					}
 				}
 
@@ -356,13 +353,13 @@ public class MainPageQuizz extends JFrame {
 					question.setText("Question " + lenghtMath + " - " + String.valueOf(rs.getString("question")));
 
 					az++;
-
 				}
+				
 			} catch (Exception error) {
 				System.err.println("Error:" + error.getMessage());
 				System.err.println("Error:" + error.toString());
 
-			}
+			
 		}
 	}
 
@@ -407,8 +404,6 @@ public class MainPageQuizz extends JFrame {
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
-
-// objMath.explanationQuestion(i);
 						}
 
 						answer1.setEnabled(false);
@@ -431,8 +426,6 @@ public class MainPageQuizz extends JFrame {
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
-
-// objMath.explanationQuestion(i);
 						}
 						answer1.setEnabled(false);
 						answer2.setEnabled(false);
@@ -455,8 +448,6 @@ public class MainPageQuizz extends JFrame {
 							JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
-
-// objMath.explanationQuestion(i);
 						}
 						answer1.setEnabled(false);
 						answer2.setEnabled(false);
@@ -480,16 +471,12 @@ public class MainPageQuizz extends JFrame {
 					methodReceiverMath();
 				}
 			});
-			db.close();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
 	}
 
-//==========================================================================
-
 	public void methodReceiverEnglish() {
-		if (db.getConnection()) {
 			try {
 				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM englishExercises WHERE codQuestion="
 						+ lenghtEnglish + ";";
@@ -502,6 +489,7 @@ public class MainPageQuizz extends JFrame {
 					if (lenghtEnglish > lenght.getInt("quantidade")) {
 						JOptionPane.showMessageDialog(null,
 								"You have finished all questions, please, try another course!");
+						break;
 					}
 				}
 
@@ -547,7 +535,7 @@ public class MainPageQuizz extends JFrame {
 
 			}
 
-		}
+		
 	}
 
 	public void actionsEnglish() {
@@ -591,8 +579,6 @@ public class MainPageQuizz extends JFrame {
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
-
-// objMath.explanationQuestion(i);
 						}
 
 						answer1.setEnabled(false);
@@ -663,7 +649,6 @@ public class MainPageQuizz extends JFrame {
 					methodReceiverEnglish();
 				}
 			});
-			db.close();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
@@ -672,7 +657,6 @@ public class MainPageQuizz extends JFrame {
 //========================================================
 
 	public void methodReceiverProgramming() {
-		if (db.getConnection()) {
 			try {
 				SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM programmingExercises WHERE codQuestion="
 						+ lenghtProgramming + ";";
@@ -685,6 +669,7 @@ public class MainPageQuizz extends JFrame {
 					if (lenghtProgramming > lenght.getInt("quantidade")) {
 						JOptionPane.showMessageDialog(null,
 								"You have finished all questions, please, try another course!");
+						break;
 					}
 				}
 
@@ -730,7 +715,7 @@ public class MainPageQuizz extends JFrame {
 
 			}
 
-		}
+		
 	}
 
 	public void actionsProgramming() {
@@ -846,7 +831,6 @@ public class MainPageQuizz extends JFrame {
 					methodReceiverProgramming();
 				}
 			});
-			db.close();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}

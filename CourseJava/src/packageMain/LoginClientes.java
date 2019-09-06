@@ -290,15 +290,12 @@ public class LoginClientes {
 				setUsuarioCadastrado(campoUsuarioCadastrar.getText());
 				setSenhaCadastrada(String.valueOf(campoSenhaCadastrar.getPassword()));
 				setEmailCadastrado(campoEmailCadastrar.getText());
-
+	
 				try {
 				InternetAddress emailAddr;
 				emailAddr = new InternetAddress(getEmailCadastrado());
 				emailAddr.validate();
-				}
-				catch(AddressException e1) {
-					JOptionPane.showMessageDialog(null, "Put a one valid email");
-				}
+				
 
 				if ((getEmailCadastrado().equals("")) || (getSenhaCadastrada().equals(""))
 						|| (getConfirmacaoSenha().equals("")) || (getUsuarioCadastrado().equals(""))) {
@@ -312,8 +309,8 @@ public class LoginClientes {
 				} else {
 					try {
 						Class.forName(DRIVER);
-						//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-						Connection conecta = DriverManager.getConnection(URL, "root", "");
+						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+						//Connection conecta = DriverManager.getConnection(URL, "root", "");
 						Statement stmt = conecta.createStatement();
 
 						String sql;
@@ -329,17 +326,7 @@ public class LoginClientes {
 						ResultSet rs2 = stmt2.executeQuery(sqlUser);
 
 						while (rs.next() && rs2.next()) {
-							if ((rs.getInt("quantidade") == 0) && (rs2.getInt("quantidade") == 0)) {
-								sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
-										+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
-										+ getSenhaCadastrada() + "', false, true);";
-								stmt = conecta.prepareStatement(sql);
-								stmt.execute(sql);
-								JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
-
-							}
-
-							else if (rs.getInt("quantidade") != 0) {
+							if (rs.getInt("quantidade") != 0) {
 								JOptionPane.showMessageDialog(null,
 										"This email has been inserted on the app, please, input another email");
 								campoEmailCadastrar.setText("");
@@ -352,6 +339,19 @@ public class LoginClientes {
 								campoEmailCadastrar.setText("");
 								campoUsuarioCadastrar.setText("");
 							}
+							
+							else if((rs.getInt("quantidade") == 0) && (rs2.getInt("quantidade") == 0)) {
+								sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
+										+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
+										+ getSenhaCadastrada() + "', false, true);";
+								stmt = conecta.prepareStatement(sql);
+								stmt.execute(sql);
+								JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
+								setEmailCadastrado("");
+								setConfirmacaoSenha("");
+								setSenhaCadastrada("");
+								setUsuarioCadastrado("");
+							}
 
 						}
 					} catch (SQLException error) {
@@ -360,6 +360,9 @@ public class LoginClientes {
 						e1.printStackTrace();
 
 					}
+				}}
+				catch(AddressException e1) {
+					JOptionPane.showMessageDialog(null, "Put a one valid email");
 				}
 			}
 		});
@@ -390,8 +393,8 @@ public class LoginClientes {
 
 				try {
 					Class.forName(DRIVER);
-					//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-					Connection conecta = DriverManager.getConnection(URL, "root", "");
+					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+					//Connection conecta = DriverManager.getConnection(URL, "root", "");
 
 					String sql;
 
@@ -441,7 +444,7 @@ public class LoginClientes {
 				} catch (Exception error) {
 					JOptionPane.showMessageDialog(null, "Our server is going through problems, try again later.");
 					enviarDados.setText("Login");
-					enviarDados.setForeground(Color.BLACK);
+					enviarDados.setForeground(Color.WHITE);
 			}
 			}
 		});
