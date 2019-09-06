@@ -392,14 +392,6 @@ public class ProfileAdm extends JFrame {
 						facebookField.getText(), instagramField.getText(), LoginClientes.getUsuario());
 			}
 		});
-		
-		returnButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainPageAdm adm = new MainPageAdm();
-				adm.all();
-				dispose();
-			}
-		});
 	}
 
 	class limitPhone extends PlainDocument {

@@ -11,8 +11,8 @@ public class ConectionDB {
 	private final String DBNAME = "courseJava";
 	private final String URL = "jdbc:mysql://localhost:3306/" + DBNAME;
 	private final String LOGIN = "root";
-	private final String SENHA = "hunter";
-	//private final String SENHA = "";
+	//private final String SENHA = "hunter";
+	private final String SENHA = "";
 
 	public boolean getConnection() {
 		try {

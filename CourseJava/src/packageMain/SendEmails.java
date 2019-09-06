@@ -34,7 +34,7 @@ public class SendEmails {
 			message.setFrom(new InternetAddress("otavio@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailPerson));
 			message.setSubject("App Hunter");
-			message.setText("OlÃ¡!! Este Ã© seu cÃ³digo para iniciar em nosso app: " + code);
+			message.setText("Olá!! Este é seu código para iniciar em nosso app: " + code);
 
 			Transport.send(message);
 		} catch (MessagingException e) {
@@ -86,7 +86,7 @@ public class SendEmails {
 					"<META NAME=\"ROBOTS\" CONTENT=\"NOINDEX, NOFOLLOW\"/><link rel=\"stylesheet\" href=\"/style/dhtmlwindow.css\" type=\"text/css\" />\n" + 
 					"<script type=\"text/javascript\" src=\"/script/dhtmlwindow.js\">\n" + 
 					"/***********************************************\n" + 
-					"* DHTML Window Widget- Â© Dynamic Drive (www.dynamicdrive.com)\n" + 
+					"* DHTML Window Widget- © Dynamic Drive (www.dynamicdrive.com)\n" + 
 					"* This notice must stay intact for legal use.\n" + 
 					"* Visit www.dynamicdrive.com for full source code\n" + 
 					"***********************************************/\n" + 

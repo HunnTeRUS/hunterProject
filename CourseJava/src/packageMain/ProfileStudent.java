@@ -429,14 +429,6 @@ public class ProfileStudent extends JFrame {
 							LoginClientes.getUsuario());
 			}
 		});
-		
-		returnButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainPageStudent student= new MainPageStudent();
-				student.all();
-				dispose();
-			}
-		});
 
 	}
 
