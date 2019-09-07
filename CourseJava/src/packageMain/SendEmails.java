@@ -34,7 +34,7 @@ public class SendEmails {
 			message.setFrom(new InternetAddress("otavio@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailPerson));
 			message.setSubject("App Hunter");
-			message.setText("Olá!! Este é seu código para iniciar em nosso app: " + code);
+			message.setText("Olï¿½!! Este ï¿½ seu cï¿½digo para iniciar em nosso app: " + code);
 
 			Transport.send(message);
 		} catch (MessagingException e) {
@@ -42,7 +42,7 @@ public class SendEmails {
 		}
 	}
 	
-	public void sendEmailVerification(String name, String emailUser, int code, String phone) {
+	public void sendEmailVerification(String name, String emailUser, int code, String phone, String question) {
 		final String username = "imhunnterus@gmail.com";
 		final String password = "hunter@147";
 
@@ -86,7 +86,7 @@ public class SendEmails {
 					"<META NAME=\"ROBOTS\" CONTENT=\"NOINDEX, NOFOLLOW\"/><link rel=\"stylesheet\" href=\"/style/dhtmlwindow.css\" type=\"text/css\" />\n" + 
 					"<script type=\"text/javascript\" src=\"/script/dhtmlwindow.js\">\n" + 
 					"/***********************************************\n" + 
-					"* DHTML Window Widget- © Dynamic Drive (www.dynamicdrive.com)\n" + 
+					"* DHTML Window Widget- ï¿½ Dynamic Drive (www.dynamicdrive.com)\n" + 
 					"* This notice must stay intact for legal use.\n" + 
 					"* Visit www.dynamicdrive.com for full source code\n" + 
 					"***********************************************/\n" + 
@@ -214,6 +214,7 @@ public class SendEmails {
 					"<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"600\" name=\"tblText\" style=\"float:left; background-color:transparent;\" align=\"left\" class=\"tblText\"><tbody><tr><td valign=\"top\" align=\"left\" name=\"tblCell\" style=\"padding: 5px 10px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 400; color: rgb(56, 56, 56); text-align: left;\" class=\"tblCell\"><div style=\"line-height: 50%; text-align: center;\"><span style=\"font-size: 20px; font-family: Tahoma, Arial, Helvetica, sans-serif; color: #ffffff; line-height: 50%; color: #ffffff;\"><br><br><br>Name: " + name + "\n" + 
 					"  <table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"600\" name=\"tblText\" style=\"float:left; background-color:transparent;\" align=\"left\" class=\"tblText\"><tbody><tr><td valign=\"top\" align=\"left\" name=\"tblCell\" style=\"padding: 5px 10px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 400; color: rgb(56, 56, 56); text-align: left;\" class=\"tblCell\"><div style=\"line-height: 50%; text-align: center;\"><span style=\"font-size: 20px; font-family: Tahoma, Arial, Helvetica, sans-serif; color: #ffffff; line-height: 50%;\"><br><br>Email: " + emailUser + "\n" + 
 					"    <table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"600\" name=\"tblText\" style=\"float:left; background-color:transparent;\" align=\"left\" class=\"tblText\"><tbody><tr><td valign=\"top\" align=\"left\" name=\"tblCell\" style=\"padding: 5px 10px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 400; color: rgb(56, 56, 56); text-align: left;\" class=\"tblCell\"><div style=\"line-height: 50%; text-align: center;\"><span style=\"font-size: 20px; font-family: Tahoma, Arial, Helvetica, sans-serif; color: #ffffff; line-height: 50%;\"><br><br>Code: " + code + "\n" + 
+					"		<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"600\" name=\"tblText\" style=\"float:left; background-color:transparent;\" align=\"left\" class=\"tblText\"><tbody><tr><td valign=\"top\" align=\"left\" name=\"tblCell\" style=\"padding: 5px 10px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 400; color: rgb(56, 56, 56); text-align: left;\" class=\"tblCell\"><div style=\"line-height: 50%; text-align: center;\"><span style=\"font-size: 20px; font-family: Tahoma, Arial, Helvetica, sans-serif; color: #ffffff; line-height: 50%;\"><br><br>Why he want to be ADM: " + question + "\n" +
 					"          <table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"600\" name=\"tblText\" style=\"float:left; background-color:transparent;\" align=\"left\" class=\"tblText\"><tbody><tr><td valign=\"top\" align=\"left\" name=\"tblCell\" style=\"padding: 5px 10px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 400; color: rgb(56, 56, 56); text-align: left;\" class=\"tblCell\"><div style=\"line-height: 50%; text-align: center;\"><span style=\"font-size: 20px; font-family: Tahoma, Arial, Helvetica, sans-serif; color: #ffffff; line-height: 50%;\"><br><br>Phone: " + phone + "\n" + 
 					"</table></td></tr></tbody>\n" + 
 					"</table></td></tr></tbody>\n" + 

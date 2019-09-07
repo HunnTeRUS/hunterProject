@@ -389,19 +389,14 @@ public class ProfileStudent extends JFrame {
 		
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(db.getConnection()) {
+				/*if(db.getConnection()) {
 				try {
-					
-					Class.forName(DRIVER);
-					//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-					Connection conecta = DriverManager.getConnection(URL, "root", "");
-
 					String sql;
 
 					sql = "SELECT userr, email, adm FROM users WHERE userr='" + LoginClientes.getUsuario()
 							+ "' OR email='" + LoginClientes.getUsuario() + "';";
 
-					PreparedStatement stmt = conecta.prepareStatement(sql);
+					PreparedStatement stmt = db.con.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
 
 					if (rs.next()) {
@@ -409,10 +404,10 @@ public class ProfileStudent extends JFrame {
 								|| (LoginClientes.getUsuario().equals(rs.getString("email"))))
 								)) {
 							if (rs.getInt("adm") == 1) {
-								
+								*/
 											MainPageAdm tstAdm = new MainPageAdm();
 											tstAdm.all();
-											dispose();
+											dispose();/*
 									}
 								
 							 else {
@@ -424,7 +419,7 @@ public class ProfileStudent extends JFrame {
 					
 						}catch(Exception eror) {
 							eror.printStackTrace();
-						}}}});
+						}}*/}});
 		
 		
 		
@@ -443,7 +438,8 @@ public class ProfileStudent extends JFrame {
 				if (db.getConnection()) {
 					SendEmails send = new SendEmails();
 					try {
-
+						String answer = JOptionPane.showInputDialog(null, "Why do you want to be adm in our app?");
+						
 						SQL = "SELECT * FROM users WHERE userr = '" + LoginClientes.getUsuario() + "' OR email = '"
 								+ LoginClientes.getUsuario() + "';";
 
@@ -453,7 +449,7 @@ public class ProfileStudent extends JFrame {
 						rs.next();
 
 						send.sendEmailVerification(rs.getString("nameUser"), rs.getString("email"),
-								rs.getInt("codeUser"), rs.getString("phone"));
+								rs.getInt("codeUser"), rs.getString("phone"), answer);
 
 						JOptionPane.showMessageDialog(null, "Your Message have been sent sucessfully!");
 						btnIWannaBe.setEnabled(false);

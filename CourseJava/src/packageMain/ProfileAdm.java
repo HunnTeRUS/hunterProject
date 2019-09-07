@@ -384,6 +384,40 @@ public class ProfileAdm extends JFrame {
 				}
 			}
 		});
+		
+		returnButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*if(db.getConnection()) {
+				try {
+					String sql;
+
+					sql = "SELECT userr, email, adm FROM users WHERE userr='" + LoginClientes.getUsuario()
+							+ "' OR email='" + LoginClientes.getUsuario() + "';";
+
+					PreparedStatement stmt = db.con.prepareStatement(sql);
+					ResultSet rs = stmt.executeQuery();
+
+					if (rs.next()) {
+						if (((LoginClientes.getUsuario().equals(rs.getString("userr"))
+								|| (LoginClientes.getUsuario().equals(rs.getString("email"))))
+								)) {
+							if (rs.getInt("adm") == 1) {
+								*/
+											MainPageAdm tstAdm = new MainPageAdm();
+											tstAdm.all();
+											dispose();
+									/*}
+								
+							 else {
+								
+								dispose();
+								MainPageStudent tst = new MainPageStudent();
+								tst.all();
+							}}}
+					
+						}catch(Exception eror) {
+							eror.printStackTrace();
+						}}*/}});
 
 		updateInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
