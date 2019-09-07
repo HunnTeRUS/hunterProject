@@ -111,7 +111,7 @@ public class ForgotPassword {
 		mainPanel2.setLayout(null);
 		mainFrame.add(mainPanel2);
 		mainFrame.setTitle("Set new password");
-		mainPanel2.setBackground(new Color(107, 35, 142));
+		mainPanel2.setBackground(new Color(70, 130, 180));
 		mainPanel2.add(imageIcon);
 		mainPanel2.add(passwordRequest);
 		mainPanel2.add(passwordRequestConfirm);
@@ -123,6 +123,9 @@ public class ForgotPassword {
 		password.setBounds(90, 170, 300, 50);
 		password.setForeground(Color.BLACK);
 		password.setForeground(Color.BLACK);
+
+		password.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(70, 130, 180), 1, true));
+		passwordConfirm.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(70, 130, 180), 1, true));
 
 		passwordConfirm.setBounds(90, 300, 300, 50);
 		passwordConfirm.setForeground(Color.BLACK);
@@ -203,7 +206,7 @@ public class ForgotPassword {
 		mainPanel.setLayout(null);
 		mainFrame.add(mainPanel);
 		mainFrame.setTitle("Forgot Password");
-		mainPanel.setBackground(new Color(107, 35, 142));
+		mainPanel.setBackground(new Color(70, 130, 180));
 		mainPanel.add(imageIcon);
 		mainPanel.add(emailRequest);
 		imageIcon.setBounds(92, 360, 300, 450);
@@ -221,9 +224,9 @@ public class ForgotPassword {
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 
-		sendEmail.setBounds(135, 290, 240, 50);
+		sendEmail.setBounds(125, 290, 240, 50);
 		sendEmail.setForeground(Color.BLACK);
-		sendEmail.setForeground(Color.BLACK);
+		sendEmail.setBackground(Color.WHITE);
 		returnMain.setBounds(170, 630, 150, 35);
 		returnMain.setBackground(Color.BLACK);
 		returnMain.setForeground(Color.WHITE);
