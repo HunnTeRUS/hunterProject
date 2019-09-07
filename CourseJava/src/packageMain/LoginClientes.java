@@ -47,7 +47,8 @@ public class LoginClientes {
 	JPanel panel_1 = new JPanel();
 	JLabel lblLoginIn = new JLabel("Login In");
 	JLabel lblPassword = new JLabel("Password");
-
+	
+	
 	private JTextField campoUsuario = new JTextField();
 	private JPasswordField campoSenhaCadastrar = new JPasswordField();
 	private JTextField campoUsuarioCadastrar = new JTextField();
@@ -99,13 +100,18 @@ public class LoginClientes {
 		LoginPage();
 		manipulandoDadosRegister();
 		manipulandoDados();
+		
 	}
 	
+	
 	public void LoginPage() {
+
 		framePrincipalLogin.getContentPane().setLayout(null);
 		framePrincipalLogin.setVisible(true);
-		framePrincipalLogin.setLocation(new Point(400, 300));
-		framePrincipalLogin.setBounds(new Rectangle(400, 200, 1000, 700));
+
+		framePrincipalLogin.setSize(1000, 700);
+		framePrincipalLogin.setLocationRelativeTo(null);
+
 		framePrincipalLogin.setTitle("Login");
 		framePrincipalLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		framePrincipalLogin.setResizable(false);
@@ -309,8 +315,8 @@ public class LoginClientes {
 				} else {
 					try {
 						Class.forName(DRIVER);
-						Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-						//Connection conecta = DriverManager.getConnection(URL, "root", "");
+						//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+						Connection conecta = DriverManager.getConnection(URL, "root", "");
 						Statement stmt = conecta.createStatement();
 
 						String sql;
@@ -346,11 +352,15 @@ public class LoginClientes {
 										+ getSenhaCadastrada() + "', false, true);";
 								stmt = conecta.prepareStatement(sql);
 								stmt.execute(sql);
+								
+								String limpar = "";
+								campoSenhaCadastrar.setText(limpar);
+								campoConfirmarSenhaCadastrar.setText(limpar);
+								campoEmailCadastrar.setText(limpar);
+								campoUsuarioCadastrar.setText(limpar);
+								
+								
 								JOptionPane.showMessageDialog(null, "You have been cadaster with success!");
-								setEmailCadastrado("");
-								setConfirmacaoSenha("");
-								setSenhaCadastrada("");
-								setUsuarioCadastrado("");
 							}
 
 						}
@@ -393,8 +403,8 @@ public class LoginClientes {
 
 				try {
 					Class.forName(DRIVER);
-					Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-					//Connection conecta = DriverManager.getConnection(URL, "root", "");
+					//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+					Connection conecta = DriverManager.getConnection(URL, "root", "");
 
 					String sql;
 

@@ -50,7 +50,8 @@ public class CreateQuestions {
 	}
 
 	public void visual() {
-		mainFrame.setBounds(700, 200, 500, 600);
+		mainFrame.setSize(500,600);
+		mainFrame.setLocationRelativeTo(null);		
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setVisible(true);
 		mainFrame.setTitle("Creation Page");

@@ -42,7 +42,9 @@ public class ClassStudent {
 
 	public void settingInterface() {
 		mainFrame.setVisible(true);
-		mainFrame.setBounds(700, 200, 500, 700);
+		mainFrame.setSize(500,700);
+		mainFrame.setLocationRelativeTo(null);
+
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

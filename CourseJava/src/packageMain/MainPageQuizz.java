@@ -94,7 +94,8 @@ public class MainPageQuizz extends JFrame {
 
 	public void MainQuizz() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1137, 656);
+		setSize(1137,656);
+		setLocationRelativeTo(null);
 		setVisible(true);
 		setResizable(false);
 		contentPane = new JPanel();

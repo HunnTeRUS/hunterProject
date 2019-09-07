@@ -3,6 +3,7 @@ package packageMain;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConectionDB {
 
@@ -11,13 +12,22 @@ public class ConectionDB {
 	private final String DBNAME = "courseJava";
 	private final String URL = "jdbc:mysql://localhost:3306/" + DBNAME;
 	private final String LOGIN = "root";
-	private final String SENHA = "hunter";
-	//private final String SENHA = "";
+	//private final String SENHA = "hunter";
+	private final String SENHA = "";
 
 	public boolean getConnection() {
 		try {
+			int c=0;
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, LOGIN, SENHA);
+			if(c==0) {
+				String cdb = "USE courseJava";
+				Statement stm = con.createStatement();
+				stm = con.prepareStatement(cdb);
+				stm.execute(cdb);
+				c++;
+			}
+			
 			System.out.println("Classe BD - Conectou");
 			return true;
 		} catch (ClassNotFoundException e) {

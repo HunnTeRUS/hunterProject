@@ -44,7 +44,8 @@ public class MainInterface {
 	public void settingInterface() {
 		mainFrame.setVisible(true);
 		mainFrame.setBounds(700, 200, 500, 700);
-		mainPanel.setBounds(700, 200, 500, 700);
+		mainFrame.setSize(500, 700);
+		mainFrame.setLocationRelativeTo(null);
 		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);

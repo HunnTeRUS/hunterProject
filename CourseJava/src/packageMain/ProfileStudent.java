@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,6 +38,8 @@ import javax.swing.JTextField;
 import javax.swing.JSeparator;
 
 public class ProfileStudent extends JFrame {
+	
+	static LoginClientes login = new LoginClientes();
 	private JPanel contentPane;
 	private JTextField facebookField;
 	private JTextField instagramField;
@@ -48,7 +52,8 @@ public class ProfileStudent extends JFrame {
 	private JLabel labelPhoto = new JLabel();
 	public static JTextField phoneField = new JTextField();
 	public JTextField ageField = new JTextField();
-
+	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+	private final String URL = "jdbc:mysql://127.0.0.1/courseJava";
 	String SQL;
 	ResultSet rs;
 	PreparedStatement stmt;
@@ -81,7 +86,8 @@ public class ProfileStudent extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 945, 638);
+		setSize(945,638);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		setVisible(true);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -380,7 +386,48 @@ public class ProfileStudent extends JFrame {
 		updateInfo.setBounds(224, 417, 248, 33);
 		panel_1.add(updateInfo);
 		loadInf();
+		
+		returnButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(db.getConnection()) {
+				try {
+					
+					Class.forName(DRIVER);
+					//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
+					Connection conecta = DriverManager.getConnection(URL, "root", "");
 
+					String sql;
+
+					sql = "SELECT userr, email, adm FROM users WHERE userr='" + LoginClientes.getUsuario()
+							+ "' OR email='" + LoginClientes.getUsuario() + "';";
+
+					PreparedStatement stmt = conecta.prepareStatement(sql);
+					ResultSet rs = stmt.executeQuery();
+
+					if (rs.next()) {
+						if (((LoginClientes.getUsuario().equals(rs.getString("userr"))
+								|| (LoginClientes.getUsuario().equals(rs.getString("email"))))
+								)) {
+							if (rs.getInt("adm") == 1) {
+								
+											MainPageAdm tstAdm = new MainPageAdm();
+											tstAdm.all();
+											dispose();
+									}
+								
+							 else {
+								
+								dispose();
+								MainPageStudent tst = new MainPageStudent();
+								tst.all();
+							}}}
+					
+						}catch(Exception eror) {
+							eror.printStackTrace();
+						}}}});
+		
+		
+		
 		btnUpdateMyProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

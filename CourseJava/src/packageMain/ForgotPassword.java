@@ -104,7 +104,8 @@ public class ForgotPassword {
 		mainFrame.setVisible(true);
 		mainFrame.setResizable(false);
 		mainPanel.setVisible(false);
-		mainFrame.setBounds(700, 200, 500, 700);
+		mainFrame.setSize(500,700);
+		mainFrame.setLocationRelativeTo(null);
 		mainPanel2.setBounds(700, 200, 500, 700);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel2.setLayout(null);

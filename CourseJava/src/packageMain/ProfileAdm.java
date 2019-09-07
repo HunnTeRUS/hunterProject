@@ -68,7 +68,8 @@ public class ProfileAdm extends JFrame {
 	// public ProfileAdm() {
 	public void ProfileAdmMethod() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 945, 638);
+		setSize(945,638);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		setVisible(true);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
