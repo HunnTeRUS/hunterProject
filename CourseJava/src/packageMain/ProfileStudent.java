@@ -38,7 +38,7 @@ import javax.swing.JTextField;
 import javax.swing.JSeparator;
 
 public class ProfileStudent extends JFrame {
-	
+
 	static LoginClientes login = new LoginClientes();
 	private JPanel contentPane;
 	private JTextField facebookField;
@@ -81,12 +81,12 @@ public class ProfileStudent extends JFrame {
 		this.tamanho = tamanho;
 	}
 
-	//public ProfileStudent() {
+	// public ProfileStudent() {
 	public void ProfileStudentMethod() {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(945,638);
+		setSize(945, 638);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		setVisible(true);
@@ -386,43 +386,37 @@ public class ProfileStudent extends JFrame {
 		updateInfo.setBounds(224, 417, 248, 33);
 		panel_1.add(updateInfo);
 		loadInf();
-		
+
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*if(db.getConnection()) {
-				try {
-					String sql;
+				/*
+				 * if(db.getConnection()) { try { String sql;
+				 * 
+				 * sql = "SELECT userr, email, adm FROM users WHERE userr='" +
+				 * LoginClientes.getUsuario() + "' OR email='" + LoginClientes.getUsuario() +
+				 * "';";
+				 * 
+				 * PreparedStatement stmt = db.con.prepareStatement(sql); ResultSet rs =
+				 * stmt.executeQuery();
+				 * 
+				 * if (rs.next()) { if
+				 * (((LoginClientes.getUsuario().equals(rs.getString("userr")) ||
+				 * (LoginClientes.getUsuario().equals(rs.getString("email")))) )) { if
+				 * (rs.getInt("adm") == 1) {
+				 * 
+				 * MainPageAdm tstAdm = new MainPageAdm(); tstAdm.all(); dispose();
+				 */
+				/*
+				 * }
+				 * 
+				 * else {
+				 */ 
+				 dispose(); MainPageStudent tst = new MainPageStudent(); tst.all(); }
+				 /* 
+				 * }catch(Exception eror) { eror.printStackTrace(); }}
+				 }*/
+		});
 
-					sql = "SELECT userr, email, adm FROM users WHERE userr='" + LoginClientes.getUsuario()
-							+ "' OR email='" + LoginClientes.getUsuario() + "';";
-
-					PreparedStatement stmt = db.con.prepareStatement(sql);
-					ResultSet rs = stmt.executeQuery();
-
-					if (rs.next()) {
-						if (((LoginClientes.getUsuario().equals(rs.getString("userr"))
-								|| (LoginClientes.getUsuario().equals(rs.getString("email"))))
-								)) {
-							if (rs.getInt("adm") == 1) {
-								*/
-											MainPageAdm tstAdm = new MainPageAdm();
-											tstAdm.all();
-											dispose();/*
-									}
-								
-							 else {
-								
-								dispose();
-								MainPageStudent tst = new MainPageStudent();
-								tst.all();
-							}}}
-					
-						}catch(Exception eror) {
-							eror.printStackTrace();
-						}}*/}});
-		
-		
-		
 		btnUpdateMyProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -439,7 +433,7 @@ public class ProfileStudent extends JFrame {
 					SendEmails send = new SendEmails();
 					try {
 						String answer = JOptionPane.showInputDialog(null, "Why do you want to be adm in our app?");
-						
+
 						SQL = "SELECT * FROM users WHERE userr = '" + LoginClientes.getUsuario() + "' OR email = '"
 								+ LoginClientes.getUsuario() + "';";
 
@@ -560,6 +554,7 @@ public class ProfileStudent extends JFrame {
 			labelPhoto.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/download2.jpeg")));
 		}
 	}
+
 	public byte[] loadImage() {
 		if (db.getConnection()) {
 			ResultSet rs;
