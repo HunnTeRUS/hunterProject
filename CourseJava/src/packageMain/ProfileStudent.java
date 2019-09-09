@@ -81,7 +81,7 @@ public class ProfileStudent extends JFrame {
 		this.tamanho = tamanho;
 	}
 
-	// public ProfileStudent() {
+	//public ProfileStudent() {
 	public void ProfileStudentMethod() {
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -464,6 +464,13 @@ public class ProfileStudent extends JFrame {
 					info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(),
 							githubField.getText(), facebookField.getText(), instagramField.getText(),
 							LoginClientes.getUsuario());
+			}
+		});
+		
+		btnChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ChangePasswordProfile change = new ChangePasswordProfile();
+				change.changePassword();
 			}
 		});
 

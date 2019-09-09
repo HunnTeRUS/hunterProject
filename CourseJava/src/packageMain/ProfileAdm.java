@@ -427,6 +427,13 @@ public class ProfileAdm extends JFrame {
 						facebookField.getText(), instagramField.getText(), LoginClientes.getUsuario());
 			}
 		});
+		
+		btnChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ChangePasswordProfile change = new ChangePasswordProfile();
+				change.changePassword();
+			}
+		});
 	}
 
 	class limitPhone extends PlainDocument {
