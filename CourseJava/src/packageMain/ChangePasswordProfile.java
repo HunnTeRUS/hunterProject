@@ -1,32 +1,55 @@
 package packageMain;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JSeparator;
-import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JProgressBar;
 import javax.swing.border.LineBorder;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
-import javax.swing.UIManager;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 
 public class ChangePasswordProfile extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JPasswordField confirmPasswordField;
 	boolean valueSimbol;
+	
+	String senhaCadastrada;
+	String confirmacaoSenha;
+	String SQL;
+	ResultSet rs;
+	PreparedStatement stmt;
+	
+	ConectionDB db = new ConectionDB();
+	
+	public String getSenhaCadastrada() {
+		return senhaCadastrada;
+	}
+
+
+
+	public void setSenhaCadastrada(String senhaCadastrada) {
+		this.senhaCadastrada = senhaCadastrada;
+	}
+
+
+
+	public String getConfirmacaoSenha() {
+		return confirmacaoSenha;
+	}
+
+
+
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
+	}
+
+
 
 	public void changePassword() {
 	
@@ -91,6 +114,56 @@ public class ChangePasswordProfile extends JFrame {
 		btnReturn.setBounds(216, 330, 131, 36);
 		contentPane.add(btnReturn);
 
+		btnSetPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setSenhaCadastrada(String.valueOf(passwordField.getPassword()));
+				setConfirmacaoSenha(String.valueOf(confirmPasswordField.getPassword()));
+
+				if ((getSenhaCadastrada().equals("")) || (getConfirmacaoSenha().equals(""))) {
+					JOptionPane.showMessageDialog(null, "Insert your new password!");
+					setSenhaCadastrada("");
+					setConfirmacaoSenha("");
+				}
+
+				else if ((getSenhaCadastrada().length() <= 6) || (getConfirmacaoSenha().length() <= 6)){
+					JOptionPane.showMessageDialog(null, "Put a password more strong. Use a password higher than 6 characters!");
+					setSenhaCadastrada("");
+					setConfirmacaoSenha("");
+				}
+
+				else if (!(getSenhaCadastrada().equals(getConfirmacaoSenha()))) {
+					JOptionPane.showMessageDialog(null, "Password field and password confirmation isn't equals!");
+					setSenhaCadastrada("");
+					setConfirmacaoSenha("");
+				}
+
+				else {
+					try {
+						if (db.getConnection()) {
+							LoginClientes login = new LoginClientes();
+							SQL = "UPDATE users SET senha = '" + String.valueOf(getConfirmacaoSenha())
+									+ "' WHERE email = '" + LoginClientes.getUsuario() + "' OR userr = '" + LoginClientes.getUsuario() + "';";
+
+							stmt = db.con.prepareStatement(SQL);
+							stmt.executeUpdate();
+
+							stmt.close();
+							db.close();
+							
+							dispose();
+
+							JOptionPane.showMessageDialog(null, "Your password was sucessfully updated!");
+						}
+					} catch (SQLException error) {
+						error.getStackTrace();
+
+					}
+				}
+			}
+		});
+
+	}
+		
 		/*JProgressBar progressBar = new JProgressBar();
 		progressBar.setForeground(Color.GRAY);
 		progressBar.setBackground(Color.WHITE);
@@ -122,5 +195,5 @@ public class ChangePasswordProfile extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Difficulty");
 		lblNewLabel_1.setBounds(111, 226, 66, 15);
 		contentPane.add(lblNewLabel_1);*/
-	}
+	
 }
