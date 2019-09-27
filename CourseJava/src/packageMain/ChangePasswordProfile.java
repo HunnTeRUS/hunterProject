@@ -145,7 +145,7 @@ public class ChangePasswordProfile extends JFrame {
 									+ "' WHERE email = '" + LoginClientes.getUsuario() + "' OR userr = '" + LoginClientes.getUsuario() + "';";
 
 							stmt = db.con.prepareStatement(SQL);
-							stmt.executeUpdate();
+							stmt.executeUpdate(); 
 
 							stmt.close();
 							db.close();
