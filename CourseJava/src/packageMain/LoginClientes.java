@@ -21,6 +21,7 @@ public class LoginClientes {
 	static LoginClientes objLogin = new LoginClientes();
 	static MainInterface objClient = new MainInterface();
 	static ForgotPassword objPassword = new ForgotPassword();
+	ConectionDB db = new ConectionDB();
 
 	static JFrame framePrincipalLogin = new JFrame();
 	public String senha;
@@ -277,9 +278,6 @@ public class LoginClientes {
 	
 	}
 
-	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String URL = "jdbc:mysql://127.0.0.1/courseJava";
-
 	static public String getUsuario() {
 		return usuario;
 	}
@@ -332,21 +330,21 @@ public class LoginClientes {
 						JOptionPane.showMessageDialog(null, "Put a password more strong!");
 					} else {
 						try {
-							Class.forName(DRIVER);
-							//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-							Connection conecta = DriverManager.getConnection(URL, "root", "root");
-							Statement stmt = conecta.createStatement();
+							if(db.getConnection()) {
+								
+							PreparedStatement stmt;
+							
 
 							String sql;
 
 							sql = "SELECT COUNT(email) AS quantidade FROM users where email='" + getEmailCadastrado()
 									+ "';";
-							stmt = conecta.prepareStatement(sql);
+							stmt = db.con.prepareStatement(sql);
 							rs = stmt.executeQuery(sql);
 
 							String sqlUser = "SELECT COUNT(userr) AS quantidade FROM users where userr='"
 									+ getUsuarioCadastrado() + "';";
-							PreparedStatement stmt2 = conecta.prepareStatement(sqlUser);
+							PreparedStatement stmt2 = db.con.prepareStatement(sqlUser);
 							ResultSet rs2 = stmt2.executeQuery(sqlUser);
 
 							while (rs.next() && rs2.next()) {
@@ -368,7 +366,7 @@ public class LoginClientes {
 									sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
 											+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
 											+ getSenhaCadastrada() + "', false, true);";
-									stmt = conecta.prepareStatement(sql);
+									stmt = db.con.prepareStatement(sql);
 									stmt.execute(sql);
 
 									String limpar = "";
@@ -381,11 +379,9 @@ public class LoginClientes {
 								}
 
 							}
+						}
 						} catch (SQLException error) {
 							System.out.println(error.toString());
-						} catch (ClassNotFoundException e1) {
-							e1.printStackTrace();
-
 						}
 					}
 				} catch (AddressException e1) {
@@ -418,16 +414,17 @@ public class LoginClientes {
 				stud.setUser(String.valueOf(getUsuario()));
 
 				try {
-					Class.forName(DRIVER);
-					//Connection conecta = DriverManager.getConnection(URL, "root", "hunter");
-					Connection conecta = DriverManager.getConnection(URL, "root", "root");
+					if(db.getConnection()) {
+						
+						PreparedStatement stmt;
+						
 
-					String sql;
-
+						String sql;
+						
 					sql = "SELECT userr, email, senha, adm, student FROM users WHERE userr='" + getUsuario()
 							+ "' OR email='" + getUsuario() + "';";
 
-					PreparedStatement stmt = conecta.prepareStatement(sql);
+					stmt = db.con.prepareStatement(sql);
 					ResultSet rs = stmt.executeQuery();
 
 					if (rs.next()) {
@@ -463,10 +460,10 @@ public class LoginClientes {
 						}
 					}
 
-					conecta.close();
+					db.con.close();
 					rs.close();
 					stmt.close();
-
+				}
 				} catch (Exception error) {
 					JOptionPane.showMessageDialog(null, "Our server is going through problems, try again later.");
 					enviarDados.setText("Login");
