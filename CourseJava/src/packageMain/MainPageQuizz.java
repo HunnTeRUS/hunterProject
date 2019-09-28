@@ -55,9 +55,16 @@ public class MainPageQuizz extends JFrame {
 	private final JButton buttonSeparatorProgramming = new JButton("");
 	private final JButton buttonSeparatorEnglish = new JButton("");
 	private final JButton buttonSeparatorMath = new JButton("");
-
+	private int contaMath=0;
+	private int contaProg=0;
+	private int contaEng=0;
+	
+	private int lastMath;
+	private int lastEnglish;
+	private int lastProgramming;
 	//public MainPageQuizz() {
 	public void mainMethodQuizz() {
+		SelecionaRecord();
 		db.getConnection();
 		questionsUser();
 		MainQuizz();
@@ -380,9 +387,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtMath++;
 						if (answer1.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaMath++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastMath<=contaMath) {
+								AlteraMath();
+							}
 						}
 
 						answer1.setEnabled(false);
@@ -402,9 +413,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtMath++;
 						if (answer2.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaMath++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastMath<=contaMath) {
+								AlteraMath();
+							}
 						}
 
 						answer1.setEnabled(false);
@@ -424,9 +439,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtMath++;
 						if (answer3.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaMath++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastMath<=contaMath) {
+								AlteraMath();
+							}
 						}
 						answer1.setEnabled(false);
 						answer2.setEnabled(false);
@@ -445,10 +464,14 @@ public class MainPageQuizz extends JFrame {
 						lenghtMath++;
 						if (answer4.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaMath++;
 						} else {
 							JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastMath<=contaMath) {
+								AlteraMath();
+							}
 						}
 						answer1.setEnabled(false);
 						answer2.setEnabled(false);
@@ -555,9 +578,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtEnglish++;
 						if (answer1.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaEng++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastEnglish<=contaEng) {
+								AlteraEng();
+							}
 						}
 
 						answer1.setEnabled(false);
@@ -577,9 +604,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtEnglish++;
 						if (answer2.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaEng++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastEnglish<=contaEng) {
+								AlteraEng();
+							}
 						}
 
 						answer1.setEnabled(false);
@@ -599,9 +630,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtEnglish++;
 						if (answer3.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaEng++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastEnglish<=contaEng) {
+								AlteraEng();
+							}
 
 // objMath.explanationQuestion(i);
 						}
@@ -622,10 +657,14 @@ public class MainPageQuizz extends JFrame {
 						lenghtEnglish++;
 						if (answer4.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaEng++;
 						} else {
 							JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastEnglish<=contaEng) {
+								AlteraEng();
+							}
 
 // objMath.explanationQuestion(i);
 						}
@@ -735,9 +774,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtProgramming++;
 						if (answer1.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaProg++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastProgramming<=contaProg) {
+								AlteraProg();
+							}
 						}
 
 						answer1.setEnabled(false);
@@ -757,9 +800,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtProgramming++;
 						if (answer2.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaProg++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastProgramming<=contaProg) {
+								AlteraProg();
+							}
 
 // objMath.explanationQuestion(i);
 						}
@@ -781,9 +828,13 @@ public class MainPageQuizz extends JFrame {
 						lenghtProgramming++;
 						if (answer3.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaProg++;
 						} else {
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastProgramming<=contaProg) {
+								AlteraProg();
+							}
 
 // objMath.explanationQuestion(i);
 						}
@@ -804,10 +855,14 @@ public class MainPageQuizz extends JFrame {
 						lenghtProgramming++;
 						if (answer4.getText().equals(vetor[0])) {
 							JOptionPane.showMessageDialog(null, "You hit the correct answer!");
+							contaProg++;
 						} else {
 							JOptionPane.showMessageDialog(null, "You don't hit the correct answer!");
 							question.setText("Explanation of this question: " + explanation);
 							question.setForeground(Color.RED);
+							if(lastProgramming<=contaProg) {
+								AlteraProg();
+							}
 
 // objMath.explanationQuestion(i);
 						}
@@ -836,4 +891,60 @@ public class MainPageQuizz extends JFrame {
 			e2.printStackTrace();
 		}
 	}
+	
+	public void SelecionaRecord() {
+		try {
+			SQL = "Select programmingRecord, mathRecord, englishRecord FROM users WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
+			ResultSet rs;
+			stmt = db.con.prepareStatement(SQL);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				lastMath = Integer.parseInt(rs.getString("mathRecord"));
+				lastEnglish = Integer.parseInt(rs.getString("mathEnglish"));
+				lastProgramming = Integer.parseInt(rs.getString("mathProgramming"));
+			}
+			stmt.close();
+		}catch(Exception e){
+			
+		}
+		
+	
+		
+	}
+public void AlteraMath(){	
+		try {
+			SQL = "UPDATE users SET mathRecord="+contaMath+"WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
+			stmt = db.con.prepareStatement(SQL);
+			stmt.executeUpdate();
+			stmt.close();
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+
+
+public void AlteraEng(){	
+	try {
+		SQL = "UPDATE users SET englishRecord="+contaEng+"WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
+		stmt = db.con.prepareStatement(SQL);
+		stmt.executeUpdate();
+		stmt.close();
+	}catch(Exception e){
+		System.out.println(e);
+	}
+}
+
+
+
+public void AlteraProg(){	
+	try {
+		SQL = "UPDATE users SET programmingRecord="+contaProg+"WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
+		stmt = db.con.prepareStatement(SQL);
+		stmt.executeUpdate();
+		stmt.close();
+	}catch(Exception e){
+		System.out.println(e);
+	}
+}
+
 }
