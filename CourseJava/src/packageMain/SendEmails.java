@@ -200,7 +200,7 @@ public class SendEmails {
 		}
 	}
 	
-	public void sendEmailVerification(String name, String emailUser, int code, String phone, String question) {
+	public int sendEmailVerification(String name, String emailUser, int code, String phone, String question) {
 		final String username = "imhunnterus@gmail.com";
 		final String password = "hunter@147";
 
@@ -390,11 +390,14 @@ public class SendEmails {
 					"", "text/html; charset=utf-8");
 			
 			Transport.send(message);
+			return 0;
 		
 		} catch (AddressException e) {
 			e.printStackTrace();
+			return 1;
 		} catch (MessagingException e) {
 			e.printStackTrace();
+			return 1;
 		}
 	}
 }    

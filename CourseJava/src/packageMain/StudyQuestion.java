@@ -30,6 +30,7 @@ public class StudyQuestion {
 	ResultSet lenght;
 	String SQL, count;
 	private int c=0;
+	
 	// THE NECESSARY OBJECTS
 	MainInterface classeMain = new MainInterface();
 	StudyMath quizzMath = new StudyMath();
@@ -40,14 +41,6 @@ public class StudyQuestion {
 	EnglishQuestions englishobj = new EnglishQuestions();
 	static CreateQuestions createobj = new CreateQuestions();
 	private ConectionDB db = new ConectionDB();
-
-	/*
-	 * JTextArea insertQuestion = new JTextArea(""); JTextArea insertCorrect = new
-	 * JTextArea(); JTextArea insertIncorrect = new JTextArea();
-	 * 
-	 * String questionn = insertQuestion.getText(); String correctt =
-	 * insertQuestion.getText(); String incorrectts = insertQuestion.getText();
-	 */
 
 	public void visual() {
 		mainFrame.setSize(500,600);
@@ -97,19 +90,6 @@ public class StudyQuestion {
 		programmingLabel.setBounds(100, 310, 400, 30);
 
 	}
-
-	/*
-	 * public void insert() {
-	 * queueQuestions.add(JOptionPane.showInputDialog("Digit the question:"));
-	 * correctAnswer.add(JOptionPane.showInputDialog("Digit the correct answer:"));
-	 * incorrectAnswer.add(JOptionPane.showInputDialog("Digit the incorrect answer:"
-	 * ));
-	 * 
-	 * JOptionPane.showMessageDialog(null, "Question sucessfully inserted!", "=)",
-	 * 1);
-	 * 
-	 * setLenght(getLenght() + 1); }
-	 */
 
 	public void actions() {
 		if (db.getConnection()) {

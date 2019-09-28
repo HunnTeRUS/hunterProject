@@ -52,12 +52,11 @@ public class ProfileStudent extends JFrame {
 	private JLabel labelPhoto = new JLabel();
 	public static JTextField phoneField = new JTextField();
 	public JTextField ageField = new JTextField();
-	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	private final String URL = "jdbc:mysql://127.0.0.1/courseJava";
 	String SQL;
 	ResultSet rs;
 	PreparedStatement stmt;
-
+	
+	RequisitionsADM requisition = new RequisitionsADM();
 	LoginClientes log = new LoginClientes();
 	ConectionDB db = new ConectionDB();
 
@@ -81,7 +80,7 @@ public class ProfileStudent extends JFrame {
 		this.tamanho = tamanho;
 	}
 
-	//public ProfileStudent() {
+	// public ProfileStudent() {
 	public void ProfileStudentMethod() {
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -389,32 +388,12 @@ public class ProfileStudent extends JFrame {
 
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * if(db.getConnection()) { try { String sql;
-				 * 
-				 * sql = "SELECT userr, email, adm FROM users WHERE userr='" +
-				 * LoginClientes.getUsuario() + "' OR email='" + LoginClientes.getUsuario() +
-				 * "';";
-				 * 
-				 * PreparedStatement stmt = db.con.prepareStatement(sql); ResultSet rs =
-				 * stmt.executeQuery();
-				 * 
-				 * if (rs.next()) { if
-				 * (((LoginClientes.getUsuario().equals(rs.getString("userr")) ||
-				 * (LoginClientes.getUsuario().equals(rs.getString("email")))) )) { if
-				 * (rs.getInt("adm") == 1) {
-				 * 
-				 * MainPageAdm tstAdm = new MainPageAdm(); tstAdm.all(); dispose();
-				 */
-				/*
-				 * }
-				 * 
-				 * else {
-				 */ 
-				 dispose(); MainPageStudent tst = new MainPageStudent(); tst.all(); }
-				 /* 
-				 * }catch(Exception eror) { eror.printStackTrace(); }}
-				 }*/
+
+				dispose();
+				MainPageStudent tst = new MainPageStudent();
+				tst.all();
+			}
+
 		});
 
 		btnUpdateMyProfile.addActionListener(new ActionListener() {
@@ -442,11 +421,14 @@ public class ProfileStudent extends JFrame {
 
 						rs.next();
 
+						
 						send.sendEmailVerification(rs.getString("nameUser"), rs.getString("email"),
 								rs.getInt("codeUser"), rs.getString("phone"), answer);
-
 						JOptionPane.showMessageDialog(null, "Your Message have been sent sucessfully!");
 						btnIWannaBe.setEnabled(false);
+						
+						requisition.insertRequisitionsDB(rs.getInt("codeUser"), answer);
+						
 					} catch (SQLException error) {
 						error.getMessage();
 					}
@@ -466,7 +448,7 @@ public class ProfileStudent extends JFrame {
 							LoginClientes.getUsuario());
 			}
 		});
-		
+
 		btnChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ChangePasswordProfile change = new ChangePasswordProfile();
