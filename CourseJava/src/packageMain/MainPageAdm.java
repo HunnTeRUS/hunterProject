@@ -20,6 +20,7 @@ public class MainPageAdm extends JFrame {
 	ProfileAdm studentAdm = new ProfileAdm();
 	
 	public void all() {
+		//public MainPageAdm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1137,656);
 		setLocationRelativeTo(null);

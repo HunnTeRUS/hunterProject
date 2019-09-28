@@ -56,6 +56,7 @@ public class ProfileAdm extends JFrame {
 
 	LoginClientes log = new LoginClientes();
 	ConectionDB db = new ConectionDB();
+	RequisitionsVisualADM adm = new RequisitionsVisualADM();
 
 	public int getTamanho() {
 		return tamanho;
@@ -68,7 +69,7 @@ public class ProfileAdm extends JFrame {
 	// public ProfileAdm() {
 	public void ProfileAdmMethod() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(945,638);
+		setSize(945, 638);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		setVisible(true);
@@ -384,40 +385,20 @@ public class ProfileAdm extends JFrame {
 				}
 			}
 		});
-		
+
+		buttonSetNewAdm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				adm.requisitionsMainMethod();
+			}
+		});
+
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*if(db.getConnection()) {
-				try {
-					String sql;
-
-					sql = "SELECT userr, email, adm FROM users WHERE userr='" + LoginClientes.getUsuario()
-							+ "' OR email='" + LoginClientes.getUsuario() + "';";
-
-					PreparedStatement stmt = db.con.prepareStatement(sql);
-					ResultSet rs = stmt.executeQuery();
-
-					if (rs.next()) {
-						if (((LoginClientes.getUsuario().equals(rs.getString("userr"))
-								|| (LoginClientes.getUsuario().equals(rs.getString("email"))))
-								)) {
-							if (rs.getInt("adm") == 1) {
-								*/
-											MainPageAdm tstAdm = new MainPageAdm();
-											tstAdm.all();
-											dispose();
-									/*}
-								
-							 else {
-								
-								dispose();
-								MainPageStudent tst = new MainPageStudent();
-								tst.all();
-							}}}
-					
-						}catch(Exception eror) {
-							eror.printStackTrace();
-						}}*/}});
+				MainPageAdm tstAdm = new MainPageAdm();
+				tstAdm.all();
+				dispose();
+			}
+		});
 
 		updateInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -427,7 +408,7 @@ public class ProfileAdm extends JFrame {
 						facebookField.getText(), instagramField.getText(), LoginClientes.getUsuario());
 			}
 		});
-		
+
 		btnChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ChangePasswordProfile change = new ChangePasswordProfile();

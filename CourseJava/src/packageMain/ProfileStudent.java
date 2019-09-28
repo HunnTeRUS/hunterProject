@@ -56,10 +56,11 @@ public class ProfileStudent extends JFrame {
 	ResultSet rs;
 	PreparedStatement stmt;
 	
-	RequisitionsADM requisition = new RequisitionsADM();
+	RequisitionsVisualADM requisition = new RequisitionsVisualADM();
 	LoginClientes log = new LoginClientes();
 	ConectionDB db = new ConectionDB();
-
+	
+	
 	public int tamanho;
 
 	public String user;
@@ -424,10 +425,11 @@ public class ProfileStudent extends JFrame {
 						
 						send.sendEmailVerification(rs.getString("nameUser"), rs.getString("email"),
 								rs.getInt("codeUser"), rs.getString("phone"), answer);
+						
 						JOptionPane.showMessageDialog(null, "Your Message have been sent sucessfully!");
 						btnIWannaBe.setEnabled(false);
 						
-						requisition.insertRequisitionsDB(rs.getInt("codeUser"), answer);
+						//requisition.insertRequisitionsDB(rs.getInt("codeUser"), answer);
 						
 					} catch (SQLException error) {
 						error.getMessage();

@@ -26,6 +26,7 @@ public class MainPageStudent extends JFrame {
 	
 
 	public void all() {
+		//public MainPageStudent() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1137,656);
 		setLocationRelativeTo(null);
