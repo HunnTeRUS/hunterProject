@@ -363,9 +363,9 @@ public class LoginClientes {
 								}
 
 								else if ((rs.getInt("quantidade") == 0) && (rs2.getInt("quantidade") == 0)) {
-									sql = "INSERT INTO users (userr, email, senha, adm, student) values('"
+									sql = "INSERT INTO users (userr, email, senha, adm, student, mathRecord, englishRecord, programmingRecord) values('"
 											+ getUsuarioCadastrado() + "', '" + getEmailCadastrado() + "', '"
-											+ getSenhaCadastrada() + "', false, true);";
+											+ getSenhaCadastrada() + "', false, true, 0, 0, 0);";
 									stmt = db.con.prepareStatement(sql);
 									stmt.execute(sql);
 
