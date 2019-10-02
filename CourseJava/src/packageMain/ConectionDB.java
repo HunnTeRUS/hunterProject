@@ -14,7 +14,7 @@ public class ConectionDB {
 	private final String LOGIN = "root";
 	private final String SENHA = "hunter";
 	//private final String SENHA = "root";
-
+//
 	public boolean getConnection() {
 		try {
 			int c=0;
