@@ -1,8 +1,10 @@
-package packageMain;
+package packageMain.packageUniffied;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import packageMain.controller.ConectionDB;
 
 public class MathQuestions {
 
