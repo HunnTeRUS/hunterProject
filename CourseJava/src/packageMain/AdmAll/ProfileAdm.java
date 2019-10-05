@@ -16,41 +16,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProfileStudent extends JFrame {
-
-	static LoginClientes login = new LoginClientes();
+public class ProfileAdm extends JFrame {
 	private JPanel contentPane;
 	private JTextField facebookField;
+	private JTextField phoneField;
 	private JTextField instagramField;
 	private JTextField githubField;
 	private JTextField mathRecordField;
 	private JTextField programmingRecordField;
 	private JTextField englishRecordField;
 	private JTextField nameField;
+	private JTextField ageField;
 	private JTextField admStudentField;
 	private JLabel labelPhoto = new JLabel();
-	public static JTextField phoneField = new JTextField();
-	public JTextField ageField = new JTextField();
-	String SQL;
-	ResultSet rs;
-	PreparedStatement stmt;
-	
-	RequisitionsVisualADM requisition = new RequisitionsVisualADM();
-	LoginClientes log = new LoginClientes();
-	ConectionDB db = new ConectionDB();
-	
-	
+
 	public int tamanho;
 
-	public String user;
-
-	public String getUser() {
-		return user;
-	}
-
-	public void setUser(String usuario) {
-		this.user = usuario;
-	}
+	LoginClientes log = new LoginClientes();
+	ConectionDB db = new ConectionDB();
+	RequisitionsVisualADM adm = new RequisitionsVisualADM();
 
 	public int getTamanho() {
 		return tamanho;
@@ -60,10 +44,8 @@ public class ProfileStudent extends JFrame {
 		this.tamanho = tamanho;
 	}
 
-	// public ProfileStudent() {
-	public void ProfileStudentMethod() {
-		setResizable(false);
-		setLocationRelativeTo(null);
+	// public ProfileAdm() {
+	public void ProfileAdmMethod() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(945, 638);
 		setLocationRelativeTo(null);
@@ -103,24 +85,31 @@ public class ProfileStudent extends JFrame {
 				new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_show_password_25px_1.png")));
 		btnChangePassword.setFont(UIManager.getFont("TextArea.font"));
 		btnChangePassword.setBackground(SystemColor.scrollbar);
-		btnChangePassword.setBounds(12, 240, 248, 33);
+		btnChangePassword.setBounds(12, 219, 248, 33);
 		panel1.add(btnChangePassword);
 
-		JButton btnIWannaBe = new JButton("I wanna be Adm");
-		btnIWannaBe
+		JButton buttonSetNewAdm = new JButton("Set a New Adm");
+		buttonSetNewAdm
 				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_administrator_25px.png")));
-		btnIWannaBe.setFont(UIManager.getFont("TextArea.font"));
-		btnIWannaBe.setBackground(SystemColor.scrollbar);
-		btnIWannaBe.setBounds(12, 297, 248, 33);
-		panel1.add(btnIWannaBe);
+		buttonSetNewAdm.setFont(UIManager.getFont("TextArea.font"));
+		buttonSetNewAdm.setBackground(SystemColor.scrollbar);
+		buttonSetNewAdm.setBounds(12, 276, 248, 33);
+		panel1.add(buttonSetNewAdm);
 
 		JButton btnUpdateMyProfile = new JButton("Update My Picture");
 		btnUpdateMyProfile
 				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_unspalsh_25px.png")));
 		btnUpdateMyProfile.setFont(UIManager.getFont("TextArea.font"));
 		btnUpdateMyProfile.setBackground(SystemColor.scrollbar);
-		btnUpdateMyProfile.setBounds(12, 353, 248, 33);
+		btnUpdateMyProfile.setBounds(12, 332, 248, 33);
 		panel1.add(btnUpdateMyProfile);
+
+		JButton adcQuestions = new JButton("Add New Questions");
+		adcQuestions.setIcon(new ImageIcon(ProfileAdm.class.getResource("/packageMain/icons8_school_25px.png")));
+		adcQuestions.setFont(UIManager.getFont("TextArea.font"));
+		adcQuestions.setBackground(SystemColor.windowBorder);
+		adcQuestions.setBounds(12, 387, 248, 33);
+		panel1.add(adcQuestions);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(169, 197, 248));
@@ -138,7 +127,7 @@ public class ProfileStudent extends JFrame {
 		nameLabel.setBounds(270, 46, 67, 30);
 		panel_1.add(nameLabel);
 
-		JLabel ageLabel = new JLabel("Birthday:");
+		JLabel ageLabel = new JLabel("Age:");
 		ageLabel.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		ageLabel.setBounds(270, 105, 101, 30);
 		panel_1.add(ageLabel);
@@ -196,9 +185,10 @@ public class ProfileStudent extends JFrame {
 		facebookField.setBounds(184, 117, 108, 20);
 		panel_2.add(facebookField);
 
+		phoneField = new JTextField();
 		phoneField.setForeground(Color.WHITE);
 		phoneField.setColumns(10);
-		phoneField.setBounds(510, 71, 108, 20);
+		phoneField.setBounds(510, 67, 108, 20);
 		panel_2.add(phoneField);
 
 		instagramField = new JTextField();
@@ -279,32 +269,33 @@ public class ProfileStudent extends JFrame {
 
 		JSeparator separator_7 = new JSeparator();
 		separator_7.setBackground(Color.BLACK);
-		separator_7.setBounds(347, 74, 275, 2);
+		separator_7.setBounds(347, 74, 243, 2);
 		panel_1.add(separator_7);
 
 		JSeparator separator_8 = new JSeparator();
 		separator_8.setBackground(Color.BLACK);
-		separator_8.setBounds(375, 133, 243, 2);
+		separator_8.setBounds(347, 133, 243, 2);
 		panel_1.add(separator_8);
 
 		JSeparator separator_9 = new JSeparator();
 		separator_9.setBackground(Color.BLACK);
-		separator_9.setBounds(400, 186, 220, 2);
+		separator_9.setBounds(400, 186, 190, 2);
 		panel_1.add(separator_9);
 
 		nameField = new JTextField();
-		nameField.setBounds(347, 46, 276, 27);
+		nameField.setBounds(347, 46, 243, 27);
 		panel_1.add(nameField);
 		nameField.setColumns(10);
 
+		ageField = new JTextField();
 		ageField.setColumns(10);
-		ageField.setBounds(375, 105, 243, 27);
+		ageField.setBounds(347, 105, 243, 27);
 		panel_1.add(ageField);
 
 		admStudentField = new JTextField();
-		admStudentField.setEditable(false);
+		admStudentField.setEnabled(false);
 		admStudentField.setColumns(10);
-		admStudentField.setBounds(400, 158, 223, 27);
+		admStudentField.setBounds(400, 158, 190, 27);
 		panel_1.add(admStudentField);
 
 		nameField.setBackground(new Color(169, 197, 248));
@@ -315,12 +306,14 @@ public class ProfileStudent extends JFrame {
 
 		admStudentField.setBackground(new Color(169, 197, 248));
 		admStudentField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
-		admStudentField.setForeground(Color.BLACK);
+
+		ageField.setDocument(new limitBirth());
+		phoneField.setDocument(new limitPhone());
+		nameField.setDocument(new limitName());
 
 		englishRecordField = new JTextField();
 		englishRecordField.setHorizontalAlignment(SwingConstants.CENTER);
 		englishRecordField.setForeground(Color.BLACK);
-		englishRecordField.setEditable(false);
 		englishRecordField.setBounds(519, 575, 106, 20);
 		panel_1.add(englishRecordField);
 		englishRecordField.setText(" ");
@@ -332,7 +325,7 @@ public class ProfileStudent extends JFrame {
 		programmingRecordField = new JTextField();
 		programmingRecordField.setHorizontalAlignment(SwingConstants.CENTER);
 		programmingRecordField.setForeground(Color.BLACK);
-		programmingRecordField.setEditable(false);
+		programmingRecordField.setEnabled(false);
 		programmingRecordField.setBounds(300, 575, 106, 20);
 		panel_1.add(programmingRecordField);
 		programmingRecordField.setText(" ");
@@ -344,7 +337,6 @@ public class ProfileStudent extends JFrame {
 		mathRecordField = new JTextField();
 		mathRecordField.setHorizontalAlignment(SwingConstants.CENTER);
 		mathRecordField.setForeground(Color.BLACK);
-		mathRecordField.setEditable(false);
 		mathRecordField.setBounds(66, 575, 106, 20);
 		panel_1.add(mathRecordField);
 		mathRecordField.setBackground(Color.LIGHT_GRAY);
@@ -352,29 +344,15 @@ public class ProfileStudent extends JFrame {
 		mathRecordField.setColumns(10);
 		mathRecordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(169, 197, 248), 1, true));
 
-		phoneField.setDocument(new limitPhone());
-		nameField.setDocument(new limitName());
-		ageField.setDocument(new limitBirth());
-
 		if (loadImage() != null)
 			labelPhoto.setIcon(new ImageIcon(loadImage()));
 
+		loadInf();
 		JButton updateInfo = new JButton("Update My Informations");
 		updateInfo.setFont(UIManager.getFont("TextArea.font"));
 		updateInfo.setBackground(SystemColor.windowBorder);
 		updateInfo.setBounds(224, 417, 248, 33);
 		panel_1.add(updateInfo);
-		loadInf();
-
-		returnButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				dispose();
-				MainPageStudent tst = new MainPageStudent();
-				tst.all();
-			}
-
-		});
 
 		btnUpdateMyProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -386,47 +364,26 @@ public class ProfileStudent extends JFrame {
 			}
 		});
 
-		btnIWannaBe.addActionListener(new ActionListener() {
+		buttonSetNewAdm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (db.getConnection()) {
-					SendEmails send = new SendEmails();
-					try {
-						String answer = JOptionPane.showInputDialog(null, "Why do you want to be adm in our app?");
+				adm.requisitionsMainMethod();
+			}
+		});
 
-						SQL = "SELECT * FROM users WHERE userr = '" + LoginClientes.getUsuario() + "' OR email = '"
-								+ LoginClientes.getUsuario() + "';";
-
-						stmt = db.con.prepareStatement(SQL);
-						rs = stmt.executeQuery();
-
-						rs.next();
-
-						
-						send.sendEmailVerification(rs.getString("nameUser"), rs.getString("email"),
-								rs.getInt("codeUser"), rs.getString("phone"), answer);
-						
-						JOptionPane.showMessageDialog(null, "Your Message have been sent sucessfully!");
-						btnIWannaBe.setEnabled(false);
-						
-						//requisition.insertRequisitionsDB(rs.getInt("codeUser"), answer);
-						
-					} catch (SQLException error) {
-						error.getMessage();
-					}
-				}
+		returnButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainPageAdm tstAdm = new MainPageAdm();
+				tstAdm.all();
+				dispose();
 			}
 		});
 
 		updateInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InsertInfoProfile info = new InsertInfoProfile();
-				if ((nameField.getText() == "") || (ageField.getText() == "") || (phoneField.getText() == ""))
-					JOptionPane.showMessageDialog(null, "You have blank fields, complete them, please!");
 
-				else
-					info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(),
-							githubField.getText(), facebookField.getText(), instagramField.getText(),
-							LoginClientes.getUsuario());
+				info.insertData(nameField.getText(), ageField.getText(), phoneField.getText(), githubField.getText(),
+						facebookField.getText(), instagramField.getText(), LoginClientes.getUsuario());
 			}
 		});
 
@@ -436,7 +393,6 @@ public class ProfileStudent extends JFrame {
 				change.changePassword();
 			}
 		});
-
 	}
 
 	class limitPhone extends PlainDocument {
@@ -446,9 +402,8 @@ public class ProfileStudent extends JFrame {
 		public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
 			tamanho = (this.getLength());
 
-			if (tamanho > 13)
-				super.insertString(arg0,
-						arg1.replaceAll("[0123456789 aA-zZ @#!$%&*_=?:;^)(\\\\\\\\\\\\\\\\p{ASCII}]", ""), arg2);
+			if (tamanho > 12)
+				super.insertString(arg0, arg1.replaceAll("[0123456789]", ""), arg2);
 
 			else
 				super.insertString(arg0, arg1.replaceAll("[aA-zZ @#!$%&*_=?:;^)(\\\\\\\\p{ASCII}]", ""), arg2);

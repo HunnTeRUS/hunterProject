@@ -1,7 +1,5 @@
 package packageMain;
 
-import java.sql.*;
-
 public class InsertInfoProfile {
 	ConectionDB db = new ConectionDB();
 

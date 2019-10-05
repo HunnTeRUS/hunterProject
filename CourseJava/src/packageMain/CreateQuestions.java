@@ -1,10 +1,5 @@
 package packageMain;
 
-import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.*;
-
 public class CreateQuestions {
 
 	// BUTTONS, VISUALS AND THE NECESSARY VARIABLES

@@ -1,10 +1,5 @@
 package packageMain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.sql.*;
-
 public class RequisitionsADM {
 
 	// THE VISUAL OF THIS CLASS, IT'S A REQUISITIONSVISUALADM CLASS!

@@ -1,9 +1,9 @@
 package packageMain;
 
 import org.apache.commons.mail.*;
+
 import javax.mail.*;
 import javax.mail.internet.*;
-import java.util.*;
 
 public class SendEmails {
 	SimpleEmail sendEmail = new SimpleEmail();

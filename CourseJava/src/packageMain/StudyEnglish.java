@@ -1,11 +1,5 @@
 package packageMain;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.*;
-import java.util.*;
-import javax.swing.*;
-
 public class StudyEnglish {
 
 	public static CreateQuestions questions = new CreateQuestions();
