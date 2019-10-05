@@ -29,7 +29,7 @@ public class CreateQuestions {
 	/*
 	 * JTextArea insertQuestion = new JTextArea(""); JTextArea insertCorrect = new
 	 * JTextArea(); JTextArea insertIncorrect = new JTextArea();
-	 * 
+	 *
 	 * String questionn = insertQuestion.getText(); String correctt =
 	 * insertQuestion.getText(); String incorrectts = insertQuestion.getText();
 	 */
@@ -46,7 +46,7 @@ public class CreateQuestions {
 
 	public void visual() {
 		mainFrame.setSize(500,600);
-		mainFrame.setLocationRelativeTo(null);		
+		mainFrame.setLocationRelativeTo(null);
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setVisible(true);
 		mainFrame.setTitle("Creation Page");
@@ -93,10 +93,10 @@ public class CreateQuestions {
 	 * correctAnswer.add(JOptionPane.showInputDialog("Digit the correct answer:"));
 	 * incorrectAnswer.add(JOptionPane.showInputDialog("Digit the incorrect answer:"
 	 * ));
-	 * 
+	 *
 	 * JOptionPane.showMessageDialog(null, "Question sucessfully inserted!", "=)",
 	 * 1);
-	 * 
+	 *
 	 * setLenght(getLenght() + 1); }
 	 */
 

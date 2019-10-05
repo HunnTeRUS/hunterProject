@@ -1,7 +1,6 @@
 
 package packageMain;
 
-import java.awt.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -26,7 +25,7 @@ public class StudyQuestion {
 	ResultSet lenght;
 	String SQL, count;
 	private int c=0;
-	
+
 	// THE NECESSARY OBJECTS
 	MainInterface classeMain = new MainInterface();
 	StudyMath quizzMath = new StudyMath();

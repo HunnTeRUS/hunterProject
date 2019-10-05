@@ -1,12 +1,10 @@
 package packageMain;
 
-import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -34,12 +32,12 @@ public class ProfileStudent extends JFrame {
 	String SQL;
 	ResultSet rs;
 	PreparedStatement stmt;
-	
+
 	RequisitionsVisualADM requisition = new RequisitionsVisualADM();
 	LoginClientes log = new LoginClientes();
 	ConectionDB db = new ConectionDB();
-	
-	
+
+
 	public int tamanho;
 
 	public String user;
@@ -401,15 +399,15 @@ public class ProfileStudent extends JFrame {
 
 						rs.next();
 
-						
+
 						send.sendEmailVerification(rs.getString("nameUser"), rs.getString("email"),
 								rs.getInt("codeUser"), rs.getString("phone"), answer);
-						
+
 						JOptionPane.showMessageDialog(null, "Your Message have been sent sucessfully!");
 						btnIWannaBe.setEnabled(false);
-						
+
 						//requisition.insertRequisitionsDB(rs.getInt("codeUser"), answer);
-						
+
 					} catch (SQLException error) {
 						error.getMessage();
 					}

@@ -16,7 +16,7 @@ public class InsertInfoProfile {
 				stmt.setString(1, name);
 				stmt.setString(2, user);
 				stmt.setString(3, user);
-				
+
 				stmt.executeUpdate();
 
 				SQL = "UPDATE users SET age = ? WHERE userr=? OR email=?";
@@ -24,49 +24,49 @@ public class InsertInfoProfile {
 				stmt.setString(1, age);
 				stmt.setString(2, user);
 				stmt.setString(3, user);
-				
+
 				stmt.executeUpdate();
-				
+
 				SQL = "UPDATE users SET phone = ? WHERE userr=? OR email=?";
 				stmt = db.con.prepareStatement(SQL);
 				stmt.setString(1, phone);
 				stmt.setString(2, user);
 				stmt.setString(3, user);
-				
+
 				stmt.executeUpdate();
 
-				
+
 				SQL = "UPDATE users SET github = ? WHERE userr=? OR email=?";
 				stmt = db.con.prepareStatement(SQL);
 				stmt.setString(1, github);
 				stmt.setString(2, user);
 				stmt.setString(3, user);
-				
+
 				stmt.executeUpdate();
 
-				
+
 				SQL = "UPDATE users SET facebook= ? WHERE userr=? OR email=?";
 				stmt = db.con.prepareStatement(SQL);
 				stmt.setString(1, facebook);
 				stmt.setString(2, user);
 				stmt.setString(3, user);
-				
+
 				stmt.executeUpdate();
 
-				
+
 				SQL = "UPDATE users SET instagram= ? WHERE userr=? OR email=?";
 				stmt = db.con.prepareStatement(SQL);
 				stmt.setString(1, instagram);
 				stmt.setString(2, user);
 				stmt.setString(3, user);
-				
+
 				stmt.executeUpdate();
 
-				
+
 				stmt.close();
 				db.close();
 				return true;
-   
+
 			} catch (SQLException e) {
 				e.getMessage();
 			}

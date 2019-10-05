@@ -27,7 +27,7 @@ public class ConectionDB {
 				stm.execute(cdb);
 				c++;
 			}
-			
+
 			System.out.println("Classe BD - Conectou");
 			return true;
 		} catch (ClassNotFoundException e) {

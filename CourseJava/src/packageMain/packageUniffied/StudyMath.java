@@ -46,7 +46,7 @@ public class StudyMath {
 	public void setFinalValue(int finalValue) {
 		this.finalValue = finalValue;
 	}
- 
+
 	public void questionsUser() {
 		try {
 			if (db.getConnection()) {
@@ -57,7 +57,7 @@ public class StudyMath {
 				while (lenght2.next()) {
 					i = lenght2.getInt("firstRow");
 				}
-				
+
 				System.out.println(i);
 			}
 

@@ -8,22 +8,22 @@ import java.awt.event.ActionListener;
 public class ChangePasswordProfile extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	private JPasswordField confirmPasswordField;
 	boolean valueSimbol;
-	
+
 	String senhaCadastrada;
 	String confirmacaoSenha;
 	String SQL;
 	ResultSet rs;
 	PreparedStatement stmt;
-	
+
 	ConectionDB db = new ConectionDB();
-	
+
 	public String getSenhaCadastrada() {
 		return senhaCadastrada;
 	}
@@ -49,7 +49,7 @@ public class ChangePasswordProfile extends JFrame {
 
 
 	public void changePassword() {
-	
+
 	//public ChangePasswordProfile() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -142,11 +142,11 @@ public class ChangePasswordProfile extends JFrame {
 									+ "' WHERE email = '" + LoginClientes.getUsuario() + "' OR userr = '" + LoginClientes.getUsuario() + "';";
 
 							stmt = db.con.prepareStatement(SQL);
-							stmt.executeUpdate(); 
+							stmt.executeUpdate();
 
 							stmt.close();
 							db.close();
-							
+
 							dispose();
 
 							JOptionPane.showMessageDialog(null, "Your password was sucessfully updated!");
@@ -160,7 +160,7 @@ public class ChangePasswordProfile extends JFrame {
 		});
 
 	}
-		
+
 		/*JProgressBar progressBar = new JProgressBar();
 		progressBar.setForeground(Color.GRAY);
 		progressBar.setBackground(Color.WHITE);
@@ -192,5 +192,5 @@ public class ChangePasswordProfile extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Difficulty");
 		lblNewLabel_1.setBounds(111, 226, 66, 15);
 		contentPane.add(lblNewLabel_1);*/
-	
+
 }

@@ -33,8 +33,8 @@ public class MathQuestions {
 		if(db.getConnection()) {
 			try {
 				SQL = "INSERT INTO mathExercises (question, answer0, answer1, answer2, answer3, explanation)Values('" +
-						questionsMath.get(questionsMath.size()-1) + "', '" + anwser0.get(anwser0.size()-1) + "' , '" 
-						+ answer2Math.get(answer2Math.size()-1) + "', '" + answer3Math.get(answer3Math.size()-1) + "', '" 
+						questionsMath.get(questionsMath.size()-1) + "', '" + anwser0.get(anwser0.size()-1) + "' , '"
+						+ answer2Math.get(answer2Math.size()-1) + "', '" + answer3Math.get(answer3Math.size()-1) + "', '"
 						+ answer4Math.get(answer2Math.size()-1)  + "', '" + explanation.get(answer2Math.size()-1) + "');";
 
 				PreparedStatement stmt = db.con.prepareStatement(SQL);

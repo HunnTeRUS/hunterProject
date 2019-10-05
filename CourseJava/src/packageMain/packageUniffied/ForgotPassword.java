@@ -2,7 +2,6 @@ package packageMain;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;

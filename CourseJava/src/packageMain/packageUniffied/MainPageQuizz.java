@@ -1,8 +1,6 @@
 package packageMain;
 
-import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -45,7 +43,7 @@ public class MainPageQuizz extends JFrame {
 	private int contaMath=0;
 	private int contaProg=0;
 	private int contaEng=0;
-	
+
 	private int lastMath;
 	private int lastEnglish;
 	private int lastProgramming;
@@ -80,7 +78,7 @@ public class MainPageQuizz extends JFrame {
 				lenght2.next();
 				lenghtProgramming = lenght2.getInt("firstRow");
 
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -135,12 +133,12 @@ public class MainPageQuizz extends JFrame {
 		btnExit.setBounds(70, 567, 215, 37);
 		panel1.add(btnExit);
 		btnExit.setFont(UIManager.getFont("TextArea.font"));
-		
+
 		buttonSeparatorMath.setEnabled(false);
 		buttonSeparatorMath.setBounds(344, 156, 15, 51);
 		buttonSeparatorMath.setBackground(new Color(54, 33, 89));
 		panel1.add(buttonSeparatorMath);
-		
+
 		buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
 		buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
 		buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
@@ -148,12 +146,12 @@ public class MainPageQuizz extends JFrame {
 		buttonSeparatorProgramming.setEnabled(false);
 		buttonSeparatorProgramming.setBounds(344, 218, 15, 50);
 		buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
-		
+
 		panel1.add(buttonSeparatorProgramming);
 		buttonSeparatorEnglish.setEnabled(false);
 		buttonSeparatorEnglish.setBounds(344, 279, 15, 51);
 		buttonSeparatorEnglish.setBackground(new Color(54, 33, 89));
-		
+
 		panel1.add(buttonSeparatorEnglish);
 
 		panel2.setBackground(new Color(176, 196, 222));
@@ -224,16 +222,16 @@ public class MainPageQuizz extends JFrame {
 				mathButton.setForeground(Color.WHITE);
 				buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 153), 1, true));
 				mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 153), 1, true));
-				
+
 				buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
 				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				buttonSeparatorEnglish.setBackground(new Color(54, 33, 89));
 				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
 				englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				englishButton.setBackground(Color.LIGHT_GRAY);
 				programmingButton.setBackground(Color.LIGHT_GRAY);
 
@@ -251,19 +249,19 @@ public class MainPageQuizz extends JFrame {
 				panelQuizz.setBackground(new Color(32, 178, 170));
 				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 178, 170), 1, true));
 				englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 178, 170), 1, true));
-				
+
 				buttonSeparatorProgramming.setBackground(new Color(54, 33, 89));
 				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				buttonSeparatorMath.setBackground(new Color(54, 33, 89));
 				buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
 				mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				mathButton.setBackground(Color.LIGHT_GRAY);
 				programmingButton.setBackground(Color.LIGHT_GRAY);
-				
+
 				methodReceiverEnglish();
 				actionsEnglish();
 			}
@@ -279,19 +277,19 @@ public class MainPageQuizz extends JFrame {
 				panelQuizz.setBackground(new Color(97, 202, 144));
 				buttonSeparatorProgramming.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(97, 202, 144), 1, true));
 				programmingButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(97, 202, 144), 1, true));
-				
+
 				buttonSeparatorEnglish.setBackground(new Color(54, 33, 89));
 				buttonSeparatorEnglish.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				buttonSeparatorMath.setBackground(new Color(54, 33, 89));
 				buttonSeparatorMath.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				englishButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
 				mathButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(54, 33, 89), 1, true));
-				
+
 				mathButton.setBackground(Color.LIGHT_GRAY);
 				englishButton.setBackground(Color.LIGHT_GRAY);
-				
+
 				methodReceiverProgramming();
 				actionsProgramming();
 			}
@@ -349,12 +347,12 @@ public class MainPageQuizz extends JFrame {
 
 					az++;
 				}
-				
+
 			} catch (Exception error) {
 				System.err.println("Error:" + error.getMessage());
 				System.err.println("Error:" + error.toString());
 
-			
+
 		}
 	}
 
@@ -546,7 +544,7 @@ public class MainPageQuizz extends JFrame {
 
 			}
 
-		
+
 	}
 
 	public void actionsEnglish() {
@@ -742,7 +740,7 @@ public class MainPageQuizz extends JFrame {
 
 			}
 
-		
+
 	}
 
 	public void actionsProgramming() {
@@ -878,7 +876,7 @@ public class MainPageQuizz extends JFrame {
 			e2.printStackTrace();
 		}
 	}
-	
+
 	public void SelecionaRecord() {
 		try {
 			SQL = "Select programmingRecord, mathRecord, englishRecord FROM users WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
@@ -892,13 +890,13 @@ public class MainPageQuizz extends JFrame {
 			}
 			stmt.close();
 		}catch(Exception e){
-			
+
 		}
-		
-	
-		
+
+
+
 	}
-public void AlteraMath(){	
+public void AlteraMath(){
 		try {
 			SQL = "UPDATE users SET mathRecord="+contaMath+"WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
 			stmt = db.con.prepareStatement(SQL);
@@ -910,7 +908,7 @@ public void AlteraMath(){
 	}
 
 
-public void AlteraEng(){	
+public void AlteraEng(){
 	try {
 		SQL = "UPDATE users SET englishRecord="+contaEng+"WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
 		stmt = db.con.prepareStatement(SQL);
@@ -923,7 +921,7 @@ public void AlteraEng(){
 
 
 
-public void AlteraProg(){	
+public void AlteraProg(){
 	try {
 		SQL = "UPDATE users SET programmingRecord="+contaProg+"WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
 		stmt = db.con.prepareStatement(SQL);
