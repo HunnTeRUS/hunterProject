@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="activation">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/commons-email-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/dsn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/imap.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/mailapi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/mysql-connector-java-8.0.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/pop3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/packageMain/Biblioteca/smtp.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
