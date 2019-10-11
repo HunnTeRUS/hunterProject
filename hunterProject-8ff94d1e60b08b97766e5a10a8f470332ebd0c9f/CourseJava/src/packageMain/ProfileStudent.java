@@ -86,7 +86,7 @@ public class ProfileStudent extends JFrame {
 
 		JButton returnButton = new JButton("Return");
 		returnButton.setBackground(SystemColor.scrollbar);
-		returnButton.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_exit_sign_25px.png")));
+		returnButton.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_exit_sign_25px.png")));
 		returnButton.setFont(UIManager.getFont("TextArea.font"));
 		returnButton.setBounds(12, 549, 248, 33);
 		panel1.add(returnButton);
@@ -100,7 +100,7 @@ public class ProfileStudent extends JFrame {
 
 		JButton btnChangePassword = new JButton("Change Password");
 		btnChangePassword.setIcon(
-				new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_show_password_25px_1.png")));
+				new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_show_password_25px_1.png")));
 		btnChangePassword.setFont(UIManager.getFont("TextArea.font"));
 		btnChangePassword.setBackground(SystemColor.scrollbar);
 		btnChangePassword.setBounds(12, 240, 248, 33);
@@ -108,7 +108,7 @@ public class ProfileStudent extends JFrame {
 
 		JButton btnIWannaBe = new JButton("I wanna be Adm");
 		btnIWannaBe
-				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_administrator_25px.png")));
+				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_administrator_25px.png")));
 		btnIWannaBe.setFont(UIManager.getFont("TextArea.font"));
 		btnIWannaBe.setBackground(SystemColor.scrollbar);
 		btnIWannaBe.setBounds(12, 297, 248, 33);
@@ -116,7 +116,7 @@ public class ProfileStudent extends JFrame {
 
 		JButton btnUpdateMyProfile = new JButton("Update My Picture");
 		btnUpdateMyProfile
-				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_unspalsh_25px.png")));
+				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_unspalsh_25px.png")));
 		btnUpdateMyProfile.setFont(UIManager.getFont("TextArea.font"));
 		btnUpdateMyProfile.setBackground(SystemColor.scrollbar);
 		btnUpdateMyProfile.setBounds(12, 353, 248, 33);
@@ -128,7 +128,7 @@ public class ProfileStudent extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		labelPhoto.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/download2.jpeg")));
+		labelPhoto.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/download2.jpeg")));
 		labelPhoto.setBackground(Color.GRAY);
 		labelPhoto.setBounds(28, 26, 200, 193);
 		panel_1.add(labelPhoto);
@@ -161,21 +161,21 @@ public class ProfileStudent extends JFrame {
 		socialLabel.setFont(new Font("Monospaced", Font.PLAIN, 18));
 
 		JLabel lblFacebook = new JLabel("Facebook:");
-		lblFacebook.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_facebook_25px.png")));
+		lblFacebook.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_facebook_25px.png")));
 		lblFacebook.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		lblFacebook.setForeground(Color.WHITE);
 		lblFacebook.setBounds(56, 118, 133, 25);
 		panel_2.add(lblFacebook);
 
 		JLabel lblPhone = new JLabel("Phone:");
-		lblPhone.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_phone_25px.png")));
+		lblPhone.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_phone_25px.png")));
 		lblPhone.setForeground(Color.WHITE);
 		lblPhone.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		lblPhone.setBounds(375, 68, 92, 25);
 		panel_2.add(lblPhone);
 
 		JLabel lblWhatsapp = new JLabel("GitHub:");
-		lblWhatsapp.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_github_25px.png")));
+		lblWhatsapp.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_github_25px.png")));
 		lblWhatsapp.setForeground(Color.WHITE);
 		lblWhatsapp.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		lblWhatsapp.setBounds(56, 68, 108, 25);
@@ -183,7 +183,7 @@ public class ProfileStudent extends JFrame {
 
 		JLabel lblInstagram = new JLabel("Instagram:");
 		lblInstagram
-				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/icons8_instagram_new_25px.png")));
+				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_instagram_new_25px.png")));
 		lblInstagram.setForeground(Color.WHITE);
 		lblInstagram.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		lblInstagram.setBounds(375, 118, 133, 25);
@@ -521,7 +521,7 @@ public class ProfileStudent extends JFrame {
 
 		catch (Exception error) {
 			JOptionPane.showMessageDialog(null, "An error was ocorred, please, choose another picture!");
-			labelPhoto.setIcon(new ImageIcon(ProfileStudent.class.getResource("/packageMain/download2.jpeg")));
+			labelPhoto.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/download2.jpeg")));
 		}
 	}
 

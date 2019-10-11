@@ -1,12 +1,14 @@
 package packageMain;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ChangePasswordProfile extends JFrame {
 
@@ -100,7 +102,7 @@ public class ChangePasswordProfile extends JFrame {
 		contentPane.add(separator_1);
 
 		JButton btnSetPassword = new JButton("Set Password");
-		btnSetPassword.setIcon(new ImageIcon(ChangePasswordProfile.class.getResource("/packageMain/icons8_show_password_25px_1.png")));
+		btnSetPassword.setIcon(new ImageIcon(ChangePasswordProfile.class.getResource("/pictures/icons8_show_password_25px_1.png")));
 		btnSetPassword.setBackground(Color.WHITE);
 		btnSetPassword.setBorder(new LineBorder(Color.WHITE, 5, true));
 		btnSetPassword.setBounds(166, 258, 238, 33);
@@ -108,7 +110,7 @@ public class ChangePasswordProfile extends JFrame {
 
 		JButton btnReturn = new JButton("Return");
 		btnReturn.setHorizontalTextPosition(SwingConstants.LEADING);
-		btnReturn.setIcon(new ImageIcon(ChangePasswordProfile.class.getResource("/packageMain/icons8_exit_sign_25px.png")));
+		btnReturn.setIcon(new ImageIcon(ChangePasswordProfile.class.getResource("/pictures/icons8_exit_sign_25px.png")));
 		btnReturn.setBackground(Color.WHITE);
 		btnReturn.setBorder(new LineBorder(UIManager.getColor("Button.select")));
 		btnReturn.setBounds(216, 330, 131, 36);

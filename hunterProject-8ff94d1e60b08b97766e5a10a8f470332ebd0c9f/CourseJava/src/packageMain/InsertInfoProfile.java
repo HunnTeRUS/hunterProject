@@ -1,6 +1,7 @@
 package packageMain;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class InsertInfoProfile {
 	ConectionDB db = new ConectionDB();

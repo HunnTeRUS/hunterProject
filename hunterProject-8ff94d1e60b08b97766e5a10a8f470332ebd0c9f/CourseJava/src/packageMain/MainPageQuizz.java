@@ -1,24 +1,14 @@
 package packageMain;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.ImageIcon;
-import java.awt.SystemColor;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Random;
-
-import javax.swing.JTextArea;
-import javax.swing.Box;
 
 public class MainPageQuizz extends JFrame {
 	Random rand = new Random();
@@ -123,27 +113,27 @@ public class MainPageQuizz extends JFrame {
 		panel1.add(labelSwitch);
 
 		mathButton.setBackground(Color.LIGHT_GRAY);
-		mathButton.setIcon(new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_math_25px.png")));
+		mathButton.setIcon(new ImageIcon(MainPageQuizz.class.getResource("/pictures/icons8_math_25px.png")));
 		mathButton.setFont(UIManager.getFont("TextArea.font"));
 		mathButton.setBounds(10, 156, 339, 51);
 		panel1.add(mathButton);
 
 		programmingButton.setBackground(Color.LIGHT_GRAY);
-		programmingButton.setIcon(new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_code_25px.png")));
+		programmingButton.setIcon(new ImageIcon(MainPageQuizz.class.getResource("/pictures/icons8_code_25px.png")));
 		programmingButton
-				.setSelectedIcon(new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_code_25px.png")));
+				.setSelectedIcon(new ImageIcon(MainPageQuizz.class.getResource("/pictures/icons8_code_25px.png")));
 		programmingButton.setFont(UIManager.getFont("TextArea.font"));
 		programmingButton.setBounds(10, 218, 339, 50);
 		panel1.add(programmingButton);
 
 		englishButton.setBackground(Color.LIGHT_GRAY);
 		englishButton.setIcon(
-				new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_language_filled_25px.png")));
+				new ImageIcon(MainPageQuizz.class.getResource("/pictures/icons8_language_filled_25px.png")));
 		englishButton.setFont(UIManager.getFont("TextArea.font"));
 		englishButton.setBounds(10, 279, 339, 51);
 		panel1.add(englishButton);
 
-		btnExit.setIcon(new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_exit_sign_25px.png")));
+		btnExit.setIcon(new ImageIcon(MainPageQuizz.class.getResource("/pictures/icons8_exit_sign_25px.png")));
 		btnExit.setBackground(SystemColor.scrollbar);
 		btnExit.setBounds(70, 567, 215, 37);
 		panel1.add(btnExit);
@@ -192,7 +182,7 @@ public class MainPageQuizz extends JFrame {
 		panelQuizz.setLayout(null);
 
 		continueQuestionsMath.setIcon(
-				new ImageIcon(MainPageQuizz.class.getResource("/packageMain/icons8_chevron_right_filled_25px.png")));
+				new ImageIcon(MainPageQuizz.class.getResource("/pictures/icons8_chevron_right_filled_25px.png")));
 		continueQuestionsMath.setFont(UIManager.getFont("TextArea.font"));
 		continueQuestionsMath.setBackground(SystemColor.scrollbar);
 		continueQuestionsMath.setBounds(286, 509, 215, 37);

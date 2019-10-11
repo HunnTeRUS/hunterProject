@@ -1,13 +1,12 @@
 
 package packageMain;
 
-import java.awt.Color;
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import javax.swing.*;
 
 public class StudyQuestion {
 

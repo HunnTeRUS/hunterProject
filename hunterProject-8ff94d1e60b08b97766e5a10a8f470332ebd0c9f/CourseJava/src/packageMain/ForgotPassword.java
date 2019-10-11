@@ -1,17 +1,15 @@
 package packageMain;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Toolkit;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.swing.*;
 
 public class ForgotPassword {
 	// Objects

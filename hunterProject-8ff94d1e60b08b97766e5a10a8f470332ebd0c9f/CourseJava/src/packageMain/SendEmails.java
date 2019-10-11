@@ -1,9 +1,12 @@
 package packageMain;
 
-import org.apache.commons.mail.*;
+import org.apache.commons.mail.SimpleEmail;
+
 import javax.mail.*;
-import javax.mail.internet.*;
-import java.util.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 
 public class SendEmails {
 	SimpleEmail sendEmail = new SimpleEmail();

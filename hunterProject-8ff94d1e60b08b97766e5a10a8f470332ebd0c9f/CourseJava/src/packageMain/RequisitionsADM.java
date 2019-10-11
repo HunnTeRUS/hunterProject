@@ -1,9 +1,8 @@
 package packageMain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class RequisitionsADM {
 
