@@ -12,7 +12,7 @@ public class CreateQuestions {
 	static JPanel mainPanel = new JPanel();
 	JPanel panel2 = new JPanel();
 	JPanel panel3 = new JPanel();
-	ImageIcon image = new ImageIcon(getClass().getResource("icons8-cor-48.png"));
+	ImageIcon image = new ImageIcon(getClass().getResource("/pictures/icons8-cor-48.png"));
 	JLabel imageIcon = new JLabel(image);
 	JLabel mathLabel = new JLabel("I wanna insert a math question");
 	JLabel englishLabel = new JLabel("I wanna insert a english question");
@@ -68,7 +68,7 @@ public class CreateQuestions {
 		mainPanel.setBackground(new Color(107, 35, 142));
 
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
+				.getImage(getClass().getResource("/pictures/Sem-Logo-Branco-transparente-cortado.png")));
 		programmingButton.setForeground(Color.WHITE);
 		programmingButton.setBackground(Color.BLACK);
 		mathButton.setForeground(Color.WHITE);
@@ -203,7 +203,7 @@ public class CreateQuestions {
 			public void actionPerformed(ActionEvent e) {
 				explanation = JOptionPane.showInputDialog("Insert the message");
 
-				if (mathQuizz == true) {
+				if (mathQuizz) {
 					if ((anwser0 != anwser2) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
 						mathobj.addQuestions(question, anwser0, anwser2, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
@@ -233,7 +233,7 @@ public class CreateQuestions {
 					}
 				}
 
-				if (englishQuizz == true) {
+				if (englishQuizz) {
 					if ((anwser0 != anwser2) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
 						englishobj.addQuestions(question, anwser0, anwser2, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
@@ -263,7 +263,7 @@ public class CreateQuestions {
 					}
 				}
 
-				if (programmingQuizz == true) {
+				if (programmingQuizz) {
 					if ((anwser0 != anwser2) && (anwser0 != anwser3) && (anwser0 != anwser4)) {
 						programmingobj.addQuestions(question, anwser0, anwser2, anwser3, anwser4, explanation);
 						JOptionPane.showMessageDialog(null, "The questions was inserted sucessfully");
@@ -337,7 +337,7 @@ public class CreateQuestions {
 		});
 	}
 
-	public void allMethods() {
+	void allMethods() {
 		if(c==0){
 		actions();
 		visual();

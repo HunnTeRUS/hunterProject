@@ -20,7 +20,7 @@ public class StudyEnglish {
 
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
-	ImageIcon image = new ImageIcon(getClass().getResource("icons8-cor-48.png"));
+	ImageIcon image = new ImageIcon(getClass().getResource("/pictures/icons8-cor-48.png"));
 	JLabel imageIcon = new JLabel(image);
 	JButton continueQuestions = new JButton("Next");
 	JButton returnMain = new JButton("Return to Menu");

@@ -20,7 +20,7 @@ public class StudyMath {
 
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
-	ImageIcon image = new ImageIcon(getClass().getResource("icons8-cor-48.png"));
+	ImageIcon image = new ImageIcon(getClass().getResource("/pictures/icons8-cor-48.png"));
 	JLabel imageIcon = new JLabel(image);
 	JButton continueQuestions = new JButton("Next");
 	JButton returnMain = new JButton("Return to Menu");
@@ -111,7 +111,7 @@ public class StudyMath {
 		question.setLineWrap(true);
 		question.setEnabled(false);
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
+				.getImage(getClass().getResource("/pictures/Sem-Logo-Branco-transparente-cortado.png")));
 
 		answer1.setBounds(25, 290, 440, 50);
 		answer1.setForeground(Color.BLACK);

@@ -67,7 +67,7 @@ public class ForgotPassword {
 	static JPanel mainPanel2 = new JPanel();
 
 	// Images
-	ImageIcon image = new ImageIcon(getClass().getResource("icons8-cor-48.png"));
+	ImageIcon image = new ImageIcon(getClass().getResource("/pictures/icons8-cor-48.png"));
 
 	// Labels
 	JLabel emailRequest = new JLabel("Insert your E-mail!");
@@ -143,7 +143,7 @@ public class ForgotPassword {
 		confirmChange.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(35, 35, 255), 1, true));
 
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
+				.getImage(getClass().getResource("/pictures/Sem-Logo-Branco-transparente-cortado.png")));
 
 		confirmChange.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -220,7 +220,7 @@ public class ForgotPassword {
 		receiveEmail.setBounds(0, 170, 500, 50);
 		receiveEmail.setBackground(Color.BLACK);
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
+				.getImage(getClass().getResource("/pictures/Sem-Logo-Branco-transparente-cortado.png")));
 
 		sendEmail.setBounds(125, 290, 240, 50);
 		sendEmail.setForeground(Color.BLACK);
@@ -303,7 +303,7 @@ public class ForgotPassword {
 					Thread.sleep(2000);
 					JOptionPane.showMessageDialog(null,
 							"We have send a one code in your email, insert him here to continue with the password recuperation!",
-							"Attention", 3);
+							"Attention", JOptionPane.INFORMATION_MESSAGE);
 
 					codeReceived = JOptionPane.showInputDialog("Digite o codigo que foi enviado!");
 

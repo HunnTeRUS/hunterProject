@@ -15,7 +15,7 @@ public class StudyQuestion {
 	static JPanel mainPanel = new JPanel();
 	JPanel panel2 = new JPanel();
 	JPanel panel3 = new JPanel();
-	ImageIcon image = new ImageIcon(getClass().getResource("icons8-cor-48.png"));
+	ImageIcon image = new ImageIcon(getClass().getResource("/pictures/icons8-cor-48.png"));
 	JLabel imageIcon = new JLabel(image);
 	JLabel mathLabel = new JLabel("I wanna answer a math questions");
 	JLabel englishLabel = new JLabel("I wanna answer a english questions");
@@ -61,7 +61,7 @@ public class StudyQuestion {
 		mainPanel.setBackground(new Color(107, 35, 142));
 
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
+				.getImage(getClass().getResource("/pictures/Sem-Logo-Branco-transparente-cortado.png")));
 		programmingButton.setForeground(Color.black);
 		programmingButton.setBackground(Color.WHITE);
 		mathButton.setForeground(Color.black);
@@ -169,7 +169,7 @@ public class StudyQuestion {
 		}
 	}
 
-	public void allMethods() {
+	 void allMethods() {
 		if(c==0){
 		actions();
 		visual();

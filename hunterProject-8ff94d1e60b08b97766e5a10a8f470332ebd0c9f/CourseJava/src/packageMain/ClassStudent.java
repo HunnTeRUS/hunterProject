@@ -14,7 +14,7 @@ public class ClassStudent {
 
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
-	ImageIcon image = new ImageIcon(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png"));
+	ImageIcon image = new ImageIcon(getClass().getResource("/pictures/Sem-Logo-Branco-transparente-cortado.png"));
 	JLabel imageIcon = new JLabel(image);
 	JLabel mainText = new JLabel("What do you want to do?");
 	JButton profileButton = new JButton("My Profile");
@@ -57,7 +57,7 @@ public class ClassStudent {
 		mainPanel.add(study);
 		mainPanel.setBackground(new Color(107, 35, 142));
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
+				.getImage(getClass().getResource("/pictures/Sem-Logo-Branco-transparente-cortado.png")));
 
 		mainText.setForeground(Color.WHITE);
 		study.setForeground(Color.WHITE);
