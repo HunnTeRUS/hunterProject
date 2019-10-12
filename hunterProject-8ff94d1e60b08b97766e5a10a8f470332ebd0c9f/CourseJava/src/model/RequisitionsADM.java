@@ -15,6 +15,7 @@ public class RequisitionsADM {
 	ResultSet rs;
 
 	String user, email, explanation;
+	int code;
 
 	public String getUser() {
 		return user;
@@ -22,6 +23,14 @@ public class RequisitionsADM {
 
 	public void setUser(String user) {
 		this.user = user;
+	}
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public String getEmail() {
@@ -60,7 +69,7 @@ public class RequisitionsADM {
 		return 1;
 	}
 
-	// Method thats return one requisition, receiving the user code to search in the database
+	// Method thats return one requisition
 	public void receiveRequisitionsDB() {
 		try {
 			if (db.getConnection()) {
@@ -80,6 +89,7 @@ public class RequisitionsADM {
 				setUser(rs.getString("userr"));
 				setEmail(rs.getString("email"));
 				setExplanation(rs.getString("explanation"));
+				setCode(rs.getInt("codeUser"));
 
 			}
 		} catch (Exception e) {

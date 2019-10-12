@@ -37,6 +37,7 @@ public class ProfileStudent extends JFrame {
 	private JLabel labelPhoto = new JLabel();
 	public static JTextField phoneField = new JTextField();
 	public JTextField ageField = new JTextField();
+	public JButton btnIWannaBe = new JButton("I wanna be Adm");
 	String SQL;
 	ResultSet rs;
 	PreparedStatement stmt;
@@ -112,7 +113,6 @@ public class ProfileStudent extends JFrame {
 		btnChangePassword.setBounds(12, 240, 248, 33);
 		panel1.add(btnChangePassword);
 
-		JButton btnIWannaBe = new JButton("I wanna be Adm");
 		btnIWannaBe
 				.setIcon(new ImageIcon(ProfileStudent.class.getResource("/pictures/icons8_administrator_25px.png")));
 		btnIWannaBe.setFont(UIManager.getFont("TextArea.font"));

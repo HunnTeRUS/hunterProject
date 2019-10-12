@@ -1,5 +1,6 @@
 package view;
 
+import model.ConectionDB;
 import model.RequisitionsADM;
 
 import javax.swing.*;
@@ -8,8 +9,13 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class RequisitionsVisualADM {
+
+	//ProfileStudent student = new ProfileStudent();
+	ConectionDB db = new ConectionDB();
 
 	private JPanel contentPane;
 	public static JFrame mainFrame = new JFrame();
@@ -100,13 +106,34 @@ public class RequisitionsVisualADM {
 
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(db.getConnection()){
+					PreparedStatement stmt;
+					String SQL, deleteRequisition;
 
+					SQL = "UPDATE users SET adm=1, student=0 WHERE userr='" + userField.getText() + "';";
+					deleteRequisition = "DELETE FROM requisitions WHERE idUser=" + adm.getCode() + ";";
+					try {
+						stmt = db.con.prepareStatement(SQL);
+						stmt.executeUpdate();
+
+						stmt = db.con.prepareStatement(deleteRequisition);
+						stmt.execute();
+
+						settingValues();
+
+					} catch (SQLException ex) {
+						ex.printStackTrace();
+					}
+
+					db.close();
+				}
 			}
 		});
 
 		btnRecuse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				//student.btnIWannaBe.setEnabled(true);
+				settingValues();
 			}
 		});
 	}
