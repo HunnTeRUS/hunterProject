@@ -1,4 +1,10 @@
-package packageMain;
+package view;
+
+import controller.ChangePasswordProfile;
+import controller.LoginClientes;
+import controller.SendEmails;
+import model.ConectionDB;
+import model.InsertInfoProfile;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

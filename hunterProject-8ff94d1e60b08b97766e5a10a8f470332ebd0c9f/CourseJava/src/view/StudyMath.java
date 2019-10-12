@@ -1,4 +1,8 @@
-package packageMain;
+package view;
+
+import controller.CreateQuestions;
+import controller.StudyQuestion;
+import model.ConectionDB;
 
 import javax.swing.*;
 import java.awt.*;

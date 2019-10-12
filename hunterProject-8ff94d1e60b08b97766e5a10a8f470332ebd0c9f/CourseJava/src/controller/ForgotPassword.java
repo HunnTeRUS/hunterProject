@@ -1,4 +1,7 @@
-package packageMain;
+package controller;
+
+import model.ConectionDB;
+import view.MainInterface;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -316,7 +319,7 @@ public class ForgotPassword {
 						receiveEmail.setForeground(Color.white);
 					}
 
-					LoginClientes.framePrincipalLogin.dispose();
+					objLogin.framePrincipalLogin.dispose();
 				} catch (InterruptedException e) {
 
 					e.printStackTrace();

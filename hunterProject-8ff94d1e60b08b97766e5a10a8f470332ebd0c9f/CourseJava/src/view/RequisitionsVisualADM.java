@@ -1,4 +1,6 @@
-package packageMain;
+package view;
+
+import model.RequisitionsADM;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

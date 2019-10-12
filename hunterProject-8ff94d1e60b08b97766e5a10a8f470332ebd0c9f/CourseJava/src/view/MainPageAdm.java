@@ -1,4 +1,4 @@
-package packageMain;
+package view;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -6,15 +6,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainPageStudent extends JFrame {
+public class MainPageAdm extends JFrame {
 	private JPanel contentPane;
 
-		ProfileStudent studentObj = new ProfileStudent();
-		MainPageQuizz quizzObj = new MainPageQuizz();
+	ProfileAdm studentAdm = new ProfileAdm();
 	
-
 	public void all() {
-		//public MainPageStudent() {
+		//public MainPageAdm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1137,656);
 		setLocationRelativeTo(null);
@@ -41,35 +39,35 @@ public class MainPageStudent extends JFrame {
 		
 		JButton mathButton = new JButton("Math");
 		mathButton.setBackground(SystemColor.scrollbar);
-		mathButton.setIcon(new ImageIcon(MainPageStudent.class.getResource("/pictures/icons8_math_25px.png")));
+		mathButton.setIcon(new ImageIcon(MainPageAdm.class.getResource("/pictures/icons8_math_25px.png")));
 		mathButton.setFont(UIManager.getFont("TextArea.font"));
 		mathButton.setBounds(10, 156, 339, 51);
 		panel1.add(mathButton);
 		
 		JButton programmingButton = new JButton("Programming");
 		programmingButton.setBackground(SystemColor.scrollbar);
-		programmingButton.setIcon(new ImageIcon(MainPageStudent.class.getResource("/pictures/icons8_code_25px.png")));
-		programmingButton.setSelectedIcon(new ImageIcon(MainPageStudent.class.getResource("/pictures/icons8_code_25px.png")));
+		programmingButton.setIcon(new ImageIcon(MainPageAdm.class.getResource("/pictures/icons8_code_25px.png")));
+		programmingButton.setSelectedIcon(new ImageIcon(MainPageAdm.class.getResource("/pictures/icons8_code_25px.png")));
 		programmingButton.setFont(UIManager.getFont("TextArea.font"));
 		programmingButton.setBounds(10, 218, 339, 50);
 		panel1.add(programmingButton);
 		
 		JButton englishButton = new JButton("English");
 		englishButton.setBackground(SystemColor.scrollbar);
-		englishButton.setIcon(new ImageIcon(MainPageStudent.class.getResource("/pictures/icons8_language_filled_25px.png")));
+		englishButton.setIcon(new ImageIcon(MainPageAdm.class.getResource("/pictures/icons8_language_filled_25px.png")));
 		englishButton.setFont(UIManager.getFont("TextArea.font"));
 		englishButton.setBounds(10, 279, 339, 51);
 		panel1.add(englishButton);
 		
 		JButton btnQuizz = new JButton("Quizz");
 		btnQuizz.setBackground(SystemColor.scrollbar);
-		btnQuizz.setIcon(new ImageIcon(MainPageStudent.class.getResource("/pictures/icons8_test_filled_25px.png")));
+		btnQuizz.setIcon(new ImageIcon(MainPageAdm.class.getResource("/pictures/icons8_test_filled_25px.png")));
 		btnQuizz.setFont(UIManager.getFont("TextArea.font"));
 		btnQuizz.setBounds(10, 341, 339, 51);
 		panel1.add(btnQuizz);
 		
 		JButton btnExit = new JButton("");
-		btnExit.setIcon(new ImageIcon(MainPageStudent.class.getResource("/pictures/icons8_exit_sign_25px.png")));
+		btnExit.setIcon(new ImageIcon(MainPageAdm.class.getResource("/pictures/icons8_exit_sign_25px.png")));
 		btnExit.setBackground(SystemColor.scrollbar);
 		btnExit.setBounds(70, 567, 215, 37);
 		panel1.add(btnExit);
@@ -77,7 +75,7 @@ public class MainPageStudent extends JFrame {
 		
 		JButton btnMyProfile = new JButton("My Profile");
 		btnMyProfile.setBackground(SystemColor.scrollbar);
-		btnMyProfile.setIcon(new ImageIcon(MainPageStudent.class.getResource("/pictures/icons8_admin_settings_male_filled_25px.png")));
+		btnMyProfile.setIcon(new ImageIcon(MainPageAdm.class.getResource("/pictures/icons8_admin_settings_male_filled_25px.png")));
 		btnMyProfile.setFont(UIManager.getFont("TextArea.font"));
 		btnMyProfile.setBounds(10, 454, 339, 51);
 		panel1.add(btnMyProfile);
@@ -97,14 +95,7 @@ public class MainPageStudent extends JFrame {
 		btnMyProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				studentObj.ProfileStudentMethod();
-			}
-		});
-		
-		btnQuizz.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				quizzObj.mainMethodQuizz();
+				studentAdm.ProfileAdmMethod();
 			}
 		});
 	}

@@ -1,4 +1,6 @@
-package packageMain;
+package view;
+
+import controller.StudyQuestion;
 
 import javax.swing.*;
 import java.awt.*;

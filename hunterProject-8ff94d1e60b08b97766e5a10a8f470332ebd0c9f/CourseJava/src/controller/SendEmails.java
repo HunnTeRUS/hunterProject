@@ -1,4 +1,4 @@
-package packageMain;
+package controller;
 
 import org.apache.commons.mail.SimpleEmail;
 

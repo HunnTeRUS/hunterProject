@@ -1,4 +1,8 @@
-package packageMain;
+package view;
+
+import controller.CreateQuestions;
+import controller.StudyQuestion;
+import model.ConectionDB;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,14 +13,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
-public class StudyProgramming {
+public class StudyEnglish {
 
 	public static CreateQuestions questions = new CreateQuestions();
 	public static MainInterface maininterface = new MainInterface();
 	public static StudyQuestion objStudy = new StudyQuestion();
 	public static StudyMath objMath = new StudyMath();
-	private ConectionDB db = new ConectionDB();
 	public static ClassStudent objMain = new ClassStudent();
+	private ConectionDB db = new ConectionDB();
 
 	static JFrame mainFrame = new JFrame();
 	static JPanel mainPanel = new JPanel();
@@ -59,7 +63,7 @@ public class StudyProgramming {
 	public void questionsUser() {
 		try {
 			if (db.getConnection()) {
-				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM programmingExercises;";
+				String rsLenght = "SELECT MIN(codQuestion) AS firstRow FROM englishExercises;";
 				stmt = db.con.prepareStatement(rsLenght);
 				ResultSet lenght2 = stmt.executeQuery();
 
@@ -87,12 +91,12 @@ public class StudyProgramming {
 	public void settingInterfaceStudy() {
 		mainFrame.setVisible(true);
 		mainFrame.setResizable(false);
-		mainFrame.setSize(500,700);
 		mainFrame.setLocationRelativeTo(null);
+		mainFrame.setSize(500, 700);
 		mainPanel.setBounds(700, 200, 500, 700);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel.setLayout(null);
-		mainFrame.setTitle("Programming Questions");
+		mainFrame.setTitle("English Questions");
 		mainFrame.add(mainPanel);
 		mainPanel.add(continueQuestions);
 		mainPanel.setBackground(new Color(107, 35, 142));
@@ -111,7 +115,7 @@ public class StudyProgramming {
 		question.setLineWrap(true);
 		question.setEnabled(false);
 		mainFrame.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(getClass().getResource("/pictures/Sem-Logo-Branco-transparente-cortado.png")));
+				.getImage(getClass().getResource("Sem-Logo-Branco-transparente-cortado.png")));
 
 		answer1.setBounds(25, 290, 440, 50);
 		answer1.setForeground(Color.BLACK);
@@ -147,9 +151,9 @@ public class StudyProgramming {
 					continueQuestions.setEnabled(false);
 					continueQuestions.setBackground(Color.gray);
 					continueQuestions.setForeground(Color.black);
-					SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM programmingExercises WHERE codQuestion="
+					SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM englishExercises WHERE codQuestion="
 							+ i + ";";
-					count = "SELECT COUNT(question) AS quantidade FROM programmingExercises;";
+					count = "SELECT COUNT(question) AS quantidade FROM englishExercises;";
 
 					stmt = db.con.prepareStatement(count);
 					lenght = stmt.executeQuery();
@@ -159,7 +163,7 @@ public class StudyProgramming {
 							JOptionPane.showMessageDialog(null, "You have finished all questions, please, try another course!");
 							objMain.mainMethod();
 							mainFrame.dispose();
-						}
+							}
 					}
 
 					stmt = db.con.prepareStatement(SQL);
@@ -223,7 +227,7 @@ public class StudyProgramming {
 	public void Acoes() {
 		try {
 			System.out.println(i);
-			SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM programmingExercises WHERE codQuestion="
+			SQL = "SELECT question, answer0, answer1, answer2, answer3, explanation FROM englishExercises WHERE codQuestion="
 					+ i + ";";
 
 			stmt = db.con.prepareStatement(SQL);

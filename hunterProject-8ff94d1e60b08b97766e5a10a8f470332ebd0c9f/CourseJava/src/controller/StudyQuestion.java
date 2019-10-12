@@ -1,5 +1,14 @@
 
-package packageMain;
+package controller;
+
+import model.ConectionDB;
+import model.EnglishQuestions;
+import model.MathQuestions;
+import model.ProgrammingQuestions;
+import view.MainInterface;
+import view.StudyEnglish;
+import view.StudyMath;
+import view.StudyProgramming;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +40,7 @@ public class StudyQuestion {
 	private int c=0;
 	
 	// THE NECESSARY OBJECTS
-	MainInterface classeMain = new MainInterface();
+	 MainInterface classeMain = new MainInterface();
 	StudyMath quizzMath = new StudyMath();
 	StudyProgramming quizzProgramming = new StudyProgramming();
 	StudyEnglish quizzEnglish = new StudyEnglish();
@@ -169,7 +178,7 @@ public class StudyQuestion {
 		}
 	}
 
-	 void allMethods() {
+	public void allMethods() {
 		if(c==0){
 		actions();
 		visual();

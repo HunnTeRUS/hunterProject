@@ -1,4 +1,6 @@
-package packageMain;
+package controller;
+
+import model.ConectionDB;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,4 +1,7 @@
-package packageMain;
+package controller;
+
+import model.ConectionDB;
+import view.ProfileAdm;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -884,7 +887,7 @@ public class MainPageQuizz extends JFrame {
 	
 	public void SelecionaRecord() {
 		try {
-			SQL = "Select programmingRecord, mathRecord, englishRecord FROM users WHERE codUser="+LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
+			SQL = "Select programmingRecord, mathRecord, englishRecord FROM users WHERE codUser="+ LoginClientes.getUsuario()+" OR nameUser="+LoginClientes.getUsuario()+";";
 			ResultSet rs;
 			stmt = db.con.prepareStatement(SQL);
 			rs = stmt.executeQuery();

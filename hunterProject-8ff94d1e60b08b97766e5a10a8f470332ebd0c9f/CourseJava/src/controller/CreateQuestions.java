@@ -1,4 +1,9 @@
-package packageMain;
+package controller;
+
+import model.EnglishQuestions;
+import model.MathQuestions;
+import model.ProgrammingQuestions;
+import view.MainInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -337,7 +342,7 @@ public class CreateQuestions {
 		});
 	}
 
-	void allMethods() {
+	public void allMethods() {
 		if(c==0){
 		actions();
 		visual();
